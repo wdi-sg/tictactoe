@@ -1,0 +1,42 @@
+body {
+	background: green;
+}
+
+p {
+	position: absolute;
+	font-size: 150px;
+	color: white;/*
+	display: none;*/
+}
+
+.container {
+	text-align: center;
+	margin-top: 225px;
+}
+
+.playBox {
+    background: black;
+    width: 125px;
+    height: 125px;
+    border: 5px solid red;
+    display: inline-block;
+}
+
+.leftColumn {
+	margin-left: 537px;
+	margin-top: -173px;
+}
+
+.centerColumn {
+	margin-left: 676px;
+	margin-top: -173px;
+}
+
+.rightColumn {
+	margin-left: 815px;
+	margin-top: -173px;
+}
+
+.o , .x {
+	display: none;
+}
