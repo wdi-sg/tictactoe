@@ -1,0 +1,66 @@
+
+h1 {
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+	padding: 50px;
+	margin: 0 auto;
+}
+
+h2 {
+	font-size: 24px;
+	margin: 0.4em auto;
+	position: relative;
+}
+
+.title {
+	width: 450px;
+	margin: 0 auto;
+}
+
+.button {
+	height: 50px;
+    width: 200px;
+    border: 2px solid grey;
+    text-align: center;
+    margin: 0 auto;
+    background-color: grey;
+    color: white;
+}
+
+.container {
+	margin: 7em auto;
+    width: 485px;
+}
+
+.game {
+	width: 450px;
+	height: 450px;
+	position: relative;
+    bottom: -75px;
+
+}
+
+.square {
+	width: 150px;
+	height: 150px;
+	display: inline-block;
+	float: left;
+	text-align: center;
+	font-size: 100px;
+	font-weight: bold;
+}
+
+#a1, #a2, #a3 {
+	border-bottom: 3px solid #30343a;
+}
+
+#b1, #b2, #b3 {
+	border-bottom: 3px solid #30343a;
+}
+
+#a2, #b2, #c2 {
+	border-right: 3px solid #30343a;
+	border-left: 3px solid #30343a;
+}
+
