@@ -1,0 +1,37 @@
+#game-board {
+  width: 450px;
+  border: 10px solid black;
+  border-radius: 20px;
+  margin-top: 50px;
+  display: none;
+}
+.game-box {
+  height: 150px;
+  background-color: #7399c6;
+  border: 3px solid white;
+  color: white;
+  font-size: 75px;
+  font-weight: bold;
+  padding-top: 20px;
+}
+
+#player-choose {
+  margin-top: 50px;
+  border: 5px solid black;
+  border-radius: 15px;
+  padding: 30px;
+  width: 450px;
+}
+
+#player-choose p {
+  font-size: 24px;
+}
+
+#player-choose button {
+  font-weight: bold;
+}
+
+#messages {
+  font-size: 24px;
+  display: none;
+}
