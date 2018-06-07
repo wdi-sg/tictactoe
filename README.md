@@ -3,7 +3,7 @@
 
 Build a game of tic tac toe.
 
-Unless you are very comfortable, build and test the game by running istep by step starting from the beginning.
+Unless you are very comfortable, build and test the game by running it in small parts, step by step starting from the beginning.
 
 ### Setup
 - create an `index.html`.
