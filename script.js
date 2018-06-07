@@ -162,6 +162,7 @@ function winToast(){
 }
 function reset(){
   currentPlayer('player1');
+  document.getElementById('winMsg').innerHTML = "Player 1 start!"
   var x = document.getElementsByClassName('box');
   for (var i = 0; i < x.length; i++) {
     x[i].innerHTML = "";
