@@ -16,17 +16,17 @@ function clickId(id){
   if(players.currentPlayer == 'player1'){
     document.getElementById(id).innerHTML = "X";
     document.getElementById(id).removeAttribute('onclick');
-    document.getElementById('winMsg').innerHTML = players.currentPlayer + " " + "turn"
-    currentPlayer('player2');
+    document.getElementById('winMsg').innerHTML = "Player 2's turn"
     checkWinO();
     checkWinX();
+    currentPlayer('player2');
   }else if (players.currentPlayer == 'player2'){
     document.getElementById(id).innerHTML = "O";
     document.getElementById(id).removeAttribute('onclick');
-    document.getElementById('winMsg').innerHTML = players.currentPlayer + " " + "turn"
-    currentPlayer('player1');
+    document.getElementById('winMsg').innerHTML = "Player 1's turn"
     checkWinO();
     checkWinX();
+    currentPlayer('player1');
   }
 }
 // before refactoring
@@ -114,7 +114,7 @@ function clickId(id){
 //   checkWinO()
 // }
 
-// this.innerHTML doens't work
+// this.innerHTML doens't work only works if i place 'this' on the onclick attribute
 // total of 8 wins conditions for each letter, total of 16
 
 function checkWinO(){
