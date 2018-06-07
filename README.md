@@ -6,8 +6,8 @@ Build a game of tic tac toe.
 Unless you are very comfortable, build the game step by step starting from the beggining.
 
 ### Setup
-- create an `index.html` file in this repo.
-- include the starter code script.js file.
+- create an `index.html`.
+- create a `script.js` file.
 
 ### Create a working game
 - create a game that users can play and that fills each square as they select it with either X or O
