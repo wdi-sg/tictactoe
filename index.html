@@ -6,23 +6,25 @@
     <title>TTT</title>
   </head>
   <body>
+    <h1 id="winMsg">player1 turn</h1>
     <div class="gameboard">
       <div class="row">
-        <div class="box" id="box1" onclick="box1()">0</div>
-        <div class="box" id="box2" onclick="box2()">1</div>
-        <div class="box" id="box3" onclick="box3()">2</div>
+        <div class="box" id="box1" onclick="clickId(this.id)"></div>
+        <div class="box" id="box2" onclick="clickId(this.id)"></div>
+        <div class="box" id="box3" onclick="clickId(this.id)"></div>
       </div>
       <div class="row">
-        <div class="box" id="box4" onclick="box4()">3</div>
-        <div class="box" id="box5" onclick="box5()">4</div>
-        <div class="box" id="box6" onclick="box6()">5</div>
+        <div class="box" id="box4" onclick="clickId(this.id)"></div>
+        <div class="box" id="box5" onclick="clickId(this.id)"></div>
+        <div class="box" id="box6" onclick="clickId(this.id)"></div>
       </div>
       <div class="row">
-        <div class="box" id="box7" onclick="box7()">6</div>
-        <div class="box" id="box8" onclick="box8()">7</div>
-        <div class="box" id="box9" onclick="box9()">8</div>
+        <div class="box" id="box7" onclick="clickId(this.id)"></div>
+        <div class="box" id="box8" onclick="clickId(this.id)"></div>
+        <div class="box" id="box9" onclick="clickId(this.id)"></div>
       </div>
     </div>
+    <h2 id="reset" onclick="reset()">Reset Game?</h2>
     <script src="script.js" charset="utf-8"></script>
   </body>
 </html>
