@@ -1,19 +1,16 @@
 document.addEventListener('DOMContentLoaded',function(){
 
     //Set up game grid as array
+    //[0][1][2]             [1][2][3]
+    //[3][4][5] = SquareNo. [4][5][6]
+    //[6][7][8]             [7][8][9]
     var gameGrid = [0, 0, 0, 0, 0, 0, 0, 0, 0,];
 
     //Define values of X and O
-    var x = 1;
-    var o = -1;
+    var X = 1;
+    var O = -1;
 
-    //Define winning combinations
-    var winningCombos = function() {
-        for (var i=0; i<gameGrid.length; i++);
-        if (([i] != 0) && ([0] == [1] == [2]) || ([3] == [4] == [5]) || ([6] == [7] == [8]) || ([0] == [3] == [6]) || ([1] == [4] == [7]) || ([3] == [5] == [8]) || ([0] == [4] == [8]) || ([6] == [4] == [2])
-        alert("We have a Winner!");
-    }
-
+   //Gameplay logic. Change in Square contents changes value in gameGrid Array.
     var gamePlay = function {
         var square1 = document.getElementById("#box1");
             if (square1.innerHTML = "X") {
@@ -61,7 +58,16 @@ document.addEventListener('DOMContentLoaded',function(){
             } else if (square1.innerHTML = "O") {
                 gameGrid[8] = -1;
 
-        
+
+    //Define winning combinations
+    //Rows ([0]=[1]=[2]) || ([3]=[4]=[5]) || ([6]=[7]=[8])
+    //Columns ([0]=[3]=[6]) || ([1]=[4]=[7]) || ([2]=[5]=[8])
+    //Diagonals ([0]=[4]=[8]) || ([6]=[4]=[2])
+    var winningCombos = function() {
+        for (var i=0; i<gameGrid.length; i++);
+        if (([i] != 0) && ([0] == [1] == [2]) || ([3] == [4] == [5]) || ([6] == [7] == [8]) || ([0] == [3] == [6]) || ([1] == [4] == [7]) || ([3] == [5] == [8]) || ([0] == [4] == [8]) || ([6] == [4] == [2])
+        alert("We have a Winner!");
+    }
 
         }
     }
