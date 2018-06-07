@@ -1,0 +1,16 @@
+.gameboard{
+  max-width: 400px;
+  margin: 0 auto;
+}
+.row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  margin: 10px 0 10px 0;
+}
+.box{
+  background-color: grey;
+  font-size: 5em;
+  text-align: center;
+}
