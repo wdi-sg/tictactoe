@@ -4,7 +4,7 @@ var gameMoves = 1;
 
 var players = {
   currentPlayer: 'player1',
-  currentSign: 'O'
+  currentSign: ''
 }
 
 function currentPlayer(x){
@@ -17,16 +17,20 @@ function clickId(id){
     document.getElementById(id).innerHTML = "X";
     document.getElementById(id).removeAttribute('onclick');
     document.getElementById('winMsg').innerHTML = "Player 2's turn"
+    players.currentSign = "X";
     checkWinO();
-    checkWinX();
     currentPlayer('player2');
+    gameMoves++;
+    console.log(gameMoves);
   }else if (players.currentPlayer == 'player2'){
     document.getElementById(id).innerHTML = "O";
     document.getElementById(id).removeAttribute('onclick');
     document.getElementById('winMsg').innerHTML = "Player 1's turn"
+    players.currentSign = "O";
     checkWinO();
-    checkWinX();
     currentPlayer('player1');
+    gameMoves++;
+    console.log(gameMoves);
   }
 }
 // before refactoring
@@ -118,44 +122,45 @@ function clickId(id){
 // total of 8 wins conditions for each letter, total of 16
 
 function checkWinO(){
-  if(document.getElementById(boxArray[0]).innerHTML == "O" && document.getElementById(boxArray[1]).innerHTML == "O" && document.getElementById(boxArray[2]).innerHTML == "O"){
+  if(document.getElementById(boxArray[0]).innerHTML == players.currentSign && document.getElementById(boxArray[1]).innerHTML == players.currentSign && document.getElementById(boxArray[2]).innerHTML == players.currentSign){
     winToast()
-  }else if (document.getElementById(boxArray[3]).innerHTML == "O" && document.getElementById(boxArray[4]).innerHTML == "O" && document.getElementById(boxArray[5]).innerHTML == "O") {
+  }else if (document.getElementById(boxArray[3]).innerHTML == players.currentSign && document.getElementById(boxArray[4]).innerHTML == players.currentSign && document.getElementById(boxArray[5]).innerHTML == players.currentSign) {
     winToast()
-  }else if (document.getElementById(boxArray[6]).innerHTML == "O" && document.getElementById(boxArray[7]).innerHTML == "O" && document.getElementById(boxArray[8]).innerHTML == "O") {
+  }else if (document.getElementById(boxArray[6]).innerHTML == players.currentSign && document.getElementById(boxArray[7]).innerHTML == players.currentSign && document.getElementById(boxArray[8]).innerHTML == players.currentSign) {
     winToast()
-  }else if (document.getElementById(boxArray[0]).innerHTML == "O" && document.getElementById(boxArray[4]).innerHTML == "O" && document.getElementById(boxArray[8]).innerHTML == "O") {
+  }else if (document.getElementById(boxArray[0]).innerHTML == players.currentSign && document.getElementById(boxArray[4]).innerHTML == players.currentSign && document.getElementById(boxArray[8]).innerHTML == players.currentSign) {
     winToast()
-  }else if (document.getElementById(boxArray[2]).innerHTML == "O" && document.getElementById(boxArray[4]).innerHTML == "O" && document.getElementById(boxArray[6]).innerHTML == "O") {
+  }else if (document.getElementById(boxArray[2]).innerHTML == players.currentSign && document.getElementById(boxArray[4]).innerHTML == players.currentSign && document.getElementById(boxArray[6]).innerHTML == players.currentSign) {
     winToast()
-  }else if (document.getElementById(boxArray[0]).innerHTML == "O" && document.getElementById(boxArray[3]).innerHTML == "O" && document.getElementById(boxArray[6]).innerHTML == "O") {
+  }else if (document.getElementById(boxArray[0]).innerHTML == players.currentSign && document.getElementById(boxArray[3]).innerHTML == players.currentSign && document.getElementById(boxArray[6]).innerHTML == players.currentSign) {
     winToast()
-  }else if (document.getElementById(boxArray[1]).innerHTML == "O" && document.getElementById(boxArray[4]).innerHTML == "O" && document.getElementById(boxArray[7]).innerHTML == "O") {
+  }else if (document.getElementById(boxArray[1]).innerHTML == players.currentSign && document.getElementById(boxArray[4]).innerHTML == players.currentSign && document.getElementById(boxArray[7]).innerHTML == players.currentSign) {
     winToast()
-  }else if (document.getElementById(boxArray[2]).innerHTML == "O" && document.getElementById(boxArray[5]).innerHTML == "O" && document.getElementById(boxArray[8]).innerHTML == "O") {
+  }else if (document.getElementById(boxArray[2]).innerHTML == players.currentSign && document.getElementById(boxArray[5]).innerHTML == players.currentSign && document.getElementById(boxArray[8]).innerHTML == players.currentSign) {
     winToast()
   }
+  draw();
 }
 
-function checkWinX(){
-  if(document.getElementById(boxArray[0]).innerHTML == "X" && document.getElementById(boxArray[1]).innerHTML == "X" && document.getElementById(boxArray[2]).innerHTML == "X"){
-    winToast()
-  }else if (document.getElementById(boxArray[3]).innerHTML == "X" && document.getElementById(boxArray[4]).innerHTML == "X" && document.getElementById(boxArray[5]).innerHTML == "X") {
-    winToast()
-  }else if (document.getElementById(boxArray[6]).innerHTML == "X" && document.getElementById(boxArray[7]).innerHTML == "X" && document.getElementById(boxArray[8]).innerHTML == "X") {
-    winToast()
-  }else if (document.getElementById(boxArray[0]).innerHTML == "X" && document.getElementById(boxArray[4]).innerHTML == "X" && document.getElementById(boxArray[8]).innerHTML == "X") {
-    winToast()
-  }else if (document.getElementById(boxArray[2]).innerHTML == "X" && document.getElementById(boxArray[4]).innerHTML == "X" && document.getElementById(boxArray[6]).innerHTML == "X") {
-    winToast()
-  }else if (document.getElementById(boxArray[0]).innerHTML == "X" && document.getElementById(boxArray[3]).innerHTML == "X" && document.getElementById(boxArray[6]).innerHTML == "X") {
-    winToast()
-  }else if (document.getElementById(boxArray[1]).innerHTML == "X" && document.getElementById(boxArray[4]).innerHTML == "X" && document.getElementById(boxArray[7]).innerHTML == "X") {
-    winToast()
-  }else if (document.getElementById(boxArray[2]).innerHTML == "X" && document.getElementById(boxArray[5]).innerHTML == "X" && document.getElementById(boxArray[8]).innerHTML == "X") {
-    winToast()
-  }
-}
+// function checkWinX(){
+//   if(document.getElementById(boxArray[0]).innerHTML == "X" && document.getElementById(boxArray[1]).innerHTML == "X" && document.getElementById(boxArray[2]).innerHTML == "X"){
+//     winToast()
+//   }else if (document.getElementById(boxArray[3]).innerHTML == "X" && document.getElementById(boxArray[4]).innerHTML == "X" && document.getElementById(boxArray[5]).innerHTML == "X") {
+//     winToast()
+//   }else if (document.getElementById(boxArray[6]).innerHTML == "X" && document.getElementById(boxArray[7]).innerHTML == "X" && document.getElementById(boxArray[8]).innerHTML == "X") {
+//     winToast()
+//   }else if (document.getElementById(boxArray[0]).innerHTML == "X" && document.getElementById(boxArray[4]).innerHTML == "X" && document.getElementById(boxArray[8]).innerHTML == "X") {
+//     winToast()
+//   }else if (document.getElementById(boxArray[2]).innerHTML == "X" && document.getElementById(boxArray[4]).innerHTML == "X" && document.getElementById(boxArray[6]).innerHTML == "X") {
+//     winToast()
+//   }else if (document.getElementById(boxArray[0]).innerHTML == "X" && document.getElementById(boxArray[3]).innerHTML == "X" && document.getElementById(boxArray[6]).innerHTML == "X") {
+//     winToast()
+//   }else if (document.getElementById(boxArray[1]).innerHTML == "X" && document.getElementById(boxArray[4]).innerHTML == "X" && document.getElementById(boxArray[7]).innerHTML == "X") {
+//     winToast()
+//   }else if (document.getElementById(boxArray[2]).innerHTML == "X" && document.getElementById(boxArray[5]).innerHTML == "X" && document.getElementById(boxArray[8]).innerHTML == "X") {
+//     winToast()
+//   }
+// }
 
 function winToast(){
   document.getElementById('winMsg').innerHTML = players.currentPlayer + " " + "Wins"
@@ -167,6 +172,12 @@ function reset(){
   for (var i = 0; i < x.length; i++) {
     x[i].innerHTML = "";
     x[i].setAttribute('onclick', 'clickId(this.id)');
+  }
+}
+
+function draw(){
+  if(gameMoves === 9){
+    document.getElementById('winMsg').innerHTML = "Draw";
   }
 }
 
