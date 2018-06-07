@@ -24,15 +24,14 @@ hideBtn()
 // when clickCount is odd, (this.id)innerHTML = O 
 var displayStuff = function() {
 
-	this.removeEventListener('click', displayStuff)
-
 	if (clickCount % 2 === 0) {
 		this.innerHTML = 'X'
 	} else if (clickCount % 2 === 1) {
 		this.innerHTML = 'O'
 	}
-	clickCount++
-	return clickCount
+	clickCount = clickCount + 1;
+
+	this.removeEventListener('click', displayStuff);
 }
 
 var checkSquares = function () {
@@ -84,6 +83,10 @@ var gameOver = function() {
 		allBoxes[i].removeEventListener('click', displayStuff)
 	}
 
+	for (var i = 0; i < allBoxes.length; i++) {
+		allBoxes[i].removeEventListener('click', checkSquares)
+	}
+
 }
 
 function hideBtn() {
@@ -104,6 +107,11 @@ var resetGame = function() {
 	for (var i = 0; i < allBoxes.length; i++) {
 		allBoxes[i].addEventListener('click', displayStuff)
 	}
+		for (var i = 0; i < allBoxes.length; i++) {
+		allBoxes[i].addEventListener('click', checkSquares)
+	}
+
+	return clickCount;
 
 }
 
