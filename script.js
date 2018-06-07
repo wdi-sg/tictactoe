@@ -126,10 +126,10 @@ function bestMoveForComputer() {
             if ( computerPosition.indexOf( winCon[j][y] ) == -1 ) {
               // we want to locate the position that the computer
               // is not in
-              if (gameBoard[y] == 0) {
+              if (gameBoard[ winCon[j][y] ] == 0) {
                 // if the position is empty
                 // thats where we want to put our seed
-                  bestMove = y;
+                  bestMove = winCon[j][y];
                   break firstForLoop;
               } else {
                 // else, means we are already in that position
@@ -322,7 +322,6 @@ $(document).ready(function() {
                   });
 
                   result = checkWin(gameBoard);
-                  console.log("Result = " + result);
                   if (result == computer + " Wins") {
                     endGame(result);
                   } else {
