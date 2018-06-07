@@ -10,10 +10,25 @@ document.addEventListener('DOMContentLoaded',function(){
     var X = 1;
     var O = -1;
 
+    //Click Listener Function
+    var clicker = function() {
+    var box = getElementsByClassName("boxes");
+    box.addEventListener("click", function() {
+            var click = event.detail;
+            if (click == 1) {
+                this.innerHTML="X";
+            } else if (click == 2) {
+                this.innerHTML="O";
+            } else if (click == 3) {
+                this.innerHTML = "";
+            }
+        })
+    clicker();
+
    //Gameplay logic. Change in Square contents changes value in gameGrid Array.
     var gamePlay = function {
         var square1 = document.getElementById("#box1");
-            if (square1.innerHTML = "X") {
+                    if (square1.innerHTML = "X") {
                 gameGrid[0] = 1;
             } else if (square1.innerHTML = "O") {
                 gameGrid[0] = -1;
