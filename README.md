@@ -11,6 +11,7 @@ Unless you are very comfortable, build and test the game by running it in small 
 
 ### Create a working game
 - create a game that users can play and that fills each square as they select it with either X or O
+  - the easiest implementation is a game that automatically switches between X and O
 
 ### Detecting a win state
 - modify your game so that the game knows when one player has won or lost
