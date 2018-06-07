@@ -1,0 +1,28 @@
+.container {
+
+}
+
+
+.bigBox {
+    width: 600px;
+    height: 600px;
+    /* border: 1px solid black; */
+}
+
+.smallBox {
+    border: 1px solid black;
+    position: relative;
+    display: inline;
+}
+
+.marks {
+    position: absolute;
+    background-color: none;
+    left: 45%;
+    bottom: 40%;
+    font-size: 30px;
+}
+
+/* p {
+    display: inline;
+} */
