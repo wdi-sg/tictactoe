@@ -1,0 +1,104 @@
+body {
+  background-color: #fce2c7;
+  font-family: 'arial', sans-serif;
+}
+
+#gameboard {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.row {
+  height: 100px;
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+}
+
+.box {
+  max-width: 100px;
+  width: 300px;
+  height: 100px;
+  box-shadow: 2px 2px 3px #888888;
+  display: inline-block;
+  background-color: #c7e8d4;
+  border-radius: 20%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+img {
+  margin: 0 auto;
+}
+
+h1 {
+  color: #72dbc6;
+  text-align: center;
+  font-size: 4em;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+h3 {
+  text-align: center;
+  color: orangered;
+  font-weight: bold;
+}
+
+.start {
+  text-align: center;
+  font-size: 1em;
+  font-weight: bold;
+  max-width: 30%;
+  margin: 0 auto;
+  text-align: justify;
+}
+
+.submit {
+	border: 1px solid black;
+	margin: 0 auto;
+	font-size: .7em;
+	background-color: orange;
+}
+
+.submit:hover {
+	border: 1px solid black;
+	text-align: center;
+	background-color: orangered;
+	cursor: pointer;
+}
+
+.namefield {
+  border: 1px solid black;
+  text-align: center;
+  color: grey;
+  margin: 0 auto;
+}
+
+#name-entry {
+  text-align: center;
+  font-weight: bold;
+  color: #CF5300;
+  margin: 0 auto;
+}
+
+#messageArea {
+  text-align: center;
+  margin-top: 10%;
+  font-weight: bold;
+  font-size: 1em;
+  color: teal;
+}
+
+/*@media (min-width: 450px) {
+  #gameboard {
+  	height: 50%;
+  	width: 50%;
+  }
+}*/
+
+/*@media query { max-width ; 600px and min-width = 400px & orientation+ landscape}{
+  #messageArea {
+    font-weight: normal;
+  }
+}*/
