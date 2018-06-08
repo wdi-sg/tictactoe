@@ -141,11 +141,13 @@ window.onload = function(){
 		 		if (counter % 2 == 0) {
 		 			id.innerText = '0';
 		 			console.log('o')
+		 			victory()
 		 		}
 		 		
 		 		if (counter % 2 == 1)  {
 		 			id.innerText = 'x';
 		 			console.log('x')
+		 			victory();
 		 		}
 
 		 		if (id.innerText == true) {
@@ -165,11 +167,6 @@ window.onload = function(){
 	 clickABC(c2Id);
 	 clickABC(c3Id);
 
-
-
-// if (counter > 4) {
-// 	victory();
-// }
 
 
 
