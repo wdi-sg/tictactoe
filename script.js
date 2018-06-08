@@ -5,23 +5,15 @@ var rowTwo = document.getElementsByClassName('row2');
 var rowThree = document.getElementsByClassName('row3');
 var count = 0;
 
-var n = 0;
-var isEven = function(){
-	for(n = 0; n < rowsNcols.length; n++){
-		n % 2 == 0;
-		return n;
-}
-}
 
-// var turnToXorO = function(){
-// 	count++;
-// 	if (count === 1){
-// 		spanXnO[0].style.display = "inline-block";
-// 	} else if (count === 2){
-// 		spanXnO[1].style.display = "inline-block";
-// 	}
+// var turnToX = function(){
+// 	spanXnO[0].style.display = "inline-block";
 // }
-// rowsNcols[0].addEventListener('click', turnToXorO);
+// var turnToO = function(){
+// 	spanXnO[1].style.display = "inline-block";
+// }
+// rowsNcols[0].addEventListener('click', turnToX);
+// rowsNcols[0].addEventListener('dblclick', turnToO);
 
 
 // var turnToX = function(){
