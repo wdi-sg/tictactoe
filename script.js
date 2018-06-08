@@ -27,63 +27,63 @@ window.onload = function(){
 		 		alert('X has won');
 		 	}
 
-		 	else if (a1Id.innerText == 'o' && a2Id.innerText == '0' && a3Id.innerText =='0') {
+		 	if (a1Id.innerText == 'o' && a2Id.innerText == 'o' && a3Id.innerText =='0') {
 		 		alert('O has won');
 		 	}
 
-		 	else if (b1Id.innerText == 'x' && b2Id.innerText == 'x' && b3Id.innerText =='x') {
+		 	if (b1Id.innerText == 'x' && b2Id.innerText == 'x' && b3Id.innerText =='x') {
 		 		alert('X has won');
 		 	}
 
-		 	else if (b1Id.innerText == 'o' && b2Id.innerText == '0' && b3Id.innerText =='0') {
+		 	if (b1Id.innerText == 'o' && b2Id.innerText == 'o' && b3Id.innerText =='o') {
 		 		alert('O has won');
 		 	}
 
-		 	else if (c1Id.innerText == 'x' && c2Id.innerText == 'x' && c3Id.innerText =='x') {
+		 	if (c1Id.innerText == 'x' && c2Id.innerText == 'x' && c3Id.innerText =='x') {
 		 		alert('X has won');
 		 	}
 
-		 	else if (c1Id.innerText == 'o' && c2Id.innerText == '0' && c3Id.innerText =='0') {
+		 	if (c1Id.innerText == 'o' && c2Id.innerText == 'o' && c3Id.innerText =='o') {
 		 		alert('O has won');
 		 	}
 		 	
-		 	else if (a1Id.innerText == 'x' && b1Id.innerText == 'x' && c1Id.innerText =='x') {
+		 	if (a1Id.innerText == 'x' && b1Id.innerText == 'x' && c1Id.innerText =='x') {
 		 		alert('X has won');
 		 	}
 
-		 	else if (a1Id.innerText == 'o' && b1Id.innerText == '0' && c1Id.innerText =='0') {
+		 	if (a1Id.innerText == 'o' && b1Id.innerText == 'o' && c1Id.innerText =='o') {
 		 		alert('O has won');
 		 	}
 
-		 	else if (a2Id.innerText == 'x' && b2Id.innerText == 'x' && c2Id.innerText =='x') {
+		 	if (a2Id.innerText == 'x' && b2Id.innerText == 'x' && c2Id.innerText =='x') {
 		 		alert('X has won');
 		 	}
 
-		 	else if (a2Id.innerText == 'o' && b2Id.innerText == '0' && c2Id.innerText =='0') {
+		 	if (a2Id.innerText == 'o' && b2Id.innerText == 'o' && c2Id.innerText =='o') {
 		 		alert('O has won');
 		 	}
 
-		 	else if (a3Id.innerText == 'x' && b3Id.innerText == 'x' && c3Id.innerText =='x') {
+		 	if (a3Id.innerText == 'x' && b3Id.innerText == 'x' && c3Id.innerText =='x') {
 		 		alert('X has won');
 		 	}
 
-		 	else if (a3Id.innerText == 'o' && b3Id.innerText == '0' && c3Id.innerText =='0') {
+		 	if (a3Id.innerText == 'o' && b3Id.innerText == 'o' && c3Id.innerText =='o') {
 		 		alert('O has won');
 		 	}
 
-		 	else if (a1Id.innerText == 'x' && b2Id.innerText == 'x' && c3Id.innerText =='x') {
+		 	if (a1Id.innerText == 'x' && b2Id.innerText == 'x' && c3Id.innerText =='x') {
 		 		alert('X has won');
 		 	}
 
-		 	else if (a1Id.innerText == 'o' && b2Id.innerText == '0' && c3Id.innerText =='0') {
+		 	if (a1Id.innerText == 'o' && b2Id.innerText == 'o' && c3Id.innerText =='o') {
 		 		alert('O has won');
 		 	}
 
-		 	else if (c1Id.innerText == 'x' && b2Id.innerText == 'x' && a3Id.innerText =='x') {
+		 	if (c1Id.innerText == 'x' && b2Id.innerText == 'x' && a3Id.innerText =='x') {
 		 		alert('X has won');
 		 	}
 
-		 	else if (c1Id.innerText == 'o' && b2Id.innerText == '0' && a3Id.innerText =='0') {
+		 	if (c1Id.innerText == 'o' && b2Id.innerText == 'o' && a3Id.innerText =='o') {
 		 		alert('O has won');
 		 	}
 
@@ -108,17 +108,21 @@ window.onload = function(){
 		//  		if (counter == 1) {
 		//  			all9[i].innerHTML = 'x';
 		//  			console.log('x')
+						
+
 		//  		}
 
 		//  		else if (counter % 2 == 0) {
 		//  			all9[i].innerHTML = '0'
 		//  			console.log('o')
+						victory()
 
 		//  		}
 		 		
 		//  		else if (counter % 2 == 1) {
 		//  			all9[i].innerHTML = 'x'
 		//  			console.log('x')
+						victory()
 
 		//  		}
 		//  	})	
@@ -139,7 +143,7 @@ window.onload = function(){
 		 		}
 
 		 		if (counter % 2 == 0) {
-		 			id.innerText = '0';
+		 			id.innerText = 'o';
 		 			console.log('o')
 		 			victory()
 		 		}
