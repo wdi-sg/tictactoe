@@ -13,17 +13,16 @@ var play2 = [];
 var checkDiaL = function (play, i) {
     var count = 0;
 
-    for(var a=0; a<play; a++) {
+    for(var a=0; a<play.length; a++) {
         console.log('checkDiaL');
         if(((play[a]-1)%(num+1))==0) {
             count++;
+            console.log(a);
         }
     }
 
     if(count == num) {
         return true;
-    } else {
-        return false;
     }
 }
 
@@ -31,7 +30,7 @@ var checkDiaL = function (play, i) {
 var checkDiaR = function (play, i) {
     var count = 0;
 
-    for(var a=0; a<play; a++){
+    for(var a=0; a<play.length; a++){
         if(((play[a]-num)%(num-1))==0){
             count ++;
         }
@@ -39,8 +38,6 @@ var checkDiaR = function (play, i) {
 
     if(count==num){
         return true;
-    } else {
-        return false;
     }
 }
 
@@ -63,7 +60,7 @@ var checkHori = function (play, i) {
 var checkVerti = function (play, i) {
     var count = 0;
 
-    for(var a=0; a<play; a++) {
+    for(var a=0; a<play.length; a++) {
         if((play[a]-play[i])%num == 0) {
             count++;
         }
@@ -83,7 +80,11 @@ var checkIfWin = function (play) {
     for(var i=0; i<play.length; i++) {
         //check for diagonal starting from left
         if (play[i] == 1) {
-            checkDiaL(play, i);
+            if(checkDiaL(play, i)) {
+                return true;
+            } else {
+                return false;
+            }
             console.log('hey');
         }
 
