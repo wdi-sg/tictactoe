@@ -1,0 +1,44 @@
+h1 {
+	text-align: center;
+}
+
+#game-board {
+	height: 600px;
+	width: 600px;
+	margin: 0 auto;
+	border: 1px solid black;
+	border-radius: 2px;
+}
+
+.game-box {
+	height: 200px;
+	width: 200px;
+	border: 8px solid rgba(117, 239, 217, 0.8);
+	background-color: rgba(177, 239, 228, 0.5);
+}
+
+#player-select {
+	margin: 8px auto;
+	text-align: center;
+
+}
+
+#player-select p {
+	font-size: 30px;
+	font-weight: bold;
+	color: red;
+
+}
+
+#player-select button {
+	font-weight: bold;
+	font-size: 20px
+}
+
+#player-O {
+	margin-right: 20px;
+}
+
+#player-X {
+	margin-left: 20px;
+}
