@@ -1,0 +1,10 @@
+.choice{
+	height: 50px;
+	width:140px;
+	background-color: green;
+}
+#choiceXO{
+	position: absolute;
+	left:40%;
+	top: 60%;
+}
