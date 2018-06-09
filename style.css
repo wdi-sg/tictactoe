@@ -17,6 +17,11 @@ h1 {
 	background-color: rgba(177, 239, 228, 0.5);
 }
 
+#start-button {
+	margin: 8px auto;
+	text-align: center;
+}
+
 #player-select {
 	margin: 8px auto;
 	text-align: center;
