@@ -10,18 +10,29 @@ h1 {
 	font-size: 85px;
 }
 
+h2 {
+	text-align: center;
+	display: block;
+	width: 200px;
+	margin: auto;
+	border: 5px solid white;
+}
+
+input {
+	font-size: 1000%;
+}
+
 .box {
 	width: 200px;
 	height: 200px;
 	display: inline-block;
-	border: 5px solid white;
-	margin: -2px;
+	margin: -3px;
 }
 
 .row {
 	display: block;
 	height: 200px;
-	/*margin-bottom: 2px;*/
+	width: 650px;
 }
 
 .board {
@@ -32,28 +43,27 @@ h1 {
 }
 
 .abc {
-	display: none;
+	visibility: hidden;
 }
+
+
 #topRow {
 	margin-top: 10px;
-	margin-bottom: 4px;
 }
 
 
-
-#b0, #b1, #b2 {
-	border-top: none;
+#a0, #a1, #a2 {
+	border-bottom: 10px solid white;
 }
 
-#b2, #b5, #b8 {
-	border-right: none;
-	margin-right: -6px;
+#a2, #a5, #a8 {
+	border-left: 10px solid white;
 }
 
-#b6, #b7, #b8 {
-	border-bottom: none;
+#a6, #a7, #a8 {
+	border-top: 10px solid white;
 }
 
-#b0, #b3, #b6 {
-	border-left: none;
+#a0, #a3, #a6 {
+	border-right: 10px solid white;
 }
