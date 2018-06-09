@@ -1,124 +1,55 @@
-var rowsNcols = document.getElementsByClassName('rowsNcols');
-var spanXnO = document.getElementsByTagName('span');
-var rowOne = document.getElementsByClassName('row1');
-var rowTwo = document.getElementsByClassName('row2');
-var rowThree = document.getElementsByClassName('row3');
-var count = 0;
+var turnCheck = document.getElementById('whosTurn');
+var turnMessage = document.getElementById('status');
 
+var a1 = document.getElementsByClassName('a1')[0];
+var a2 = document.getElementsByClassName('a2')[0];
+var a3 = document.getElementsByClassName('a3')[0];
 
-// var turnToX = function(){
-// 	spanXnO[0].style.display = "inline-block";
-// }
-// var turnToO = function(){
-// 	spanXnO[1].style.display = "inline-block";
-// }
-// rowsNcols[0].addEventListener('click', turnToX);
-// rowsNcols[0].addEventListener('dblclick', turnToO);
+var b1 = document.getElementsByClassName('b1')[0];
+var b2 = document.getElementsByClassName('b2')[0];
+var b3 = document.getElementsByClassName('b3')[0];
 
+var c1 = document.getElementsByClassName('c1')[0];
+var c2 = document.getElementsByClassName('c2')[0];
+var c3 = document.getElementsByClassName('c3')[0];
 
-// var turnToX = function(){
-// 	spanXnO[2].style.display = "inline-block";
-// }
-// var turnToO = function(){
-// 	spanXnO[3].style.display = "inline-block";
-// }
-// rowsNcols[1].addEventListener('click', turnToX);
-// rowsNcols[1].addEventListener('dblclick', turnToO);
+window.onload = function() {
+	toggleturn();
+}
 
+var toggleturn = function() {
+	if(turnCheck.innerText == 'x'){
+		turnCheck.innerText = 'o';
+	} else {
+		turnCheck.innerText = 'x';
+	}
+	turnMessage.innerText = turnCheck.innerText+ "'s turn!";
+}
 
+var checkIfWon = function() {
+	if((a1.innerText == a2.innerText) && (a2.innerText == a3.innerText) && a1.innerText !== "") {
+		alert(a1.innerText+ " won!");
+	} else if((b1.innerText == b2.innerText) && (b2.innerText == b3.innerText) && b1.innerText !== "") {
+		alert(b1.innerText+ " won!");
+	} else if((c1.innerText == c2.innerText) && (c2.innerText == c3.innerText) && c1.innerText !== "") {
+		alert(c1.innerText+ " won!");
+	} else if((a1.innerText == b1.innerText) && (b1.innerText == c1.innerText) && a1.innerText !== "") {
+		alert(a1.innerText+ " won!");
+	} else if((a2.innerText == b2.innerText) && (b2.innerText == c2.innerText) && a2.innerText !== "") {
+		alert(a2.innerText+ " won!");
+	} else if((a3.innerText == b3.innerText) && (b3.innerText == c3.innerText) && a3.innerText !== "") {
+		alert(a3.innerText+ " won!");
+	} else if((a1.innerText == b2.innerText) && (b2.innerText == c3.innerText) && a1.innerText !== "") {
+		alert(a1.innerText+ " won!");		
+	} else if((a3.innerText == b2.innerText) && (b2.innerText == c1.innerText) && a3.innerText !== "") {
+		alert(a3.innerText+ " won!");		
+	} 
+}
 
-// var turnToX = function(){
-// 	spanXnO[4].style.display = "inline-block";
-// }
-// var turnToO = function(){
-// 	spanXnO[5].style.display = "inline-block";
-// }
-// rowsNcols[2].addEventListener('click', turnToX);
-// rowsNcols[2].addEventListener('dblclick', turnToO);
-
-
-
-// var turnToX = function(){
-// 	spanXnO[5].style.display = "inline-block";
-// }
-// var turnToO = function(){
-// 	spanXnO[6].style.display = "inline-block";
-// }
-// rowsNcols[3].addEventListener('click', turnToX);
-// rowsNcols[3].addEventListener('dblclick', turnToO);
-
-
-// var turnToX = function(){
-// 	spanXnO[7].style.display = "inline-block";
-// }
-// var turnToO = function(){
-// 	spanXnO[8].style.display = "inline-block";
-// }
-// rowsNcols[4].addEventListener('click', turnToX);
-// rowsNcols[4].addEventListener('dblclick', turnToO);
-
-
-// var turnToX = function(){
-// 	spanXnO[9].style.display = "inline-block";
-// }
-// var turnToO = function(){
-// 	spanXnO[10].style.display = "inline-block";
-// }
-// rowsNcols[5].addEventListener('click', turnToX);
-// rowsNcols[5].addEventListener('dblclick', turnToO);
-
-
-// var turnToX = function(){
-// 	spanXnO[11].style.display = "inline-block";
-// }
-// var turnToO = function(){
-// 	spanXnO[12].style.display = "inline-block";
-// }
-// rowsNcols[6].addEventListener('click', turnToX);
-// rowsNcols[6].addEventListener('dblclick', turnToO);
-
-
-// var turnToX = function(){
-// 	spanXnO[13].style.display = "inline-block";
-// }
-// var turnToO = function(){
-// 	spanXnO[14].style.display = "inline-block";
-// }
-// rowsNcols[7].addEventListener('click', turnToX);
-// rowsNcols[7].addEventListener('dblclick', turnToO);
-
-
-// var turnToX = function(){
-// 	spanXnO[15].style.display = "inline-block";
-// }
-// var turnToO = function(){
-// 	spanXnO[16].style.display = "inline-block";
-// }
-// rowsNcols[8].addEventListener('click', turnToX);
-// rowsNcols[8].addEventListener('dblclick', turnToO);
-// // for(var i = 0; i < rowOne.length; i++ ){
-// 	var x = document.createElement('button');
-// 	x.textContent = "X";
-// 	var o = document.createElement('button');
-// 	o.textContent = "O";
-// 	rowOne[i].appendChild(x);
-// 	rowOne[i].appendChild(o);
-// 	}
-
-// for(var i = 0; i <rowTwo.length; i++){
-// 	var x = document.createElement('button');
-// 	x.textContent = "X";
-// 	var o = document.createElement('button');
-// 	o.textContent = "O";
-// 	rowTwo[i].appendChild(x);
-// 	rowTwo[i].appendChild(o);
-// }
-
-// for(var i = 0; i <rowTwo.length; i++){
-// 	var x = document.createElement('button');
-// 	x.textContent = "X";
-// 	var o = document.createElement('button');
-// 	o.textContent = "O";
-// 	rowThree[i].appendChild(x);
-// 	rowThree[i].appendChild(o);
-// }
+var processTurn = function(divs) {
+	if(divs.innerText === '') {
+		divs.innerText = turnCheck.innerText;
+		toggleturn();
+		checkIfWon();
+	}
+}
