@@ -1,0 +1,34 @@
+/*global size for all div*/
+#row1a, #row1b, #row1c, #row2a, #row2b, #row2c, #row3a, #row3b, #row3c{
+height: 100px;
+width: 100px;
+border-style: solid;
+border-width: 2px;
+border-color: #000000;
+display:inline-block;
+
+}
+
+#row1a, #row1c, #row2b, #row3a, #row3c {
+	background-color: #E2F9C3;
+
+}
+#row1a, #row1b, #row1c{
+	display:inline-block;
+	/*float: left;*/
+}
+
+#row2a, #row2b, #row2c{
+	clear:both;
+	display:inline-block;
+	/*float: left;*/
+}
+
+.clearfix:after {
+visibility: hidden;
+display:inline-block;
+font‐size: 0;
+content: " ";
+clear: both;
+height: 0;
+}
