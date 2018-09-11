@@ -1,29 +1,24 @@
-h1 {
-	background-color: red;
+h1{
+	text-align: center;
+	color: blue;
+	font-size: 70px;
+	border-bottom: 1px solid black;
 }
-div{
-	display: inline-block;
-	width: 122px;
-	height: 122px;
-	float: left;
-	font-size: 100px;
+.gameboard{
+	max-width: 400px;
+  margin: 0 auto;
+}
+
+.row{
+	display: grid;
+	grid-template-columns: repeat(3, 1fr); /*grid template col makes 3 columns for the board. fr is fractional unit for the available space. repeat method give 1 fr for 3 columns */
+	grid-auto-rows: auto;/*specifies the size of an implicitly-created grid row track*/
+	grid-gap: 10px;
+	margin: auto;
+}
+
+.square{
+	font-size: 60px;
+	border: 1px solid black;
 	text-align: center;
 }
-.gridbox{
-	width: 368px;
-	height: 368px;
-	border: 3px solid black;
-}
-#middle {
-    border: 1px solid;
-}
-.updown {
-    border-top: 1px solid;
-    border-bottom: 1px solid;
-}
-
-.leftright{
-	border-left: 1px solid;
-	border-right: 1px solid;
-}
-
