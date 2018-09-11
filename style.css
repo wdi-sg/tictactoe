@@ -1,0 +1,28 @@
+.boxes {
+	background: rgb(102, 102, 153, 0.5);
+	width: 100px;
+	height: 100px;
+	line-height: 100px;
+	display: inline-block;
+	text-align: center;
+	border: 1px solid black;
+	margin: -1px;
+	font-size: 80px;
+	position: relative;
+}
+
+p {
+	margin:0px;
+	width: 330px;
+}
+
+h1 {
+	background: yellow;
+	display: inline-block;
+	padding: 20px;
+	border: 3px solid black;
+	color: black;
+}
+
+
+
