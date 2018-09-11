@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  max-width: 48rem;
+  height: 48rem;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.row {
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.row:not(:last-child) {
+  border-bottom: 1px solid grey;
+}
+
+.col-1-of-3 {
+  flex-grow: 1;
+}
+
+.col-1-of-3:not(:last-child) {
+  border-right: 1px solid grey;
+}
