@@ -1,8 +1,9 @@
 # tictactoe
 ![https://media.giphy.com/media/l1Et6k00qp9fMTP8s/giphy.gif](https://media.giphy.com/media/l1Et6k00qp9fMTP8s/giphy.gif)
-Build a game of tic tac toe.
 
-Unless you are very comfortable, build and test the game by running it in small parts, step by step starting from the beginning.
+#### Build a game of tic tac toe.
+
+Unless you are very comfortable, build and test the game by running it in thge smallest possible parts, step by step starting from the beginning.
 
 ### Setup
 - create an `index.html`.
