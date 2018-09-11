@@ -4,17 +4,20 @@ var display
 var turn = 0
 
 function placeMark(event) {
-    if (turn % 2 == 0)
-        this.textContent = 'X'
-    else
+    if (turn % 2 == 0) {
         this.textContent = 'O'
+    } else {
+        this.textContent = 'X'
+    }
     turn++
+    event.target.removeEventListener('click', placeMark, false)
 }
 
 function createBoard(size) {
     turn = 0
     body.style.display = 'grid'
     body.style.gridTemplateColumns = '1fr 1fr 1fr'
+    body.style.fontFamily = 'Arial'
 
     for (var i = 0; i < size; i++) {
         square = document.createElement('div')
@@ -29,7 +32,6 @@ function createBoard(size) {
     }
 
     display = document.createElement('h1')
-    console.log(display)
     display.innerHTML = 'Status'
     display.style.border = 'solid 1px'
     display.style.gridColumn = '1 / span 3'
