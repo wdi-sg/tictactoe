@@ -19,7 +19,7 @@ html {
 
 .row {
   display: flex;
-  flex-grow: 1;
+  flex: 0 0 calc(100% / 3);
   width: 100%;
 }
 
@@ -28,7 +28,12 @@ html {
 }
 
 .col-1-of-3 {
-  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  flex: 0 0 calc(100% / 3);
+  text-align: center;
 }
 
 .col-1-of-3:not(:last-child) {
