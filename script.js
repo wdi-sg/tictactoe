@@ -14,9 +14,9 @@ var getGrid = function () {
 }
 
 var gameLogic = function (event) {
-  if (this.textContent === "X" || this.textContent === "O") {
+  if (this.textContent || winner) {
     console.log("Clicked on an already played square.");
-  } else if (!winner) {
+  } else {
     this.textContent = turnOrder;
 
     if (!checkWin(turnOrder)) {
