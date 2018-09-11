@@ -1,0 +1,28 @@
+body{
+	font-size:40px;
+	font-family: sans-serif;
+	color: white;
+	text-align: center;
+	text-transform: uppercase;
+	background-color: black;
+}
+
+.grid{
+	border:1px white solid;
+	height:100px;
+	width:100px;
+	float:left;
+	line-height: 100px;
+
+}
+
+.board{
+	width:310px;
+	height:310px;
+	margin: 0 auto;
+	display: none;
+}
+
+#start{
+	margin:0 auto;
+}
