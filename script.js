@@ -51,7 +51,7 @@ var tally = function() {
 
     for (var i = 0; i < winning.length; i++) {
         if (winning[i] === "xxx") {
-            alert("winner is:" + playerTurn);
+            alert("The winner is:" + playerTurn);
             if (playerTurn === 'x') {
                 player1Score++;
                 document.getElementById('xplayer').textContent = playerTurn + " score: " + player1Score;
@@ -61,7 +61,7 @@ var tally = function() {
             }
             endGame();
         } else if (winning[i] === 'ooo') {
-            alert("winner is:" + playerTurn);
+            alert("The winner is:" + playerTurn);
             if (playerTurn === 'o') {
                 player2Score++;
                 document.getElementById('oplayer').textContent = playerTurn + " score: " + player2Score;
