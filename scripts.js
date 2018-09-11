@@ -1,7 +1,7 @@
 
 var ticTacPole = document.querySelectorAll('div');
 var test = document.getElementsByTagName('button');
-console.log(test);
+
 
 var turn = true;
 
@@ -13,15 +13,8 @@ function announceTurn() {
     }
 };
 
-test[0] = 1;
-test[1] = 2;
-test[2] = 3;
-test[3] = 4;
-test[4] = 5;
-test[5] = 6;
-test[6] = 7;
-test[7] = 8;
-test[8] = 9;
+
+idArray = [];
 
 var winConditionCheck = function() {
     if ((test[0].innerHTML === "X") && (test[1].innerHTML === "X") && (test[2].innerHTML === "X")) {
@@ -71,23 +64,23 @@ var winConditionCheck = function() {
 
     } else if ((test[0].innerHTML === "O") && (test[4].innerHTML === "O") && (test[8].innerHTML === "O")) {
     alert("player 1 has won");
-}
+
+    } else if ((test[0].id === 'clicked') && (test[1].id === 'clicked') && (test[2].id === 'clicked') && (test[3].id === 'clicked') && (test[4].id === 'clicked') && (test[5].id === 'clicked') && (test[6].id === 'clicked') && (test[7].id === 'clicked') && (test[8].id === 'clicked')) {
+        alert("It's a draw!");
+    }
 };
 
 
-test[0] = 1;
-test[1] = 2;
-test[2] = 3;
-test[3] = 4;
-test[4] = 5;
-test[5] = 6;
-test[6] = 7;
-test[7] = 8;
-test[8] = 9;
+
+
+
+
+
 
 announceTurn();
 
     clickOne = function () {
+
         if (turn === true) {
         test[0].innerHTML = "X"
         turn = false;
@@ -95,11 +88,16 @@ announceTurn();
         test[0].innerHTML = "O"
         turn = true;
         }
+
+        test[0].id = "clicked";
         winConditionCheck();
         announceTurn();
-    };
+
+
+};
 
     clickTwo = function () {
+
         if (turn === true) {
         test[1].innerHTML = "X"
         turn = false;
@@ -107,11 +105,13 @@ announceTurn();
         test[1].innerHTML = "O"
         turn = true;
         }
+        test[1].id = "clicked";
         winConditionCheck();
         announceTurn();
     };
 
     clickThree = function () {
+
         if (turn === true) {
         test[2].innerHTML = "X"
         turn = false;
@@ -119,11 +119,13 @@ announceTurn();
         test[2].innerHTML = "O"
         turn = true;
         }
+        test[2].id = "clicked";
         winConditionCheck();
         announceTurn();
     };
 
     clickFour = function () {
+
         if (turn === true) {
         test[3].innerHTML = "X"
         turn = false;
@@ -131,11 +133,13 @@ announceTurn();
         test[3].innerHTML = "O"
         turn = true;
         }
+        test[3].id = "clicked";
         winConditionCheck();
         announceTurn();
     };
 
     clickFive = function () {
+
         if (turn === true) {
         test[4].innerHTML = "X"
         turn = false;
@@ -143,11 +147,13 @@ announceTurn();
         test[4].innerHTML = "O"
         turn = true;
         }
+        test[4].id = "clicked";
         winConditionCheck();
         announceTurn();
     };
 
     clickSix = function () {
+
         if (turn === true) {
         test[5].innerHTML = "X"
         turn = false;
@@ -155,11 +161,13 @@ announceTurn();
         test[5].innerHTML = "O"
         turn = true;
         }
+        test[5].id = "clicked";
         winConditionCheck();
         announceTurn();
     };
 
     clickSeven = function () {
+
         if (turn === true) {
         test[6].innerHTML = "X"
         turn = false;
@@ -167,11 +175,13 @@ announceTurn();
         test[6].innerHTML = "O"
         turn = true;
         }
+        test[6].id = "clicked";
         winConditionCheck();
         announceTurn();
     };
 
     clickEight = function () {
+
         if (turn === true) {
         test[7].innerHTML = "X"
         turn = false;
@@ -179,10 +189,12 @@ announceTurn();
         test[7].innerHTML = "O"
         turn = true;
         }
+        test[7].id = "clicked";
         winConditionCheck();
         announceTurn();
     };
     clickNine = function () {
+
         if (turn === true) {
         test[8].innerHTML = "X"
         turn = false;
@@ -190,6 +202,7 @@ announceTurn();
         test[8].innerHTML = "O"
         turn = true;
         }
+        test[8].id = "clicked";
         winConditionCheck();
         announceTurn();
     };
