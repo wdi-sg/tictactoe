@@ -17,6 +17,7 @@ test[7] = 8;
 test[8] = 9;
 */
 
+
 function myButton () {
     location.reload();
 };
