@@ -13,60 +13,85 @@ function announceTurn() {
     }
 };
 
+function customReset() {
+    document.querySelectorAll("div").value = "";
+};
+
+
+
 
 idArray = [];
 
 var winConditionCheck = function() {
     if ((test[0].innerHTML === "X") && (test[1].innerHTML === "X") && (test[2].innerHTML === "X")) {
     alert("player 1 has won");
+    customReset();
+
+
 
     } else if ((test[3].innerHTML === "X") && (test[4].innerHTML === "X") && (test[5].innerHTML === "X")) {
     alert("player 1 has won");
+    return;
 
     } else if ((test[6].innerHTML === "X") && (test[7].innerHTML === "X") && (test[8].innerHTML === "X")) {
     alert("player 1 has won");
+    return;
 
     } else if ((test[0].innerHTML === "X") && (test[3].innerHTML === "X") && (test[6].innerHTML === "X")) {
     alert("player 1 has won");
+    return;
 
     } else if ((test[1].innerHTML === "X") && (test[4].innerHTML === "X") && (test[7].innerHTML === "X")) {
     alert("player 1 has won");
+    return;
 
     } else if ((test[2].innerHTML === "X") && (test[5].innerHTML === "X") && (test[8].innerHTML === "X")) {
     alert("player 1 has won");
+    return;
 
     } else if ((test[2].innerHTML === "X") && (test[4].innerHTML === "X") && (test[6].innerHTML === "X")) {
     alert("player 1 has won");
+    return;
 
     } else if ((test[0].innerHTML === "X") && (test[4].innerHTML === "X") && (test[8].innerHTML === "X")) {
     alert("player 1 has won");
+    return;
 
     } else if ((test[0].innerHTML === "O") && (test[1].innerHTML === "O") && (test[2].innerHTML === "O")) {
     alert("player 1 has won");
+    return;
 
     } else if ((test[3].innerHTML === "O") && (test[4].innerHTML === "O") && (test[5].innerHTML === "O")) {
     alert("player 1 has won");
+    return;
 
     } else if ((test[6].innerHTML === "O") && (test[7].innerHTML === "O") && (test[8].innerHTML === "O")) {
     alert("player 1 has won");
+    return;
 
     } else if ((test[0].innerHTML === "O") && (test[3].innerHTML === "O") && (test[6].innerHTML === "O")) {
     alert("player 1 has won");
+    return;
 
     } else if ((test[1].innerHTML === "O") && (test[4].innerHTML === "O") && (test[7].innerHTML === "O")) {
     alert("player 1 has won");
+    return;
 
     } else if ((test[2].innerHTML === "O") && (test[5].innerHTML === "O") && (test[8].innerHTML === "O")) {
     alert("player 1 has won");
+    return;
 
     } else if ((test[2].innerHTML === "O") && (test[4].innerHTML === "O") && (test[6].innerHTML === "O")) {
     alert("player 1 has won");
+    return;
 
     } else if ((test[0].innerHTML === "O") && (test[4].innerHTML === "O") && (test[8].innerHTML === "O")) {
     alert("player 1 has won");
+    return;
 
     } else if ((test[0].id === 'clicked') && (test[1].id === 'clicked') && (test[2].id === 'clicked') && (test[3].id === 'clicked') && (test[4].id === 'clicked') && (test[5].id === 'clicked') && (test[6].id === 'clicked') && (test[7].id === 'clicked') && (test[8].id === 'clicked')) {
         alert("It's a draw!");
+        return;
     }
 };
 
