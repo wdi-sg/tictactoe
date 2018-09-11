@@ -1,6 +1,5 @@
 # tictactoe
-[js][dom]
-
+![https://media.giphy.com/media/l1Et6k00qp9fMTP8s/giphy.gif](https://media.giphy.com/media/l1Et6k00qp9fMTP8s/giphy.gif)
 Build a game of tic tac toe.
 
 Unless you are very comfortable, build and test the game by running it in small parts, step by step starting from the beginning.
@@ -10,8 +9,10 @@ Unless you are very comfortable, build and test the game by running it in small 
 - create a `script.js` file.
 
 ### Create a working game
-- create a game that users can play and that fills each square as they select it with either X or O
-  - the easiest implementation is a game that automatically switches between X and O
+- create a very simple version of the game that users can play. When a user clicks on the first the empty square it turns to an X. Then the turn after it turns to an O. Then switches back, etc. 
+- The simplest implementation of this game is simply 9 buttons or divs with click events attached to each of them. Clicking on a square just changes the text of the element to X or O. After 9 moves are played the game doesn't do anything else. If the users want to continue playing they can refresh the page.
+- The first version of the game can just be a grid - no need to create the tictactoe board faithfully.
+- When the user clicks each button it sets a global variable that holds the current player. (starts as nothing, is x after the first turn, then switches between players)
 
 ### Detecting a win state
 - modify your game so that the game knows when one player has won or lost
