@@ -11,9 +11,11 @@ var initStuff = document.querySelector("#init-stuff");
 
 var playerOneStarts = true;
 var gamePaused = true;
+var clickCounter = 0;
 
 var turnOrder;
 var boardArray = [];
+var clicksToDraw;
 var matchesToWin;
 
 // [y][x]
@@ -46,9 +48,8 @@ var createBoard = function (xAxis, yAxis, matches) {
     }
     boardArray.push(newArray);
   }
-  if (matches) {
-    matchesToWin = matches;
-  }
+  clicksToDraw = boardArray.length * boardArray[0].length;
+  matchesToWin = matches;
 }
 
 var gameLogic = function (event) {
@@ -58,6 +59,12 @@ var gameLogic = function (event) {
   this.textContent = turnOrder;
 
   if (checkWin(turnOrder)) {
+    return false;
+  }
+
+  clickCounter++;
+  if (clickCounter >= clicksToDraw) {
+    draw ();
     return false;
   }
 
@@ -80,6 +87,12 @@ var win = function (turnOrder) {
   }
   gamePaused = true;
   updateScores();
+  newGameButton.style.display = "inline-block";
+}
+
+var draw = function () {
+  gamePaused = true;
+  turnStatement.textContent = `It's a draw.`;
   newGameButton.style.display = "inline-block";
 }
 
@@ -187,6 +200,8 @@ var newGame = function () {
       boardArray[y][x].textContent = "";
     }
   }
+
+  clickCounter = 0;
 
   playerOneStarts = !playerOneStarts;
 
