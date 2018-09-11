@@ -1,0 +1,43 @@
+.column {
+	height: 160px;
+	width: 480px;
+	border: 1px;
+	border-style: solid;
+	border-color: blue ;
+	background-color: black;
+	font-size = 150px
+}
+
+.row {
+	display: inline-block;
+	height: 98%;
+	width: 32.4%;
+	border: 2px;
+	border-style: solid;
+	border-color: blue;
+	background-color: white;
+}
+
+.changeColorX {
+	display: inline-block;
+	height: 98%;
+	width: 32.9%;
+	border: 1px;
+	border-style: solid;
+	border-color: blue;
+	background-color: orange;
+	font-size: 18vh;
+	text-align: center;
+}
+
+.changeColorO {
+	display: inline-block;
+	height: 98%;
+	width: 32.9%;
+	border: 1px;
+	border-style: solid;
+	border-color: blue;
+	background-color: green;
+	font-size: 18vh;
+	text-align: center;
+}
