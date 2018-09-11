@@ -14,80 +14,116 @@ function announceTurn() {
 };
 
 function customReset() {
-    document.querySelectorAll("div").value = "";
+    document.querySelectorAl("div").value = "";
 };
 
+score = {
+    player1: "0",
+    player2: "0"
+}
 
-
-
-idArray = [];
+// parseInt(score.player1 + 1)
+x = document.getElementById('score');
+y = document.getElementById('score2')
+scoreArray = [];
 
 var winConditionCheck = function() {
     if ((test[0].innerHTML === "X") && (test[1].innerHTML === "X") && (test[2].innerHTML === "X")) {
-    alert("player 1 has won");
-    customReset();
+    score.player1 = parseInt(score.player1 + 1)
+    x.innerHTML = "Player 1 score = " + score.player1;
 
+    alert("player 1 has won +1");
 
 
     } else if ((test[3].innerHTML === "X") && (test[4].innerHTML === "X") && (test[5].innerHTML === "X")) {
+    score.player1 = parseInt(score.player1 + 1)
+    x.innerHTML = "Player 1 score = " + score.player1;
     alert("player 1 has won");
-    return;
+
 
     } else if ((test[6].innerHTML === "X") && (test[7].innerHTML === "X") && (test[8].innerHTML === "X")) {
+    score.player1 = parseInt(score.player1 + 1)
+    x.innerHTML = "Player 1 score = " + score.player1;
     alert("player 1 has won");
-    return;
+
 
     } else if ((test[0].innerHTML === "X") && (test[3].innerHTML === "X") && (test[6].innerHTML === "X")) {
+    score.player1 = parseInt(score.player1 + 1)
+    x.innerHTML = "Player 1 score = " + score.player1;
     alert("player 1 has won");
-    return;
+
 
     } else if ((test[1].innerHTML === "X") && (test[4].innerHTML === "X") && (test[7].innerHTML === "X")) {
+    score.player1 = parseInt(score.player1 + 1)
+    x.innerHTML = "Player 1 score = " + score.player1;
     alert("player 1 has won");
-    return;
+
 
     } else if ((test[2].innerHTML === "X") && (test[5].innerHTML === "X") && (test[8].innerHTML === "X")) {
+    score.player1 = parseInt(score.player1 + 1)
+    x.innerHTML = "Player 1 score = " + score.player1;
     alert("player 1 has won");
-    return;
+
 
     } else if ((test[2].innerHTML === "X") && (test[4].innerHTML === "X") && (test[6].innerHTML === "X")) {
+    score.player1 = parseInt(score.player1 + 1)
+    x.innerHTML = "Player 1 score = " + score.player1;
     alert("player 1 has won");
-    return;
+
 
     } else if ((test[0].innerHTML === "X") && (test[4].innerHTML === "X") && (test[8].innerHTML === "X")) {
+    score.player1 = parseInt(score.player1 + 1)
+    x.innerHTML = "Player 1 score = " + score.player1;
     alert("player 1 has won");
-    return;
+
 
     } else if ((test[0].innerHTML === "O") && (test[1].innerHTML === "O") && (test[2].innerHTML === "O")) {
-    alert("player 1 has won");
-    return;
+    score.player2 = parseInt(score.player2 + 1)
+    y.innerHTML = "Player 2 score = " + score.player2;
+    alert("player 2 has won");
+
 
     } else if ((test[3].innerHTML === "O") && (test[4].innerHTML === "O") && (test[5].innerHTML === "O")) {
-    alert("player 1 has won");
-    return;
+    score.player2 = parseInt(score.player2 + 1)
+    y.innerHTML = "Player 2 score = " + score.player2;
+    alert("player 2 has won");
+
 
     } else if ((test[6].innerHTML === "O") && (test[7].innerHTML === "O") && (test[8].innerHTML === "O")) {
-    alert("player 1 has won");
-    return;
+    score.player2 = parseInt(score.player2 + 1)
+    y.innerHTML = "Player 2 score = " + score.player2;
+    alert("player 2 has won");
+
 
     } else if ((test[0].innerHTML === "O") && (test[3].innerHTML === "O") && (test[6].innerHTML === "O")) {
-    alert("player 1 has won");
-    return;
+    score.player2 = parseInt(score.player2 + 1)
+    y.innerHTML = "Player 2 score = " + score.player2;
+    alert("player 2 has won");
+
 
     } else if ((test[1].innerHTML === "O") && (test[4].innerHTML === "O") && (test[7].innerHTML === "O")) {
-    alert("player 1 has won");
-    return;
+    score.player2 = parseInt(score.player2 + 1)
+    y.innerHTML = "Player 2 score = " + score.player2;
+    alert("player 2 has won");
+
 
     } else if ((test[2].innerHTML === "O") && (test[5].innerHTML === "O") && (test[8].innerHTML === "O")) {
-    alert("player 1 has won");
-    return;
+    score.player2 = parseInt(score.player2 + 1)
+    y.innerHTML = "Player 2 score = " + score.player2;
+    alert("player 2 has won");
+
 
     } else if ((test[2].innerHTML === "O") && (test[4].innerHTML === "O") && (test[6].innerHTML === "O")) {
-    alert("player 1 has won");
-    return;
+    score.player2 = parseInt(score.player2 + 1)
+    y.innerHTML = "Player 2 score = " + score.player2;
+    alert("player 2 has won");
+
 
     } else if ((test[0].innerHTML === "O") && (test[4].innerHTML === "O") && (test[8].innerHTML === "O")) {
-    alert("player 1 has won");
-    return;
+    score.player2 = parseInt(score.player2 + 1)
+    y.innerHTML = "Player 2 score = " + score.player2;
+    alert("player 2 has won");
+
 
     } else if ((test[0].id === 'clicked') && (test[1].id === 'clicked') && (test[2].id === 'clicked') && (test[3].id === 'clicked') && (test[4].id === 'clicked') && (test[5].id === 'clicked') && (test[6].id === 'clicked') && (test[7].id === 'clicked') && (test[8].id === 'clicked')) {
         alert("It's a draw!");
@@ -235,19 +271,6 @@ announceTurn();
 
 
 
-
-
-/*
-var actionClick = function () {
-    for (var i = 0; i < test.length; i++) {
-
-    test[i].addEventListener("click", xxx);
-    test[i].id = 'clicked';
-
-    }
-
-};
-*/
 
 
 
