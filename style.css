@@ -27,7 +27,7 @@ html {
   border-bottom: 1px solid grey;
 }
 
-.col-1-of-3 {
+.col {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,6 +36,6 @@ html {
   text-align: center;
 }
 
-.col-1-of-3:not(:last-child) {
+.col:not(:last-child) {
   border-right: 1px solid grey;
 }
