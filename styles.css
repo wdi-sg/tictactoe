@@ -1,0 +1,21 @@
+.gameContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 140px 140px 140px;
+  background-color: azure;
+  border: 5px solid blue;
+  text-align: center;
+}
+
+.game-box {
+  width: 120px;
+  height:120px;
+  border: 5px solid #000000;
+  background: #FFFFFF;
+  font-size: 46pt;
+  font-family: arial;
+  font-weight: bold;
+  text-align: center;
+  margin: auto;
+
+}
