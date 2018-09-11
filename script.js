@@ -1,5 +1,6 @@
 window.onload = function () {
   var cells = document.querySelectorAll('.col');
+  var result = document.querySelector('.result');
   var dimension = 3;
   var winCondition = 3;
   var board;
@@ -11,6 +12,8 @@ window.onload = function () {
 
   function startGame() {
     var i;
+
+    result.style.opacity = 0;
 
     for (i = 0; i < cells.length; i++) {
       cells[i].addEventListener('click', markerHandler);
@@ -171,7 +174,8 @@ window.onload = function () {
   function declareWinner(player) {
     var i;
 
-    console.log('The winner is', player);
+    result.innerHTML = 'Winner: ' + player;
+    result.style.opacity = 1;
 
     for (i = 0; i < cells.length; i++) {
       cells[i].removeEventListener('click', markerHandler);
