@@ -6,23 +6,26 @@
     <title>Tic Tac Toe</title>
   </head>
   <body>
-    <div id="row-one">
-      <button type="button" class="top left"></button>
-      <button type="button" class="top"></button>
-      <button type="button" class="top right"></button>
-    </div>
-    <div id="row-two">
-      <button type="button" class="left"></button>
-      <button type="button"></button>
-      <button type="button" class="right"></button>
-    </div>
-    <div id="row-three">
-      <button type="button" class="bottom left"></button>
-      <button type="button" class="bottom"></button>
-      <button type="button" class="bottom right"></button>
-    </div>
+    <div id="game-board"></div>
     <div id="data">
-      <h1 id ="whose-turn"></h1>
+      <h1 id="whose-turn"></h1>
+      <p id="player-one"></p>
+      <p id="player-two"></p>
+        <div id="init-stuff">
+          <h1>Welcome to Tic Tac Toe!</h1>
+          <h2>Initialise your board:</h2>
+          <form>
+            Rows: <input type="text" id="rows" value="3"><br>
+            Columns: <input type="text" id="columns" value="3"><br>
+            Matches Needed: <input type="text" id="matches-needed" value="3"><br><br>
+            P1's Name: <input type="text" id="p1-name" value="Player One"><br>
+            P1's Symbol: <input type="text" id="p1-symbol" value="X"><br>
+            P2's Name: <input type="text" id="p2-name" value="Player Two"><br>
+            P2's Symbol: <input type="text" id="p2-symbol" value="O"><br><br>
+          </form>
+          <button class="game-button" id="start-button">New Game</button>
+      </div>
+      <button class="game-button" id="new-game-button">New Game</button>
     </div>
     <script type="text/javascript" src="script.js"></script>
   </body>

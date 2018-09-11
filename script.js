@@ -1,75 +1,229 @@
-// true is X's turn, false is O's turn
-var turnOrder = "X";
-var winner = "";
+var playerOne = {name: "Player One", symbol: "X", score: 0};
+var playerTwo = {name: "Player Two", symbol: "O", score: 0};
 
-var buttons = document.querySelectorAll("button");
+var gameBoard = document.querySelector("#game-board");
 var turnStatement = document.querySelector("#whose-turn");
+var playerOneScore = document.querySelector("#player-one");
+var playerTwoScore = document.querySelector("#player-two");
+var startButton = document.querySelector("#start-button");
+var newGameButton = document.querySelector("#new-game-button");
+var initStuff = document.querySelector("#init-stuff");
 
-var getGrid = function () {
-  var output = []
-  for (var i = 0; i < buttons.length; i++) {
-    output.push(buttons[i].textContent);
+var playerOneStarts = true;
+var gamePaused = true;
+
+var turnOrder;
+var boardArray = [];
+var matchesToWin;
+
+// [y][x]
+// [0,0] [0,1] [0,2]
+// [1,0] [1,1] [2,2]
+// [2,0] [2,1] [2,2]
+
+var createBoard = function (xAxis, yAxis, matches) {
+  for (var y = 0; y < yAxis; y++) {
+    var newDiv = document.createElement("div");
+    gameBoard.appendChild(newDiv);
+    newArray = [];
+    for (var x = 0; x < xAxis; x++) {
+      var newButton = document.createElement("button");
+      newDiv.appendChild(newButton);
+      newArray.push(newButton);
+      newButton.addEventListener("click", gameLogic);
+
+      if (y === 0) {
+        newButton.classList.add("top");
+      } else if (y === yAxis - 1) {
+        newButton.classList.add("bottom");
+      }
+
+      if (x === 0) {
+        newButton.classList.add("left");
+      } else if (x === xAxis - 1) {
+        newButton.classList.add("right");
+      }
+    }
+    boardArray.push(newArray);
   }
-  return output;
+  if (matches) {
+    matchesToWin = matches;
+  }
 }
 
 var gameLogic = function (event) {
-  if (this.textContent || winner) {
-    console.log("Clicked on an already played square.");
-  } else {
-    this.textContent = turnOrder;
-
-    if (!checkWin(turnOrder)) {
-      if (turnOrder === "X") {
-        turnOrder = "O";
-      } else if (turnOrder === "O"){
-        turnOrder = "X";
-      }
-      turnStatement.textContent = `It's ${turnOrder}'s turn.`;
-    }
+  if (this.textContent || gamePaused) {
+    return false;
   }
+  this.textContent = turnOrder;
+
+  if (checkWin(turnOrder)) {
+    return false;
+  }
+
+  if (turnOrder === playerOne.symbol) {
+    turnOrder = playerTwo.symbol;
+  } else if (turnOrder === playerTwo.symbol) {
+    turnOrder = playerOne.symbol;
+  }
+  updateTurn();
+  return true;
 }
 
-for (var i = 0; i < buttons.length; i++) {
-  buttons[i].addEventListener("click", gameLogic);
+var win = function (turnOrder) {
+  if (turnOrder === playerOne.symbol) {
+    turnStatement.textContent = `${playerOne.name} won!`;
+    playerOne.score++;
+  } else if (turnOrder === playerTwo.symbol) {
+    turnStatement.textContent = `${playerTwo.name} won!`;
+    playerTwo.score++;
+  }
+  gamePaused = true;
+  updateScores();
+  newGameButton.style.display = "inline-block";
 }
 
-var winConditions = [
-  [0,1,2],
-  [3,4,5],
-  [6,7,8],
-  [0,3,6],
-  [1,4,7],
-  [2,5,8],
-  [0,4,8],
-  [2,4,6]
-];
+var updateTurn = function () {
+  turnStatement.textContent = `It's ${turnOrder}'s turn.`;
+}
 
-var checkWin = function (input) {
-  console.log("checking win....");
+var updateScores = function () {
+  playerOneScore.innerHTML = `${playerOne.name}<br>Symbol: ${playerOne.symbol}<br>Score: ${playerOne.score}`;
+  playerTwoScore.innerHTML = `${playerTwo.name}<br>Symbol: ${playerTwo.symbol}<br>Score: ${playerTwo.score}`;
+}
 
-  for (i = 0; i < winConditions.length; i++) {
+var checkWin = function (turnOrder) {
+  var offset = matchesToWin - 1;
 
-    var counter = 0;
+  rows = boardArray.length;
+  columns = boardArray[0].length;
 
-    for (y = 0; y < winConditions[i].length ; y++) {
-        if (getGrid()[winConditions[i][y]] === input) {
-        counter++;
-        if (counter === 3) {
-          turnStatement.textContent = `${turnOrder} has won!`;
-          winner = turnOrder;
-          return true;
+  // check horizontal
+  for (var y = 0; y < rows; y++) {
+    for (var x = 0; x < columns - offset; x++) {
+      if (boardArray[y][x].textContent === turnOrder) {
+        var winCounter = 1;
+        for (var z = 1; z <= offset; z++) {
+          if (boardArray[y][x + z].textContent === turnOrder) {
+            winCounter++;
+            if (winCounter >= matchesToWin) {
+              win(turnOrder);
+              return true;
+            }
+          } else {
+            break;
+          }
         }
       }
     }
+  }
 
+  //check vertical
+  for (var y = 0; y < rows - offset; y++) {
+    for (var x = 0; x < columns; x++) {
+      if (boardArray[y][x].textContent === turnOrder) {
+        var winCounter = 1;
+        for (var z = 1; z <= offset; z++) {
+          if (boardArray[y + z][x].textContent === turnOrder) {
+            winCounter++;
+            if (winCounter >= matchesToWin) {
+              win(turnOrder);
+              return true;
+            }
+          } else {
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  //check diagonal down
+  for (var y = 0; y < rows - offset; y++) {
+    for (var x = 0; x < columns - offset; x++) {
+      if (boardArray[y][x].textContent === turnOrder) {
+        var winCounter = 1;
+        for (var z = 1; z <= offset; z++) {
+          if (boardArray[y + z][x + z].textContent === turnOrder) {
+            winCounter++;
+            if (winCounter >= matchesToWin) {
+              win(turnOrder);
+              return true;
+            }
+          } else {
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  //check diagonal up
+  for (y = offset; y < rows; y++) {
+    for (x = 0; x < columns - offset; x++) {
+      if (boardArray[y][x].textContent === turnOrder) {
+        var winCounter = 1;
+        for (z = 1; z <= offset; z++) {
+          if (boardArray[y - z][x + z].textContent === turnOrder) {
+            winCounter++;
+            if (winCounter >= matchesToWin) {
+              win(turnOrder);
+              return true;
+            }
+          } else {
+            break;
+          }
+        }
+      }
+    }
   }
   return false;
 }
 
-  // for (i = 0; i < getGrid().length; i++) {
-  //
-  // }
+var newGame = function () {
 
+  for (var y = 0; y < boardArray.length; y++) {
+    for (var x = 0; x < boardArray[0].length; x++) {
+      boardArray[y][x].textContent = "";
+    }
+  }
 
-//if (getGrid[0] === n
+  playerOneStarts = !playerOneStarts;
+
+  if (playerOneStarts) {
+    turnOrder = playerOne.symbol;
+  } else {
+    turnOrder = playerTwo.symbol;
+  }
+
+  updateTurn();
+
+  gamePaused = false;
+  newGameButton.style.display = "none";
+}
+
+window.onload  = function () {
+  startButton.addEventListener("click", startGame);
+  newGameButton.addEventListener("click", newGame);
+}
+
+var startGame = function () {
+  var rows = document.querySelector("#rows").value;
+  var columns = document.querySelector("#columns").value;
+  var matches = document.querySelector("#matches-needed").value;
+  playerOne.name = document.querySelector("#p1-name").value;
+  playerOne.symbol = document.querySelector("#p1-symbol").value;
+  playerTwo.name = document.querySelector("#p2-name").value;
+  playerTwo.symbol = document.querySelector("#p2-symbol").value;
+
+  createBoard(rows, columns, matches);
+
+  turnOrder = playerOne.symbol;
+  gamePaused = false;
+
+  updateTurn();
+  updateScores();
+
+  initStuff.style.display = "none";
+
+}

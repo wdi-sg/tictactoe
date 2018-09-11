@@ -2,10 +2,14 @@ body {
   font-family: monospace;
   }
 
-div {
+#game-board {
   margin: auto;
   font-size: 0px;
   }
+
+#init-stuff {
+  font-size: 14px;
+}
 
 button {
   background-color: white;
@@ -19,11 +23,28 @@ button {
   outline: none;
 }
 
-button .click {
+.game-button {
+  background-color: grey;
+  height: 60px;
+  border: 1px solid black;
+  font-size: 16px;
+  font-family: monospace;
 }
 
-#data {
+h1 {
   font-size: 20px;
+}
+
+h2 {
+  font-size: 16px;
+}
+
+p {
+  font-size: 16px;
+}
+
+#new-game-button {
+  display: none;
 }
 
 .top {
