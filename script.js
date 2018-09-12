@@ -1,6 +1,8 @@
 window.onload = function () {
   var cells = document.querySelectorAll('.col');
   var result = document.querySelector('.result');
+  var button = document.querySelector('.btn');
+
   var dimension = 3;
   var winCondition = 3;
   var board;
@@ -8,18 +10,29 @@ window.onload = function () {
   var row;
   var col;
 
+  button.addEventListener('click', function () {
+    startGame();
+  });
+
   startGame();
 
   function startGame() {
+    var markers;
     var i;
 
+    player = null;
     result.style.opacity = 0;
+    button.style.display = 'none';
+
+    markers = document.querySelectorAll('.marker');
+    for (i = 0; i < markers.length; i++) {
+      markers[i].remove();
+    }
 
     for (i = 0; i < cells.length; i++) {
       cells[i].addEventListener('click', markerHandler);
     }
 
-    // Create a matrix to represent the board.
     board = new Array(dimension);
     for (i = 0; i < dimension; i++) {
       board[i] = new Array(dimension);
@@ -44,6 +57,7 @@ window.onload = function () {
     player = (!player || player === 'O') ? 'X' : 'O';
     marker = document.createElement('span');
     marker.innerText = player;
+    marker.classList.add('marker');
     cell.appendChild(marker);
     board[row][col] = player;
   }
@@ -180,5 +194,7 @@ window.onload = function () {
     for (i = 0; i < cells.length; i++) {
       cells[i].removeEventListener('click', markerHandler);
     }
+
+    button.style.display = 'inline-block';
   }
 };

@@ -10,6 +10,8 @@ html {
 
 body {
   font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
 .heading {
@@ -27,8 +29,9 @@ body {
 .board {
   display: flex;
   flex-direction: column;
-  max-width: 48rem;
-  height: 48rem;
+  max-width: 36rem;
+  width: 100%;
+  height: 36rem;
   margin: 0 auto;
   padding: 2rem;
 }
@@ -47,11 +50,27 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 5rem;
   flex: 0 0 calc(100% / 3);
-  text-align: center;
 }
 
 .col:not(:last-child) {
   border-right: 1px solid grey;
+}
+
+.marker {
+  font-size: 5rem;
+}
+
+.btn:link,
+.btn:visited {
+  display: inline-block;
+  border: 1px solid black;
+  font-size: 1.6rem;
+  padding: 1.5rem 4rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all .2s;
+  color: orangered;
+  border-radius: 1rem;
+  margin: 0 auto;
 }
