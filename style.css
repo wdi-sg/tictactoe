@@ -4,21 +4,35 @@ h1{
 	font-size: 70px;
 	border-bottom: 1px solid black;
 }
-.gameboard{
-	max-width: 400px;
-  margin: 0 auto;
-}
 
-.row{
-	display: grid;
-	grid-template-columns: repeat(3, 1fr); /*grid template col makes 3 columns for the board. fr is fractional unit for the available space. repeat method give 1 fr for 3 columns */
-	grid-auto-rows: auto;/*specifies the size of an implicitly-created grid row track*/
-	grid-gap: 10px;
-	margin: auto;
-}
-
-.square{
-	font-size: 60px;
-	border: 1px solid black;
+#start{
 	text-align: center;
+	justify-content: center;
+}
+
+.gameboard span{
+	display: block;
+  text-align: center;
+  font-size: 30px;
+  background: #228B22;
+  width: 100%;
+}
+
+.gameboard{
+	width: 300px;
+  margin: 50px auto 0 auto;
+}
+
+.gameboard .square{
+	float: left;
+	width: 97px;
+	height: 97px;
+	border: 1px solid black;
+	font-size: 55px;
+	text-align: center;
+}
+
+.win {
+	background: #F9690E;
+	color: #fff;
 }
