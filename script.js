@@ -7,23 +7,21 @@ var playerOneScore = document.querySelector("#player-one");
 var playerTwoScore = document.querySelector("#player-two");
 var startButton = document.querySelector("#start-button");
 var newGameButton = document.querySelector("#new-game-button");
-var initStuff = document.querySelector("#init-stuff");
+var setupStuff = document.querySelector("#setup-stuff");
+var aiCheckbox = document.querySelector("#ai-checkbox");
 
-var playerOneStarts = true;
-var gamePaused = true;
-var clickCounter = 0;
-
+var playerOneStarts;
+var playVsAI;
+var gamePaused;
 var turnOrder;
-var boardArray = [];
-var clicksToDraw;
+var squaresClicked;
+var totalSquares;
 var matchesToWin;
 
-// [y][x]
-// [0,0] [0,1] [0,2]
-// [1,0] [1,1] [2,2]
-// [2,0] [2,1] [2,2]
+var boardArray = [];
 
-var createBoard = function (xAxis, yAxis, matches) {
+// [y][x]
+var createBoard = function (xAxis, yAxis) {
   for (var y = 0; y < yAxis; y++) {
     var newDiv = document.createElement("div");
     gameBoard.appendChild(newDiv);
@@ -33,6 +31,7 @@ var createBoard = function (xAxis, yAxis, matches) {
       newDiv.appendChild(newButton);
       newArray.push(newButton);
       newButton.addEventListener("click", gameLogic);
+      newButton.classList.add("game-square");
 
       if (y === 0) {
         newButton.classList.add("top");
@@ -48,33 +47,35 @@ var createBoard = function (xAxis, yAxis, matches) {
     }
     boardArray.push(newArray);
   }
-  clicksToDraw = boardArray.length * boardArray[0].length;
-  matchesToWin = matches;
+  totalSquares = boardArray.length * boardArray[0].length;
 }
 
 var gameLogic = function (event) {
   if (this.textContent || gamePaused) {
-    return false;
+    return;
   }
   this.textContent = turnOrder;
 
   if (checkWin(turnOrder)) {
-    return false;
+    return;
   }
 
-  clickCounter++;
-  if (clickCounter >= clicksToDraw) {
+  squaresClicked++;
+  if (squaresClicked >= totalSquares) {
     draw ();
-    return false;
+    return;
   }
 
   if (turnOrder === playerOne.symbol) {
     turnOrder = playerTwo.symbol;
+    if (playVsAI) {
+      aiScript();
+      return;
+    }
   } else if (turnOrder === playerTwo.symbol) {
     turnOrder = playerOne.symbol;
   }
   updateTurn();
-  return true;
 }
 
 var win = function (turnOrder) {
@@ -106,10 +107,9 @@ var updateScores = function () {
 }
 
 var checkWin = function (turnOrder) {
-  var offset = matchesToWin - 1;
-
   rows = boardArray.length;
   columns = boardArray[0].length;
+  var offset = matchesToWin - 1;
 
   // check horizontal
   for (var y = 0; y < rows; y++) {
@@ -194,17 +194,13 @@ var checkWin = function (turnOrder) {
 }
 
 var newGame = function () {
-
   for (var y = 0; y < boardArray.length; y++) {
     for (var x = 0; x < boardArray[0].length; x++) {
       boardArray[y][x].textContent = "";
     }
   }
 
-  clickCounter = 0;
-
   playerOneStarts = !playerOneStarts;
-
   if (playerOneStarts) {
     turnOrder = playerOne.symbol;
   } else {
@@ -213,55 +209,76 @@ var newGame = function () {
 
   updateTurn();
 
+  squaresClicked = 0;
   gamePaused = false;
   newGameButton.style.display = "none";
+
+  if (playVsAI && turnOrder === playerTwo.symbol) {
+    aiScript();
+  }
 }
 
 window.onload  = function () {
-  startButton.addEventListener("click", startGame);
+  startButton.addEventListener("click", setupGame);
   newGameButton.addEventListener("click", newGame);
 }
 
-var startGame = function () {
+var setupGame = function () {
   var rows = document.querySelector("#rows").value;
   var columns = document.querySelector("#columns").value;
   var matches = document.querySelector("#matches-needed").value;
+
+  createBoard(columns, rows);
+  matchesToWin = matches;
+
+  if (aiCheckbox.checked) {
+    playVsAI = true;
+  }
+
   playerOne.name = document.querySelector("#p1-name").value;
   playerOne.symbol = document.querySelector("#p1-symbol").value;
-  playerTwo.name = document.querySelector("#p2-name").value;
-  playerTwo.symbol = document.querySelector("#p2-symbol").value;
-
-  createBoard(columns, rows, matches);
+  if (playVsAI === true) {
+    playerTwo.name = "The AI";
+    playerTwo.symbol = "[o.o]";
+  } else {
+    playerTwo.name = document.querySelector("#p2-name").value;
+    playerTwo.symbol = document.querySelector("#p2-symbol").value;
+  }
 
   turnOrder = playerOne.symbol;
+  squaresClicked = 0;
+  playerOneStarts = true;
   gamePaused = false;
+  setupStuff.style.display = "none";
 
   updateTurn();
   updateScores();
-
-  initStuff.style.display = "none";
-
 }
 
 var aiScript = function () {
 
-  var rows = boardArray.length;
-  var columns = boardArray[0].length;
+  var gameSquares = document.querySelectorAll(".game-square");
+  var emptySquares = [];
 
-  var randomRow = Math.floor(Math.random()*rows);
-  var randomColumn = Math.floor(Math.random()*columns);
-  console.log(`randomRow: ${randomRow}`);
-  console.log(`randomColumn = ${randomColumn}`);
-
-  var squareChosen = boardArray[randomRow][randomColumn];
-
-  while (squareChosen.textContent) {
-    console.log(squareChosen.textContent);
-    randomRow = (Math.round(Math.random()*boardArray.length));
-    RandomColumn = (Math.round(Math.random()*boardArray[0].length));
-    var randomRow = Math.floor(Math.random()*rows);
-    var randomColumn = Math.floor(Math.random()*columns);
-    squareChosen = boardArray[randomRow][randomColumn];
+  for (var i = 0; i < gameSquares.length; i++) {
+    if (!gameSquares[i].textContent) {
+      emptySquares.push(gameSquares[i]);
+    }
   }
-  squareChosen.textContent = turnOrder;
+
+  var random = Math.floor(Math.random()*emptySquares.length);
+  emptySquares[random].textContent = turnOrder;
+
+  if (checkWin(turnOrder)) {
+    return;
+  }
+
+  squaresClicked++;
+  if (squaresClicked >= totalSquares) {
+    draw ();
+    return;
+  }
+
+  turnOrder = playerOne.symbol;
+  updateTurn();
 }
