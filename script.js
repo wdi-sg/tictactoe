@@ -242,3 +242,26 @@ var startGame = function () {
   initStuff.style.display = "none";
 
 }
+
+var aiScript = function () {
+
+  var rows = boardArray.length;
+  var columns = boardArray[0].length;
+
+  var randomRow = Math.floor(Math.random()*rows);
+  var randomColumn = Math.floor(Math.random()*columns);
+  console.log(`randomRow: ${randomRow}`);
+  console.log(`randomColumn = ${randomColumn}`);
+
+  var squareChosen = boardArray[randomRow][randomColumn];
+
+  while (squareChosen.textContent) {
+    console.log(squareChosen.textContent);
+    randomRow = (Math.round(Math.random()*boardArray.length));
+    RandomColumn = (Math.round(Math.random()*boardArray[0].length));
+    var randomRow = Math.floor(Math.random()*rows);
+    var randomColumn = Math.floor(Math.random()*columns);
+    squareChosen = boardArray[randomRow][randomColumn];
+  }
+  squareChosen.textContent = turnOrder;
+}
