@@ -1,9 +1,11 @@
+var size = prompt('Please enter board size:')
 var body = document.getElementsByTagName('body')[0]
 var field
 var square
 var display
 var button
 var turn = 0
+var gameArray = []
 // var winningCombination = [
 //     [1, 2, 3],
 //     [4, 5, 6],
@@ -23,48 +25,11 @@ function removeListeners() {
     }
 }
 
-function checkWin(className) {
-    var board = document.getElementsByClassName('board')
-    // switch (true) {
-    //     case (board[0].classList[1] === className && board[1].classList[1] === className && board[2].classList[1] === className):
-    //         display.textContent = `${className} Wins!`
-    //         removeListeners()
-    //         break;
-    //     case (board[3].classList[1] === className && board[4].classList[1] === className && board[5].classList[1] === className):
-    //         display.textContent = `${className} Wins!`
-    //         removeListeners()
-    //         break;
-    //     case (board[6].classList[1] === className && board[7].classList[1] === className && board[8].classList[1] === className):
-    //         display.textContent = `${className} Wins!`
-    //         removeListeners()
-    //         break;
-    //     case (board[0].classList[1] === className && board[3].classList[1] === className && board[6].classList[1] === className):
-    //         display.textContent = `${className} Wins!`
-    //         removeListeners()
-    //         break;
-    //     case (board[1].classList[1] === className && board[4].classList[1] === className && board[7].classList[1] === className):
-    //         display.textContent = `${className} Wins!`
-    //         removeListeners()
-    //         break;
-    //     case (board[2].classList[1] === className && board[5].classList[1] === className && board[8].classList[1] === className):
-    //         display.textContent = `${className} Wins!`
-    //         removeListeners()
-    //         break;
-    //     case (board[0].classList[1] === className && board[4].classList[1] === className && board[8].classList[1] === className):
-    //         display.textContent = `${className} Wins!`
-    //         removeListeners()
-    //         break;
-    //     case (board[2].classList[1] === className && board[4].classList[1] === className && board[6].classList[1] === className):
-    //         display.textContent = `${className} Wins!`
-    //         removeListeners()
-    //         break;
-    //     default:
-    //         if (turn == 8)
-    //             display.textContent = 'Draw'
-    //         else
-    //             display.textContent = 'In Progress'
-    // }
-
+function checkWin(mark, event) {
+    var positionOnBoard = event.target.id //assume id is '00' .. '21' .. '33'
+    var cordinates = positionOnBoard.split('')
+    var row = cordinates[0]
+    var col = cordinates[1]
 }
 
 function placeMark(event) {
@@ -73,12 +38,12 @@ function placeMark(event) {
         this.textContent = 'X'
         this.classList.add('X')
         this.style.background = 'red'
-        checkWin('X')
+        checkWin('X', event)
     } else {
         this.textContent = 'O'
         this.classList.add('O')
         this.style.background = 'blue'
-        checkWin('O')
+        checkWin('O', event)
     }
     turn++
     event.target.removeEventListener('click', placeMark, false)
@@ -92,21 +57,39 @@ function createBoard(size) {
     field.style.gridTemplateColumns = `repeat(${size},1fr)`
     field.setAttribute('id', 'field')
 
-    for (var i = 0; i < (size * size); i++) {
-        square = document.createElement('div')
-
-        if (col == size) {
-            row++
-            col = 0;
+    for (row = 0; row < size; row++) {
+        var rowArray = []
+        for (col = 0; col < size; col++) {
+            square = document.createElement('div')
+            square.setAttribute('id', row.toString() + col.toString())
+            square.classList = 'board'
+            square.innerHTML = square.id
+            assignRowCol(square, row, col, size)
+            square.addEventListener('click', placeMark)
+            rowArray.push(square)
+            field.appendChild(square)
         }
-        square.setAttribute('id', row.toString() + col.toString())
-        square.classList = 'board'
-        square.innerHTML = square.id
-        assignRowCol(square, row, col, size)
-        square.addEventListener('click', placeMark)
-        field.appendChild(square)
-        col++
+        gameArray.push(rowArray)
     }
+    console.log(gameArray)
+
+
+    // for (var i = 0; i < (size * size); i++) {
+    //     square = document.createElement('div')
+    //
+    //     if (col == size) {
+    //         row++
+    //         col = 0;
+    //     }
+    //     square.setAttribute('id', row.toString() + col.toString())
+    //     square.classList = 'board'
+    //     square.innerHTML = square.id
+    //     createGameArray(row, col, size)
+    //     assignRowCol(square, row, col, size)
+    //     square.addEventListener('click', placeMark)
+    //     field.appendChild(square)
+    //     col++
+    // }
 
     body.appendChild(field)
     display = document.createElement('h1')
@@ -132,24 +115,24 @@ function assignRowCol(square, row, col, size) {
         square.classList.add('right')
 }
 
+
+createBoard(size)
+
 function resetBoard() {
     while (body.lastChild) {
         body.removeChild(body.lastChild)
     }
     turn = 0
-    createBoard()
+    createBoard(size)
 }
 
-createBoard(4)
+
 
 
 //akira algo
 
 function onClick(event) {
-    var positionOnBoard = event.target.id //assume id is '00' .. '21' .. '33'
-    var cordinates = positionOnBoard.split('')
-    var row = cordinates[0]
-    var col = cordinates[1]
+
 
     //currentBoard[row][col] = 'o' || 'x'
 
