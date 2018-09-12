@@ -35,7 +35,7 @@ window.onload = function () {
     dimension = prompt('Please enter a dimension:');
     dimension = parseInt(dimension);
 
-    winCondition = prompt('How many in a row they want to qualify as a win?');
+    winCondition = prompt('How many in a row do you want to qualify as a win?');
     winCondition = parseInt(winCondition);
 
     moves = 0;
@@ -192,7 +192,6 @@ window.onload = function () {
       if (gamePlay[row][j] !== getPreviousSymbol()) {
         break;
       }
-
       count++;
     }
 
@@ -200,7 +199,6 @@ window.onload = function () {
       if (gamePlay[row][j] !== getPreviousSymbol()) {
         break;
       }
-
       count++;
     }
 
@@ -215,7 +213,6 @@ window.onload = function () {
       if (gamePlay[i][col] !== getPreviousSymbol()) {
         break;
       }
-
       count++;
     }
 
@@ -223,7 +220,6 @@ window.onload = function () {
       if (gamePlay[i][col] !== getPreviousSymbol()) {
         break;
       }
-
       count++;
     }
 
@@ -237,24 +233,21 @@ window.onload = function () {
   function checkTopLeftToBottomRight() {
     var count = 1;
     var i;
+    var j;
 
-    if (row !== col) {
-      return false;
-    }
-
+    j = col;
     for (i = row - 1; i >= 0; i--) {
-      if (gamePlay[i][i] !== getPreviousSymbol()) {
+      if (gamePlay[i][--j] !== getPreviousSymbol()) {
         break;
       }
-
       count++;
     }
 
+    j = col;
     for (i = row + 1; i < dimension; i++) {
-      if (gamePlay[i][i] !== getPreviousSymbol()) {
+      if (gamePlay[i][++j] !== getPreviousSymbol()) {
         break;
       }
-
       count++;
     }
 
@@ -263,29 +256,22 @@ window.onload = function () {
 
   function checkTopRightToBottomLeft() {
     var count = 1;
-    var colIndex;
+    var j;
     var i;
 
-    if (row + col !== dimension - 1) {
-      return false;
-    }
-
+    j = col;
     for (i = row - 1; i >= 0; i--) {
-      colIndex = dimension - i - 1;
-      if (gamePlay[i][colIndex] !== getPreviousSymbol()) {
+      if (gamePlay[i][++j] !== getPreviousSymbol()) {
         break;
       }
-
       count++;
     }
 
+    j = col;
     for (i = row + 1; i < dimension; i++) {
-      colIndex = dimension - i - 1;
-
-      if (gamePlay[i][colIndex] !== getPreviousSymbol()) {
+      if (gamePlay[i][--j] !== getPreviousSymbol()) {
         break;
       }
-
       count++;
     }
 
