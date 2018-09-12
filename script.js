@@ -86,10 +86,10 @@ function createBoard(size) {
     turn = 0
     field = document.createElement('div')
     field.style.display = 'grid'
-    field.style.gridTemplateColumns = 'auto auto auto'
+    field.style.gridTemplateColumns = `repeat(${size},1fr)`
     field.setAttribute('id', 'field')
 
-    for (var i = 1; i < size + 1; i++) {
+    for (var i = 0; i < (size * size); i++) {
         square = document.createElement('div')
         square.setAttribute('id', i)
         square.classList = 'board'
@@ -119,10 +119,10 @@ function resetBoard() {
     while (body.lastChild) {
         body.removeChild(body.lastChild)
     }
-    createBoard(9)
+    createBoard(3)
 }
 
-createBoard(9)
+createBoard(4)
 
 
 //akira algo
