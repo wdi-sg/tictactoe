@@ -109,6 +109,8 @@ window.onload = function () {
     } else {
       if (moves === dimension * dimension - 1) {
         button.style.display = 'inline-block';
+        result.innerHTML = 'Draw!';
+        result.style.opacity = 1;
       }
     }
   }
