@@ -83,6 +83,8 @@ function placeMark(event) {
 }
 
 function createBoard(size) {
+    var row = '0'
+    var col = '0'
     turn = 0
     field = document.createElement('div')
     field.style.display = 'grid'
@@ -91,14 +93,20 @@ function createBoard(size) {
 
     for (var i = 0; i < (size * size); i++) {
         square = document.createElement('div')
-        square.setAttribute('id', i)
+
+        if (col == size) {
+            row++
+            col = 0;
+        }
+        square.setAttribute('id', row.toString() + col.toString())
         square.classList = 'board'
-        square.innerHTML = '*'
+        square.innerHTML = square.id
         //square.style.border = 'solid 1px'
         //square.style.justifySelf = 'center'
         //square.style.alignSelf = 'center'
         square.addEventListener('click', placeMark)
         field.appendChild(square)
+        col++
     }
 
     body.appendChild(field)
