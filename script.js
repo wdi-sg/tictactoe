@@ -2,159 +2,129 @@ var gridArray = document.getElementsByClassName("box");
 var userChoice = [];
 var computerChoice = [];
 
-var game =function() {
+var ticTacToe = [
+    [],
+    [],
+    []
+];
 
-    var id = this.getAttribute("data-id");
 
-    if (userChoice.includes(id) === false) {
+var game = function() {
 
-        this.textContent = "X";
+    var id = this.id;
+
+    if (userChoice.includes(id) === false && computerChoice.includes(id) === false) {
+
         userChoice.push(id);
+        var coordinates = id.split("");
+        var row = coordinates[0];
+        var column = coordinates[1];
+        ticTacToe[row][column] = "X";
+        this.textContent = "X";
 
-    }
 
-    var totalBoxUsed = userChoice.length + computerChoice.length;
 
-    if (totalBoxUsed < 8) {
+        if (userChoice.length + computerChoice.length < 8) {
 
-        var random = Math.floor(Math.random() * 9) ;
-        var compId = gridArray[random].getAttribute("data-id");
-        var compIdNo = parseInt(compId);
+            var random = Math.floor(Math.random() * 9);
 
-        while (userChoice.includes(compId) || computerChoice.includes(compId)) {
+            while (userChoice.includes(gridArray[random].id) || computerChoice.includes(gridArray[random].id)) {
 
-            random = Math.floor(Math.random() * 9) ;
-            var compId = gridArray[random].getAttribute("data-id");
+                random = Math.floor(Math.random() * 9);
+
+            }
+
+            setTimeout(function() {
+
+                var compId = gridArray[random].id;
+                computerChoice.push(compId);
+                var coordinates = compId.split("");
+                var row = coordinates[0];
+                var column = coordinates[1];
+                ticTacToe[row][column] = "0";
+                gridArray[random].textContent = "0";
+
+            }, 200);
+
         }
 
-        if (computerChoice.includes(compId) === false) {
-
-            setTimeout(function() {gridArray[random].textContent = "0"}, 500);
-            computerChoice.push(compId);
-
-        }
-
     }
 
-    if (userChoice.length >= 3) {
+    check();
 
-        checkForWin();
-    }
+};
 
-}
 
-for (var i = 0; i < gridArray.length; i++) {
+for(var i = 0; i < gridArray.length; i++) {
 
     gridArray[i].addEventListener("click", game);
-}
 
-////////////////////////////////////////// Win Condition////////////////////////////////////////////////////////////////////
+};
 
-var checkForWin = function() {
 
-    if (gridArray[0].textContent === "X" && gridArray[1].textContent === "X" && gridArray[2].textContent === "X") {
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        alert("win");
-        location.reload();
+var check = function() {
 
-    } else if (gridArray[3].textContent === "X" && gridArray[4].textContent === "X" && gridArray[5].textContent === "X") {
+    for (var i = 0; i < ticTacToe.length; i++) {
 
-        alert("win");
-        location.reload();
+        if (ticTacToe[i][0] == ticTacToe[i][1] && ticTacToe[i][1] == ticTacToe[i][2] && ticTacToe[i][2] == "X") {
 
-    } else if (gridArray[6].textContent === "X" && gridArray[7].textContent === "X" && gridArray[8].textContent === "X") {
+            alert("win");
+            stopGame();
 
-        alert("win");
-        location.reload();
+        } else if (ticTacToe[i][0] == ticTacToe[i][1] && ticTacToe[i][1] == ticTacToe[i][2] && ticTacToe[i][2] == "0") {
 
-    } else if (gridArray[0].textContent === "X" && gridArray[3].textContent === "X" && gridArray[6].textContent === "X") {
+            alert("lose");
+            stopGame();
 
-        alert("win");
-        location.reload();
+        } else if (ticTacToe[0][i] == ticTacToe[1][i] && ticTacToe[1][i] == ticTacToe[2][i] && ticTacToe[2][i] == "X") {
 
-    } else if (gridArray[1].textContent === "X" && gridArray[4].textContent === "X" && gridArray[7].textContent === "X") {
+            alert("win");
+            stopGame();
 
-        alert("win");
-        location.reload();
+        } else if (ticTacToe[0][i] == ticTacToe[1][i] && ticTacToe[1][i] == ticTacToe[2][i] && ticTacToe[2][i] == "0") {
 
-    } else if (gridArray[2].textContent === "X" && gridArray[5].textContent === "X" && gridArray[8].textContent === "X") {
+            alert("lose");
+            stopGame();
 
-        alert("win");
-        location.reload();
+        }
+    }
 
-    } else if (gridArray[0].textContent === "X" && gridArray[4].textContent === "X" && gridArray[8].textContent === "X") {
-
-        alert("win");
-        location.reload();
-
-    } else if (gridArray[2].textContent === "X" && gridArray[4].textContent === "X" && gridArray[6].textContent === "X") {
-
-        alert("win");
-        location.reload();
-
-    } else    if (gridArray[0].textContent === "0" && gridArray[1].textContent === "0" && gridArray[2].textContent === "0") {
+    if (ticTacToe[0][0] == ticTacToe[1][1] && ticTacToe[2][2] == ticTacToe[1][1] && ticTacToe[2][2] == "0") {
 
         alert("lose");
-        location.reload();
+        stopGame();
 
-    } else if (gridArray[3].textContent === "0" && gridArray[4].textContent === "0" && gridArray[5].textContent === "0") {
+    } else if (ticTacToe[0][0] == ticTacToe[1][1] && ticTacToe[2][2] == ticTacToe[1][1] && ticTacToe[2][2] == "X") {
 
-        alert("lose");
-        location.reload();
+        alert("win");
+        stopGame();
 
-    } else if (gridArray[6].textContent === "0" && gridArray[7].textContent === "0" && gridArray[8].textContent === "0") {
-
-        alert("lose");
-        location.reload();
-
-    } else if (gridArray[0].textContent === "0" && gridArray[3].textContent === "0" && gridArray[6].textContent === "0") {
+    } else if (ticTacToe[0][2] == ticTacToe[1][1] && ticTacToe[2][0] == ticTacToe[1][1] && ticTacToe[2][0] == "0") {
 
         alert("lose");
-        location.reload();
+        stopGame();
 
-    } else if (gridArray[1].textContent === "0" && gridArray[4].textContent === "0" && gridArray[7].textContent === "0") {
+    } else if (ticTacToe[0][2] == ticTacToe[1][1] && ticTacToe[2][0] == ticTacToe[1][1] && ticTacToe[2][0] == "X") {
 
-        alert("lose");
-        location.reload();
-
-    } else if (gridArray[2].textContent === "0" && gridArray[5].textContent === "0" && gridArray[8].textContent === "0") {
-
-        alert("lose");
-        location.reload();
-
-    } else if (gridArray[0].textContent === "0" && gridArray[4].textContent === "0" && gridArray[8].textContent === "0") {
-
-        alert("lose");
-        location.reload();
-
-    } else if (gridArray[2].textContent === "0" && gridArray[4].textContent === "0" && gridArray[6].textContent === "0") {
-
-        alert("lose");
-        location.reload();
-
-    } else if (userChoice.length + computerChoice.length === 9) {
-
-            draw();
+        alert("win");
+        stopGame();
 
     }
 
 };
 
 
-var draw = function() {
+var stopGame = function() {
 
-    alert("draw");
-    location.reload();
+    for(var j = 0; j < gridArray.length; j++) {
+
+        gridArray[j].removeEventListener("click", game);
+
+    }
 
 };
-
-
-
-
-
-
-
-
 
 
 
