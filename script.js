@@ -1,7 +1,6 @@
 
 var gameBoard = [];
 
-
 var resetGame = function() {
 var gameBoard = [
         [null, null, null],
@@ -81,8 +80,15 @@ var changePlayer = function(){
 };
 
 
+var number = 1;
+var mouseClicked = function() {
+  console.log('mouseClick = ' + number);
+  number++;
+}
+
 var playerText = function(event){
     changePlayer();
+    mouseClicked();
     this.textContent = player;
     var positionInArray = event.target.id;
     var coordinates = positionInArray.split('');
@@ -92,11 +98,8 @@ var playerText = function(event){
 }
 
 
-var count = 0;
 for(i=0;i<listButtons.length;i++){
     listButtons[i].addEventListener("click", playerText);
-    this.onclick = count++;
-
     // // this.textContent.style.opacity =1;
     // listButtons[i].removeEventListener("mousemove", changePlayer);
 };
@@ -111,13 +114,24 @@ var arrSum = function(arr){
   }, 0);
 }
 
+
+var winnerArray = [6, 10, 12, 15, 18, 24];
+
 var winCheck = function(){
-    for(var i=0;i<gameBoard.length; i++){
-    if(listButtons[i].innerHTML === "x'"){
 
+    var playerOneArr = [];
+    var winningArr = [];
 
+    if (player === "x"){
+    for(var i=0;i<gameBoard.length; i+2){
+        playerOneArr.push(gameBoard[i]);
     }
 }
+    for(j=0;j<playerOneArr.length;j++){
+        var newArray = playerOneArr[i] + playerOneArr[i-1] + playerOneArr[i-2];
+        winningArr.push(newArray);
+    }
+};
 
 
 
