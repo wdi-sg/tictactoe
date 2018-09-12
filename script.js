@@ -49,7 +49,7 @@ function changePlayer() {
 };
 
 
-var winInARow = 5;
+var winInARow = 4;
 
 
 function winCheckH () {
@@ -106,7 +106,29 @@ function winCheckD1 () {
 
             for (k = 0; k < winInARow; k++) {
 
-                if (currentBoard[i][j+k] === currentPlayer) {
+                if (i + k <= totalRows - 1 && currentBoard[i+k][j+k] === currentPlayer) {
+                    count++;
+                }
+            }
+
+            if (count === winInARow) {
+                return true;
+            }
+        }
+    }
+};
+
+function winCheckD2 () {
+
+    for (i = 0; i < totalRows; i++){
+
+        for (j = totalColumns - 1; j >= 0; j--) {
+
+            var count = 0;
+
+            for (k = 0; k < winInARow; k++) {
+
+                if (i + k <= totalRows - 1 && currentBoard[i+k][j-k] === currentPlayer) {
                     count++;
                 }
             }
@@ -136,15 +158,11 @@ for (var i = 0; i < allButtons.length; i++){
 
         console.log("Horizontal win = " + winCheckH());
         console.log("Vertical win = " + winCheckV());
+        console.log("Diagonal1 win = " + winCheckD1());
+        console.log("Diagonal2 win = " + winCheckD2());
 
     } );
 };
-
-
-
-
-
-
 
 
 
@@ -171,9 +189,3 @@ for (var i = 0; i < allButtons.length; i++){
 //         };
 //     };
 // };
-
-
-
-
-//# sourceURL=dynamicScript.js
-//@ sourceURL=dynamicScript.js
