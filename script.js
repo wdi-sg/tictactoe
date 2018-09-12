@@ -1,5 +1,10 @@
 
 var player = 1;
+var playerOne = 0;
+var playerTwo = 0;
+
+document.getElementById("playerOne").innerHTML = "Player 1: "+playerOne;
+document.getElementById("playerTwo").innerHTML = "Player 2: "+playerTwo;
 
 function playerTurn(player) {
 	if (player%2!=0){
@@ -54,9 +59,13 @@ function buttonClick(event){
 function winGame(player){
 	if (player%2==0){
 		alert("First player wins!")	
+		playerOne += 1;
+		document.getElementById("playerOne").innerHTML = "Player 1: "+playerOne;
 	}
 	else if (player%2!=0){
 		alert("Second player wins!");
+		playerTwo +=1;
+		document.getElementById("playerTwo").innerHTML = "Player 2: "+playerTwo;
 	}
 }
 
@@ -68,6 +77,7 @@ function restart(){
 }
 
 var buttonList = document.getElementsByTagName("button");
+
 for (var i = 0; i<buttonList.length;i++){
 	buttonList[i].addEventListener("click",buttonClick);
 }
