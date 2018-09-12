@@ -4,7 +4,7 @@ function selectWinnerBox (b1,b2,b3) {
     b1.classList.add("win");
     b2.classList.add("win");
     b3.classList.add("win");
-    turn.innerHTML = "Congrats to player " + player1 + " for winning this amazing game!";
+    turn.innerHTML = "Congrats to player " + b1.innerHTML + " for winning this amazing game!";
 }
 
 function checkWinner(){
@@ -85,8 +85,7 @@ function restart(){
 
 function drawGame(){
     if (counter > 8){
-        alert('Game ends with a draw!');
-
+        turn.innerHTML = "Draw Game!";
     }
 }
 
