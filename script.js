@@ -5,6 +5,8 @@ window.onload = function () {
   var button = document.querySelector('.btn');
   var playerOne = document.querySelector('.player--1');
   var playerTwo = document.querySelector('.player--2');
+  var symbolOne = document.querySelector('.symbol--1');
+  var symbolTwo = document.querySelector('.symbol--2');
   var scoreOne = document.querySelector('.score--1');
   var scoreTwo = document.querySelector('.score--2');
 
@@ -12,12 +14,12 @@ window.onload = function () {
     {
       name: playerOne.value,
       score: 0,
-      symbol: 'X'
+      symbol: symbolOne.innerHTML
     },
     {
       name: playerTwo.value,
       score: 0,
-      symbol: 'O'
+      symbol: symbolTwo.innerHTML
     }
   ];
 
@@ -45,6 +47,8 @@ window.onload = function () {
 
     playerOne.addEventListener('change', updatePlayerName);
     playerTwo.addEventListener('change', updatePlayerName);
+    symbolOne.addEventListener('click', switchSymbol);
+    symbolTwo.addEventListener('click', switchSymbol);
 
     markers = document.querySelectorAll('.marker');
     for (i = 0; i < markers.length; i++) {
@@ -65,6 +69,13 @@ window.onload = function () {
     players[0].name = playerOne.value;
     players[1].name = playerTwo.value;
     turn.innerHTML = players[moves % 2].name + '\'s turn';
+  }
+
+  function switchSymbol() {
+    players[0].symbol = players[0].symbol === 'O' ? 'X' : 'O';
+    players[1].symbol = players[1].symbol === 'O' ? 'X' : 'O';
+    symbolOne.innerHTML = symbolOne.innerHTML === 'O' ? 'X' : 'O';
+    symbolTwo.innerHTML = symbolTwo.innerHTML === 'O' ? 'X' : 'O';
   }
 
   function markerHandler(event) {
