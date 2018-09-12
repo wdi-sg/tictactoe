@@ -231,7 +231,7 @@ var startGame = function () {
   playerTwo.name = document.querySelector("#p2-name").value;
   playerTwo.symbol = document.querySelector("#p2-symbol").value;
 
-  createBoard(rows, columns, matches);
+  createBoard(columns, rows, matches);
 
   turnOrder = playerOne.symbol;
   gamePaused = false;
