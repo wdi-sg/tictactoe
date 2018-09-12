@@ -18,6 +18,7 @@ var turn = 0
 function removeListeners() {
     var board = document.getElementsByClassName('board')
     for (i in board) {
+        //if (board[i].classList.length > 1)
         board[i].removeEventListener('click', placeMark, false)
     }
 }
@@ -25,40 +26,44 @@ function removeListeners() {
 function checkWin(className) {
     var board = document.getElementsByClassName('board')
     switch (true) {
-        case (board[0].classList[1] === className && board[1].classList[1] === className && board[2].classList[1] === className):
+        case (board[0].classList === board[1].classList && === board[2].classList):
             display.textContent = `${className} Wins!`
             removeListeners()
             break;
-        case (board[3].classList[1] === className && board[4].classList[1] === className && board[5].classList[1] === className):
+        case (board[3].classList === board[4].classList && === board[5].classList):
             display.textContent = `${className} Wins!`
             removeListeners()
             break;
-        case (board[6].classList[1] === className && board[7].classList[1] === className && board[8].classList[1] === className):
+        case (board[6].classList === board[7].classList && === board[8].classList):
             display.textContent = `${className} Wins!`
             removeListeners()
             break;
-        case (board[0].classList[1] === className && board[3].classList[1] === className && board[6].classList[1] === className):
+        case (board[0].classList === board[3].classList && === board[6].classList):
             display.textContent = `${className} Wins!`
             removeListeners()
             break;
-        case (board[1].classList[1] === className && board[4].classList[1] === className && board[7].classList[1] === className):
+        case (board[1].classList === board[4].classList && === board[7].classList):
             display.textContent = `${className} Wins!`
             removeListeners()
             break;
-        case (board[2].classList[1] === className && board[5].classList[1] === className && board[8].classList[1] === className):
+        case (board[2].classList === board[5].classList && === board[8].classList):
             display.textContent = `${className} Wins!`
             removeListeners()
             break;
-        case (board[0].classList[1] === className && board[4].classList[1] === className && board[8].classList[1] === className):
+        case (board[0].classList === board[4].classList && === board[8].classList):
             display.textContent = `${className} Wins!`
             removeListeners()
             break;
-        case (board[2].classList[1] === className && board[4].classList[1] === className && board[6].classList[1] === className):
+        case (board[2].classList === board[4].classList && === board[6].classList):
             display.textContent = `${className} Wins!`
             removeListeners()
             break;
         default:
-            display.textContent = 'In Progress'
+            if (turn == 8)
+                display.textContent = 'Draw'
+            else
+                display.textContent = 'In Progress'
+
     }
 
 }
