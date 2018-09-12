@@ -174,6 +174,7 @@ window.onload = function () {
     var marker = document.createElement('span');
     marker.innerText = getCurrentSymbol();
     marker.classList.add('marker');
+    marker.style.fontSize = (5 - dimension / 5) + 'rem';
     cell.appendChild(marker);
     gamePlay[row][col] = getCurrentSymbol();
   }
