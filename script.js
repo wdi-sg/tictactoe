@@ -9,9 +9,9 @@ var startButton = document.querySelector("#start-button");
 var newGameButton = document.querySelector("#new-game-button");
 var setupStuff = document.querySelector("#setup-stuff");
 var aiCheckbox = document.querySelector("#ai-checkbox");
+var c4Checkbox = document.querySelector("#c4-checkbox");
 
 var playerOneStarts;
-var playVsAI;
 var gamePaused;
 var turnOrder;
 var squaresClicked;
@@ -44,6 +44,8 @@ var createBoard = function (xAxis, yAxis) {
       } else if (x === xAxis - 1) {
         newButton.classList.add("right");
       }
+
+
     }
     boardArray.push(newArray);
   }
@@ -54,7 +56,11 @@ var gameLogic = function (event) {
   if (this.textContent || gamePaused) {
     return;
   }
-  this.textContent = turnOrder;
+  if (c4Checkbox.checked) {
+    connectFourGravity(event.target);
+  } else {
+    this.textContent = turnOrder;
+  }
 
   if (checkWin(turnOrder)) {
     return;
@@ -68,7 +74,7 @@ var gameLogic = function (event) {
 
   if (turnOrder === playerOne.symbol) {
     turnOrder = playerTwo.symbol;
-    if (playVsAI) {
+    if (aiCheckbox.checked) {
       aiScript();
       return;
     }
@@ -213,7 +219,7 @@ var newGame = function () {
   gamePaused = false;
   newGameButton.style.display = "none";
 
-  if (playVsAI && turnOrder === playerTwo.symbol) {
+  if (aiCheckbox.checked && turnOrder === playerTwo.symbol) {
     aiScript();
   }
 }
@@ -224,6 +230,7 @@ window.onload  = function () {
 }
 
 var setupGame = function () {
+
   var rows = document.querySelector("#rows").value;
   var columns = document.querySelector("#columns").value;
   var matches = document.querySelector("#matches-needed").value;
@@ -231,13 +238,9 @@ var setupGame = function () {
   createBoard(columns, rows);
   matchesToWin = matches;
 
-  if (aiCheckbox.checked) {
-    playVsAI = true;
-  }
-
   playerOne.name = document.querySelector("#p1-name").value;
   playerOne.symbol = document.querySelector("#p1-symbol").value;
-  if (playVsAI === true) {
+  if (aiCheckbox.checked) {
     playerTwo.name = "The AI";
     playerTwo.symbol = "[o.o]";
   } else {
@@ -267,7 +270,11 @@ var aiScript = function () {
   }
 
   var random = Math.floor(Math.random()*emptySquares.length);
-  emptySquares[random].textContent = turnOrder;
+  if (c4Checkbox.checked) {
+    connectFourGravity(emptySquares[random]);
+  } else {
+    emptySquares[random].textContent = turnOrder;
+  }
 
   if (checkWin(turnOrder)) {
     return;
@@ -281,4 +288,23 @@ var aiScript = function () {
 
   turnOrder = playerOne.symbol;
   updateTurn();
+}
+
+var connectFourGravity = function (input) {
+  var thisColumn;
+  for (var y = 0; y < boardArray.length; y++) {
+    for (var x = 0; x < boardArray[0].length; x++) {
+      if (input === boardArray[y][x]) {
+        thisColumn = x;
+        break;
+      }
+    }
+  }
+
+  for (var z = boardArray.length - 1; z >= 0; z--) {
+    if (!boardArray[z][thisColumn].textContent) {
+      boardArray[z][thisColumn].textContent = turnOrder;
+      break;
+    }
+  }
 }
