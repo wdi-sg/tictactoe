@@ -1,0 +1,8 @@
+.grid{
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	font-weight: bold;
+	border: 2px solid red;
+	font-size: 25px;
+}
