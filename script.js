@@ -2,8 +2,8 @@
 // };
 var body = document.body;
 
-var totalRows = 5;
-var totalColumns = 3;
+var totalRows = 8;
+var totalColumns = 6;
 
 
 for (var i = 0; i < totalRows; i++) {
@@ -49,14 +49,32 @@ function changePlayer() {
 };
 
 
-function winCheck () {
+var winInARow = 3;
 
-    //
+function winCheckH () {
 
+    for (i = 0; i < totalRows; i++){
+
+        for (j = 0; j < totalColumns; j++) {
+
+            var count = 0;
+
+            for (k = 0; k < winInARow; k++) {
+
+                if (currentBoard[i][j+k] === currentPlayer) {
+                    count++;
+                }
+            }
+
+            if (count === winInARow) {
+                return true;
+            }
+        }
+    }
 };
 
 
-var allButtons = document.querySelectorAll(".button");
+var allButtons = document.querySelectorAll("button");
 
 for (var i = 0; i < allButtons.length; i++){
 
@@ -71,9 +89,11 @@ for (var i = 0; i < allButtons.length; i++){
 
         currentBoard[row][column] = currentPlayer;
 
-        // winCheck();
+        console.log(winCheckH());
+
     } );
 };
+
 
 
 
@@ -109,4 +129,5 @@ for (var i = 0; i < allButtons.length; i++){
 
 
 
-
+//# sourceURL=dynamicScript.js
+//@ sourceURL=dynamicScript.js
