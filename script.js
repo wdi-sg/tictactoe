@@ -1,5 +1,5 @@
 window.onload = function () {
-  var cells = document.querySelectorAll('.col');
+  var board = document.querySelector('.board');
   var result = document.querySelector('.winner');
   var turn = document.querySelector('.turn');
   var button = document.querySelector('.btn');
@@ -20,6 +20,8 @@ window.onload = function () {
   startGame();
 
   function setup() {
+    displayBoard();
+
     playerOne.addEventListener('change', updateTurn);
     playerTwo.addEventListener('change', updateTurn);
     symbolOne.addEventListener('click', switchSymbol);
@@ -35,7 +37,6 @@ window.onload = function () {
     hideResult();
     hideButton();
     initializeCells();
-    displayBoard();
     resetGamePlay();
     updateTurn();
   }
@@ -48,7 +49,31 @@ window.onload = function () {
     button.style.display = 'none';
   }
 
+  function displayBoard() {
+    var rowElement;
+    var colElement;
+    var i;
+    var j;
+
+    for (i = 0; i < dimension; i++) {
+      rowElement = document.createElement('div');
+      rowElement.classList.add('row');
+      rowElement.style.flex = '0 0 calc(100%/' + dimension + ')';
+
+      for (j = 0; j < dimension; j++) {
+        colElement = document.createElement('div');
+        colElement.classList.add('col');
+        colElement.style.flex = '0 0 calc(100%/' + dimension + ')';
+        colElement.id = i * dimension + j;
+        rowElement.appendChild(colElement);
+      }
+
+      board.appendChild(rowElement);
+    }
+  }
+
   function initializeCells() {
+    var cells = document.querySelectorAll('.col');
     var markers = document.querySelectorAll('.marker');
     var i;
 
@@ -59,10 +84,6 @@ window.onload = function () {
     for (i = 0; i < cells.length; i++) {
       cells[i].addEventListener('click', markerHandler);
     }
-  }
-
-  function displayBoard() {
-
   }
 
   function resetGamePlay() {
@@ -108,7 +129,7 @@ window.onload = function () {
     symbolTwo.innerHTML = symbolTwo.innerHTML === 'O' ? 'X' : 'O';
   }
 
-  function markerHandler(event) {
+  function markerHandler() {
     row = getRowIndex(this.id);
     col = getColIndex(this.id);
 
@@ -152,11 +173,11 @@ window.onload = function () {
   }
 
   function getRowIndex(id) {
-    return Math.floor(id / 3);
+    return Math.floor(id / dimension);
   }
 
   function getColIndex(id) {
-    return id % 3;
+    return id % dimension;
   }
 
   function checkWinState() {
@@ -284,6 +305,7 @@ window.onload = function () {
   }
 
   function disableCells() {
+    var cells = document.querySelectorAll('.col');
     var i;
 
     for (i = 0; i < cells.length; i++) {
