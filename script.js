@@ -1,8 +1,9 @@
 var size = prompt('Please enter board size:', 3)
 var body = document.getElementsByTagName('body')[0]
 var display = document.getElementsByTagName('h1')[0] //for message display
-var turn = 0 //turn counter
+var turn = 1 //turn counter
 var gameArray = [] //game board
+var button, field, square
 
 //remove click eventListeners from non-clicked elements
 function removeListeners() {
@@ -90,6 +91,7 @@ function checkUpDiag(mark) {
 function placeMark(event) {
     display.textContent = 'Match in Progress'
     button.style.visibility = 'visible'
+
     if (turn % 2 == 0) {
         this.textContent = 'X'
         this.style.background = 'red'
@@ -99,13 +101,15 @@ function placeMark(event) {
         this.style.background = 'blue'
         checkWin('O', event)
     }
+    if (turn == (size * size))
+        return display.textContent = 'DRAW...'
     turn++
     event.target.removeEventListener('click', placeMark, false)
 }
 
 //create entire board via DOM
 function createBoard(size) {
-    var field = document.createElement('div')
+    field = document.createElement('div')
     field.style.display = 'grid'
     field.style.gridTemplateColumns = `repeat(${size},1fr)`
     field.setAttribute('id', 'field')
@@ -114,7 +118,7 @@ function createBoard(size) {
     for (var row = 0; row < size; row++) {
         var rowArray = []
         for (var col = 0; col < size; col++) {
-            var square = document.createElement('div')
+            square = document.createElement('div')
             square.setAttribute('id', row.toString() + col.toString())
             square.style.padding = `${10 - size}vh`
             square.style.fontSize = `${10 - size}vh`
@@ -131,10 +135,10 @@ function createBoard(size) {
     console.log('Board Loaded: ' + gameArray.length)
 
     body.appendChild(field)
-    var display = document.createElement('h1')
+    display = document.createElement('h1')
     display.innerHTML = 'Ready'
 
-    var button = document.createElement('button')
+    button = document.createElement('button')
     button.innerHTML = 'Restart'
     button.addEventListener('click', resetBoard)
     button.style.visibility = 'hidden'
@@ -160,7 +164,7 @@ function resetBoard() {
         body.removeChild(body.lastChild)
     }
     gameArray = []
-    turn = 0
+    turn = 1
     createBoard(size)
 }
 
