@@ -1,12 +1,28 @@
 window.onload = function () {
   var cells = document.querySelectorAll('.col');
-  var result = document.querySelector('.result');
+  var result = document.querySelector('.winner');
   var button = document.querySelector('.btn');
+  var playerOne = document.querySelector('.player--1');
+  var playerTwo = document.querySelector('.player--2');
+  var scoreOne = document.querySelector('.score--1');
+  var scoreTwo = document.querySelector('.score--2');
 
   var dimension = 3;
   var winCondition = 3;
   var board;
-  var player;
+  var players = [
+    {
+      name: playerOne.innerHTML,
+      score: 0,
+      symbol: 'X'
+    },
+    {
+      name: playerTwo.innerHTML,
+      score: 0,
+      symbol: 'O'
+    }
+  ];
+  var moves;
   var row;
   var col;
 
@@ -14,13 +30,17 @@ window.onload = function () {
     startGame();
   });
 
+  // playerOne = this.prompt('Please enter the name of player 1:');
+  // playerTwo = this.prompt('Please enter the name of player 2:');
+
   startGame();
 
   function startGame() {
     var markers;
     var i;
 
-    player = null;
+    // player = null;
+    moves = 0;
     result.style.opacity = 0;
     button.style.display = 'none';
 
@@ -39,6 +59,21 @@ window.onload = function () {
     }
   }
 
+  function resetPlayers() {
+    players = [
+      {
+        name: playerOne.innerHTML,
+        score: 0,
+        symbol: 'X'
+      },
+      {
+        name: playerTwo.innerHTML,
+        score: 0,
+        symbol: 'O'
+      }
+    ];
+  }
+
   function markerHandler(event) {
     var cell = event.target;
     row = getRowIndex(event.target.id);
@@ -48,18 +83,21 @@ window.onload = function () {
     if (!cell.innerHTML) {
       addMarkerToBoard(cell);
       checkWinState();
+      moves++;
     }
   }
 
   function addMarkerToBoard(cell) {
     var marker;
+    var player;
 
-    player = (!player || player === 'O') ? 'X' : 'O';
+    // player = (!player || player === 'O') ? 'X' : 'O';
+    player = players[moves % 2];
     marker = document.createElement('span');
-    marker.innerText = player;
+    marker.innerText = player.symbol;
     marker.classList.add('marker');
     cell.appendChild(marker);
-    board[row][col] = player;
+    board[row][col] = player.symbol;
   }
 
   function getRowIndex(id) {
@@ -72,7 +110,8 @@ window.onload = function () {
 
   function checkWinState() {
     if (checkRow() || checkColumn() || checkDiagonal()) {
-      declareWinner(player);
+      declareWinner();
+      updateScore();
     }
   }
 
@@ -185,10 +224,12 @@ window.onload = function () {
     return count >= winCondition;
   }
 
-  function declareWinner(player) {
+  function declareWinner() {
     var i;
+    var winner = players[moves % 2];
 
-    result.innerHTML = 'Winner: ' + player;
+    winner.score++;
+    result.innerHTML = 'Winner: ' + winner.name + ' (' + winner.symbol + ')';
     result.style.opacity = 1;
 
     for (i = 0; i < cells.length; i++) {
@@ -196,5 +237,10 @@ window.onload = function () {
     }
 
     button.style.display = 'inline-block';
+  }
+
+  function updateScore() {
+    scoreOne.innerHTML = players[0].score;
+    scoreTwo.innerHTML = players[1].score;
   }
 };
