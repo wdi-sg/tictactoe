@@ -1,37 +1,32 @@
 window.onload = function () {
   var cells = document.querySelectorAll('.col');
   var result = document.querySelector('.winner');
+  var turn = document.querySelector('.turn');
   var button = document.querySelector('.btn');
   var playerOne = document.querySelector('.player--1');
   var playerTwo = document.querySelector('.player--2');
   var scoreOne = document.querySelector('.score--1');
   var scoreTwo = document.querySelector('.score--2');
 
-  var dimension = 3;
-  var winCondition = 3;
-  var board;
   var players = [
     {
-      name: playerOne.innerHTML,
+      name: playerOne.value,
       score: 0,
       symbol: 'X'
     },
     {
-      name: playerTwo.innerHTML,
+      name: playerTwo.value,
       score: 0,
       symbol: 'O'
     }
   ];
+
+  var dimension = 3;
+  var winCondition = 3;
+  var board;
   var moves;
   var row;
   var col;
-
-  button.addEventListener('click', function () {
-    startGame();
-  });
-
-  // playerOne = this.prompt('Please enter the name of player 1:');
-  // playerTwo = this.prompt('Please enter the name of player 2:');
 
   startGame();
 
@@ -39,10 +34,17 @@ window.onload = function () {
     var markers;
     var i;
 
-    // player = null;
     moves = 0;
     result.style.opacity = 0;
     button.style.display = 'none';
+    button.addEventListener('click', function () {
+      startGame();
+    });
+
+    turn.innerHTML = players[0].name + '\'s turn';
+
+    playerOne.addEventListener('change', updatePlayerName);
+    playerTwo.addEventListener('change', updatePlayerName);
 
     markers = document.querySelectorAll('.marker');
     for (i = 0; i < markers.length; i++) {
@@ -59,19 +61,10 @@ window.onload = function () {
     }
   }
 
-  function resetPlayers() {
-    players = [
-      {
-        name: playerOne.innerHTML,
-        score: 0,
-        symbol: 'X'
-      },
-      {
-        name: playerTwo.innerHTML,
-        score: 0,
-        symbol: 'O'
-      }
-    ];
+  function updatePlayerName() {
+    players[0].name = playerOne.value;
+    players[1].name = playerTwo.value;
+    turn.innerHTML = players[moves % 2].name + '\'s turn';
   }
 
   function markerHandler(event) {
@@ -84,6 +77,7 @@ window.onload = function () {
       addMarkerToBoard(cell);
       checkWinState();
       moves++;
+      turn.innerHTML = players[moves % 2].name + '\'s turn';
     }
   }
 

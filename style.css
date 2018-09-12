@@ -61,6 +61,12 @@ body {
   font-size: 5rem;
 }
 
+.turn {
+  font-size: 1.6rem;
+  color: green;
+  text-align: center;
+}
+
 .score {
   display: flex;
   max-width: 36rem;
@@ -80,6 +86,7 @@ body {
 .score__player {
   font-size: 1.6rem;
   padding: .2rem;
+  text-align: center;
 }
 
 .score__symbol {
