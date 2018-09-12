@@ -1,4 +1,4 @@
-var size = prompt('Please enter board size:')
+var size = prompt('Please enter board size:', 3)
 var body = document.getElementsByTagName('body')[0]
 var field
 var square
@@ -6,6 +6,7 @@ var display
 var button
 var turn = 0
 var gameArray = []
+var winCounter = 0
 // var winningCombination = [
 //     [1, 2, 3],
 //     [4, 5, 6],
@@ -33,18 +34,49 @@ function checkWin(mark, event) {
 
     gameArray[row][col] = mark
 
+    //horizontal check
+    checkHorizontal(mark)
+    checkVertical(mark)
+}
+
+function checkHorizontal(mark) {
+    var result = []
+    for (var row = 0; row < size; row++) {
+        for (var col = 0; col < size; col++) {
+            result.push(gameArray[row][col])
+        }
+        console.log(result);
+        if (result.every((element, i, arr) => element === arr[0])) {
+            console.log(mark + ' wins');
+            removeListeners()
+        }
+        result = []
+    }
+}
+
+function checkVertical(mark) {
+    var result = []
+    for (var col = 0; col < size; col++) {
+        for (var row = 0; row < size; row++) {
+            result.push(gameArray[row][col])
+        }
+        console.log(result);
+        if (result.every((element, i, arr) => element === arr[0])) {
+            console.log(mark + ' wins');
+            removeListeners()
+        }
+        result = []
+    }
 }
 
 function placeMark(event) {
     button.style.visibility = 'visible'
     if (turn % 2 == 0) {
         this.textContent = 'X'
-        this.classList.add('X')
         this.style.background = 'red'
         checkWin('X', event)
     } else {
         this.textContent = 'O'
-        this.classList.add('O')
         this.style.background = 'blue'
         checkWin('O', event)
     }
@@ -60,6 +92,7 @@ function createBoard(size) {
     field.style.gridTemplateColumns = `repeat(${size},1fr)`
     field.setAttribute('id', 'field')
 
+    //create board elements and create gameArray
     for (row = 0; row < size; row++) {
         var rowArray = []
         for (col = 0; col < size; col++) {
@@ -76,24 +109,6 @@ function createBoard(size) {
     }
     console.log(gameArray)
 
-
-    // for (var i = 0; i < (size * size); i++) {
-    //     square = document.createElement('div')
-    //
-    //     if (col == size) {
-    //         row++
-    //         col = 0;
-    //     }
-    //     square.setAttribute('id', row.toString() + col.toString())
-    //     square.classList = 'board'
-    //     square.innerHTML = square.id
-    //     createGameArray(row, col, size)
-    //     assignRowCol(square, row, col, size)
-    //     square.addEventListener('click', placeMark)
-    //     field.appendChild(square)
-    //     col++
-    // }
-
     body.appendChild(field)
     display = document.createElement('h1')
     display.innerHTML = 'Ready'
@@ -106,12 +121,12 @@ function createBoard(size) {
     body.appendChild(button)
 }
 
+//add classses based on row/col position
 function assignRowCol(square, row, col, size) {
     if (row == 0)
         square.classList.add('top')
     else if (row == size - 1)
         square.classList.add('bottom')
-
     if (col == 0)
         square.classList.add('left')
     else if (col == size - 1)
@@ -121,6 +136,7 @@ function assignRowCol(square, row, col, size) {
 
 createBoard(size)
 
+//remove all elements, reset turn and createboard
 function resetBoard() {
     while (body.lastChild) {
         body.removeChild(body.lastChild)
