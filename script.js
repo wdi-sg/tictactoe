@@ -20,8 +20,6 @@ window.onload = function () {
   startGame();
 
   function setup() {
-    displayBoard();
-
     playerOne.addEventListener('change', updateTurn);
     playerTwo.addEventListener('change', updateTurn);
     symbolOne.addEventListener('click', switchSymbol);
@@ -33,12 +31,30 @@ window.onload = function () {
   }
 
   function startGame() {
+    dimension = prompt('Please enter a dimension:');
+    dimension = parseInt(dimension);
+
+    winCondition = prompt('How many in a row they want to qualify as a win?');
+    winCondition = parseInt(winCondition);
+
     moves = 0;
+
+    removeBoard();
+    displayBoard();
     hideResult();
     hideButton();
     initializeCells();
     resetGamePlay();
     updateTurn();
+  }
+
+  function removeBoard() {
+    var rows = document.querySelectorAll('.row');
+    var i;
+
+    for (i = 0; i < rows.length; i++) {
+      rows[i].remove();
+    }
   }
 
   function hideResult() {
