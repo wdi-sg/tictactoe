@@ -3,6 +3,14 @@ var currentTurn = "player 1";
 
 //Define var for getting box id from document.
 var boxOne = document.getElementById("1");
+var boxTwo = document.getElementById("2");
+var boxThree = document.getElementById("3");
+var boxFour = document.getElementById("4");
+var boxFive = document.getElementById("5");
+var boxSix = document.getElementById("6");
+var boxSeven = document.getElementById("7");
+var boxEight = document.getElementById("8");
+var boxNine = document.getElementById("9");
 
  //Add event listener and function to run when click is heard.
 boxOne.addEventListener("click", function () {
@@ -12,11 +20,11 @@ boxOne.addEventListener("click", function () {
 	} else {
 	boxOne.textContent = "O";
 	currentTurn = "player 1";
-	}
+	};
+	checkWins();
 })
 
 //Box 2 event listener
-var boxTwo = document.getElementById("2");
 boxTwo.addEventListener("click", function () {
 	if (currentTurn === "player 1") {
 	boxTwo.textContent = "X";
@@ -24,12 +32,12 @@ boxTwo.addEventListener("click", function () {
 	} else {
 	boxTwo.textContent = "O";
 	currentTurn = "player 1";
-	}
+	};
+	checkWins();
 })
 
 
 //Box 3 event listener
-var boxThree = document.getElementById("3");
 boxThree.addEventListener("click", function () {
 	if (currentTurn === "player 1") {
 	boxThree.textContent = "X";
@@ -37,11 +45,11 @@ boxThree.addEventListener("click", function () {
 	} else {
 	boxThree.textContent = "O";
 	currentTurn = "player 1";
-	}
+	};
+	checkWins();
 })
 
 // //Box 4 event listener.
-var boxFour = document.getElementById("4");
 boxFour.addEventListener("click", function () {
 	if (currentTurn === "player 1") {
 	boxFour.textContent = "X";
@@ -49,11 +57,11 @@ boxFour.addEventListener("click", function () {
 	} else {
 	boxFour.textContent = "O";
 	currentTurn = "player 1";
-	}
+	};
+	checkWins();
 })
 
 // //Box 5 event listener.
-var boxFive = document.getElementById("5");
 boxFive.addEventListener("click", function () {
 	if (currentTurn === "player 1") {
 	boxFive.textContent = "X";
@@ -61,11 +69,11 @@ boxFive.addEventListener("click", function () {
 	} else {
 	boxFive.textContent = "O";
 	currentTurn = "player 1";
-	}
+	};
+	checkWins();
 })
 
 //Box 6 event listener.
-var boxSix = document.getElementById("6");
 boxSix.addEventListener("click", function () {
 	if (currentTurn === "player 1") {
 	boxSix.textContent = "X";
@@ -73,11 +81,11 @@ boxSix.addEventListener("click", function () {
 	} else {
 	boxSix.textContent = "O";
 	currentTurn = "player 1";
-	}
+	};
+	checkWins();
 })
 
 //box 7 event listener
-var boxSeven = document.getElementById("7");
 boxSeven.addEventListener("click", function () {
 	if (currentTurn === "player 1") {
 	boxSeven.textContent = "X";
@@ -85,11 +93,11 @@ boxSeven.addEventListener("click", function () {
 	} else {
 	boxSeven.textContent = "O";
 	currentTurn = "player 1";
-	}
+	};
+	checkWins();
 })
 
 //box 8 event listener
-var boxEight = document.getElementById("8");
 boxEight.addEventListener("click", function () {
 	if (currentTurn === "player 1") {
 	boxEight.textContent = "X";
@@ -97,11 +105,11 @@ boxEight.addEventListener("click", function () {
 	} else {
 	boxEight.textContent = "O";
 	currentTurn = "player 1";
-	}
+	};
+	checkWins();
 })
 
 //box 9 event listener
-var boxNine = document.getElementById("9");
 boxNine.addEventListener("click", function () {
 	if (currentTurn === "player 1") {
 	boxNine.textContent = "X";
@@ -109,8 +117,64 @@ boxNine.addEventListener("click", function () {
 	} else {
 	boxNine.textContent = "O";
 	currentTurn = "player 1";
-	}
+	};
+	checkWins();
 })
+
+//Check for all hard coded wins.
+var winningCombos = [ 
+	[1, 2, 3],
+	[4, 5, 6],
+	[7, 8, 9],
+	[1, 4, 7],
+	[2, 5, 8],
+	[3, 6, 9],
+	[1, 5, 9],
+	[3, 5, 7]
+];
+
+winningCombos;
+
+//Check wins.
+var checkWins = function() {
+	if ((boxOne.textContent !== "") && (boxOne.textContent === boxTwo.textContent) && (boxTwo.textContent === boxThree.textContent)) {
+		alert("You win this game!");
+		clearBoard();
+	} else if ((boxFour.textContent !== "") && (boxFour.textContent === boxFive.textContent) && (boxFive.textContent === boxSix.textContent)) {
+		alert("You win this game!");
+		clearBoard();
+	} else if ((boxSeven.textContent !== "") &&(boxSeven.textContent === boxEight.textContent) && (boxEight.textContent === boxNine.textContent)) {
+		alert("You win this game!");
+		clearBoard();
+	} else if ((boxOne.textContent !== "") && (boxOne.textContent === boxFour.textContent) && (boxFour.textContent === boxSeven.textContent)) {
+		alert("You win this game!");
+		clearBoard();
+	} else if ((boxTwo.textContent !== "") && (boxTwo.textContent === boxFive.textContent) && (boxFive.textContent === boxEight.textContent)) {
+		alert("You win this game!");
+		clearBoard();
+	} else if ((boxThree.textContent !== "") && (boxThree.textContent === boxSix.textContent) && (boxSix.textContent === boxNine.textContent)) {
+		alert("You win this game!");
+		clearBoard();
+	} else if ((boxOne.textContent !== "") && (boxOne.textContent === boxFive.textContent) && (boxFive.textContent === boxNine.textContent)) {
+		alert("You win this game!");
+		clearBoard();
+	} else if ((boxThree.textContent !== "") && (boxThree.textContent === boxFive.textContent) && (boxFive.textContent === boxSeven.textContent)) {
+		alert("You win this game!");
+		clearBoard();
+	}
+};
+
+var clearBoard = function() {
+	boxOne.textContent = "";
+	boxTwo.textContent = "";
+	boxThree.textContent = "";
+	boxFour.textContent = "";
+	boxFive.textContent = "";
+	boxSix.textContent = "";
+	boxSeven.textContent = "";
+	boxEight.textContent = "";
+	boxNine.textContent = "";
+};
 
 
 
