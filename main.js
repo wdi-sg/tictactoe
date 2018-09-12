@@ -77,36 +77,28 @@ document.querySelector("#y1 span#x1")
 
 //this function add an X in span and changes color of square, linked to the click function
 var insertX = function(element){
-    this.textContent = "X";
-    this.classList.add("changeColorX")
-
-
-    //This will activate function for playerTwo's turn and limit choices to 0
+    element.textContent = "X";
+    element.classList.add("changeColorX")
 
 };
 
 //this function add an 0 in span and changes background color of square, linked to the click function
 var insertO = function(element){
-    this.textContent = "0";
-    this.classList.add("changeColorO")
-
-
-    //This will activate function for playerOne's turn and limit choices to X
-
+    element.textContent = "0";
+    element.classList.add("changeColorO")
 };
 
 
 
 //This add event listeners to all x
-
+/*
 var addClick0 = function (){
     var box = document.querySelectorAll(".square")
 
     //document.querySelectorAll(".square").removeEventListener("click", insertX)
     box.forEach(function(element){
-        this.removeEventListener("click", insertX)
-        if(this.classList !== "changeColorX"){
 
+        if(this.classList !== "changeColorX"){
         console.log("added click O")
         element.addEventListener("click", insertO);
         }
@@ -116,51 +108,37 @@ var addClick0 = function (){
 var addClickX = function(){
     var box = document.querySelectorAll(".square")
 
-
-    //document.querySelectorAll(".square").removeEventListener("click", insertO)
-    box.forEach(function(element){
-        this.removeEventListener("click", insertX)
         if(this.classList !== "changeColorO"){
-
-       console.log("added click X")
-        element.addEventListener("clicßk", insertX);
+        element.addEventListener("click", insertX);
     }
-    })
+
 };
+*/
 
-//This section creates the turn mechanism
+//Step 2, based on the number of clicks determine where it is player X(odd) or player O(even). After the player clicks, add 1 to turns
+var turns = 1
 
-//set boolean values for players to be opposite of each other. It is the player's turn when the value is true.
-
-var turns = 0
-
-    var limitPlayerClickToXOrO = function(){
-
-        console.log("clicked")
-
+function playerXorO(){
         console.log(turns)
+
         if (turns % 2 === 1){
             console.log("executing limit x");
-            //during playerOne's turn the function will only allow clicks to be x
-            addClickX();
-
-
+            insertX(this)
         }
         else{
             //during playerTwo's turn the player can only click 0
             console.log("executing limit O")
-            addClick0()
-
+            insertO(this)
         }
+    turns++
+};
 
-        return turns++
-    };
 
-
+//Step 1- Set up such that all squares are listening for a click event. When user click activate next function.
 var allTheSquares = document.querySelectorAll("span")
 
 allTheSquares.forEach(function(element){
-    element.addEventListener('click', limitPlayerClickToXOrO)
+    element.addEventListener('click', playerXorO)
 })
 
 
