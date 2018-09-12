@@ -48,7 +48,7 @@ var counter = 0;
 var boxes = document.querySelectorAll("#main div");
 console.log(boxes);
 for (var i = 0; i < boxes.length; i++){
-    boxes[i].onclick = function(){
+    boxes[i].addEventListener('click', function(){
         //not allow to change the value of the box
         if(this.innerHTML !== "X" && this.innerHTML !== "O"){
             if (counter % 2 === 0){
@@ -67,6 +67,7 @@ for (var i = 0; i < boxes.length; i++){
             }
         }
     }
+    );
 }
 
 function restart(){
