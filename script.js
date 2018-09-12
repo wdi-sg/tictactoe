@@ -4,7 +4,7 @@ function selectWinnerBox (b1,b2,b3) {
     b1.classList.add("win");
     b2.classList.add("win");
     b3.classList.add("win");
-    turn.innerHTML = b1.innerHTML + " Won Congrats";
+    turn.innerHTML = "Congrats to player " + b1.innerHTML + " for winning this amazing game!";
 }
 
 function checkWinner(){
@@ -66,6 +66,7 @@ for (var i = 0; i < boxes.length; i++){
                 counter += 1;
             }
         }
+        drawGame();
     }
     );
 }
@@ -78,6 +79,19 @@ function restart(){
         turn.style.fontSize = "25px";
     }
 }
+
+function drawGame(){
+    if (counter > 8){
+        alert('Game ends with a draw!');
+    }
+}
+
+// function endGame(){
+//     if (selectWinnerBox){
+//         for (var i = 0; i < boxes.length; i++){
+//             boxes[i].addEventListener('click', function(){
+//     }
+// }
 
 
 
