@@ -114,7 +114,7 @@ window.onload = function () {
   }
 
   function updateTurn() {
-    turn.innerHTML = getCurrentPlayer() + '\'s turn';
+    turn.innerHTML = getCurrentPlayer() + ' (' + getCurrentSymbol() + ') \'s turn';
   }
 
   function getCurrentPlayer() {

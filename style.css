@@ -23,7 +23,8 @@ body {
 .winner {
   font-size: 2rem;
   text-align: center;
-  padding: 1rem;
+  padding: .5rem;
+  color: blue;
 }
 
 .board {
@@ -33,12 +34,11 @@ body {
   width: 100%;
   height: 36rem;
   margin: 0 auto;
-  padding: 2rem;
+  padding: .5rem;
 }
 
 .row {
   display: flex;
-  flex: 0 0 calc(100% / 3);
   width: 100%;
 }
 
@@ -50,7 +50,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 0 0 calc(100% / 3);
 }
 
 .col:not(:last-child) {
@@ -61,6 +60,7 @@ body {
   font-size: 1.6rem;
   color: green;
   text-align: center;
+  margin: .5rem 0 0 0;
 }
 
 .score {
@@ -68,7 +68,7 @@ body {
   max-width: 36rem;
   width: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .score__result {
@@ -81,17 +81,19 @@ body {
 
 .score__player {
   font-size: 1.6rem;
-  padding: .2rem;
+  padding: .3rem;
   text-align: center;
+  border: 1px solid black;
 }
 
 .score__symbol {
-  font-size: 1.6rem;
+  font-size: 2rem;
   padding: .2rem;
+  cursor: pointer;
 }
 
 .score__number {
-  font-size: 2rem;
+  font-size: 3rem;
   padding: 1rem;
   color: red;
 }
@@ -99,13 +101,19 @@ body {
 .btn:link,
 .btn:visited {
   display: inline-block;
-  border: 1px solid black;
+  border: 1px solid darkmagenta;
   font-size: 1.6rem;
   padding: 1.5rem 3rem;
   text-transform: uppercase;
   text-decoration: none;
   transition: all .2s;
-  color: orangered;
+  color: darkmagenta;
   border-radius: 1rem;
   margin: 0 auto;
+  transition: all .2s;
+}
+
+.btn:hover {
+  background: darkmagenta;
+  color: white;
 }
