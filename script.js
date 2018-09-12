@@ -1,3 +1,5 @@
+
+
 console.log("working")
 
 // Creating board array
@@ -35,7 +37,7 @@ currentGame = document.getElementsByTagName('a');
 var restartGame = function() {
 
     for (var i = 0; i < 9; i++) {
-        currentGame[i].textContent = i;
+        currentGame[i].textContent = "";
     }
     addListener();
 }
@@ -71,6 +73,7 @@ var checkGame = function(game) {
             alert("Player X wins!");
                 player2Score1 = player2Score1 + 1;
                     player2Score.textContent = player2Score1;
+                        removeAll();
             break;
         };
 
@@ -78,6 +81,7 @@ var checkGame = function(game) {
             alert("Player O wins!");
                 player1Score1 = player1Score1 + 1;
                     player1Score.textContent = player1Score1;
+                        removeAll();
             break;
         };
 
@@ -107,6 +111,13 @@ var x = function(event){
 var addListener = function() {
     for (var i = 0; i < boxes.length; i++) {
         boxes[i].addEventListener('click', x);
+    };
+}
+
+var removeAll = function() {
+    for (var i = 0; i < boxes.length; i++) {
+        boxes[i].removeEventListener('click', x);
+        boxes[i].style.cursor = "default";
     };
 }
 

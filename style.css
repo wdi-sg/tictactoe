@@ -1,4 +1,5 @@
-.boxes {
+/*
+	.boxes {
 	background: rgb(102, 102, 153, 0.5);
 	width: 100px;
 	height: 100px;
@@ -10,6 +11,22 @@
 	font-size: 80px;
 	position: relative;
 }
+*/
+
+p a {
+	border: 2px solid black;
+	width: 100px;
+	height: 100px;
+	text-align: center;
+	background: white;
+	vertical-align: middle;
+	font-size: 70px;
+	display: inline-block;
+	border-collapse: collapse;
+	line-height: 100px;
+	margin: -3px;
+}
+
 
 p {
 	margin:0px;
@@ -22,7 +39,19 @@ h1 {
 	padding: 20px;
 	border: 3px solid black;
 	color: black;
+	cursor: pointer;
 }
+
+.boxes {
+	cursor: crosshair;
+}
+
+
+
+
+
+
+
 
 
 
