@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+
 h1{
 	text-align: center;
 	color: blue;
 	font-size: 70px;
 	border-bottom: 1px solid black;
+	font-family: 'Roboto Slab', serif;
 }
 
 .gameboard button{
