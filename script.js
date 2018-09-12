@@ -49,9 +49,54 @@ function changePlayer() {
 };
 
 
-var winInARow = 3;
+var winInARow = 5;
+
 
 function winCheckH () {
+
+    for (i = 0; i < totalRows; i++){
+
+        for (j = 0; j < totalColumns; j++) {
+
+            var count = 0;
+
+            for (k = 0; k < winInARow; k++) {
+
+                if (currentBoard[i][j+k] === currentPlayer) {
+                    count++;
+                }
+            }
+
+            if (count === winInARow) {
+                return true;
+            }
+        }
+    }
+};
+
+function winCheckV () {
+
+    for (i = 0; i < totalColumns; i++){
+
+        for (j = 0; j < totalRows; j++) {
+
+            var count = 0;
+
+            for (k = 0; k < winInARow; k++) {
+
+                if (i + k <= totalRows - 1 && currentBoard[i+k][j] === currentPlayer) {
+                    count++;
+                }
+            }
+
+            if (count === winInARow) {
+                return true;
+            }
+        }
+    }
+};
+
+function winCheckD1 () {
 
     for (i = 0; i < totalRows; i++){
 
@@ -89,7 +134,8 @@ for (var i = 0; i < allButtons.length; i++){
 
         currentBoard[row][column] = currentPlayer;
 
-        console.log(winCheckH());
+        console.log("Horizontal win = " + winCheckH());
+        console.log("Vertical win = " + winCheckV());
 
     } );
 };
