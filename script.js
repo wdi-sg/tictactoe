@@ -6,7 +6,7 @@ var totalRows = 5;
 var totalColumns = 3;
 
 
-for (var i = totalRows; i > 0; i--) {
+for (var i = 0; i < totalRows; i++) {
     var newDiv = document.createElement("div");
     newDiv.id = "row " + i;
     newDiv.class = "row";
@@ -14,7 +14,7 @@ for (var i = totalRows; i > 0; i--) {
 
     var newRow = document.getElementById(`row ${i}`);
 
-    for (var j = 1; j <= totalColumns; j++) {
+    for (var j = 0; j < totalColumns; j++) {
         var newButton = document.createElement("button");
         newButton.className = "button";
         newButton.textContent = '\xa0';
@@ -56,7 +56,6 @@ function winCheck () {
 };
 
 
-
 var allButtons = document.querySelectorAll(".button");
 
 for (var i = 0; i < allButtons.length; i++){
@@ -64,18 +63,18 @@ for (var i = 0; i < allButtons.length; i++){
     allButtons[i].addEventListener("click", function() {
         changePlayer();
         this.textContent = currentPlayer;
+
+        console.log(this.id);
+        var coordinates = this.id.split("");
+        var row = coordinates[0];
+        var column = coordinates[1];
+
+        currentBoard[row][column] = currentPlayer;
+
         // winCheck();
     } );
 };
 
-
-// var positionInArray = event.target.id;
-// var coordinates = positionInArray.split("");
-
-// var row = coordinates[0];
-// var column = coordinates[1];
-
-// currentBoard[row][column] = currentPlayer;
 
 
 
