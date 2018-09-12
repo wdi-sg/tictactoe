@@ -9,20 +9,6 @@ window.onload = function () {
   var symbolTwo = document.querySelector('.symbol--2');
   var scoreOne = document.querySelector('.score--1');
   var scoreTwo = document.querySelector('.score--2');
-
-  var players = [
-    {
-      name: playerOne.value,
-      score: 0,
-      symbol: symbolOne.innerHTML
-    },
-    {
-      name: playerTwo.value,
-      score: 0,
-      symbol: symbolTwo.innerHTML
-    }
-  ];
-
   var dimension = 3;
   var winCondition = 3;
   var board;
@@ -30,27 +16,41 @@ window.onload = function () {
   var row;
   var col;
 
+  setup();
   startGame();
 
-  function startGame() {
-    var markers;
-    var i;
-
-    moves = 0;
-    result.style.opacity = 0;
-    button.style.display = 'none';
-    button.addEventListener('click', function () {
-      startGame();
-    });
-
-    turn.innerHTML = players[0].name + '\'s turn';
-
-    playerOne.addEventListener('change', updatePlayerName);
-    playerTwo.addEventListener('change', updatePlayerName);
+  function setup() {
+    playerOne.addEventListener('change', updateTurn);
+    playerTwo.addEventListener('change', updateTurn);
     symbolOne.addEventListener('click', switchSymbol);
     symbolTwo.addEventListener('click', switchSymbol);
 
-    markers = document.querySelectorAll('.marker');
+    button.addEventListener('click', function () {
+      startGame();
+    });
+  }
+
+  function startGame() {
+    moves = 0;
+    hideResult();
+    hideButton();
+    initializeCells();
+    resetBoard();
+    updateTurn();
+  }
+
+  function hideResult() {
+    result.style.opacity = 0;
+  }
+
+  function hideButton() {
+    button.style.display = 'none';
+  }
+
+  function initializeCells() {
+    var markers = document.querySelectorAll('.marker');
+    var i;
+
     for (i = 0; i < markers.length; i++) {
       markers[i].remove();
     }
@@ -58,6 +58,10 @@ window.onload = function () {
     for (i = 0; i < cells.length; i++) {
       cells[i].addEventListener('click', markerHandler);
     }
+  }
+
+  function resetBoard() {
+    var i;
 
     board = new Array(dimension);
     for (i = 0; i < dimension; i++) {
@@ -65,44 +69,80 @@ window.onload = function () {
     }
   }
 
-  function updatePlayerName() {
-    players[0].name = playerOne.value;
-    players[1].name = playerTwo.value;
-    turn.innerHTML = players[moves % 2].name + '\'s turn';
+  function updateTurn() {
+    turn.style.opacity = 1;
+    turn.innerHTML = getCurrentPlayer() + '\'s turn';
+  }
+
+  function getCurrentPlayer() {
+    return moves % 2 === 0 ? playerOne.value : playerTwo.value;
+  }
+
+  function getCurrentSymbol() {
+    return moves % 2 === 0 ? symbolOne.innerHTML : symbolTwo.innerHTML;
+  }
+
+  function getPreviousPlayer() {
+    return moves % 2 === 0 ? playerTwo.value : playerOne.value;
+  }
+
+  function getPreviousSymbol() {
+    return moves % 2 === 0 ? symbolTwo.innerHTML : symbolOne.innerHTML;
+  }
+
+  function setPreviousScore() {
+    if (moves % 2 === 0) {
+      scoreTwo.innerHTML = parseInt(scoreTwo.innerHTML) + 1;
+    } else {
+      scoreOne.innerHTML = parseInt(scoreOne.innerHTML) + 1;
+    }
   }
 
   function switchSymbol() {
-    players[0].symbol = players[0].symbol === 'O' ? 'X' : 'O';
-    players[1].symbol = players[1].symbol === 'O' ? 'X' : 'O';
     symbolOne.innerHTML = symbolOne.innerHTML === 'O' ? 'X' : 'O';
     symbolTwo.innerHTML = symbolTwo.innerHTML === 'O' ? 'X' : 'O';
   }
 
   function markerHandler(event) {
-    var cell = event.target;
-    row = getRowIndex(event.target.id);
-    col = getColIndex(event.target.id);
+    row = getRowIndex(this.id);
+    col = getColIndex(this.id);
 
     // Add a marker only if the cell is empty.
-    if (!cell.innerHTML) {
-      addMarkerToBoard(cell);
-      checkWinState();
+    if (!this.innerHTML) {
+      addMarkerToBoard(this);
       moves++;
-      turn.innerHTML = players[moves % 2].name + '\'s turn';
+      if (checkWinState()) {
+        declareWinner();
+        updateScore();
+      } else {
+        updateTurn();
+        if (moves === dimension * dimension) {
+          hideTurn();
+          draw();
+        }
+      }
     }
   }
 
-  function addMarkerToBoard(cell) {
-    var marker;
-    var player;
+  function showButton() {
+    button.style.display = 'inline-block';
+  }
 
-    // player = (!player || player === 'O') ? 'X' : 'O';
-    player = players[moves % 2];
-    marker = document.createElement('span');
-    marker.innerText = player.symbol;
+  function draw() {
+    result.innerHTML = 'Draw!';
+    result.style.opacity = 1;
+  }
+
+  function hideTurn() {
+    turn.style.opacity = 0;
+  }
+
+  function addMarkerToBoard(cell) {
+    var marker = document.createElement('span');
+    marker.innerText = getCurrentSymbol();
     marker.classList.add('marker');
     cell.appendChild(marker);
-    board[row][col] = player.symbol;
+    board[row][col] = getCurrentSymbol();
   }
 
   function getRowIndex(id) {
@@ -114,16 +154,7 @@ window.onload = function () {
   }
 
   function checkWinState() {
-    if (checkRow() || checkColumn() || checkDiagonal()) {
-      declareWinner();
-      updateScore();
-    } else {
-      if (moves === dimension * dimension - 1) {
-        button.style.display = 'inline-block';
-        result.innerHTML = 'Draw!';
-        result.style.opacity = 1;
-      }
-    }
+    return checkRow() || checkColumn() || checkDiagonal();
   }
 
   function checkRow() {
@@ -236,22 +267,25 @@ window.onload = function () {
   }
 
   function declareWinner() {
-    var i;
-    var winner = players[moves % 2];
+    showResult();
+    disableCells();
+    showButton();
+  }
 
-    winner.score++;
-    result.innerHTML = 'Winner: ' + winner.name + ' (' + winner.symbol + ')';
+  function showResult() {
+    result.innerHTML = 'Winner: ' + getPreviousPlayer() + ' (' + getPreviousSymbol() + ')';
     result.style.opacity = 1;
+  }
+
+  function disableCells() {
+    var i;
 
     for (i = 0; i < cells.length; i++) {
       cells[i].removeEventListener('click', markerHandler);
     }
-
-    button.style.display = 'inline-block';
   }
 
   function updateScore() {
-    scoreOne.innerHTML = players[0].score;
-    scoreTwo.innerHTML = players[1].score;
+    setPreviousScore();
   }
 };
