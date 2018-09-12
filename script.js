@@ -39,10 +39,10 @@ window.onload = function () {
 
     moves = 0;
 
-    removeBoard();
-    displayBoard();
     hideResult();
     hideButton();
+    removeBoard();
+    displayBoard();
     initializeCells();
     resetGamePlay();
     updateTurn();
@@ -132,14 +132,6 @@ window.onload = function () {
     return moves % 2 === 0 ? symbolTwo.innerHTML : symbolOne.innerHTML;
   }
 
-  function setPreviousScore() {
-    if (moves % 2 === 0) {
-      scoreTwo.innerHTML = parseInt(scoreTwo.innerHTML) + 1;
-    } else {
-      scoreOne.innerHTML = parseInt(scoreOne.innerHTML) + 1;
-    }
-  }
-
   function switchSymbol() {
     symbolOne.innerHTML = symbolOne.innerHTML === 'O' ? 'X' : 'O';
     symbolTwo.innerHTML = symbolTwo.innerHTML === 'O' ? 'X' : 'O';
@@ -148,6 +140,9 @@ window.onload = function () {
   function markerHandler() {
     row = getRowIndex(this.id);
     col = getColIndex(this.id);
+
+    symbolOne.removeEventListener('click', switchSymbol);
+    symbolTwo.removeEventListener('click', switchSymbol);
 
     // Add a marker only if the cell is empty.
     if (!this.innerHTML) {
@@ -167,17 +162,12 @@ window.onload = function () {
     }
   }
 
-  function showButton() {
-    button.style.display = 'inline-block';
+  function getRowIndex(id) {
+    return Math.floor(id / dimension);
   }
 
-  function draw() {
-    result.innerHTML = 'Draw!';
-    result.style.opacity = 1;
-  }
-
-  function hideTurn() {
-    turn.style.opacity = 0;
+  function getColIndex(id) {
+    return id % dimension;
   }
 
   function addMarkerToBoard(cell) {
@@ -186,14 +176,6 @@ window.onload = function () {
     marker.classList.add('marker');
     cell.appendChild(marker);
     gamePlay[row][col] = getCurrentSymbol();
-  }
-
-  function getRowIndex(id) {
-    return Math.floor(id / dimension);
-  }
-
-  function getColIndex(id) {
-    return id % dimension;
   }
 
   function checkWinState() {
@@ -279,6 +261,7 @@ window.onload = function () {
 
   function checkTopRightToBottomLeft() {
     var count = 1;
+    var colIndex;
     var i;
 
     if (row + col !== dimension - 1) {
@@ -286,6 +269,7 @@ window.onload = function () {
     }
 
     for (i = row - 1; i >= 0; i--) {
+      colIndex = dimension - i - 1;
       if (gamePlay[i][colIndex] !== getPreviousSymbol()) {
         break;
       }
@@ -326,7 +310,24 @@ window.onload = function () {
     }
   }
 
+  function showButton() {
+    button.style.display = 'inline-block';
+  }
+
+  function draw() {
+    result.innerHTML = 'Draw!';
+    result.style.opacity = 1;
+  }
+
+  function hideTurn() {
+    turn.style.opacity = 0;
+  }
+
   function updateScore() {
-    setPreviousScore();
+    if (moves % 2 === 0) {
+      scoreTwo.innerHTML = parseInt(scoreTwo.innerHTML) + 1;
+    } else {
+      scoreOne.innerHTML = parseInt(scoreOne.innerHTML) + 1;
+    }
   }
 };
