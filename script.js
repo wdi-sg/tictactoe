@@ -4,7 +4,7 @@ function selectWinnerBox (b1,b2,b3) {
     b1.classList.add("win");
     b2.classList.add("win");
     b3.classList.add("win");
-    turn.innerHTML = "Congrats to player " + b1.innerHTML + " for winning this amazing game!";
+    turn.innerHTML = "Congrats to player " + player1 + " for winning this amazing game!";
 }
 
 function checkWinner(){
@@ -44,6 +44,8 @@ function checkWinner(){
     }
 }
 //Set event and winning condition
+var player1 = prompt("Insert player1's name: "); //set Player 1 as X
+var player2 = prompt("Insert player2's name: "); //set PLayer 2 as O
 var counter = 0;
 var boxes = document.querySelectorAll("#main div");
 console.log(boxes);
@@ -54,14 +56,14 @@ for (var i = 0; i < boxes.length; i++){
             if (counter % 2 === 0){
                 console.log(counter);
                 this.innerHTML = "X";
-                turn.innerHTML = "It is O player turn";
+                turn.innerHTML = "It is " + player2 + " turn";
                 checkWinner();
                 counter += 1;
             }
             else{
                 console.log(counter);
                 this.innerHTML = "O";
-                turn.innerHTML = "It is X player turn";
+                turn.innerHTML = "It is " + player1 + " turn";
                 checkWinner();
                 counter += 1;
             }
@@ -77,12 +79,14 @@ function restart(){
         boxes[i].innerHTML = "";
         turn.innerHTML = "Play";
         turn.style.fontSize = "25px";
+        counter = 0;
     }
 }
 
 function drawGame(){
     if (counter > 8){
         alert('Game ends with a draw!');
+
     }
 }
 
