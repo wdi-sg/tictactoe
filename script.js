@@ -205,7 +205,7 @@ window.onload = function () {
     var j;
 
     for (j = col - 1; j >= 0; j--) {
-      if (gamePlay[row][j] !== gamePlay[row][j + 1]) {
+      if (gamePlay[row][j] !== getPreviousSymbol()) {
         break;
       }
 
@@ -213,7 +213,7 @@ window.onload = function () {
     }
 
     for (j = col + 1; j < dimension; j++) {
-      if (gamePlay[row][j] !== gamePlay[row][j - 1]) {
+      if (gamePlay[row][j] !== getPreviousSymbol()) {
         break;
       }
 
@@ -228,7 +228,7 @@ window.onload = function () {
     var i;
 
     for (i = row - 1; i >= 0; i--) {
-      if (gamePlay[i][col] !== gamePlay[i + 1][col]) {
+      if (gamePlay[i][col] !== getPreviousSymbol()) {
         break;
       }
 
@@ -236,7 +236,7 @@ window.onload = function () {
     }
 
     for (i = row + 1; i < dimension; i++) {
-      if (gamePlay[i][col] !== gamePlay[i - 1][col]) {
+      if (gamePlay[i][col] !== getPreviousSymbol()) {
         break;
       }
 
@@ -259,7 +259,7 @@ window.onload = function () {
     }
 
     for (i = row - 1; i >= 0; i--) {
-      if (gamePlay[i][i] !== gamePlay[i + 1][i + 1]) {
+      if (gamePlay[i][i] !== getPreviousSymbol()) {
         break;
       }
 
@@ -267,7 +267,7 @@ window.onload = function () {
     }
 
     for (i = row + 1; i < dimension; i++) {
-      if (gamePlay[i][i] !== gamePlay[i - 1][i - 1]) {
+      if (gamePlay[i][i] !== getPreviousSymbol()) {
         break;
       }
 
@@ -280,16 +280,13 @@ window.onload = function () {
   function checkTopRightToBottomLeft() {
     var count = 1;
     var i;
-    var colIndex;
 
     if (row + col !== dimension - 1) {
       return false;
     }
 
     for (i = row - 1; i >= 0; i--) {
-      colIndex = dimension - i - 1;
-
-      if (gamePlay[i][colIndex] !== gamePlay[i + 1][colIndex - 1]) {
+      if (gamePlay[i][colIndex] !== getPreviousSymbol()) {
         break;
       }
 
@@ -299,7 +296,7 @@ window.onload = function () {
     for (i = row + 1; i < dimension; i++) {
       colIndex = dimension - i - 1;
 
-      if (gamePlay[i][colIndex] !== gamePlay[i - 1][colIndex + 1]) {
+      if (gamePlay[i][colIndex] !== getPreviousSymbol()) {
         break;
       }
 
