@@ -23,6 +23,28 @@ body{
 	display: none;
 }
 
+/*=========================*/
+
+.gameboard{
+	margin: 0 auto;
+	display: block;
+}
+
+.columns{
+	width:100px;
+	height:100px;
+	display:inline-block;
+	border:1px solid white;
+}
+
+.row{
+	height:100px;
+	display: block;
+
+
+}
+
 #start{
+	display: none;
 	margin:0 auto;
 }
