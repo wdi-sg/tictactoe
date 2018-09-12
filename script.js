@@ -4,6 +4,17 @@ var playerTwoArray = [];
 //declare no player
 var player = null;
 //set player choices
+var countMove = 0;
+var result = [
+["0","1","2"],
+["3","4","5"],
+["6","7","8"],
+["0","3","6"],
+["1","4","7"],
+["2","5","8"],
+["0","4","8"],
+["2","4","6"],
+]
 
 
 //create a function switch player;
@@ -21,16 +32,28 @@ var switchPlayer = function(){
         playerOneArray.push(this.id);
         console.log(this.id);
         this.style.backgroundColor = "red";
+        countMove++;
         this.removeEventListener('click',switchPlayer);
+        console.log(countMove+"move");
         console.log(playerOneArray);
         }//player two
         else if (player === "2"){
         playerTwoArray.push(this.id);
         console.log(this.id);
         this.style.backgroundColor = "blue";
+        countMove++;
+        console.log(countMove+"move");
         this.removeEventListener('click',switchPlayer);
         console.log(playerTwoArray);
     }
+    //result check
+    //draw
+    if (countMove >= 9){
+    alert("It's a draw");
+    location.reload();
+
+    };
+
 }
 
 // currentplay();
@@ -63,13 +86,10 @@ for(var i = 0; i<getbox.length; i++){
 
 console.log("after loop finishes: " + i);
 
-//collecting
-// var join = function(){
-//     playertwoarray.join();
-//     playertwoarray.toString();
+//results d
+// function youWin(){
+//     for (var j = 0; j<result.length; j++){
+//         console.log("result "+ result[i]);
+//     }
 // }
-// join();
-//console.log(playertwoarray);
-// if (playertwoarray.includes(0,1,2)){
-//     console.log("Playertwowins!")
-// }
+// youWin();
