@@ -20,10 +20,11 @@ window.onload = function () {
   startGame();
 
   function setup() {
-    playerOne.addEventListener('change', updateTurn);
-    playerTwo.addEventListener('change', updateTurn);
     symbolOne.addEventListener('click', switchSymbol);
     symbolTwo.addEventListener('click', switchSymbol);
+
+    playerOne.addEventListener('change', updateTurn);
+    playerTwo.addEventListener('change', updateTurn);
 
     button.addEventListener('click', function () {
       startGame();
@@ -38,6 +39,7 @@ window.onload = function () {
     winCondition = parseInt(winCondition);
 
     moves = 0;
+    turn.style.opacity = 1;
 
     hideResult();
     hideButton();
@@ -112,7 +114,6 @@ window.onload = function () {
   }
 
   function updateTurn() {
-    turn.style.opacity = 1;
     turn.innerHTML = getCurrentPlayer() + '\'s turn';
   }
 
