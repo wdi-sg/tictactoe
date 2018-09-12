@@ -2,11 +2,6 @@ body {
   font-family: monospace;
   }
 
-#game-board {
-  margin: auto;
-  font-size: 0px;
-  }
-
 #setup-stuff {
   font-size: 14px;
 }
@@ -21,25 +16,21 @@ button {
   font-size: 40px;
   vertical-align: top;
   outline: none;
+  font-family: monospace;
 }
 
 .game-button {
   background-color: grey;
   height: 60px;
   border: 1px solid black;
-  font-size: 16px;
-  font-family: monospace;
+  border-radius: 3px;
 }
 
 h1 {
   font-size: 20px;
 }
 
-h2 {
-  font-size: 16px;
-}
-
-p {
+h2, p, .game-button {
   font-size: 16px;
 }
 
