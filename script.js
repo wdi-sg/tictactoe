@@ -30,6 +30,9 @@ function checkWin(mark, event) {
     var cordinates = positionOnBoard.split('')
     var row = cordinates[0]
     var col = cordinates[1]
+
+    gameArray[row][col] = mark
+
 }
 
 function placeMark(event) {
@@ -124,20 +127,4 @@ function resetBoard() {
     }
     turn = 0
     createBoard(size)
-}
-
-
-
-
-//akira algo
-
-function onClick(event) {
-
-
-    //currentBoard[row][col] = 'o' || 'x'
-
-    //check win
-    //if (row.length == board.length || col = board.length)
-    //win
-
 }
