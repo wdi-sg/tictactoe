@@ -5,9 +5,11 @@ h1{
 	border-bottom: 1px solid black;
 }
 
-#start{
+.gameboard button{
+	display: block;
+	background-color: #FFB6C1;
+	font-size: 25px;
 	text-align: center;
-	justify-content: center;
 }
 
 .gameboard span{
