@@ -112,6 +112,10 @@ window.onload = function () {
     if (checkRow() || checkColumn() || checkDiagonal()) {
       declareWinner();
       updateScore();
+    } else {
+      if (moves === dimension * dimension - 1) {
+        button.style.display = 'inline-block';
+      }
     }
   }
 
