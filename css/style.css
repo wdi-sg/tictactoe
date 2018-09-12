@@ -1,17 +1,36 @@
 body {
 	background: black;
-	margin: 0 auto;
+	margin: 0;
 	padding: 0;
-	width: 75vw;
-	height: 90vh;
 	color: white;
 	text-align: center;
+	font-family: sans-serif;
 }
 
-div.board {
-	font-size: 12vh;
-	padding: 5vh;
-	border: 3px solid white;
+#field {}
+
+
+.board {
+	font-size: 10vh;
+	padding: 3vw;
+	border: 2px solid white;
+}
+
+.top {
+	border-top: none;
+}
+
+.bottom {
+	border-bottom: none;
+
+}
+
+.left {
+	border-left: none;
+}
+
+.right {
+	border-right: none;
 }
 
 button {
