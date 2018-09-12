@@ -11,7 +11,7 @@ window.onload = function () {
   var scoreTwo = document.querySelector('.score--2');
   var dimension = 3;
   var winCondition = 3;
-  var board;
+  var gamePlay;
   var moves;
   var row;
   var col;
@@ -35,7 +35,8 @@ window.onload = function () {
     hideResult();
     hideButton();
     initializeCells();
-    resetBoard();
+    displayBoard();
+    resetGamePlay();
     updateTurn();
   }
 
@@ -60,12 +61,16 @@ window.onload = function () {
     }
   }
 
-  function resetBoard() {
+  function displayBoard() {
+
+  }
+
+  function resetGamePlay() {
     var i;
 
-    board = new Array(dimension);
+    gamePlay = new Array(dimension);
     for (i = 0; i < dimension; i++) {
-      board[i] = new Array(dimension);
+      gamePlay[i] = new Array(dimension);
     }
   }
 
@@ -112,6 +117,7 @@ window.onload = function () {
       addMarkerToBoard(this);
       moves++;
       if (checkWinState()) {
+        hideTurn();
         declareWinner();
         updateScore();
       } else {
@@ -142,7 +148,7 @@ window.onload = function () {
     marker.innerText = getCurrentSymbol();
     marker.classList.add('marker');
     cell.appendChild(marker);
-    board[row][col] = getCurrentSymbol();
+    gamePlay[row][col] = getCurrentSymbol();
   }
 
   function getRowIndex(id) {
@@ -162,7 +168,7 @@ window.onload = function () {
     var j;
 
     for (j = col - 1; j >= 0; j--) {
-      if (board[row][j] !== board[row][j + 1]) {
+      if (gamePlay[row][j] !== gamePlay[row][j + 1]) {
         break;
       }
 
@@ -170,7 +176,7 @@ window.onload = function () {
     }
 
     for (j = col + 1; j < dimension; j++) {
-      if (board[row][j] !== board[row][j - 1]) {
+      if (gamePlay[row][j] !== gamePlay[row][j - 1]) {
         break;
       }
 
@@ -185,7 +191,7 @@ window.onload = function () {
     var i;
 
     for (i = row - 1; i >= 0; i--) {
-      if (board[i][col] !== board[i + 1][col]) {
+      if (gamePlay[i][col] !== gamePlay[i + 1][col]) {
         break;
       }
 
@@ -193,7 +199,7 @@ window.onload = function () {
     }
 
     for (i = row + 1; i < dimension; i++) {
-      if (board[i][col] !== board[i - 1][col]) {
+      if (gamePlay[i][col] !== gamePlay[i - 1][col]) {
         break;
       }
 
@@ -216,7 +222,7 @@ window.onload = function () {
     }
 
     for (i = row - 1; i >= 0; i--) {
-      if (board[i][i] !== board[i + 1][i + 1]) {
+      if (gamePlay[i][i] !== gamePlay[i + 1][i + 1]) {
         break;
       }
 
@@ -224,7 +230,7 @@ window.onload = function () {
     }
 
     for (i = row + 1; i < dimension; i++) {
-      if (board[i][i] !== board[i - 1][i - 1]) {
+      if (gamePlay[i][i] !== gamePlay[i - 1][i - 1]) {
         break;
       }
 
@@ -246,7 +252,7 @@ window.onload = function () {
     for (i = row - 1; i >= 0; i--) {
       colIndex = dimension - i - 1;
 
-      if (board[i][colIndex] !== board[i + 1][colIndex - 1]) {
+      if (gamePlay[i][colIndex] !== gamePlay[i + 1][colIndex - 1]) {
         break;
       }
 
@@ -256,7 +262,7 @@ window.onload = function () {
     for (i = row + 1; i < dimension; i++) {
       colIndex = dimension - i - 1;
 
-      if (board[i][colIndex] !== board[i - 1][colIndex + 1]) {
+      if (gamePlay[i][colIndex] !== gamePlay[i - 1][colIndex + 1]) {
         break;
       }
 
