@@ -1,0 +1,39 @@
+td  {
+  border: 2px solid #333;
+  height: 100px;
+  width: 100px;
+  text-align: center;
+  cursor: pointer;
+  vertical-align: middle;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 70pt;
+};
+
+.square {
+  height: 80px;
+  width: 80px;
+  font-size: 45pt;
+  text-align: center;
+}
+
+body {
+  width: 550px;
+  margin:auto;
+  background: #EAF2EF;
+}
+h1 {
+  border-bottom: 1px solid black;
+  font-family: 'Raleway', sans-serif;
+}
+
+#message {
+  font-size: 18pt;
+  font-family: 'Amatic SC', cursive;
+}
+
+#restart {
+  font-size: 18pt;
+  font-family: 'Amatic SC', cursive;
+  text-decoration: none;
+  color: black;
+}
