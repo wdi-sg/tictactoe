@@ -326,7 +326,11 @@ var defensiveAI = function () {
       if (boardArray[y][x].textContent === playerOne.symbol) {
         if (boardArray[y][x + 1].textContent === playerOne.symbol) {
           if (!boardArray[y][x + 2].textContent) {
-            boardArray[y][x + 2].textContent = turnOrder;
+            if (c4Checkbox.checked) {
+              connectFourGravity(boardArray[y][x + 2]);
+            } else {
+              boardArray[y][x + 2].textContent = turnOrder;
+            }
             return true;
           }
         }
@@ -340,8 +344,12 @@ var defensiveAI = function () {
       if (boardArray[y][x].textContent === playerOne.symbol) {
         if (boardArray[y + 1][x].textContent === playerOne.symbol) {
           if (!boardArray[y + 2][x].textContent) {
-            boardArray[y + 2][x].textContent = turnOrder;
-            return true;
+            if (c4Checkbox.checked) {
+              connectFourGravity(boardArray[y + 2][x]);
+            } else {
+              boardArray[y + 2][x].textContent = turnOrder;
+            }
+              return true;
           }
         }
       }
@@ -354,7 +362,11 @@ var defensiveAI = function () {
       if (boardArray[y][x].textContent === playerOne.symbol) {
         if (boardArray[y + 1][x + 1].textContent === playerOne.symbol) {
           if (!boardArray[y + 2][x + 2].textContent) {
-            boardArray[y + 2][x + 2].textContent = turnOrder;
+            if (c4Checkbox.checked) {
+              connectFourGravity(boardArray[y + 2][x + 2]);
+            } else {
+              boardArray[y + 2][x + 2].textContent = turnOrder;
+            }
             return true;
           }
         }
@@ -368,7 +380,11 @@ var defensiveAI = function () {
       if (boardArray[y][x].textContent === playerOne.symbol) {
         if (boardArray[y - 1][x + 1].textContent === playerOne.symbol) {
           if (!boardArray[y - 2][x + 2].textContent) {
-            boardArray[y - 2][x + 2].textContent = turnOrder;
+            if (c4Checkbox.checked) {
+              connectFourGravity(boardArray[y - 2][x + 2]);
+            } else {
+              boardArray[y - 2][x + 2].textContent = turnOrder;
+            }
             return true;
           }
         }
