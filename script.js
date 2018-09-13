@@ -95,7 +95,7 @@ var boxes = document.getElementsByTagName('a');
 // Creating turn variable so even is O and odd turns is X
 var turn = 0;
 
-var x = function(event){
+var x = function(){
     if ( turn % 2 != 0 ) {
         this.textContent = "X";
             this.removeEventListener('click', x);

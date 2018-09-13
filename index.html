@@ -1,41 +1,32 @@
+
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>TicTacToe</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <table>
-        <p>
-            <a class = 'boxes' id = "0"></a>
-            <a class = 'boxes' id = "1"></a>
-            <a class = 'boxes' id = "2"></a>
-        </p>
-        <p>
-            <a class = 'boxes' id = "3"></a>
-            <a class = 'boxes' id = "4"></a>
-            <a class = 'boxes' id = "5"></a>
-        </p>
-        <p>
-            <a class = 'boxes' id = "6"></a>
-            <a class = 'boxes' id = "7"></a>
-            <a class = 'boxes' id = "8"></a>
-        </p>
+<html lang="" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Tic Tac Toe</title>
+  </head>
+
+  <body>
+
+    <h1 id="title">Choose your board!</h1>
+    <form class="stuff">
+      Rows: <input type="number" class="stuff" id="rows" value="3"><br>Columns:<input type="number" class="stuff" id="columns" value="3"><br>
+      Winning Condition:<input type="number" class="stuff" id="winning-condition" value="3"><br>
+    </form>
+    <form>
+      <a id="readyplayer1">Player 1 Name:</a><input type="text" class="names" id="player1" value="Player 1"><br>
+      <a id="readyplayer2">Player 2 Name:</a><input type="text" class="names" id="player2" value="Player 2">
+    </form>
+
+    <button class="stuff" id="start-button">Start Game</button>
+
+    <table id="table">
+
     </table>
-<p>
-<h1 id = 'restart-button'>Restart</h1>
+      <div>
 
-<h2>Player O Score:</h2><a id = 'player1-score'>0<a>
-<h2>Player X Score:</h2><a id = 'player2-score'>0<a>
-
-</p>
-
-</div>
-
-<script type="text/javascript" src="script.js"></script>
-
-<!-- <script type="text/javascript" src="script2.js"></script> -->
-
-</body>
+      </div>
+    <script type="text/javascript" src="script2.js"></script>
+  </body>
 </html>
