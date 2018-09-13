@@ -3,21 +3,29 @@
   <head>
     <meta charset="utf-8">
     <title>Tic Tac Toe</title>
-    <style>
-      .square{
-        position: absolute;
-        width: 100px;
-        height: 100px;
-        border: 1px solid black;
-        background-color: white;
-        margin: 50px;
-      }
-
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Rock+Salt" rel="stylesheet">
   </head>
   <body>
-    <div id="container"></div>
-    <script type="text/javascript" src="script.js">
-    </script>
+  <h2 id="gameMessage">Tic Tac Toe</h2>
+    <div class="board">
+    <div id="row-1">
+      <div onclick="play(this,1)"></div>
+      <div onclick="play(this,2)"></div>
+      <div onclick="play(this,4)"></div>
+    </div>
+    <div id="row-2">
+      <div onclick="play(this,8)"></div>
+      <div onclick="play(this,16)"></div>
+      <div onclick="play(this,32)"></div>
+    </div>
+    <div id="row-3">
+      <div onclick="play(this,64)"></div>
+      <div onclick="play(this,128)"></div>
+      <div onclick="play(this,256)"></div>
+    </div>
+  </div>
+  <button id="resetButton">Start Game</button>
+    <script type="text/javascript" src="script.js"></script>
   </body>
 </html>
