@@ -1,7 +1,7 @@
 var size = 3
 
-var xName = prompt('Player 1 :Enter you name')
-var oName = prompt('Player 2 :Enter your name')
+var xName = prompt('Player 1: Enter you name')
+var oName = prompt('Player 2: Enter your name')
 
 var xSel = [] //put value of id of selected box by player x
 var oSel = [] //put value of id of selected box by player y
@@ -18,7 +18,7 @@ var winners = [
 [3,6,9],
 [1,5,9],
 [3,5,7],
-] ; // the different possible winning combination
+]; // the different possible winning combination
 
 //Function table
 var drawTable = function(){
@@ -53,6 +53,7 @@ var play=function() { // add event listener for clicks on the board
   document.getElementById('board').addEventListener('click', function() {
     if(turn == 1) { // turn 1 is player X
     event.target.innerHTML = xName; // write player X selection on the board
+    event.target.style.color = 'pink'; // change color to pink
     xCount += 1; // add 1 to playCount
     xSel.push(parseInt(event.target.id)) // add selected cell's id to array of selections by X
     if(xCount >= size) {checkWin()} // if 3 tries check if win
@@ -85,8 +86,9 @@ var checkWin =function() { //crea
           alert(oName + ' Win')};      
       } 
       else {
-          if(xSel.length + oSel.length == 9) {
-            alert('TIED'); 
+          if(xSel.length + oSel.length == 10) {
+            alert('TIED');
+            throw new error()
           }
       }
   }
