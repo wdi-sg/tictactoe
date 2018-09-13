@@ -43,6 +43,7 @@ parent.appendChild(table)//attaching table to physical html div
 //create button to Replay
 var btn = document.createElement('button')
 btn.innerHTML = 'Replay'
+btn.id = 'buttonId'
 parent.appendChild(btn)
 
 return drawTable
