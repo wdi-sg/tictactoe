@@ -3,47 +3,55 @@
 var gameboard = [ 0, 0, 0,
                   0, 0, 0,
                   0, 0, 0]
-var turn = 0;
 var game = document.getElementsByClassName('box');
-var boxes = document.getElementsByClassName('box');
 
-//var playerOScore = document.getElementById('playerO');
-//var playerXScore = document.getElementById('playerX');
+var playerOScore = document.getElementById('Oscore');
+var playerXScore = document.getElementById('Xscore');
+//var scoreO = playerOScore.textContent;
+//var scoreX = playerXScore.textContent;
 
-function restartGame() {
-     for (var i = 0; i < 9; i++) {
+
+//var result = "";
+
+function score(result){
+
+    if(result === "player X wins"){
+        playerXScore.textContent =+ 1;
+    }else if (result === "player O wins"){
+        playerOScore.textContent =+ 1
+    }
+}
+
+function replay () {
+     for (var i = 0; i < game.length; i++) {
         game[i].textContent = [];
     }
-    addBoxClick();
 }
 
-function addBoxClick(){
-    for(var i = 0; i < boxes.length; i++){
-        game[i].addEventListener('click', clickEvent)
+    for (var i= 0; i < game.length; i++){
+        var turn = 0;
+
+        game[i].onclick = function(){
+            if (turn%2 ===0){
+                console.log(turn);
+                this.textContent = "X";
+                this.backgroundColor = "red";
+                    winResult();
+                    turn++;
+            } else {this.textContent = "O";
+                    this.backgroundColor = "blue";
+                    winResult();
+                    turn++;
+            }
+        }
     }
-}
-
-addBoxClick();
-
-function clickEvent(event){
-
-    if (turn%2 != 0){
-        this.textContent = "O";
-            this.removeEventListener('click', clickEvent);
-                winResult();
-    }else if(turn%2 == 0){
-        this.textContent = "X";
-            this.removeEventListener('click', clickEvent);
-                winResult();
-    }
-turn++;
-}
 
 function winResult (pos){
     var pos = [];
 
     for (var i = 0; i < game.length; i++){
         pos[i] = game[i].textContent;
+
     }
 //winning conditions
     var board = [
@@ -61,17 +69,16 @@ function winResult (pos){
         if(board[i]==="OOO"){
             alert("Player O wins!");
             result = "player O wins";
-            restartGame();
-            break;
+            //playerOScore.textContent =+ 1
+            //return score
+            return replay();
+
         }else if(board[i]==="XXX"){
             alert("Player X wins!");
             result = "player X wins";
-            restartGame();
-            break;
+
+            return replay();
+            //return playerXScore.textContent =+ 1
         }
     }
-    return restartGame;
 }
-
-var restart = document.getElementsByTagName('button');
-restart[0].addEventListener('click',restartGame);
