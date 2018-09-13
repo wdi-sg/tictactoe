@@ -4,7 +4,7 @@ var playerTwoArray = [];
 //declare no player
 var player = null;
 //set player choices
-var countMove = 0;
+var countMove = 1;
 var result = [
 ["0","1","2"],
 ["3","4","5"],
@@ -42,39 +42,28 @@ var switchPlayer = function(){
         console.log(this.id);
         this.style.backgroundColor = "blue";
         countMove++;
+
         console.log(countMove+"move");
         this.removeEventListener('click',switchPlayer);
         console.log(playerTwoArray);
     }
     //result check
     //draw
-    if (countMove >= 9){
+checkScore(playerOneArray);
+checkScore(playerTwoArray);
+    //draw
+ if (countMove == 10){
     alert("It's a draw");
     location.reload();
 
-    };
+    };    //checkscore
 
 }
 
-// currentplay();
-// function redcolor(){
-//     //console.log("inside callback: "+  i )
-//     console.log(this.id);
-//     //this.id
-//     playeronearray.push(this.id);
-//     this.style.backgroundColor = "red";
-//     console.log(playeronearray);
-// }
 
-// function bluecolor(){
-//     console.log("blue!");
-//     playertwoarray.push(this.id);
-//     this.style.backgroundColor = "blue";
-// //console.log(playertwoarray.length);
-// }
 // player function
+//for loop for the index of the sqaure
 
-//var getbox = document.getElementsByClassName('square')[0];
 var getbox = document.querySelectorAll(".square");
    // console.log(getbox);
 for(var i = 0; i<getbox.length; i++){
@@ -87,9 +76,40 @@ for(var i = 0; i<getbox.length; i++){
 console.log("after loop finishes: " + i);
 
 //results d
-// function youWin(){
-//     for (var j = 0; j<result.length; j++){
-//         console.log("result "+ result[i]);
-//     }
+function checkScore(playerWin){
+    for (var j = 0; j<result.length; j++){
+        var playerWon = [];
+        //console.log("result j "+ result[j]);
+        //second loop
+        for(var k = 0; k<result[j].length; k++){
+
+        //var haveOrNow = playerOne.indexOf(result[j][k]);
+            //debugger;
+        if (playerWin.indexOf(result[j][k]) !== -1 ){
+            playerWon.push(result[j][k]);
+            }
+        // if (playerWin.indexOf(result[j][k]!== -1)){
+        //     playerWon++;
+        // }
+        console.log("check if player has ",result[j][k]);
+        if (playerWon.length === 3) {
+        alert("YOU WIN!");
+        //console.log("playerWonArray",playerWon);
+        break;
+  }
+
+        }
+
+    }
+     //console.log("============");
+}
+
+
+
+
+
+//console.log("outside"+ playerOneArray);
+// if (playerOneArray[i]){
+
 // }
-// youWin();
+
