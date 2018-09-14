@@ -54,13 +54,16 @@ checkScore(playerTwoArray);
     //draw
  if (countMove == 10){
     alert("It's a draw");
-    location.reload();
+    countMove = 1;
+    reload();
 
     };    //checkscore
 
 }
 
-
+function reload(){
+    location.reload();
+}
 // player function
 //for loop for the index of the sqaure
 
@@ -93,8 +96,12 @@ function checkScore(playerWin){
         // }
         console.log("check if player has ",result[j][k]);
         if (playerWon.length === 3) {
+        countMove = 1;
+        console.log("count move",countMove);
         alert("YOU WIN!");
-        //console.log("playerWonArray",playerWon);
+        console.log("playerWonArray");
+        //reload
+        reload();
         break;
   }
 
