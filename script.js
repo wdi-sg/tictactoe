@@ -2,9 +2,41 @@
 var player = 1;
 var playerOne = 0;
 var playerTwo = 0;
+var board = [];
 
 document.getElementById("playerOne").innerHTML = "Player 1: "+playerOne;
 document.getElementById("playerTwo").innerHTML = "Player 2: "+playerTwo;
+
+//find a way to use input value to create the board
+function createBoard(a){
+	for (var i=0;i<a;i++){
+		var newDiv = document.createElement("p");
+		for (var j=0;j<a;j++){
+			var newBut = document.createElement("span");
+			newBut.setAttribute("id",i.toString()+j.toString());
+			//if empty boxes, then when i add a "x" or "o", the css alightment wont work
+			newBut.innerHTML="&nbsp;";
+			newDiv.appendChild(newBut);
+		}
+		document.getElementsByTagName("body")[0].appendChild(newDiv);
+	}
+	var buttonList = document.querySelectorAll("span");
+	for (var i = 0; i<buttonList.length;i++){
+	buttonList[i].addEventListener("click",buttonClick);
+	}
+	createArray(a);
+}
+//create array of certain size
+function createArray(a){
+	for (var i=0;i<a;i++){
+		var array = [];
+		for (var j=0;j<a;j++){
+			array.push(" ");
+		}
+		board.push(array);
+	}
+	return board;
+}
 
 function playerTurn(player) {
 	if (player%2!=0){
@@ -14,46 +46,52 @@ function playerTurn(player) {
 		return "x";
 	}
 }
+//let b be the winning condition
+function checkGame(b){
+	var x = "x"
+	var o = "o"
+	var leftArray = [];
+	var rightArray = [];
+	var reverseCount = board.length-1;
+	for (var i=0;i<board.length;i++){
+		if (board[i].join('').includes(x.repeat(b))||board[i].join('').includes(o.repeat(b))){
+			winGame(player);
+			createBoard(board.length);
+			break;
+		}
+		var array = [];
+		for (var j=0;j<board.length;j++){
+			array.push(board[j][i]);
+			if (array.join('').includes(x.repeat(b))||array.join('').includes(o.repeat(b))){
+			winGame(player);
+			createBoard(board.length);
+			break;
+			}
+		}
+		//make diagonal to the left
+		leftArray.push(board[i][i]);
+		if (leftArray.join('').includes(x.repeat(b))||leftArray.join('').includes(o.repeat(b))){
+			winGame(player);
+			createBoard(board.length);
+			break;
+		}
+		rightArray.push(board[i][reverseCount]);
+		if (rightArray.join('').includes(x.repeat(b))||rightArray.join('').includes(o.repeat(b))){
+			winGame(player);
+			createBoard(board.length);
+			break;
+		}
+		reverseCount --;
+	}
+}
 
 function buttonClick(event){
 	this.innerHTML = playerTurn(player);
+	var move = this.innerHTML;
+	var id = this.id;
 	player += 1;
-	if ((one.innerHTML == two.innerHTML)&&(two.innerHTML == three.innerHTML)){
-		winGame(player);
-		restart();
-	}
-	if ((four.innerHTML == five.innerHTML)&&(five.innerHTML == six.innerHTML)){
-		winGame(player);
-		restart();
-	}
-	if ((seven.innerHTML == eight.innerHTML)&&(eight.innerHTML == nine.innerHTML)){
-		winGame(player);
-		restart();
-	}
-	if ((one.innerHTML == two.innerHTML)&&(two.innerHTML == three.innerHTML)){
-		winGame(player);
-		restart();
-	}
-	if ((two.innerHTML == five.innerHTML)&&(five.innerHTML == eight.innerHTML)){
-		winGame(player);
-		restart();
-	}
-	if ((one.innerHTML == four.innerHTML)&&(four.innerHTML == seven.innerHTML)){
-		winGame(player);
-		restart();
-	}
-	if ((three.innerHTML == six.innerHTML)&&(six.innerHTML == nine.innerHTML)){
-		winGame(player);
-		restart();
-	}
-	if ((one.innerHTML == five.innerHTML)&&(five.innerHTML == nine.innerHTML)){
-		winGame(player);
-		restart();
-	}
-	if ((three.innerHTML == five.innerHTML)&&(five.innerHTML == seven.innerHTML)){
-		winGame(player);
-		restart();
-	}
+	board[parseInt(id.charAt(0))][parseInt(id.charAt(1))] = move;
+	checkGame(3);
 }
 
 function winGame(player){
@@ -68,27 +106,4 @@ function winGame(player){
 		document.getElementById("playerTwo").innerHTML = "Player 2: "+playerTwo;
 	}
 }
-
-function restart(){
-	for (var i =0;i<buttonList.length;i++){
-		buttonList[i].innerHTML = i+1;
-		player = 1;
-	}
-}
-
-var buttonList = document.getElementsByTagName("button");
-
-for (var i = 0; i<buttonList.length;i++){
-	buttonList[i].addEventListener("click",buttonClick);
-}
-
-var one = document.getElementById("one");
-var two = document.getElementById("two");
-var three = document.getElementById("three");
-var four = document.getElementById("four");
-var five = document.getElementById("five");
-var six = document.getElementById("six");
-var seven = document.getElementById("seven");
-var eight = document.getElementById("eight");
-var nine = document.getElementById("nine");
-
+//buttonList not defined anymore
