@@ -1,0 +1,32 @@
+
+.square {
+	display: inline-block;
+	height: 120px;
+	width: 120px;
+	border-style: solid;
+	border-width: 2px;
+	}
+
+#row1 {
+	float: left;
+	display: inline-block;
+	}
+
+#row2 {
+	clear:both;
+	float:left;
+	}
+#row3 {
+	float: left;
+	clear:both;
+}
+
+.clearfix:after {
+     content: ".";
+     display: block;
+     height: 0;
+     clear: both;
+     visibility: hidden;
+}
+
+.clearfix {display: inline-block;}
