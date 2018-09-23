@@ -136,28 +136,20 @@ var winningCombos = [
 var checkWins = function() {
 	if ((boxOne.textContent !== "") && (boxOne.textContent === boxTwo.textContent) && (boxTwo.textContent === boxThree.textContent)) {
 		alert("You win this game!");
-		// clearBoard();
 	} else if ((boxFour.textContent !== "") && (boxFour.textContent === boxFive.textContent) && (boxFive.textContent === boxSix.textContent)) {
 		alert("You win this game!");
-		// clearBoard();
 	} else if ((boxSeven.textContent !== "") &&(boxSeven.textContent === boxEight.textContent) && (boxEight.textContent === boxNine.textContent)) {
 		alert("You win this game!");
-		// clearBoard();
 	} else if ((boxOne.textContent !== "") && (boxOne.textContent === boxFour.textContent) && (boxFour.textContent === boxSeven.textContent)) {
 		alert("You win this game!");
-		// clearBoard();
 	} else if ((boxTwo.textContent !== "") && (boxTwo.textContent === boxFive.textContent) && (boxFive.textContent === boxEight.textContent)) {
 		alert("You win this game!");
-		// clearBoard();
 	} else if ((boxThree.textContent !== "") && (boxThree.textContent === boxSix.textContent) && (boxSix.textContent === boxNine.textContent)) {
 		alert("You win this game!");
-		// clearBoard();
 	} else if ((boxOne.textContent !== "") && (boxOne.textContent === boxFive.textContent) && (boxFive.textContent === boxNine.textContent)) {
 		alert("You win this game!");
-		// clearBoard();
 	} else if ((boxThree.textContent !== "") && (boxThree.textContent === boxFive.textContent) && (boxFive.textContent === boxSeven.textContent)) {
 		alert("You win this game!");
-		// clearBoard();
 	} 
 };
 
