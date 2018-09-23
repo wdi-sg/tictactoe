@@ -36,7 +36,6 @@ boxTwo.addEventListener("click", function () {
 	checkWins();
 })
 
-
 //Box 3 event listener
 boxThree.addEventListener("click", function () {
 	if (currentTurn === "player 1") {
@@ -133,37 +132,36 @@ var winningCombos = [
 	[3, 5, 7]
 ];
 
-winningCombos;
-
-//Check wins.
+//Check wins against the hardcoded options above.
 var checkWins = function() {
 	if ((boxOne.textContent !== "") && (boxOne.textContent === boxTwo.textContent) && (boxTwo.textContent === boxThree.textContent)) {
 		alert("You win this game!");
-		clearBoard();
+		// clearBoard();
 	} else if ((boxFour.textContent !== "") && (boxFour.textContent === boxFive.textContent) && (boxFive.textContent === boxSix.textContent)) {
 		alert("You win this game!");
-		clearBoard();
+		// clearBoard();
 	} else if ((boxSeven.textContent !== "") &&(boxSeven.textContent === boxEight.textContent) && (boxEight.textContent === boxNine.textContent)) {
 		alert("You win this game!");
-		clearBoard();
+		// clearBoard();
 	} else if ((boxOne.textContent !== "") && (boxOne.textContent === boxFour.textContent) && (boxFour.textContent === boxSeven.textContent)) {
 		alert("You win this game!");
-		clearBoard();
+		// clearBoard();
 	} else if ((boxTwo.textContent !== "") && (boxTwo.textContent === boxFive.textContent) && (boxFive.textContent === boxEight.textContent)) {
 		alert("You win this game!");
-		clearBoard();
+		// clearBoard();
 	} else if ((boxThree.textContent !== "") && (boxThree.textContent === boxSix.textContent) && (boxSix.textContent === boxNine.textContent)) {
 		alert("You win this game!");
-		clearBoard();
+		// clearBoard();
 	} else if ((boxOne.textContent !== "") && (boxOne.textContent === boxFive.textContent) && (boxFive.textContent === boxNine.textContent)) {
 		alert("You win this game!");
-		clearBoard();
+		// clearBoard();
 	} else if ((boxThree.textContent !== "") && (boxThree.textContent === boxFive.textContent) && (boxFive.textContent === boxSeven.textContent)) {
 		alert("You win this game!");
-		clearBoard();
-	}
+		// clearBoard();
+	} 
 };
 
+//clear board to start next game
 var clearBoard = function() {
 	boxOne.textContent = "";
 	boxTwo.textContent = "";
@@ -176,6 +174,9 @@ var clearBoard = function() {
 	boxNine.textContent = "";
 };
 
+//add event listener to reset button to clear board.
+var reset = document.getElementById("reset");
+reset.addEventListener("click", clearBoard);
 
 
 

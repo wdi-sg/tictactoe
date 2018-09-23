@@ -1,13 +1,39 @@
-.grid {
-  display: flex;                       /* establish flex container */
-  flex-wrap: wrap;                     /* enable flex items to wrap */
-  justify-content: space-around;
-  
+
+.box {
+	display: flex;
+	flex-direction: row;
+	height: 600px;
+	width: 600px;
+	justify-content: center;
+	align-items: flex-start;
+	font-family: 'Roboto', sans-serif;
+	margin: 20px;
+	color: black;
 }
+
+.rowOne {
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+}
+
 .cell {
-  flex: 0 0 32%;                       /* don't grow, don't shrink, width */
-  height: 200px;
-  margin-bottom: 5px;
-  background-color: #999;
-  text-align: center;
+	height: 200px;
+	width: 200px;
+	border: 1px solid black;
+	font-size: 30px;
+	line-height: 150px;
+	text-align: center;
+	font-weight: bold;
+	background-color: yellow;
+	color: black;
 }
+
+#reset {
+	background-color: blue;
+	height: 50px;
+	width: 80px;
+	border-radius: 5px;
+}
+
+
