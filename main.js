@@ -1,5 +1,15 @@
 var entryItems = document.querySelectorAll(".entry");
 
+// declaring entries----------------------------------------------------------------------------
+
+// 0|1|2
+// -----
+// 3|4|5
+// -----
+// 6|7|8
+
+/*Basic Game-----------------------------------------------------------------------------------*/
+
 var turn = 0;
 
 var addX = function(event) {
@@ -13,12 +23,44 @@ var addO = function(event) {
 }
 
 var addEntry = function(event) {
-    if (turn >= 9) {
+    if ((document.querySelectorAll(".entry")[0].innerText == document.querySelectorAll(".entry")[1].innerText) && (document.querySelectorAll(".entry")[0].innerText== document.querySelectorAll(".entry")[2].innerText) && (document.querySelectorAll(".entry")[0].innerText == "x")) {
+        console.log("win");
+    } else if ((document.querySelectorAll(".entry")[3].innerText == document.querySelectorAll(".entry")[4].innerText) && (document.querySelectorAll(".entry")[3].innerText== document.querySelectorAll(".entry")[5].innerText) && (document.querySelectorAll(".entry")[3].innerText == "x")){
+        console.log("win");
+    } else if ((document.querySelectorAll(".entry")[6].innerText == document.querySelectorAll(".entry")[7].innerText) && (document.querySelectorAll(".entry")[6].innerText== document.querySelectorAll(".entry")[8].innerText) && (document.querySelectorAll(".entry")[6].innerText == "x")) {
+        console.log("win");
+    } else if ((document.querySelectorAll(".entry")[0].innerText == document.querySelectorAll(".entry")[3].innerText) && (document.querySelectorAll(".entry")[0].innerText== document.querySelectorAll(".entry")[6].innerText) && (document.querySelectorAll(".entry")[0].innerText == "x")) {
+        console.log("win");
+    } else if ((document.querySelectorAll(".entry")[1].innerText == document.querySelectorAll(".entry")[4].innerText) && (document.querySelectorAll(".entry")[1].innerText== document.querySelectorAll(".entry")[7].innerText) && (document.querySelectorAll(".entry")[1].innerText == "x")){
+        console.log("win");
+    } else if ((document.querySelectorAll(".entry")[2].innerText == document.querySelectorAll(".entry")[5].innerText) && (document.querySelectorAll(".entry")[2].innerText== document.querySelectorAll(".entry")[8].innerText) && (document.querySelectorAll(".entry")[2].innerText == "x")){
+        console.log("win");
+    } else if ((document.querySelectorAll(".entry")[0].innerText == document.querySelectorAll(".entry")[4].innerText) && (document.querySelectorAll(".entry")[0].innerText== document.querySelectorAll(".entry")[8].innerText) && (document.querySelectorAll(".entry")[0].innerText == "x")){
+        console.log("win");
+    } else if ((document.querySelectorAll(".entry")[2].innerText == document.querySelectorAll(".entry")[4].innerText) && (document.querySelectorAll(".entry")[2].innerText== document.querySelectorAll(".entry")[6].innerText) && (document.querySelectorAll(".entry")[2].innerText == "x")){
+        console.log("win")
+    } else if ((document.querySelectorAll(".entry")[0].innerText == document.querySelectorAll(".entry")[1].innerText) && (document.querySelectorAll(".entry")[0].innerText== document.querySelectorAll(".entry")[2].innerText) && (document.querySelectorAll(".entry")[0].innerText == "o")) {
+        console.log("win");
+    } else if ((document.querySelectorAll(".entry")[3].innerText == document.querySelectorAll(".entry")[4].innerText) && (document.querySelectorAll(".entry")[3].innerText== document.querySelectorAll(".entry")[5].innerText) && (document.querySelectorAll(".entry")[3].innerText == "o")){
+        console.log("win");
+    } else if ((document.querySelectorAll(".entry")[6].innerText == document.querySelectorAll(".entry")[7].innerText) && (document.querySelectorAll(".entry")[6].innerText== document.querySelectorAll(".entry")[8].innerText) && (document.querySelectorAll(".entry")[6].innerText == "o")) {
+        console.log("win");
+    } else if ((document.querySelectorAll(".entry")[0].innerText == document.querySelectorAll(".entry")[3].innerText) && (document.querySelectorAll(".entry")[0].innerText== document.querySelectorAll(".entry")[6].innerText) && (document.querySelectorAll(".entry")[0].innerText == "o")) {
+        console.log("win");
+    } else if ((document.querySelectorAll(".entry")[1].innerText == document.querySelectorAll(".entry")[4].innerText) && (document.querySelectorAll(".entry")[1].innerText== document.querySelectorAll(".entry")[7].innerText) && (document.querySelectorAll(".entry")[1].innerText == "o")){
+        console.log("win");
+    } else if ((document.querySelectorAll(".entry")[2].innerText == document.querySelectorAll(".entry")[5].innerText) && (document.querySelectorAll(".entry")[2].innerText== document.querySelectorAll(".entry")[8].innerText) && (document.querySelectorAll(".entry")[2].innerText == "o")){
+        console.log("win");
+    } else if ((document.querySelectorAll(".entry")[0].innerText == document.querySelectorAll(".entry")[4].innerText) && (document.querySelectorAll(".entry")[0].innerText== document.querySelectorAll(".entry")[8].innerText) && (document.querySelectorAll(".entry")[0].innerText == "o")){
+        console.log("win");
+    } else if ((document.querySelectorAll(".entry")[2].innerText == document.querySelectorAll(".entry")[4].innerText) && (document.querySelectorAll(".entry")[2].innerText== document.querySelectorAll(".entry")[6].innerText) && (document.querySelectorAll(".entry")[2].innerText == "o")){
+        console.log("win")
+    } else if (turn >= 9) {
         alert("The game has ended");
-    }   else if (turn%2==0) {
+    } else if (turn%2==0) {
         addX(event);
         turn++;
-    }   else   {
+    } else   {
         addO(event);
         turn++;
     }
@@ -27,3 +69,20 @@ var addEntry = function(event) {
 for(var i = 0; i < entryItems.length; i++){
     entryItems[i].addEventListener("click", addEntry);
 }
+
+
+
+/*Cosmetic Functions---------------------------------------------------------------------------*/
+
+function hoverButton() {
+    document.getElementById("restartButton").addEventListener("mouseover", function(){
+    document.getElementById("restartButton").style.backgroundColor = "white";
+    document.getElementById("restartButton").style.color = "black";
+    })
+    document.getElementById("restartButton").addEventListener("mouseout", function(){
+    document.getElementById("restartButton").style.backgroundColor = "black";
+      document.getElementById("restartButton").style.color = "white";
+    })
+}
+
+hoverButton();
