@@ -24,39 +24,39 @@ var addO = function(event) {
 
 var addEntry = function(event) {
     if ((document.querySelectorAll(".entry")[0].innerText == document.querySelectorAll(".entry")[1].innerText) && (document.querySelectorAll(".entry")[0].innerText== document.querySelectorAll(".entry")[2].innerText) && (document.querySelectorAll(".entry")[0].innerText == "x")) {
-        console.log("win");
+        updateResult("X");
     } else if ((document.querySelectorAll(".entry")[3].innerText == document.querySelectorAll(".entry")[4].innerText) && (document.querySelectorAll(".entry")[3].innerText== document.querySelectorAll(".entry")[5].innerText) && (document.querySelectorAll(".entry")[3].innerText == "x")){
-        console.log("win");
+        updateResult("X");
     } else if ((document.querySelectorAll(".entry")[6].innerText == document.querySelectorAll(".entry")[7].innerText) && (document.querySelectorAll(".entry")[6].innerText== document.querySelectorAll(".entry")[8].innerText) && (document.querySelectorAll(".entry")[6].innerText == "x")) {
-        console.log("win");
+        updateResult("X");
     } else if ((document.querySelectorAll(".entry")[0].innerText == document.querySelectorAll(".entry")[3].innerText) && (document.querySelectorAll(".entry")[0].innerText== document.querySelectorAll(".entry")[6].innerText) && (document.querySelectorAll(".entry")[0].innerText == "x")) {
-        console.log("win");
+        updateResult("X");
     } else if ((document.querySelectorAll(".entry")[1].innerText == document.querySelectorAll(".entry")[4].innerText) && (document.querySelectorAll(".entry")[1].innerText== document.querySelectorAll(".entry")[7].innerText) && (document.querySelectorAll(".entry")[1].innerText == "x")){
-        console.log("win");
+        updateResult("X");
     } else if ((document.querySelectorAll(".entry")[2].innerText == document.querySelectorAll(".entry")[5].innerText) && (document.querySelectorAll(".entry")[2].innerText== document.querySelectorAll(".entry")[8].innerText) && (document.querySelectorAll(".entry")[2].innerText == "x")){
-        console.log("win");
+        updateResult("X");
     } else if ((document.querySelectorAll(".entry")[0].innerText == document.querySelectorAll(".entry")[4].innerText) && (document.querySelectorAll(".entry")[0].innerText== document.querySelectorAll(".entry")[8].innerText) && (document.querySelectorAll(".entry")[0].innerText == "x")){
-        console.log("win");
+        updateResult("X");
     } else if ((document.querySelectorAll(".entry")[2].innerText == document.querySelectorAll(".entry")[4].innerText) && (document.querySelectorAll(".entry")[2].innerText== document.querySelectorAll(".entry")[6].innerText) && (document.querySelectorAll(".entry")[2].innerText == "x")){
-        console.log("win")
+        updateResult("X");
     } else if ((document.querySelectorAll(".entry")[0].innerText == document.querySelectorAll(".entry")[1].innerText) && (document.querySelectorAll(".entry")[0].innerText== document.querySelectorAll(".entry")[2].innerText) && (document.querySelectorAll(".entry")[0].innerText == "o")) {
-        console.log("win");
+        updateResult("O");
     } else if ((document.querySelectorAll(".entry")[3].innerText == document.querySelectorAll(".entry")[4].innerText) && (document.querySelectorAll(".entry")[3].innerText== document.querySelectorAll(".entry")[5].innerText) && (document.querySelectorAll(".entry")[3].innerText == "o")){
-        console.log("win");
+        updateResult("O");
     } else if ((document.querySelectorAll(".entry")[6].innerText == document.querySelectorAll(".entry")[7].innerText) && (document.querySelectorAll(".entry")[6].innerText== document.querySelectorAll(".entry")[8].innerText) && (document.querySelectorAll(".entry")[6].innerText == "o")) {
-        console.log("win");
+        updateResult("O");
     } else if ((document.querySelectorAll(".entry")[0].innerText == document.querySelectorAll(".entry")[3].innerText) && (document.querySelectorAll(".entry")[0].innerText== document.querySelectorAll(".entry")[6].innerText) && (document.querySelectorAll(".entry")[0].innerText == "o")) {
-        console.log("win");
+        updateResult("O");
     } else if ((document.querySelectorAll(".entry")[1].innerText == document.querySelectorAll(".entry")[4].innerText) && (document.querySelectorAll(".entry")[1].innerText== document.querySelectorAll(".entry")[7].innerText) && (document.querySelectorAll(".entry")[1].innerText == "o")){
-        console.log("win");
+        updateResult("O");
     } else if ((document.querySelectorAll(".entry")[2].innerText == document.querySelectorAll(".entry")[5].innerText) && (document.querySelectorAll(".entry")[2].innerText== document.querySelectorAll(".entry")[8].innerText) && (document.querySelectorAll(".entry")[2].innerText == "o")){
-        console.log("win");
+        updateResult("O");
     } else if ((document.querySelectorAll(".entry")[0].innerText == document.querySelectorAll(".entry")[4].innerText) && (document.querySelectorAll(".entry")[0].innerText== document.querySelectorAll(".entry")[8].innerText) && (document.querySelectorAll(".entry")[0].innerText == "o")){
-        console.log("win");
+        updateResult("O");
     } else if ((document.querySelectorAll(".entry")[2].innerText == document.querySelectorAll(".entry")[4].innerText) && (document.querySelectorAll(".entry")[2].innerText== document.querySelectorAll(".entry")[6].innerText) && (document.querySelectorAll(".entry")[2].innerText == "o")){
-        console.log("win")
+        updateResult("O");
     } else if (turn >= 9) {
-        alert("The game has ended");
+        document.querySelector("#result").textContent = "It's a draw.";
     } else if (turn%2==0) {
         addX(event);
         turn++;
@@ -70,7 +70,9 @@ for(var i = 0; i < entryItems.length; i++){
     entryItems[i].addEventListener("click", addEntry);
 }
 
-
+var updateResult = function(result) {
+    document.querySelector("#result").textContent = "The winner is '" + result +"' player";
+}
 
 /*Cosmetic Functions---------------------------------------------------------------------------*/
 
@@ -86,3 +88,19 @@ function hoverButton() {
 }
 
 hoverButton();
+
+function restartButton() {
+    document.getElementById("restartButton").addEventListener("click", function(){
+        turns = 0;
+        for(var i = 0; i < entryItems.length; i++){
+        entryItems[i].textContent="?";
+        entryItems[i].style.color="black";
+        }
+        document.querySelector("#result").textContent = "Game restarted.";
+    })
+};
+
+restartButton();
+
+
+
