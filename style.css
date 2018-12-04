@@ -1,0 +1,41 @@
+body {
+/*    margin: 0 auto;*/
+    width: 40%;
+    text-align: center;
+}
+
+h1 {
+/*    border: 2px solid black;*/
+    font-size: 50px;
+    margin: 2px;
+}
+
+h2 {
+    display: inline-block;
+    border: 2px solid black;
+    margin: 2px;
+}
+
+.gameButtons {
+    height: 200px;
+    width: 200px;
+    padding: 0;
+    background-color: white;
+    display: inline-block;
+    border: 2px solid black;
+    vertical-align: top;
+    color: white;
+    font-size: 200px;
+}
+
+.marker {
+    font-size: 50px;
+}
+
+
+#reset {
+    font-size: 20px;
+    padding: 5px 20px;
+    background-color: red;
+    color: white;
+}
