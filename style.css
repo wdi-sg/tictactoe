@@ -1,0 +1,32 @@
+body{
+	background-color: #B1D6FEFF;
+}
+
+#box1, #box2, #box3, #box4, #box5, #box6, #box7, #box8, #box9{
+	display: inline-grid;
+}
+
+div{
+	position: relative;
+	height: 200px;
+	width: 200px;
+	border: 2px solid black;
+}
+
+.x1{
+	position: absolute;
+	top: 50px;
+	right: 650px;
+	height: 120px;
+	width: 120px;
+	visibility: hidden;
+}
+
+.o1{
+	position: absolute;
+	top: 50px;
+	right: 650px;
+	height: 120px;
+	width: 120px;
+	visibility: hidden;
+}
