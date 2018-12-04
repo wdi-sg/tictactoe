@@ -17,14 +17,12 @@ var clicked = function() {
     } else {
         this.textContent = "O";
     }
-
 };
 
 //On 'click', perform function 'clicked'
 for (var i = 0; i < button.length; i++) {
     button[i].addEventListener("click", clicked)
 }
-
 
 
 
@@ -43,29 +41,46 @@ var box8 = document.querySelector("#box8");
 var box9 = document.querySelector("#box9");
 
 
+//define function to check for win state:
+  //     |   |
+  //   1 | 2 | 3
+  // ----+---+----
+  //   4 | 5 | 6
+  // ----+---+----
+  //   7 | 8 | 9
+  //     |   |
+
+var checkForWin = function () {
+    if (
+        ((box1.textContent === box2.textContent) && (box2.textContent === box3.textContent))
+        // || ((box4.textContent === box5.textContent) && (box5.textContent=== box6.textContent))
+        // || ((box7.textContent === box8.textContent) && (box8.textContent === box9.textContent))
+        // || ((box1.textContent === box4.textContent) && (box4.textContent === box7.textContent))
+        // || ((box2.textContent === box8.textContent) && (box8.textContent === box5.textContent))
+        // || ((box3.textContent === box6.textContent) && (box6.textContent === box9.textContent))
+        // || ((box7.textContent === box3.textContent) && (box3.textContent === box5.textContent))
+        // || ((box1.textContent === box5.textContent) && (box5.textContent === box9.textContent))
+        )
+
+    {
+    winMessage();
+    } else {
+        alert("It's a draw!");
+    }
+}
+
+
 //What to do when win state is achieved:
 var winMessage = function () {
     alert("Congratulations! Player ?? has won.");
 }
 
+//checkForWin();
+
 
 //Hard-coding for win states:
 
-//Same text content in boxes 1, 2, 3
-if (box1.textContent === box2.textContent === box3.textContent) {
-    winMessage();
-}
-//Same text content in boxes 4, 5, 6
-if (box4.textContent === box5.textContent === box6.textContent) {
-    winMessage();
-}
-
-
-// //Initial loading condition - when page is loaded, set value of 'button' to null
-// var setToNull = function() {
-//     buttonCounter = 0;
-// }
 
 // window.onload = function () {
-//     setToNull();
+//     checkForWin();
 // }
