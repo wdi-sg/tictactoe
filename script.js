@@ -1,8 +1,27 @@
 window.onload = function() {
     var currentPlayer = 2;
-
     var gameBoard = document.createElement("div");
     gameBoard.className = "gameBoard";
+
+    var currentPlayerDisplay = document.createElement("div");
+    currentPlayerDisplay.className = "currentPlayerDisplay";
+    currentPlayerDisplay.innerHTML = "Current Player: Circles";
+
+    var playerCircleScore = 0;
+    var playerCrossScore = 0;
+
+    var playerCircleScoreDisplay = document.createElement("div");
+    playerCircleScoreDisplay.className = "playersScoreDisplay";
+
+    var playerCrossScoreDisplay = document.createElement("div");
+    playerCrossScoreDisplay.className = "playersScoreDisplay";
+
+    var updatePlayersScore = function() {
+        playerCircleScoreDisplay.innerHTML = `Player Circle Score is: ${playerCircleScore}`;
+        playerCrossScoreDisplay.innerHTML = `Player Cross Score is: ${playerCrossScore}`;
+    }
+
+    updatePlayersScore();
 
     var playersMove = function() {
         if (currentPlayer % 2 == 0 && !(this.innerHTML == "X" || this.innerHTML == "O")) {
@@ -12,6 +31,11 @@ window.onload = function() {
         }
         checkWins();
         currentPlayer++;
+        if (currentPlayer % 2 == 0) {
+            currentPlayerDisplay.innerHTML = "Current Player: Circles";
+        } else {
+            currentPlayerDisplay.innerHTML = "Current Player: Crosses";
+        }
     };
 
     for (var i = 0; i < 9; i++) {
@@ -20,9 +44,6 @@ window.onload = function() {
         box.addEventListener('click', playersMove);
         gameBoard.appendChild(box);
     }
-
-    var playerCircleScore = 0;
-    var playerCrossScore = 0;
 
     var checkWins = function() {
         var allBoxes = document.querySelectorAll("div.box");
@@ -53,8 +74,12 @@ window.onload = function() {
             } else {
                 playerCrossScore++;
             }
+            updatePlayersScore();
         }
     }
 
+    document.querySelector('body').appendChild(currentPlayerDisplay);
+    document.querySelector('body').appendChild(playerCircleScoreDisplay);
+    document.querySelector('body').appendChild(playerCrossScoreDisplay);
     document.querySelector('body').appendChild(gameBoard);
 }
