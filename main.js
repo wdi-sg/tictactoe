@@ -117,15 +117,17 @@ particlesJS("particle", particleOptions);
 
 let gameBoard = [];
 const playerList = ['O', 'X']
-let currentPlayer = 0;
-const player1 = 0;
-const player2 = 1;
+let currentPlayer = 1;
+const player1 = 1;
+const player2 = 2;
 let gameOver = false;
 let msgBoard = document.getElementById('msgBoard');
+let maxRow = 3;
+let maxColumn = 3;
 
 function setupGameBoard() {
 
-    currentPlayer = 0;
+    currentPlayer = 1;
     gameOver = false;
 
     var gameCells = document.getElementsByClassName('gameCell');
@@ -153,36 +155,49 @@ function setupGameBoard() {
     }
 
     gameBoard = [
-        [2, 2, 2],
-        [2, 2, 2],
-        [2, 2, 2]
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0]
     ];
 }
 
+function winRow(player, rowNo) {
 
-function checkDiagonal(player) {
+    let noOfTiles = 0;
 
-    var noOfTiles = 0;
-
-
-    // if ((rowNo === 0 && columnNo === 0) || (rowNo === 2 && columnNo == 2)) {
-    // Check top to bottom, left to right
-    for (var i = 0; i < 3; i++) {
-        if (gameBoard[i][i] === player) {
+    for (var i = 0; i < maxRow; i++) {
+        if (gameBoard[rowNo][i] === player) {
             noOfTiles += 1;
         }
     }
 
-    if (noOfTiles === 3) {
+    if (noOfTiles === maxRow) {
         return true
     }
+}
 
-    noOfTiles = 0;
 
-    // } if ((rowNo === 0 && columnNo === 2) || (rowNo === 2 && columnNo === 0)) {
-    j = 2;
+function winColumn(player, ColumnNo) {
+    let noOfTiles = 0;
 
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < maxColumn; i++) {
+        if (gameBoard[i][ColumnNo] === player) {
+            noOfTiles += 1;
+        }
+    }
+
+    if (noOfTiles === maxColumn) {
+        return true
+    }
+}
+
+function winDiagonal(player) {
+
+    var noOfTiles = 0;
+
+    j = maxColumn;
+
+    for (var i = 0; i < maxRow; i++) {
 
         if (gameBoard[i][j] === player) {
             noOfTiles += 1;
@@ -192,8 +207,6 @@ function checkDiagonal(player) {
 
     }
 
-    // }
-
     if (noOfTiles === 3) {
         return true
     } else {
@@ -201,60 +214,50 @@ function checkDiagonal(player) {
     }
 }
 
-function checkRowColumn(player, rowNo, columnNo) {
-    var noOfTiles = 0;
+// function checkRowColumn(player, rowNo, columnNo) {
+//     var noOfTiles = 0;
 
-    // Check column
+//     // Check column
 
-    for (var i = 0; i < 3; i++) {
-        if (gameBoard[i][columnNo] === player) {
-            noOfTiles += 1;
+//     for (var i = 0; i < 3; i++) {
+//         if (gameBoard[i][columnNo] === player) {
+//             noOfTiles += 1;
 
-        }
+//         }
 
-    }
+//     }
 
-    if (noOfTiles === 3) {
-        return true
-    }
+//     if (noOfTiles === 3) {
+//         return true
+//     }
 
-    noOfTiles = 0;
+//     noOfTiles = 0;
 
-    for (var i = 2; i >= 0; i--) {
-        if (gameBoard[rowNo][i] === player) {
-            noOfTiles += 1;
-        }
-    }
+//     for (var i = 2; i >= 0; i--) {
+//         if (gameBoard[rowNo][i] === player) {
+//             noOfTiles += 1;
+//         }
+//     }
 
-    if (noOfTiles === 3) {
-        return true
-    } else {
-        return false
-    }
-}
+//     if (noOfTiles === 3) {
+//         return true
+//     } else {
+//         return false
+//     }
+// }
 
 function checkWinner(player, rowNo, columnNo) {
 
-    // if ((rowNo === 0 && columnNo === 0) ||
-    //     (rowNo === 0 && columnNo === 2) ||
-    //     (rowNo === 2 && columnNo === 0) ||
-    //     (rowNo === 2 && columnNo === 2) ||
-    //     (rowNo === 1 && columnNo === 1)) {
-    if (checkRowColumn(player, rowNo, columnNo)) {
+    if (winRow(player, rowNo)) {
         return true
-    } else if (checkDiagonal(player)) {
+    } else if (winColumn(player, columnNo)) {
+        return true
+    } else if (winDiagonal(player)) {
         return true
     } else {
         return false
     }
-    //     } else {
-    //         // console.log('i waz ere');
-    //         if (checkRowColumn(player, rowNo, columnNo)) {
-    //             return true
-    //         } else {
-    //             return false
-    //         }
-    //     }
+
 }
 
 function flipCell(e) {
@@ -272,15 +275,13 @@ function flipCell(e) {
         e.target.classList.toggle('player2-flip');
     }
 
-    // e.target.classList.toggle('gameCell-flip-color');
-
-    if (!cellData || cellData == null) {
+    if (!cellData || cellData === null) {
         cellInfo = cellInfo.split("-");
         rowNo = parseInt(cellInfo[0]);
         columnNo = parseInt(cellInfo[1]);
 
         gameBoard[rowNo][columnNo] = currentPlayer;
-        e.target.textContent = playerList[currentPlayer];
+        e.target.textContent = playerList[currentPlayer-1];
 
         msgBoard.textContent = "";
 
