@@ -1,7 +1,7 @@
 const ranN = (num) => Math.floor(Math.random() * num); //return random number from 0-num
 const toRad = (angleInDegree) => angleInDegree * Math.PI / 180;
 const gameContainer = document.getElementById('container');
-const gameGrid = [];
+let gameGrid = [];
 let playerTurn = true;
 
 
@@ -105,8 +105,9 @@ const createGame = (x) => {
     }
 }
 const restartGame = () => {
-    let size=prompt('Would you like to play again? Type a number for size.');
-    createGame(size);
+ //   let size=prompt('Would you like to play again? Type a number for size.');
+ //   gameGrid=[];
+ //   createGame(size);
 }
 createGame(gameSize);
 ///////////////RUN CODE///////////////////
