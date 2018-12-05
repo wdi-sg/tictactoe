@@ -6,14 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="styles.css">
-    <title>Document</title>
+    <title>TicTacToe</title>
+
 </head>
 
 <body>
-    <header>
-        <h1>TIC TAC TOE Game</h1>
-    </header>
-    <!-- <table class='ticTacToe'>
+    <div id="particle"></div>
+    <div id="overlay">
+        <header>
+            <h1>TIC-TAC-TOE Game</h1>
+        </header>
+        <!-- <table class='ticTacToe'>
         <tr>
             <td class="box" id="1"></td>
             <td class="box" id="2"></td>
@@ -31,42 +34,48 @@
         </tr>
     </table> -->
 
-    <div class='gameBoard'>
-        <div class='gameBoard-row'>
-            <div class="gameCell">
-                <p></p>
+        <div class='gameBoard'>
+            <div class='gameBoard-row'>
+                <div class="gameCell gameCell-color" data-cell="0-0">
+                    <!-- <p class='gameCell-content'></p> -->
+                </div>
+                <div class="gameCell gameCell-color" data-cell="0-1">
+                    <!-- <p class='gameCell-content'></p> -->
+                </div>
+                <div class="gameCell gameCell-color" data-cell="0-2">
+                    <!-- <p class='gameCell-content'></p> -->
+                </div>
             </div>
-            <div class="gameCell">
-                <p></p>
+            <div class='gameBoard-row'>
+                <div class="gameCell gameCell-color" data-cell="1-0">
+                    <!-- <p class='gameCell-content'></p> -->
+                </div>
+                <div class="gameCell gameCell-color" data-cell="1-1">
+                    <!-- <p class='gameCell-content'></p> -->
+                </div>
+                <div class="gameCell gameCell-color" data-cell="1-2">
+                    <!-- <p class='gameCell-content'></p> -->
+                </div>
             </div>
-            <div class="gameCell">
-                <p></p>
+            <div class='gameBoard-row'>
+                <div class="gameCell gameCell-color" data-cell="2-0">
+                    <!-- <p class='gameCell-content'></p> -->
+                </div>
+                <div class="gameCell gameCell-color" data-cell="2-1">
+                    <!-- <p class='gameCell-content'></p> -->
+                </div>
+                <div class="gameCell gameCell-color" data-cell="2-2">
+                    <!-- <p class='gameCell-content'></p> -->
+                </div>
+            </div>
+            <div class="msg">
+                 <button id="resetButton">Reset Game</button>
+                 <p id="msgBoard"></p>
             </div>
         </div>
-        <div class='gameBoard-row'>
-            <div class="gameCell">
-                <p></p>
-            </div>
-            <div class="gameCell">
-                <p></p>
-            </div>
-            <div class="gameCell">
-                <p></p>
-            </div>
-        </div>
-        <div class='gameBoard-row'>
-            <div class="gameCell">
-                <p></p>
-            </div>
-            <div class="gameCell">
-                <p></p>
-            </div>
-            <div class="gameCell">
-                <p></p>
-            </div>
-        </div>
-    </div>
 
+    </div>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src='main.js'></script>
 </body>
 

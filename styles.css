@@ -1,99 +1,203 @@
-/*
-small device : width: 320px
-							 height: 480px;
+/* Particle.js background CSS stuff starts here */
 
-1px = 1/96 inch
+#particle {
+    background-color: #d46ebc;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+}
 
-*/
+#overlay {
+    position: relative;
+}
 
+/* Particle.js CSS Stuff Ends here */
 
-body {
-	background-color: rgb(248, 207, 196);
-	margin: 2rem;
+/* My CSS definition starts here */
+
+header {
+	max-width : 90vw;
+  margin: auto;
 }
 
 h1 {
-	text-align: center;
-	font-weight: bold;
-	color: rgb(230, 13, 219);
-	text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
+    text-align: center;
+    font-weight: bold;
+    color: rgb(240, 230, 239);
+		text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
+		margin: 2px;
 }
 
 .gameBoard {
-	background: rgb(228, 204, 125);
-	max-width: 100vw;
-	/* border: 2px solid black; */
-	border-width: 5px;
-	padding: 10px;
-	margin: auto;
-	border-radius: 10%;
+    background: rgb(228, 204, 125);
+    max-width: 90vw;
+    /* border: 2px solid black; */
+    border-width: 5px;
+    padding: 10px;
+    margin: auto;
+    border-radius: 10%;
 }
 
-
 .gameBoard-row {
-	display: flex;
+    display: flex;
 }
 
 .gameCell {
-	padding: 1.9rem;
-	border: 10px solid rgb(228, 204, 125);
-	background-color: rgb(88, 214, 136);
-	border-radius: 25%;
-	margin: auto;
+    display: flex;
+    /* padding: .2rem; */
+    border: 10px solid rgb(228, 204, 125);
+    border-radius: 25%;
+    margin: auto;
+    width: 5rem;
+    height: 5rem;
+    align-items: center;
+    font-size: 100px;
+    text-align: center;
 }
 
-/* @media (min-width: 20rem) {
+.gameCell-color {
+    background-color: rgb(88, 214, 136);
+}
 
-	.gameCell {
-		padding: 1.9rem;
-		border: 10px solid rgb(199, 116, 95);
-		background-color: rgb(124, 109, 223);
-		border-radius: 25%;
-		margin: auto;
-	}
+.gameCell-flip-color {
+    background-color: rgb(88, 128, 214);
+    transform: rotateY(180deg);
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+/* Temporary define as hover function
+	 Will be use when user click on the cell
+*/
+
+.player1 {
+    background-color: rgb(88, 128, 214);
+    transform: rotateY(180deg);
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.player2 {
+    background-color: rgb(250, 21, 193);
+    transform: rotateY(180deg);
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+/* .gameCell-content {
+	font-size: 100px;
+	text-align: center;
+} */
+
+button {
+    cursor: pointer;
+}
+
+/* Smaller devices */
+
+/* @media (min-width: 20rem) {
+    h1 {
+        font-size: 2rem;
+    }
+    .gameBoard {
+        max-width: 90vw;
+
+    }
+    .gameCell {
+
+        width: 6rem;
+				height: 6rem;
+				font-size: 120px;
+    }
 } */
 
 /* ipad */
 
 @media (min-width: 40rem) {
-
-	h1 {
-		font-size: 4rem;
-	}
-
-	.gameCell {
-		padding: 5rem;
-
+    h1 {
+        font-size: 4rem;
+    }
+    .gameBoard {
+        max-width: 50vw;
+        /* padding: 20px; */
+    }
+    .gameCell {
+        /* padding: 5rem; */
+        width: 8rem;
+        height: 8rem;
+        font-size: 140px;
+    }
 }
 
 /* iPad Pro */
 
-@media (min-width: 64rem) {
-
-	h1 {
-		font-size: 5rem;
-	}
-
-	.gameCell {
-		padding: 7rem;
-	}
-}
+/* @media (min-width: 48rem) {
+    h1 {
+        font-size: 5rem;
+    }
+    .gameBoard {
+        max-width: 50vw;
+    }
+    .gameCell {
+        width: 8rem;
+        height: 8rem;
+        font-size: 160px;
+    }
+} */
 
 /* Computer Screen */
 
-@media (min-width: 73rem) {
+@media (min-width: 70rem) {
+    h1 {
+        font-size: 3rem;
+    }
+    .gameBoard {
+        max-width: 50vw;
+    }
+    .gameCell {
+        width: 8rem;
+        height: 8rem;
+        font-size: 160px;
+    }
+}
 
-	h1 {
-		font-size: 3rem;
-	}
+#resetButton {
+    /* padding: 10px; */
+    font-size: 1rem;
+    font-weight: 800;
+    background-color: rgb(160, 12, 37);
+    color: white;
+    border-radius: 25%;
+    margin: 10px;
+    padding: 10px;
+		width: 6rem;
+		outline: none;
+		/* border: none; */
+}
 
-	.gameBoard {
-		max-width: 50vw;
-		padding: 20px;
-	}
+#resetButton:hover {
+		background-color: rgb(26, 91, 231);
+}
 
-	.gameCell {
-		padding: 4rem;
+/* .clearfix::after {
+	  content: "";
+	  clear: both;
+	  display: table;
+	} */
 
-	}
+.msg {
+	display: flex;
+
+}
+
+#msgBoard {
+	color: red;
+	font-weight: 900;
+	font-size: 1rem;
 }
