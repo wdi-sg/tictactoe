@@ -13,7 +13,7 @@ var play = function () {
 if(this.textContent.length === 0){
         if (turn === null || turn === 0){
             this.textContent ="X";
-            turn =+ 1;
+            turn += 1;
         } else {
             this.textContent = "O";
             turn -= 1;
@@ -21,8 +21,9 @@ if(this.textContent.length === 0){
     }
 }
 
-var checkBox = function () {
+// var checkBox = function () {
 
+// if()
 
 }
 
