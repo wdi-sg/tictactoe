@@ -18,9 +18,14 @@ var grid = [[0,0,0],
 
 var num;
 var remainder;
-var player;
-var playerX = [];
-var playerO =[];
+var player1;
+var player2;
+var player1sym;
+var player2sym;
+var player1score = 0;
+var player2score = 0;
+var player1Arr = [];
+var player2Arr =[];
 var ifWinning = false;
 var noOfTurns = 0;
 
@@ -34,11 +39,35 @@ window.onload = function (){
     button.addEventListener("click", startGame);
 
     document.getElementsByTagName("p")[0].textContent = "Click start to play!";
+
+    setTimeout(function(){
+        player1 = prompt("Player 1's Name:");
+        player1sym = prompt(player1 + ", choose your symbol!");
+        player2 = prompt("Player 2's Name:");
+        player2sym = prompt(player2 + ", choose your symbol!");
+    },1000)
+
+
 }
 
 
 // add event listeners to all grid boxes
 function startGame(){
+    // adds scoreboard
+    var scoreboard = document.querySelector(".scoreboard");
+        if (scoreboard.innerHTML === ""){
+        var playersNow = document.createElement("p");
+        playersNow.id = "players";
+        scoreboard.appendChild(playersNow);
+        playersNow.textContent= player1 + " : " + player2;
+
+        // adds default score
+        var playersScore = document.createElement("p");
+        playersScore.id = "playersScore";
+        playersScore.textContent = player1score + " : " + player2score;
+        playersNow.parentNode.insertBefore(playersScore, playersNow.nextSibling);
+    }
+
     // removes button
     var buttonDiv = document.querySelector(".button");
     var button = document.querySelector("button");
@@ -63,25 +92,27 @@ function game(){
         num = event.target.id;
         answer = Math.floor(num / 3);
         remainder = num % 3;
-        console.log("ans:" + answer + " num:"+num + " R:"+remainder);
+        // console.log("ans:" + answer + " num:"+num + " R:"+remainder);
 
         var gridNotTaken = checkGridTaken();
         if (gridNotTaken){
-            if (noOfTurns % 2 !== 0) { //comes later
+            if (noOfTurns % 2 == 0) { //comes first
                 player = "X";
-                this.innerHTML = "X";
+                this.innerHTML = player1sym;
                 this.style.backgroundColor = "#C3FFCD";
-                document.getElementsByTagName("p")[0].textContent = "It's Player O's turn.";
+                document.getElementsByTagName("p")[0].textContent = "It's " + player2 +"'s turn.";
                 appendGridList();
                 console.log(grid);
-                playerX.push(parseInt(this.id));
+                player1Arr.push(parseInt(this.id));
 
-                if (playerO.length > 2){
+                if (player1Arr.length > 2){
                     // ifWinning = checkWin(player);
-                    ifWinning = checkWin(playerX);
+                    ifWinning = checkWin(player1Arr);
                     if (ifWinning){
                         console.log("yay");
-                        document.getElementsByTagName("p")[0].textContent = "Player X wins! Try again?";
+                        document.getElementsByTagName("p")[0].textContent = player1 +" wins! Try again?";
+                        player1score++;
+                        document.getElementById("playersScore").textContent = player1score + " : " + player2score;
                         resetPrompt();
                     } else{
                         console.log("nooo");
@@ -89,22 +120,23 @@ function game(){
                 }
 
             }
-             else { //comes first
+             else { //comes later
                 player = "O";
-                this.innerHTML = "O";
+                this.innerHTML = player2sym;
                 this.style.backgroundColor = "#D1ACA6";
-                document.getElementsByTagName("p")[0].textContent = "It's Player X's turn.";
+                document.getElementsByTagName("p")[0].textContent = "It's " + player1 +"'s turn.";
                 appendGridList(player);
                 console.log(grid);
-                playerO.push(parseInt(this.id));
-                console.log(playerO);
+                player2Arr.push(parseInt(this.id));
 
-                if (playerO.length > 2){
+                if (player2Arr.length > 2){
                     // ifWinning = checkWin(player);
-                    ifWinning = checkWin(playerO);
+                    ifWinning = checkWin(player2Arr);
                     if (ifWinning){
                         console.log("yay");
-                        document.getElementsByTagName("p")[0].textContent = "Player O wins! Try again?";
+                        document.getElementsByTagName("p")[0].textContent = player2 +" wins! Try again?";
+                        player2score++;
+                        document.getElementById("playersScore").textContent = player1score + " : " + player2score;
                         resetPrompt();
                     } else{
                         console.log("nooo");
@@ -228,9 +260,12 @@ function reset(){
             [0,0,0]];
     num;
     remainder;
-    player;
-    playerX = [];
-    playerO =[];
+    player1;
+    player2;
+    player1sym;
+    player2sym;
+    player1Arr = [];
+    player2Arr =[];
     ifWinning = false;
     noOfTurns = 0;
 
