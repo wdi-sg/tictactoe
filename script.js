@@ -107,10 +107,10 @@ player2Score();
     var checkWin = function(){
         var allBox = document.querySelectorAll('.box');
 
-        if((allBox[0].innerHTML === "X" && allBox[1].innerHTML === "X" && allBox[2].innerHTML === "X") || (allBox[0].innerHTML === "X" && allBox[3].innerHTML === "X" && allBox[6].innerHTML === "X") || (allBox[0].innerHTML === "X" && allBox[4].innerHTML === "X" && allBox[8].innerHTML === "X") || (allBox[1].innerHTML === "X" && allBox[4].innerHTML === "X" && allBox[7].innerHTML === "X") || (allBox[2].innerHTML === "X" && allBox[5].innerHTML === "X" && allBox[8].innerHTML === "X") || (allBox[2].innerHTML === "X" && allBox[4].innerHTML === "X" && allBox[6].innerHTML === "X")){
+        if((allBox[0].innerHTML === "X" && allBox[1].innerHTML === "X" && allBox[2].innerHTML === "X") || (allBox[0].innerHTML === "X" && allBox[3].innerHTML === "X" && allBox[6].innerHTML === "X") || (allBox[0].innerHTML === "X" && allBox[4].innerHTML === "X" && allBox[8].innerHTML === "X") || (allBox[1].innerHTML === "X" && allBox[4].innerHTML === "X" && allBox[7].innerHTML === "X") || (allBox[2].innerHTML === "X" && allBox[5].innerHTML === "X" && allBox[8].innerHTML === "X") || (allBox[2].innerHTML === "X" && allBox[4].innerHTML === "X" && allBox[6].innerHTML === "X") || (allBox[3].innerHTML === "X" && allBox[4].innerHTML === "X" && allBox[5].innerHTML === "X") || (allBox[6].innerHTML === "X" && allBox[7].innerHTML === "X" && allBox[8].innerHTML === "X")){
             xWin(this);
         }
-        else if((allBox[0].innerHTML === "O" && allBox[1].innerHTML === "O" && allBox[2].innerHTML === "O") || (allBox[0].innerHTML === "O" && allBox[3].innerHTML === "O" && allBox[6].innerHTML === "O") || (allBox[0].innerHTML === "O" && allBox[4].innerHTML === "O" && allBox[8].innerHTML === "O") || (allBox[1].innerHTML === "O" && allBox[4].innerHTML === "O" && allBox[7].innerHTML === "O") || (allBox[2].innerHTML === "O" && allBox[5].innerHTML === "O" && allBox[8].innerHTML === "O") || (allBox[2].innerHTML === "O" && allBox[4].innerHTML === "O" && allBox[6].innerHTML === "O")){
+        else if((allBox[0].innerHTML === "O" && allBox[1].innerHTML === "O" && allBox[2].innerHTML === "O") || (allBox[0].innerHTML === "O" && allBox[3].innerHTML === "O" && allBox[6].innerHTML === "O") || (allBox[0].innerHTML === "O" && allBox[4].innerHTML === "O" && allBox[8].innerHTML === "O") || (allBox[1].innerHTML === "O" && allBox[4].innerHTML === "O" && allBox[7].innerHTML === "O") || (allBox[2].innerHTML === "O" && allBox[5].innerHTML === "O" && allBox[8].innerHTML === "O") || (allBox[2].innerHTML === "O" && allBox[4].innerHTML === "O" && allBox[6].innerHTML === "O") || (allBox[3].innerHTML === "O" && allBox[4].innerHTML === "O" && allBox[5].innerHTML === "O") || (allBox[6].innerHTML === "O" && allBox[7].innerHTML === "O" && allBox[8].innerHTML === "O")){
             oWin(this);
         }
         // else{
@@ -125,6 +125,7 @@ player2Score();
         end.removeEventListener('click', playerTurn);
         end.removeEventListener('click', turnX);
         end.removeEventListener('click', turnO);
+        point1++;
         startBtnFunc();
     }
     var oWin = function(end){
@@ -132,6 +133,7 @@ player2Score();
         end.removeEventListener('click', playerTurn);
         end.removeEventListener('click', turnO);
         end.removeEventListener('click', turnX);
+        point2++;
         startBtnFunc();
     }
 
