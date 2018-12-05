@@ -238,3 +238,15 @@ var addEntry = function(event) {
         updateResult("O");
     } else if ((outcome[0][2] == outcome[1][1]) && (outcome[0][2]== outcome[2][0]) && (outcome[0][2] == "o")){
         updateResult("O");
+
+var row1Update = function(i){
+  for(var i=0; i<3; i++){
+    outcome[1][i]=document.querySelectorAll(".entry")[i].innerText;
+  }
+}
+
+var row1Update = function(i){
+  for(var i=0; i<3; i++){
+    outcome[0][i]=document.querySelectorAll(".entry")[i].innerText;
+  }
+}

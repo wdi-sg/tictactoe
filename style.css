@@ -36,18 +36,46 @@ div {
 }
 
 .gamespace {
-    display:inline-block;
+    display:block;
     width:100%;
-    border: black solid 1px;
+    border: black solid 0;
     padding: 5% 0;
+}
+
+.player1 {
+    display: inline;
+    margin: 0 0 0 5%;
+    padding: 0;
+    line-height: 30px;
+    position: relative;
+    float: left;
+    color: navy;
+}
+
+/*.tictactoe {
+    display: inline;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 10%;
+}*/
+
+.player2 {
+    display: inline;
+    margin: 0 5% 0 0;
+    padding: 0;
+    line-height: 30px;
+    position: relative;
+    float: right;
+    color: red;
 }
 
 .row1, .row2, .row3 {
     display: block;
-    width: 50%;
+    width: 30%;
     margin: 0 auto;
     text-align: center;
-    min-width: 250px;
+    min-width: 300px;
 }
 
 .cell {
@@ -68,7 +96,7 @@ div {
 }
 
 button {
-    background-color: black;
+    background-color: white;
     color: white;
     border: 0;
     font-family: 'Raleway', sans-serif;
@@ -88,3 +116,8 @@ button {
     float: right;
     padding: 0.5% 2%;
 }
+
+h2 {
+    margin:2%;
+}
+
