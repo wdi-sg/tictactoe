@@ -10,17 +10,30 @@ var entryItems = document.querySelectorAll(".entry");
 
 /*Basic Game-----------------------------------------------------------------------------------*/
 
+// nots for edits
+// addX or addO should update the x1y1 values as well (how?)
+//comparing for win statement - for (var=i, i=0, i+=2:), push to array. foreach, if [i] == [i+2] is true, win statement. will have one statement for row. one statement for column, and one for each diagonal, subsequently have if else statement for updateResult
+
 var turn = 0;
 
 var addX = function(event) {
-    event.target.textContent="x";
-    event.target.style.color="#003366";
+    if (event.target.textContent=="?") {
+        event.target.textContent="x";
+        event.target.style.color="#003366";
+    } else {
+        turn -= 1;
+    }
 }
 
 var addO = function(event) {
+    if (event.target.textContent=="?") {
     event.target.textContent="o";
     event.target.style.color="#8b0000";
+    } else {
+        turn -= 1;
+    }
 }
+
 
 var addEntry = function(event) {
     if ((document.querySelectorAll(".entry")[0].innerText == document.querySelectorAll(".entry")[1].innerText) && (document.querySelectorAll(".entry")[0].innerText== document.querySelectorAll(".entry")[2].innerText) && (document.querySelectorAll(".entry")[0].innerText == "x")) {
@@ -74,7 +87,7 @@ var updateResult = function(result) {
     document.querySelector("#result").textContent = "The winner is '" + result +"' player";
 }
 
-/*Cosmetic Functions---------------------------------------------------------------------------*/
+/*CButton Functions-----------------------------------------------------------------------*/
 
 function hoverButton() {
     document.getElementById("restartButton").addEventListener("mouseover", function(){
@@ -102,5 +115,5 @@ function restartButton() {
 
 restartButton();
 
-
+//how to prevent switching???
 
