@@ -13,7 +13,8 @@ html, body {
 }
 
 .box{
-    border: 2px solid black;
+    font-family: "Roboto Slab";
+    border: 2px solid #7F7F7F;
     height: 60px;
     width: 60px;
     max-width: 100px;
@@ -33,9 +34,16 @@ p{
     width:460px;
     padding: 20px;
     text-align: center;
+    font-family: "Gamja Flower";
+    font-size: 30px;
 }
 
 .button{
     margin-top: 330px;
     margin-left: 215px;
+}
+
+button{
+    font-family: "Gamja Flower";
+    font-size: 18px;
 }
