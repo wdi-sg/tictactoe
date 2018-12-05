@@ -1,9 +1,31 @@
 body{
 	background-color: #B1D6FEFF;
+	margin: 5px;
+  width: 660px;
 }
 
 .box{
-	display: inline-grid;
+	display: inline-block;
+}
+
+.startBtn{
+	display: block;
+	position: relative;
+	height: 50px;
+	width: 200px;
+	margin: 20px;
+	padding: 0 280px;
+	background-color: green;
+	border: 1px solid black;
+	font-size: 20px;
+	font-family: 'Helvetica', sans-serif;
+}
+
+p{
+	display: block;
+	margin: 20px;
+	font-size: 30px;
+	font-family: 'Helvetica', sans-serif;
 }
 
 div{

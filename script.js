@@ -21,13 +21,66 @@
 // var x1Img = document.querySelector(".x1");
 // var o1Img = document.querySelector(".o1");
 
+var player1 = prompt("Player 1 please enter your name.");
+var player2 = prompt("Player 2 please enter your name.");
+
+var point1 = 0;
+var point2 = 0;
+
 window.onload = function(){
-    var turn = 0; // For player turn. Player 1 is X, Player 2 is O
+var turn = 0; // For player turn. Player 1 is X, Player 2 is O
+var start = false; // Become true in order to activate to start game
+
+var activate = function(){
+    var startBtnRm = document.querySelector("button");
+    document.body.removeChild(startBtnRm);
+    return start = true;
+}
+
+var resetBtnRe = function(){
+    location.reload();
+}
+
+var startBtnFunc = function(){
+    var startBtn = document.createElement("button");
+    startBtn.setAttribute("class", "startBtn")
+    startBtn.innerHTML = "Start";
+    document.body.appendChild(startBtn);
+    startBtn.addEventListener('click', activate);
+}
+
+var resetBtn = function(){
+    var resetBtn = document.createElement("button");
+    resetBtn.setAttribute("class", "startBtn")
+    resetBtn.innerHTML = "Reset";
+    document.body.appendChild(resetBtn);
+    resetBtn.addEventListener('click', resetBtnRe);
+}
+
+var player1Score = function(){
+    var player1Sc = document.createElement("p");
+    player1Sc.setAttribute("class", "player1")
+    player1Sc.innerHTML = player1 + ": " + point1;
+    document.body.appendChild(player1Sc);
+}
+
+var player2Score = function(){
+    var player2Sc = document.createElement("p");
+    player2Sc.setAttribute("class", "player2")
+    player2Sc.innerHTML = player2 + ": " + point2;
+    document.body.appendChild(player2Sc);
+}
+
+startBtnFunc();
+resetBtn();
+player1Score();
+player2Score();
+
     var playerTurn = function(){
-    if(turn % 2 === 0 || (this.innerHTML === "X" || this.innerHTML === "O")){
+    if(start === true && turn % 2 === 0 && !(this.innerHTML === "X" || this.innerHTML === "O")){
         this.addEventListener('click', turnX);
     }
-    else if(turn % 2 === 1 || (this.innerHTML === "X" || this.innerHTML === "O")){
+    else if(start === true && turn % 2 === 1 && !(this.innerHTML === "X" || this.innerHTML === "O")){
         this.addEventListener('click', turnO);
     }
     }
@@ -37,22 +90,57 @@ window.onload = function(){
     box.setAttribute("class", "box");
     var emptyBox = document.body.appendChild(box);
     emptyBox.addEventListener('click', playerTurn);
+    emptyBox.addEventListener('click', checkWin);
     // var divBoxArr = document.querySelectorAll("div");
     // for(var a in divBoxArr){
     //     var boxArr = divBoxArr[a];
     // }
     var turnX = function(){
         this.innerHTML = "X";
-        this.removeEventListener('click', turnX);
         turn++;
         }
     var turnO = function(){
         this.innerHTML = "O";
-        this.removeEventListener('click', turnO);
         turn++;
         }
+
+    var checkWin = function(){
+        var allBox = document.querySelectorAll('.box');
+
+        if((allBox[0].innerHTML === "X" && allBox[1].innerHTML === "X" && allBox[2].innerHTML === "X") || (allBox[0].innerHTML === "X" && allBox[3].innerHTML === "X" && allBox[6].innerHTML === "X") || (allBox[0].innerHTML === "X" && allBox[4].innerHTML === "X" && allBox[8].innerHTML === "X") || (allBox[1].innerHTML === "X" && allBox[4].innerHTML === "X" && allBox[7].innerHTML === "X") || (allBox[2].innerHTML === "X" && allBox[5].innerHTML === "X" && allBox[8].innerHTML === "X") || (allBox[2].innerHTML === "X" && allBox[4].innerHTML === "X" && allBox[6].innerHTML === "X")){
+            xWin(this);
+        }
+        else if((allBox[0].innerHTML === "O" && allBox[1].innerHTML === "O" && allBox[2].innerHTML === "O") || (allBox[0].innerHTML === "O" && allBox[3].innerHTML === "O" && allBox[6].innerHTML === "O") || (allBox[0].innerHTML === "O" && allBox[4].innerHTML === "O" && allBox[8].innerHTML === "O") || (allBox[1].innerHTML === "O" && allBox[4].innerHTML === "O" && allBox[7].innerHTML === "O") || (allBox[2].innerHTML === "O" && allBox[5].innerHTML === "O" && allBox[8].innerHTML === "O") || (allBox[2].innerHTML === "O" && allBox[4].innerHTML === "O" && allBox[6].innerHTML === "O")){
+            oWin(this);
+        }
+        // else{
+        //     alert("Draw");
+        //     draw();
+        // }
+    }
 }
+
+    var xWin = function(end){
+        alert("Congratulation X won");
+        end.removeEventListener('click', playerTurn);
+        end.removeEventListener('click', turnX);
+        end.removeEventListener('click', turnO);
+        startBtnFunc();
+    }
+    var oWin = function(end){
+        alert("Congratulation O won");
+        end.removeEventListener('click', playerTurn);
+        end.removeEventListener('click', turnO);
+        end.removeEventListener('click', turnX);
+        startBtnFunc();
+    }
+
 }
+    // var draw = function(){
+    //     var drawBtn = document.createElement("button");
+    //     drawBtn.setAttribute("class", "drawbtn");
+    //     var drawBtnBox = document.body.appendChild(drawBtn);
+    // }
 
 
 // var turnX = function(){
