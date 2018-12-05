@@ -1,0 +1,21 @@
+body{
+	background-color: white;
+}
+
+.wrapper{
+	padding-top: 30px;
+	width: 700px;
+	height: 700px;
+	background-color: black;
+}
+
+.row {
+	width: 700px;
+	text-align: center;
+}
+
+button {
+	margin: 5px;
+	width: 200px;
+	height: 200px;
+}
