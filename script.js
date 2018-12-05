@@ -1,33 +1,89 @@
 const winningMoves = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]]
-const colors = ["red", "orange", "green", "purple", "brown", "blue"]
-const cells = document.body.querySelectorAll(".cell") //this is a NodeList of cells
-const restartButton = document.body.querySelector("#restart-button")
+const colors = ["red", "orange", "green", "burlywood", "brown", "blue", "aquamarine", "darkblue", "darkviolet"]
 
 var turn = 1
+// var boardSize = getBoardSize()
 var playerOne = generatePlayer("one")
 var playerTwo = generatePlayer("two")
 var currentPlayer
+var cells
+var restartButton
 
-startGame()
-
+window.onload = function(){
+     cells = document.body.querySelectorAll(".cell") //this is a NodeList of cells
+     restartButton = document.body.querySelector("#restart-button")
+    // var testTable = generateBoard()
+    showPlayerScores()
+    startGame()
+}
 // -------------------------------------------------------------------------
+
+function getBoardSize(){
+    while (true){
+        var boardSize = parseInt(prompt("How big a board would you like to play?"))
+        if (isNaN(boardSize)){
+            alert("You must choose a number!")
+        } else {
+            return boardSize
+        }
+    }
+}
+
+function generateBoard(){
+    var index = 0
+    var table = document.createElement("table")
+    for (let i = 0; i < boardSize; i++){
+        var row = document.createElement("tr")
+        for (let j = 0; j < boardSize; j++){
+            var cell = document.createElement("td")
+            cell.className = "cell"
+            cell.id = index
+            index++
+            row.appendChild(cell)
+        }
+        table.appendChild(row)
+    }
+    return table
+}
+
+function showPlayerScores(){
+    var paragraph = document.createElement("p")
+    var paragraphTwo = document.createElement("p")
+
+    paragraph.id = "player-one"
+    paragraphTwo.id = "player-two"
+    paragraph.innerText = playerOne.name + ": " + playerOne.wins
+    paragraphTwo.innerText = playerTwo.name + ": " + playerTwo.wins
+    paragraph.style.color = playerOne.color
+    paragraphTwo.style.color = playerTwo.color
+
+    document.body.insertBefore(paragraph, document.body.querySelector("table"))
+    document.body.insertBefore(paragraphTwo, document.body.querySelector("table"))
+}
+
+function updatePlayerScores(){
+    document.body.querySelector("#player-one").innerText = playerOne.name + ": " + playerOne.wins
+    document.body.querySelector("#player-two").innerText = playerTwo.name + ": " + playerTwo.wins
+}
 
 function generatePlayer(number){
     var name
     var symbol
     while (true){
         name = prompt("Hello player " + number + "! What's your name?")
-        if (name !== ""){
-            break
-        } else {
+        if (name === "" || name === null){
             alert("You must enter a name!")
+        } else {
+            break
         }
     }
     while (true){
         symbol = prompt("Very well, " + name + ". What symbol do you choose?")
         if (symbol.length > 1){
             alert("You can only have a single character for your symbol!")
-        } else {
+        } else if (symbol === "" || symbol === null){
+            alert("You must choose a symbol!")
+        }else {
             break
         }
     }
@@ -40,7 +96,8 @@ function playerObject(name, icon, color){
         'name': name,
         'icon': icon,
         'color': color,
-        'moves': []
+        'moves': [],
+        'wins': 0
     }
     return object
 }
@@ -96,8 +153,8 @@ function getCurrentPlayer(){
 function somebodyWon(){
     let currentPlayerMoves = currentPlayer.moves
     for (let set of winningMoves){
-        if (set.every(number => {
-            return currentPlayerMoves.indexOf(number) > -1
+        if (set.every(function(number) {
+            return (currentPlayerMoves.indexOf(number) > -1)
         })){
             showWinningCells(set)
             return true
@@ -113,6 +170,8 @@ function showWinningCells(set){
 
 function gameWon(){
     clearClickListeners()
+    currentPlayer.wins++
+    updatePlayerScores()
     restartButton.style.visibility = ""
 }
 
