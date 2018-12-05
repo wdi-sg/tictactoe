@@ -2,7 +2,7 @@ body{
 	background-color: #B1D6FEFF;
 }
 
-#box1, #box2, #box3, #box4, #box5, #box6, #box7, #box8, #box9{
+.box{
 	display: inline-grid;
 }
 
@@ -11,22 +11,18 @@ div{
 	height: 200px;
 	width: 200px;
 	border: 2px solid black;
+	text-align: center;
+	font-size: 180px;
+	font-weight: bold;
+	vertical-align: top;
+	color: red;
+  font-family: 'Helvetica', sans-serif;
 }
 
-.x1{
-	position: absolute;
-	top: 50px;
-	right: 650px;
-	height: 120px;
-	width: 120px;
-	visibility: hidden;
+/*.imgX{
+	background-image: "images/x.png";
 }
 
-.o1{
-	position: absolute;
-	top: 50px;
-	right: 650px;
-	height: 120px;
-	width: 120px;
-	visibility: hidden;
-}
+.imgO{
+	background-image: "images/o.png";
+}*/
