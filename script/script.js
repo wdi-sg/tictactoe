@@ -1,6 +1,19 @@
 var count = 1;
 var arrayOfResult = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
 var isWinning = false;
+var playOnePoint = 0;
+var playTwoPoint = 0;
+
+var updateScore = function(playerNum) {
+    if (playerNum === 1) {
+        playOnePoint = playOnePoint + 1;
+    }
+
+    else {
+        playTwoPoint = playTwoPoint + 1;
+    }
+
+}
 
 var checkForRow = function(num) {
     for (i = 0; i < 3; i++) {
@@ -50,19 +63,30 @@ var checkWinning = function() {
     }
 
     if (checkForColumn(playerNum)) {
-        alert("Player " + playerNum + " is the winner");
+        updateScore(playerNum);
+        alert("Player " + playerNum + " is the winner.\n"
+            + "Player 1 score: " + playOnePoint + ".\n"
+            + "Player 2 score: " + playTwoPoint + ".");
     }
 
     else if (checkForRow(playerNum)) {
-        alert("Player " + playerNum + " is the winner");
+        updateScore(playerNum);
+        alert("Player " + playerNum + " is the winner.\n"
+            + "Player 1 score: " + playOnePoint + ".\n"
+            + "Player 2 score: " + playTwoPoint + ".");
     }
 
     else if (checkForDiagonal(playerNum)) {
-        alert("Player " + playerNum + "is the winner");
+        updateScore(playerNum);
+        alert("Player " + playerNum + " is the winner.\n"
+            + "Player 1 score: " + playOnePoint + ".\n"
+            + "Player 2 score: " + playTwoPoint + ".");
     }
 
     else if (count === 9) {
-        alert("It is a draw");
+        alert("It is a draw .\n"
+            + "Player 1 score: " + playOnePoint + ".\n"
+            + "Player 2 score: " + playTwoPoint + ".");
     }
 }
 
@@ -71,7 +95,7 @@ var changeImg = function() {
         var idNum = parseInt(this.id);
         var row = Math.floor(idNum / 3);
         var column = idNum % 3;
-        if (arrayOfResult[row][column] === 0) {
+        if (arrayOfResult[row][column] === 0 && !isWinning) {
             this.style.backgroundImage = "url(cross.png)";
             arrayOfResult[row][column] = 1;
             checkWinning();
@@ -83,7 +107,7 @@ var changeImg = function() {
         var idNum = parseInt(this.id);
         var row = Math.floor(idNum / 3);
         var column = idNum % 3;
-        if (arrayOfResult[row][column] === 0) {
+        if (arrayOfResult[row][column] === 0 && !isWinning) {
             this.style.backgroundImage = "url(tick.png)";
             arrayOfResult[row][column] = 2;
             checkWinning();
@@ -92,9 +116,26 @@ var changeImg = function() {
     }
 }
 
+var refresh = function () {
+    var buttonArray = document.querySelectorAll(".normal")
+    for (i = 0; i < buttonArray.length; i++) {
+        var button = buttonArray[i];
+        button.style.backgroundImage = "url(blank.png)";
+        button.addEventListener("click", changeImg);
+    }
+    count = 1;
+    arrayOfResult = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+    isWinning = false;
+}
+
 for (i = 0; i < 9; i++) {
-    var button = document.querySelectorAll("button")[i];
+    var button = document.querySelectorAll(".normal")[i];
 
     button.addEventListener("click", changeImg);
 }
+
+var refreshButton = document.querySelector("#refresh");
+refreshButton.addEventListener("click", refresh);
+
+
 
