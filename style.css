@@ -3,20 +3,20 @@ body {
 }
 
 .gameBoard {
-    height: 600px;
-    width: 600px;
+    height: 800px;
+    width: 800px;
 }
 
 .box {
-    width: 33%;
-    height: 33%;
+ /*   width: 33%;
+    height: 33%;*/
     background-color: black;
     border: 1px solid white;
     display: inline-block;
     margin-bottom: -5px;
     overflow: hidden;
     color: white;
-    font-size: 150px;
+    font-size: 1250%;
     text-align: center;
 }
 
