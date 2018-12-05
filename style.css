@@ -1,0 +1,37 @@
+/*.box {
+	width: 100px;
+	height: 100px;
+	background-color: grey;
+	font-size: 100px;
+	text-align: center;
+}
+
+#box1 {
+	font-size: 100px;
+	text-align: center;
+}*/
+
+.wrapper {
+	margin: 0 auto;
+	width: 500px;
+}
+
+
+h1 {
+	font-size: 100px;
+}
+
+.grid {
+  display: flex;                       /* establish flex container */
+  flex-wrap: wrap;                     /* enable flex items to wrap */
+  justify-content: space-around;
+
+}
+.box {
+  flex: 0 0 32%;                       /* don't grow, don't shrink, width */
+  height: 100px;
+  margin-bottom: 5px;
+  background-color: #999;
+  font-size: 80px;
+	text-align: center;
+}
