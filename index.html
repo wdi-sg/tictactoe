@@ -3,28 +3,40 @@
 <head>
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script2.js"></script>
 </head>
 <body>
-<!-- create a game board
-    player 1 name
-    player 2 name
-    9 game buttons
-    1 restart button -->
     <h1>Tic Tac Toe</h1>
-    <h2 id="Player1">Player 1: name</h2>
-    <h2 id="Player2">Player 2: name</h2>
+    <div id ="player1">
+        <h2 id="player1Name">Name</h2>
+        <h2 id="player1Maker">X</h2>
+        <h2 id="player1Score">Score : 0</h2>
+    </div>
+    <div id ="player2">
+        <h2 id="player2Name">Name</h2>
+        <h2 id="player2Maker">O</h2>
+        <h2 id="player2Score">Score : 0</h2>
+    </div>
+        <h3 id = "turns">Waiting for Player 1's move...</h3>
     <div class ="square">
-        <button class = "gameButtons" id ="0">0</button>
-        <button class = "gameButtons" id ="1">1</button>
-        <button class = "gameButtons" id ="2">2</button>
+        <div class = row1>
+            <button class = "gameButtons" id ="0">0</button>
+            <button class = "gameButtons" id ="1">1</button>
+            <button class = "gameButtons" id ="2">2</button>
+        </div>
+        <div class = row2>
         <button class = "gameButtons" id ="3">3</button>
         <button class = "gameButtons" id ="4">4</button>
         <button class = "gameButtons" id ="5">5</button>
+        </div>
+        <div class = row3>
         <button class = "gameButtons" id ="6">6</button>
         <button class = "gameButtons" id ="7">7</button>
         <button class = "gameButtons" id ="8">8</button>
+        </div>
     </div>
-    <button id ="reset">Reset Board</button>
-    <script src="script.js"></script>
+    <button id ="start">Start Game</button>
+    <button id ="reset">Clear board</button>
+
 </body>
 </html>

@@ -1,39 +1,65 @@
 body {
-/*    margin: 0 auto;*/
-    width: 40%;
+    margin: 0 auto;
     text-align: center;
+    font-family: "Comic Sans MS";
 }
 
 h1 {
-/*    border: 2px solid black;*/
     font-size: 50px;
-    margin: 2px;
+    margin: 10px;
 }
 
 h2 {
     display: inline-block;
-    border: 2px solid black;
-    margin: 2px;
+    margin: 10px 20px 10px;
+}
+
+h3 {
+    display: inline-block;
+    margin: 10px 20px 10px;
+    color: blue ;
+}
+
+.row1, .row2, .row3 {
+    height: 90px;
+    position: relative;
+    display: block;
+    font-size : 0;
 }
 
 .gameButtons {
-    height: 200px;
-    width: 200px;
-    padding: 0;
+    height: 90px;
+    width: 100px;
+    border: solid grey;
     background-color: white;
+    padding: 0;
     display: inline-block;
-    border: 2px solid black;
-    vertical-align: top;
+    font-size: 20px;
     color: white;
-    font-size: 200px;
+    margin: 0;
+/*    vertical-align: top;*/
+}
+
+
+#1,#2,#3,#4,#5,#6,#7,#8 {
+    position: absolute;
+
 }
 
 .marker {
     font-size: 50px;
 }
 
+#start {
+    margin : 20px;
+    font-size: 20px;
+    padding: 5px 20px;
+    background-color: red;
+    color: white;
+}
 
 #reset {
+    margin : 20px;
     font-size: 20px;
     padding: 5px 20px;
     background-color: red;
