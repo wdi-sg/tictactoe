@@ -104,7 +104,7 @@ hoverButton();
 
 function restartButton() {
     document.getElementById("restartButton").addEventListener("click", function(){
-        turns = 0;
+        turn = 0;
         for(var i = 0; i < entryItems.length; i++){
         entryItems[i].textContent="?";
         entryItems[i].style.color="black";

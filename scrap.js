@@ -124,3 +124,117 @@ var addEntry = function(event) {
     }
     determineEntries();
 }
+
+var comparison = function (startPoint,width, pattern){
+    var comparisonTest = [];
+
+    for (var i=startPoint; i<(width*width); i+=pattern) {
+
+        var value = document.querySelectorAll(".entry")[i].innerText;
+ comparisonTest.push(value);
+    }
+
+    alert(comparisonTest);
+}
+
+var comparisonTest = [];
+
+for (var i=0; i<9; i+2) {
+    comparisonTest.push(document.querySelectorAll(".entry")[i].innerText);
+}
+
+var outcome =[
+    [0,0,0],
+    [0,0,0],
+    [0,0,0]
+];
+
+var addEntry = function(event) {
+    outcome[0][0] = document.querySelectorAll(".entry")[0].innerText;
+    outcome[0][1] = document.querySelectorAll(".entry")[1].innerText;
+    outcome[0][2] = document.querySelectorAll(".entry")[2].innerText;
+
+    outcome[1][0] = document.querySelectorAll(".entry")[3].innerText;
+    outcome[1][1] = document.querySelectorAll(".entry")[4].innerText;
+    outcome[1][2] = document.querySelectorAll(".entry")[5].innerText;
+
+    outcome[2][0] = document.querySelectorAll(".entry")[6].innerText;
+    outcome[2][1]  = document.querySelectorAll(".entry")[7].innerText;
+    outcome[2][2]  = document.querySelectorAll(".entry")[8].innerText;
+    if ((document.querySelectorAll(".entry")[0].innerText == document.querySelectorAll(".entry")[1].innerText) && (document.querySelectorAll(".entry")[0].innerText== document.querySelectorAll(".entry")[2].innerText) && (document.querySelectorAll(".entry")[0].innerText == "x")) {
+        updateResult("X");
+    } else if ((document.querySelectorAll(".entry")[3].innerText == document.querySelectorAll(".entry")[4].innerText) && (document.querySelectorAll(".entry")[3].innerText== document.querySelectorAll(".entry")[5].innerText) && (document.querySelectorAll(".entry")[3].innerText == "x")){
+        updateResult("X");
+    } else if ((document.querySelectorAll(".entry")[6].innerText == document.querySelectorAll(".entry")[7].innerText) && (document.querySelectorAll(".entry")[6].innerText== document.querySelectorAll(".entry")[8].innerText) && (document.querySelectorAll(".entry")[6].innerText == "x")) {
+        updateResult("X");
+    } else if ((document.querySelectorAll(".entry")[0].innerText == document.querySelectorAll(".entry")[3].innerText) && (document.querySelectorAll(".entry")[0].innerText== document.querySelectorAll(".entry")[6].innerText) && (document.querySelectorAll(".entry")[0].innerText == "x")) {
+        updateResult("X");
+    } else if ((document.querySelectorAll(".entry")[1].innerText == document.querySelectorAll(".entry")[4].innerText) && (document.querySelectorAll(".entry")[1].innerText== document.querySelectorAll(".entry")[7].innerText) && (document.querySelectorAll(".entry")[1].innerText == "x")){
+        updateResult("X");
+    } else if ((document.querySelectorAll(".entry")[2].innerText == document.querySelectorAll(".entry")[5].innerText) && (document.querySelectorAll(".entry")[2].innerText== document.querySelectorAll(".entry")[8].innerText) && (document.querySelectorAll(".entry")[2].innerText == "x")){
+        updateResult("X");
+    } else if ((document.querySelectorAll(".entry")[0].innerText == document.querySelectorAll(".entry")[4].innerText) && (document.querySelectorAll(".entry")[0].innerText== document.querySelectorAll(".entry")[8].innerText) && (document.querySelectorAll(".entry")[0].innerText == "x")){
+        updateResult("X");
+    } else if ((document.querySelectorAll(".entry")[2].innerText == document.querySelectorAll(".entry")[4].innerText) && (document.querySelectorAll(".entry")[2].innerText== document.querySelectorAll(".entry")[6].innerText) && (document.querySelectorAll(".entry")[2].innerText == "x")){
+        updateResult("X");
+    } else if ((document.querySelectorAll(".entry")[0].innerText == document.querySelectorAll(".entry")[1].innerText) && (document.querySelectorAll(".entry")[0].innerText== document.querySelectorAll(".entry")[2].innerText) && (document.querySelectorAll(".entry")[0].innerText == "o")) {
+        updateResult("O");
+    } else if ((document.querySelectorAll(".entry")[3].innerText == document.querySelectorAll(".entry")[4].innerText) && (document.querySelectorAll(".entry")[3].innerText== document.querySelectorAll(".entry")[5].innerText) && (document.querySelectorAll(".entry")[3].innerText == "o")){
+        updateResult("O");
+    } else if ((document.querySelectorAll(".entry")[6].innerText == document.querySelectorAll(".entry")[7].innerText) && (document.querySelectorAll(".entry")[6].innerText== document.querySelectorAll(".entry")[8].innerText) && (document.querySelectorAll(".entry")[6].innerText == "o")) {
+        updateResult("O");
+    } else if ((document.querySelectorAll(".entry")[0].innerText == document.querySelectorAll(".entry")[3].innerText) && (document.querySelectorAll(".entry")[0].innerText== document.querySelectorAll(".entry")[6].innerText) && (document.querySelectorAll(".entry")[0].innerText == "o")) {
+        updateResult("O");
+    } else if ((document.querySelectorAll(".entry")[1].innerText == document.querySelectorAll(".entry")[4].innerText) && (document.querySelectorAll(".entry")[1].innerText== document.querySelectorAll(".entry")[7].innerText) && (document.querySelectorAll(".entry")[1].innerText == "o")){
+        updateResult("O");
+    } else if ((document.querySelectorAll(".entry")[2].innerText == document.querySelectorAll(".entry")[5].innerText) && (document.querySelectorAll(".entry")[2].innerText== document.querySelectorAll(".entry")[8].innerText) && (document.querySelectorAll(".entry")[2].innerText == "o")){
+        updateResult("O");
+    } else if ((document.querySelectorAll(".entry")[0].innerText == document.querySelectorAll(".entry")[4].innerText) && (document.querySelectorAll(".entry")[0].innerText== document.querySelectorAll(".entry")[8].innerText) && (document.querySelectorAll(".entry")[0].innerText == "o")){
+        updateResult("O");
+    } else if ((document.querySelectorAll(".entry")[2].innerText == document.querySelectorAll(".entry")[4].innerText) && (document.querySelectorAll(".entry")[2].innerText== document.querySelectorAll(".entry")[6].innerText) && (document.querySelectorAll(".entry")[2].innerText == "o")){
+        updateResult("O");
+    } else if (turn >= 9) {
+        document.querySelector("#result").textContent = "It's a draw.";
+    } else if (turn%2==0) {
+        addX(event);
+        turn++;
+    } else   {
+        addO(event);
+        turn++;
+    }
+}
+
+
+((outcome[0][0] == outcome[0][1]) && (outcome[0][0]== outcome[0][2]) && (outcome[0][0] == "x")) {
+        updateResult("X");
+    } else if ((outcome[1][0] == outcome[1][1]) && (outcome[1][0]== outcome[1][2]) && (outcome[1][0] == "x")){
+        updateResult("X");
+    } else if ((outcome[2][0] == outcome[2][1]) && (outcome[2][0]== outcome[2][2]) && (outcome[2][0] == "x")) {
+        updateResult("X");
+    } else if ((outcome[0][0] == outcome[1][0]) && (outcome[0][0]== outcome[2][0]) && (outcome[0][0] == "x")) {
+        updateResult("X");
+    } else if ((outcome[0][1] == outcome[1][1]) && (outcome[0][1]== outcome[2][1]) && (outcome[0][1] == "x")){
+        updateResult("X");
+    } else if ((outcome[0][2] == outcome[1][2]) && (outcome[0][2]== outcome[2][2]) && (outcome[0][2] == "x")){
+        updateResult("X");
+    } else if ((outcome[0][0] == outcome[1][1]) && (outcome[0][0]== outcome[2][2]) && (outcome[0][0] == "x")){
+        updateResult("X");
+    } else if ((outcome[0][2] == outcome[1][1]) && (outcome[0][2]== outcome[2][0]) && (outcome[0][2] == "x")){
+        updateResult("X");
+        //end of x results
+    } else if ((outcome[0][0] == outcome[0][1]) && (outcome[0][0]== outcome[0][2]) && (outcome[0][0] == "o")) {
+        updateResult("O");
+    } else if ((outcome[1][0] == outcome[1][1]) && (outcome[1][0]== outcome[1][2]) && (outcome[1][0] == "o")){
+        updateResult("O");
+    } else if ((outcome[2][0] == outcome[2][1]) && (outcome[2][0]== outcome[2][2]) && (outcome[2][0] == "o")) {
+        updateResult("O");
+    } else if ((outcome[0][0] == outcome[1][0]) && (outcome[0][0]== outcome[2][0]) && (outcome[0][0] == "o")) {
+        updateResult("O");
+    } else if ((outcome[0][1] == outcome[1][1]) && (outcome[0][1]== outcome[2][1]) && (outcome[0][1] == "o")){
+        updateResult("O");
+    } else if ((outcome[0][2] == outcome[1][2]) && (outcome[0][2]== outcome[2][2]) && (outcome[0][2] == "o")){
+        updateResult("O");
+    } else if ((outcome[0][0] == outcome[1][1]) && (outcome[0][0]== outcome[2][2]) && (outcome[0][0] == "o")){
+        updateResult("O");
+    } else if ((outcome[0][2] == outcome[1][1]) && (outcome[0][2]== outcome[2][0]) && (outcome[0][2] == "o")){
+        updateResult("O");
