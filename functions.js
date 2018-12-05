@@ -14,24 +14,6 @@ var grid = [[0,0,0],
             [0,0,0],
             [0,0,0]];
 
-
-window.onload = function (){
-    var button = document.getElementsByTagName("button");
-    button.textContent = "Start!"
-    button.addEventListener("click", startGame)
-}
-
-// add event listeners to all grid boxes
-function startGame(){
-    var wholeGrid = document.querySelector("main");
-    var boxes = document.querySelectorAll(".box");
-
-    for (var i=0; i< boxes.length; i++){
-         console.log(boxes[i]);
-         boxes[i].addEventListener("click", game);
-    }
-}
-
 // global variables
 
 var num;
@@ -41,6 +23,37 @@ var playerX = [];
 var playerO =[];
 var ifWinning = false;
 var noOfTurns = 0;
+
+
+// initalised during load
+
+window.onload = function (){
+    // add button to initalise game
+    var button = document.querySelector("button");
+    button.textContent = "Start!";
+    button.addEventListener("click", startGame);
+
+    document.getElementsByTagName("p")[0].textContent = "Click start to play!";
+}
+
+
+// add event listeners to all grid boxes
+function startGame(){
+    // removes button
+    var buttonDiv = document.querySelector(".button");
+    var button = document.querySelector("button");
+    buttonDiv.removeChild(button);
+
+    var wholeGrid = document.querySelector("main");
+    var boxes = document.querySelectorAll(".box");
+
+    for (var i=0; i< boxes.length; i++){
+         console.log(boxes[i]);
+         boxes[i].addEventListener("click", game);
+    }
+
+    document.getElementsByTagName("p")[0].textContent = "Ready when you are!";
+}
 
 
 // actual game
@@ -57,6 +70,7 @@ function game(){
             if (noOfTurns % 2 !== 0) { //comes later
                 player = "X";
                 this.innerHTML = "X";
+                this.style.backgroundColor = "#C3FFCD";
                 document.getElementsByTagName("p")[0].textContent = "It's Player O's turn.";
                 appendGridList();
                 console.log(grid);
@@ -67,7 +81,8 @@ function game(){
                     ifWinning = checkWin(playerX);
                     if (ifWinning){
                         console.log("yay");
-                        document.getElementsByTagName("p")[0].textContent = "Player X wins!";
+                        document.getElementsByTagName("p")[0].textContent = "Player X wins! Try again?";
+                        resetPrompt();
                     } else{
                         console.log("nooo");
                     }
@@ -77,6 +92,7 @@ function game(){
              else { //comes first
                 player = "O";
                 this.innerHTML = "O";
+                this.style.backgroundColor = "#D1ACA6";
                 document.getElementsByTagName("p")[0].textContent = "It's Player X's turn.";
                 appendGridList(player);
                 console.log(grid);
@@ -88,7 +104,8 @@ function game(){
                     ifWinning = checkWin(playerO);
                     if (ifWinning){
                         console.log("yay");
-                        document.getElementsByTagName("p")[0].textContent = "Player O wins!";
+                        document.getElementsByTagName("p")[0].textContent = "Player O wins! Try again?";
+                        resetPrompt();
                     } else{
                         console.log("nooo");
                     }
@@ -98,11 +115,13 @@ function game(){
         }
 
         if (noOfTurns === 9 && !ifWinning){
-            document.getElementsByTagName("p")[0].textContent = "No turns left. It's a draw! Try again.";
+            document.getElementsByTagName("p")[0].textContent = "No turns left. It's a draw! Try again?";
+            resetPrompt();
         }
 
     } else {
-        document.getElementsByTagName("p")[0].textContent = "The game has ended. Try again.";
+        document.getElementsByTagName("p")[0].textContent = "The game has ended. Try again?";
+        resetPrompt();
     }
 }
 
@@ -147,7 +166,7 @@ function checkGridTaken(){
 // thus if it returns -1, it means the value does not exist in playerArr.
 
 function checkWin(playerArray){
-    debugger;
+    // debugger;
     var winning = false;
     for (var winArray of winPossibilities){
         var res = winArray.every(val => playerArray.indexOf(val)  !== -1);
@@ -189,7 +208,38 @@ function checkWin(playerArray){
 //     return false;
 // }
 
-function reset(){
 
+// reset the whole game to play again
+function resetPrompt(){
+    // reset button
+    var buttonDiv = document.querySelector(".button");
+    var button = document.createElement("button");
+    button.type = "button";
+    button.textContent = "Try again?";
+    buttonDiv.appendChild(button);
+    button.addEventListener("click", reset);
 }
 
+function reset(){
+    // reinitialise the variables
+
+    grid = [[0,0,0],
+            [0,0,0],
+            [0,0,0]];
+    num;
+    remainder;
+    player;
+    playerX = [];
+    playerO =[];
+    ifWinning = false;
+    noOfTurns = 0;
+
+    // reintialise grid contents
+    boxes = document.querySelectorAll(".box");
+    for (var i=0; i<9; i++){
+        boxes[i].textContent = "";
+        boxes[i].style.backgroundColor = "";
+    }
+
+    startGame();
+}
