@@ -3,13 +3,19 @@ html, body {
     padding: auto;
 }
 
+.scoreboard{
+    height:50px;
+    width:500px;
+    text-align: center;
+}
+
 .grid-container{
     display: grid;
     grid-template-columns: auto auto auto;
     max-width:100px;
     height: 100px;
     padding: 100px 0px;
-    margin-top: -130px ;
+    margin-top: -45px ;
 }
 
 .box{
@@ -24,6 +30,10 @@ html, body {
     text-align: center;
 }
 
+.text{
+    color: #005DA3;
+}
+
 main{
     margin: 0 auto;
     width: 500px;
@@ -31,11 +41,12 @@ main{
 
 p{
     height:50px;
-    width:460px;
-    padding: 20px;
+    width:500px;
     text-align: center;
     font-family: "Gamja Flower";
     font-size: 30px;
+    margin: 15px 0;
+    line-height: 10px;
 }
 
 .button{
@@ -47,3 +58,4 @@ button{
     font-family: "Gamja Flower";
     font-size: 18px;
 }
+
