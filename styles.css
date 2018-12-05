@@ -1,203 +1,202 @@
 /* Particle.js background CSS stuff starts here */
 
 #particle {
-    background-color: #d46ebc;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 0;
+	background-color: #d46ebc;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 0;
 }
 
 #overlay {
-    position: relative;
+	position: relative;
+	display: flex;
+	flex-direction: column;
 }
 
 /* Particle.js CSS Stuff Ends here */
 
 /* My CSS definition starts here */
 
-header {
+/* body {
+		max-width: 100vw;
+} */
+/* header {
 	max-width : 90vw;
   margin: auto;
-}
+} */
 
 h1 {
-    text-align: center;
-    font-weight: bold;
-    color: rgb(240, 230, 239);
-		text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
-		margin: 2px;
+	text-align: center;
+	font-weight: bold;
+	color: rgb(240, 230, 239);
+	text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
+	margin: 18px;
+	font-size: 1.6rem;
+	text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
 }
 
 .gameBoard {
-    background: rgb(228, 204, 125);
-    max-width: 90vw;
-    /* border: 2px solid black; */
-    border-width: 5px;
-    padding: 10px;
-    margin: auto;
-    border-radius: 10%;
+	background: rgb(228, 204, 125);
+	border-width: 5px;
+	padding: 10px;
+	margin: auto;
+	border-radius: 10%;
+
 }
 
 .gameBoard-row {
-    display: flex;
+	display: flex;
 }
 
 .gameCell {
-    display: flex;
-    /* padding: .2rem; */
-    border: 10px solid rgb(228, 204, 125);
-    border-radius: 25%;
-    margin: auto;
-    width: 5rem;
-    height: 5rem;
-    align-items: center;
-    font-size: 100px;
-    text-align: center;
+	display: flex;
+	border: 5px solid rgb(228, 204, 125);
+	border-radius: 25%;
+	margin: auto;
+	width: 4.5rem;
+	height: 4.5rem;
+	align-items: center;
+	font-size: 100px;
+	color: white;
+	padding: 6px;
+	text-align: center;
+	text-align: -moz-center;
+	text-align: -webkit-center;
 }
 
 .gameCell-color {
-    background-color: rgb(88, 214, 136);
+	background-color: rgb(88, 214, 136);
 }
 
 .gameCell-flip-color {
-    background-color: rgb(88, 128, 214);
-    transform: rotateY(180deg);
-    transition: 0.6s;
-    transform-style: preserve-3d;
-    position: relative;
+	background-color: rgb(88, 128, 214);
+	transform: rotateY(180deg);
+	transition: 0.6s;
+	transform-style: preserve-3d;
+	position: relative;
 }
 
-/* Temporary define as hover function
-	 Will be use when user click on the cell
-*/
-
-.player1 {
-    background-color: rgb(88, 128, 214);
-    transform: rotateY(180deg);
-    transition: 0.6s;
-    transform-style: preserve-3d;
-    position: relative;
+.player1-flip {
+	background-color: rgb(21, 185, 250);
+	transform: rotateY(180deg);
+	transition: 0.6s;
+	transform-style: preserve-3d;
+	position: relative;
 }
 
-.player2 {
-    background-color: rgb(250, 21, 193);
-    transform: rotateY(180deg);
-    transition: 0.6s;
-    transform-style: preserve-3d;
-    position: relative;
-}
-
-/* .gameCell-content {
-	font-size: 100px;
-	text-align: center;
-} */
-
-button {
-    cursor: pointer;
-}
-
-/* Smaller devices */
-
-/* @media (min-width: 20rem) {
-    h1 {
-        font-size: 2rem;
-    }
-    .gameBoard {
-        max-width: 90vw;
-
-    }
-    .gameCell {
-
-        width: 6rem;
-				height: 6rem;
-				font-size: 120px;
-    }
-} */
-
-/* ipad */
-
-@media (min-width: 40rem) {
-    h1 {
-        font-size: 4rem;
-    }
-    .gameBoard {
-        max-width: 50vw;
-        /* padding: 20px; */
-    }
-    .gameCell {
-        /* padding: 5rem; */
-        width: 8rem;
-        height: 8rem;
-        font-size: 140px;
-    }
-}
-
-/* iPad Pro */
-
-/* @media (min-width: 48rem) {
-    h1 {
-        font-size: 5rem;
-    }
-    .gameBoard {
-        max-width: 50vw;
-    }
-    .gameCell {
-        width: 8rem;
-        height: 8rem;
-        font-size: 160px;
-    }
-} */
-
-/* Computer Screen */
-
-@media (min-width: 70rem) {
-    h1 {
-        font-size: 3rem;
-    }
-    .gameBoard {
-        max-width: 50vw;
-    }
-    .gameCell {
-        width: 8rem;
-        height: 8rem;
-        font-size: 160px;
-    }
+.player2-flip {
+	background-color: rgb(250, 21, 193);
+	transform: rotateY(180deg);
+	transition: 0.6s;
+	transform-style: preserve-3d;
+	position: relative;
 }
 
 #resetButton {
-    /* padding: 10px; */
-    font-size: 1rem;
-    font-weight: 800;
-    background-color: rgb(160, 12, 37);
-    color: white;
-    border-radius: 25%;
-    margin: 10px;
-    padding: 10px;
-		width: 6rem;
-		outline: none;
-		/* border: none; */
+	/* padding: 10px; */
+	font-size: .75rem;
+	font-weight: 800;
+	background-color: rgb(160, 12, 37);
+	color: white;
+	border-radius: 25%;
+	margin: 10px;
+	padding: 10px;
+	width: 6rem;
+	outline: none;
+	cursor: pointer;
 }
 
-#resetButton:hover {
-		background-color: rgb(26, 91, 231);
-}
+/* #resetButton:hover {
+	background-color: rgb(26, 91, 231);
+} */
 
-/* .clearfix::after {
-	  content: "";
-	  clear: both;
-	  display: table;
-	} */
 
 .msg {
 	display: flex;
-
+	border-width: 20px;
+	/* margin: 30px; */
 }
 
 #msgBoard {
 	color: red;
 	font-weight: 900;
 	font-size: 1rem;
+}
+
+/* ipad */
+
+/* ----------- iPad 3, 4 and Pro 9.7" ----------- */
+
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+	h1 {
+		font-size: 3rem;
+	}
+
+	.gameCell {
+
+		width: 5.5rem;
+		height: 5.5rem;
+		font-size: 8rem;
+		padding: 0.5rem;
+		border-width: 15px;
+	}
+
+	#msgBoard {
+		color: red;
+		font-weight: 900;
+		font-size: 1.5rem;
+	}
+
+	#resetButton {
+		font-size: 1.1rem;
+		width: 7rem;
+		margin: 20px;
+	}
+}
+
+
+/* iPad Pro */
+
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+
+	h1 {
+		font-size: 3rem;
+	}
+
+	.gameCell {
+
+		width: 6rem;
+		height: 6rem;
+		font-size: 9rem;
+		padding: 1rem;
+		border-width: 20px;
+	}
+
+	#msgBoard {
+		color: red;
+		font-weight: 900;
+		font-size: 1.5rem;
+	}
+
+	#resetButton {
+		font-size: 1.1rem;
+		width: 7rem;
+		margin: 20px;
+	}
 }

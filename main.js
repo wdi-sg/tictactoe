@@ -116,14 +116,17 @@ particlesJS("particle", particleOptions);
 // My Code starts here
 
 let gameBoard = [];
+const playerList = ['O', 'X']
 let currentPlayer = 0;
 const player1 = 0;
 const player2 = 1;
+let gameOver = false;
 let msgBoard = document.getElementById('msgBoard');
 
 function setupGameBoard() {
 
     currentPlayer = 0;
+    gameOver = false;
 
     var gameCells = document.getElementsByClassName('gameCell');
     var winnerMessage = document.getElementById('winnerMessage');
@@ -136,9 +139,17 @@ function setupGameBoard() {
     for (var i = 0; i < gameCells.length; i++) {
         gameCells[i].textContent = ""
 
-        if (gameCells[i].classList.contains('gameCell-flip-color')) {
-            gameCells[i].classList.toggle('gameCell-flip-color');
+        // if (gameCells[i].classList.contains('gameCell-flip-color')) {
+        //     gameCells[i].classList.toggle('gameCell-flip-color');
+        // }
+        if (gameCells[i].classList.contains('player1-flip')) {
+            gameCells[i].classList.remove('player1-flip');
         }
+
+        if (gameCells[i].classList.contains('player2-flip')) {
+            gameCells[i].classList.remove('player2-flip');
+        }
+
     }
 
     gameBoard = [
@@ -169,11 +180,18 @@ function checkDiagonal(player) {
     noOfTiles = 0;
 
     // } if ((rowNo === 0 && columnNo === 2) || (rowNo === 2 && columnNo === 0)) {
-    for (var i = 2; i >= 1; i--) {
-        if (gameBoard[i][i] === player) {
+    j = 2;
+
+    for (var i = 0; i < 3; i++) {
+
+        if (gameBoard[i][j] === player) {
             noOfTiles += 1;
         }
+
+        j--;
+
     }
+
     // }
 
     if (noOfTiles === 3) {
@@ -196,7 +214,6 @@ function checkRowColumn(player, rowNo, columnNo) {
 
     }
 
-
     if (noOfTiles === 3) {
         return true
     }
@@ -218,33 +235,44 @@ function checkRowColumn(player, rowNo, columnNo) {
 
 function checkWinner(player, rowNo, columnNo) {
 
-    if ((rowNo === 0 && columnNo === 0) ||
-        (rowNo === 0 && columnNo === 2) ||
-        (rowNo === 2 && columnNo === 0) ||
-        (rowNo === 2 && columnNo === 2) ||
-        (rowNo === 1 && columnNo === 1)) {
-        if (checkRowColumn(player, rowNo, columnNo)) {
-            return true
-        } else if (checkDiagonal(player)) {
-            return true
-        } else {
-            return false
-        }
+    // if ((rowNo === 0 && columnNo === 0) ||
+    //     (rowNo === 0 && columnNo === 2) ||
+    //     (rowNo === 2 && columnNo === 0) ||
+    //     (rowNo === 2 && columnNo === 2) ||
+    //     (rowNo === 1 && columnNo === 1)) {
+    if (checkRowColumn(player, rowNo, columnNo)) {
+        return true
+    } else if (checkDiagonal(player)) {
+        return true
     } else {
-        // console.log('i waz ere');
-        if (checkRowColumn(player, rowNo, columnNo)) {
-            return true
-        } else {
-            return false
-        }
+        return false
     }
+    //     } else {
+    //         // console.log('i waz ere');
+    //         if (checkRowColumn(player, rowNo, columnNo)) {
+    //             return true
+    //         } else {
+    //             return false
+    //         }
+    //     }
 }
 
 function flipCell(e) {
+
     var cellInfo = e.target.getAttribute("data-cell");
     var cellData = e.target.textContent.trim();
 
-    e.target.classList.toggle('gameCell-flip-color');
+    if (gameOver) {
+        return
+    }
+
+    if (currentPlayer === player1) {
+        e.target.classList.toggle('player1-flip');
+    } else {
+        e.target.classList.toggle('player2-flip');
+    }
+
+    // e.target.classList.toggle('gameCell-flip-color');
 
     if (!cellData || cellData == null) {
         cellInfo = cellInfo.split("-");
@@ -252,29 +280,29 @@ function flipCell(e) {
         columnNo = parseInt(cellInfo[1]);
 
         gameBoard[rowNo][columnNo] = currentPlayer;
+        e.target.textContent = playerList[currentPlayer];
 
         msgBoard.textContent = "";
 
-        var gameOver = false;
+        // var gameOver = false;
 
         if (checkWinner(currentPlayer, rowNo, columnNo)) {
             msgBoard.textContent = "Player " + currentPlayer + " have Won";
             gameOver = true;
-        }
+        } else {
+            if (currentPlayer === player1) {
+                currentPlayer = player2;
 
-        if (currentPlayer === player1) {
-            e.target.textContent = "O";
-            currentPlayer = player2;
-
-        } else if (currentPlayer === player2) {
-            gameBoard[rowNo][columnNo] = currentPlayer;
-            e.target.textContent = "X";
-            currentPlayer = player1;
-        }
-
-        if (!gameOver) {
+            } else if (currentPlayer === player2) {
+                currentPlayer = player1;
+            }
             msgBoard.textContent = "Current Player is : " + currentPlayer;
         }
+
+
+        // if (!gameOver) {
+        //     msgBoard.textContent = "Current Player is : " + currentPlayer;
+        // }
 
 
 
