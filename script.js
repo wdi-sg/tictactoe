@@ -26,7 +26,7 @@ var playerTurn = function(event) {
     }
     player++;
     checkForWinner();
-    console.log(event.target)
+    console.log(event.target);
 }
 
 
@@ -59,15 +59,21 @@ var checkForWinner = function() {
         if ((playerX.clicks.includes(winMoves[i][0])) && (playerX.clicks.includes(winMoves[i][1])) && (playerX.clicks.includes(winMoves[i][2]))) {
             setTimeout(function() {
                 alert('Blue Wins');
-        }, 50);
+            }, 50);
+            playerX.score += 1;
+            boxes.forEach(function(box){
+                box.removeEventListener('click', playerTurn);
+        })
         }
         else if ((playerO.clicks.includes(winMoves[i][0])) && (playerO.clicks.includes(winMoves[i][1])) && (playerO.clicks.includes(winMoves[i][2]))) {
-            setTImeout(function() {
-            alert('Yellow Wins');
+            setTimeout(function() {
+                alert('Yellow Wins');
             }, 50);
+            boxes.forEach(function(box){
+                box.removeEventListener('click', playerTurn);
+            })
         }
-    };
-    boxes.removeEventListener('click', playerTurn);
+    }
 }
 
 makeGrid();
