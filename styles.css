@@ -33,8 +33,8 @@ h1 {
 	font-weight: bold;
 	color: rgb(240, 230, 239);
 	text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
-	margin: 18px;
-	font-size: 1.6rem;
+	margin: 10px;
+	font-size: 1.4rem;
 	text-shadow: 0 1px 0 #ccc,
                0 2px 0 #c9c9c9,
                0 3px 0 #bbb,
@@ -67,12 +67,12 @@ h1 {
 	border: 5px solid rgb(228, 204, 125);
 	border-radius: 25%;
 	margin: auto;
-	width: 4.5rem;
-	height: 4.5rem;
+	width: 3.5rem;
+	height: 3.5rem;
 	align-items: center;
 	font-size: 100px;
 	color: white;
-	padding: 6px;
+	padding: 4px;
 	text-align: center;
 	text-align: -moz-center;
 	text-align: -webkit-center;
