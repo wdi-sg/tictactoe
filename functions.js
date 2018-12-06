@@ -243,6 +243,14 @@ function checkWin(playerArray){
 
 // reset the whole game to play again
 function resetPrompt(){
+    // remove eventlistener for boxes so reset won't be repeatedly called
+    var boxes = document.querySelectorAll(".box");
+
+    for (var i=0; i< boxes.length; i++){
+         console.log(boxes[i]);
+         boxes[i].removeEventListener("click", game);
+    }
+
     // reset button
     var buttonDiv = document.querySelector(".button");
     var button = document.createElement("button");
