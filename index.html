@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Tic Tac Toe</title>
+</head>
+<body>
+    <h1>Let's Play Tic Tac Toe</h1>
+    <div class="bunchofbutton">
+        <div class="rowA">
+            <div class="button" id="a1"></div>
+            <div class="button" id="a2"></div>
+            <div class="button" id="a3"></div>
+        </div>
+        <div class="rowB">
+            <div class="button" id="a4"></div>
+            <div class="button" id="a5"></div>
+            <div class="button" id="a6"></div>
+        </div>
+        <div class="rowC">
+            <div class="button" id="a7"></div>
+            <div class="button" id="a8"></div>
+            <div class="button" id="a9"></div>
+        </div>
+    </div>
+        <div class="gamestats">
+            <div class="playerStats" id="player1">
+                <h3 id="p1Name">Player 1</h3>
+                <h3 class="score" id="player1Score">0</h3>
+            </div>
+            <div class="playerStats" id="tie">
+                <h3>Tie Game</h3>
+                <h3 class="score" id=tieScore>0</h3>
+            </div>
+            <div class="playerStats" id="player2">
+                <h3 id="p2Name">Player 2</h3>
+                <h3 class="score" id="player2Score">0</h3>
+
+            </div>
+            <button id="restartButton">New Game</button>
+        </div>
+    <script src="var.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
