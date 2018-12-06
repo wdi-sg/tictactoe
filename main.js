@@ -124,16 +124,24 @@ let gameOver = false;
 let msgBoard = document.getElementById('msgBoard');
 let maxRow = 3;
 let maxColumn = 3;
+let gameCells = document.getElementsByClassName('gameCell');
+let winnerMessage = document.getElementById('winnerMessage');
+let gameCell = document.querySelectorAll('.gameCell');
+let resetButton = document.getElementById('resetButton');
+
+function displayMessage(msg) {
+    msgBoard.textContent = msg;
+}
 
 function setupGameBoard() {
 
     currentPlayer = 1;
     gameOver = false;
 
-    var gameCells = document.getElementsByClassName('gameCell');
-    var winnerMessage = document.getElementById('winnerMessage');
+    // var gameCells = document.getElementsByClassName('gameCell');
+    // var winnerMessage = document.getElementById('winnerMessage');
 
-    msgBoard.textContent = "Current Player is : " + currentPlayer;
+    displayMessage("Current Player is : " + currentPlayer);
 
 
     // console.log(gameCells);
@@ -195,7 +203,8 @@ function winDiagonal(player) {
 
     var noOfTiles = 0;
 
-    j = maxColumn;
+    // Check right bottom corner to upper right corner
+    var j = maxColumn - 1;
 
     for (var i = 0; i < maxRow; i++) {
 
@@ -204,47 +213,32 @@ function winDiagonal(player) {
         }
 
         j--;
-
     }
 
-    if (noOfTiles === 3) {
+    if (noOfTiles === maxColumn) {
+        return true
+    }
+
+    // Check from top left corner to bottom right corner
+
+    noOfTiles = 0;
+
+    for (var i = 0; i < maxRow; i++) {
+
+        if (gameBoard[i][i] === player) {
+            noOfTiles += 1;
+        }
+
+        j--;
+    }
+
+    if (noOfTiles === maxColumn) {
         return true
     } else {
         return false
     }
+
 }
-
-// function checkRowColumn(player, rowNo, columnNo) {
-//     var noOfTiles = 0;
-
-//     // Check column
-
-//     for (var i = 0; i < 3; i++) {
-//         if (gameBoard[i][columnNo] === player) {
-//             noOfTiles += 1;
-
-//         }
-
-//     }
-
-//     if (noOfTiles === 3) {
-//         return true
-//     }
-
-//     noOfTiles = 0;
-
-//     for (var i = 2; i >= 0; i--) {
-//         if (gameBoard[rowNo][i] === player) {
-//             noOfTiles += 1;
-//         }
-//     }
-
-//     if (noOfTiles === 3) {
-//         return true
-//     } else {
-//         return false
-//     }
-// }
 
 function checkWinner(player, rowNo, columnNo) {
 
@@ -260,6 +254,19 @@ function checkWinner(player, rowNo, columnNo) {
 
 }
 
+function changeCellColor(player, cell) {
+
+    if (player === player1) {
+        if (!cell.target.classList.contains('player1-flip')) {
+            cell.target.classList.toggle('player1-flip')
+        }
+    } else if (player === player2) {
+        if (!cell.target.classList.contains('player2-flip')) {
+            cell.target.classList.toggle('player2-flip')
+        }
+    }
+}
+
 function flipCell(e) {
 
     var cellInfo = e.target.getAttribute("data-cell");
@@ -269,26 +276,21 @@ function flipCell(e) {
         return
     }
 
-    if (currentPlayer === player1) {
-        e.target.classList.toggle('player1-flip');
-    } else {
-        e.target.classList.toggle('player2-flip');
-    }
+    changeCellColor(currentPlayer, e);
+
 
     if (!cellData || cellData === null) {
         cellInfo = cellInfo.split("-");
         rowNo = parseInt(cellInfo[0]);
         columnNo = parseInt(cellInfo[1]);
 
+        changeCellColor(currentPlayer, e);
+
         gameBoard[rowNo][columnNo] = currentPlayer;
-        e.target.textContent = playerList[currentPlayer-1];
-
-        msgBoard.textContent = "";
-
-        // var gameOver = false;
+        e.target.textContent = playerList[currentPlayer - 1];
 
         if (checkWinner(currentPlayer, rowNo, columnNo)) {
-            msgBoard.textContent = "Player " + currentPlayer + " have Won";
+            displayMessage("Player " + currentPlayer + " have Won");
             gameOver = true;
         } else {
             if (currentPlayer === player1) {
@@ -297,25 +299,17 @@ function flipCell(e) {
             } else if (currentPlayer === player2) {
                 currentPlayer = player1;
             }
-            msgBoard.textContent = "Current Player is : " + currentPlayer;
+            displayMessage("Current Player is : " + currentPlayer);
         }
 
-
-        // if (!gameOver) {
-        //     msgBoard.textContent = "Current Player is : " + currentPlayer;
-        // }
-
-
-
     } else {
-        msgBoard.textContent = "Cell already clicked";
+        displayMessage("Cell already clicked");
+        changeCellColor(currentPlayer, e);
     }
-
-    // console.log(gameBoard)
 
 }
 
-var gameCell = document.querySelectorAll('.gameCell');
+// var gameCell = document.querySelectorAll('.gameCell');
 
 setupGameBoard();
 
@@ -325,6 +319,6 @@ for (let i = 0; i < gameCell.length; i++) {
     gameCell[i].addEventListener('click', flipCell);
 }
 
-var resetButton = document.getElementById('resetButton');
+// var resetButton = document.getElementById('resetButton');
 
 resetButton.addEventListener('click', setupGameBoard);
