@@ -2,7 +2,6 @@ var gameplay = function(){
     //main component of game logic
     tie+=1
     if(winstate){
-
         console.log("we have a winner");
     }else if(this.innerText === player2Symbol || this.innerText === player1Symbol){
         player1 = !player1;
@@ -24,110 +23,29 @@ var gameplay = function(){
     win7 = a1.innerText +a5.innerText +a9.innerText;
     win8 = a3.innerText +a5.innerText +a7.innerText;
 
-    if(win1 === winP1){
-        console.log(player1Name+" Wins!");
-        restartButtonjs.style.visibility = "visible";
-        winstate = true;
-        p1Score+=1;
-        p1Stats.innerText = p1Score;
-    }else if(win2 === winP1){
-        console.log(player1Name+" Wins!");
-        restartButtonjs.style.visibility = "visible";
-        winstate = true;
-        p1Score+=1;
-        p1Stats.innerText = p1Score;
-    }else if(win3 === winP1){
-        console.log(player1Name+" Wins!");
-        restartButtonjs.style.visibility = "visible";
-        winstate = true;
-        p1Score+=1;
-        p1Stats.innerText = p1Score;
-    }else if(win4 === winP1){
-        console.log(player1Name+" Wins!");
-        restartButtonjs.style.visibility = "visible";
-        winstate = true;
-        p1Score+=1;
-        p1Stats.innerText = p1Score;
-    }else if(win5 === winP1){
-        console.log(player1Name+" Wins!");
-        restartButtonjs.style.visibility = "visible";
-        winstate = true;
-        p1Score+=1;
-        p1Stats.innerText = p1Score;
-    }else if(win6 === winP1){
-        console.log(player1Name+" Wins!");
-        restartButtonjs.style.visibility = "visible";
-        winstate = true;
-        p1Score+=1;
-        p1Stats.innerText = p1Score;
-    }else if(win7 === winP1){
-        console.log(player1Name+" Wins!");
-        restartButtonjs.style.visibility = "visible";
-        winstate = true;
-        p1Score+=1;
-        p1Stats.innerText = p1Score;
-    }else if(win8 === winP1){
-        console.log(player1Name+" Wins!");
-        restartButtonjs.style.visibility = "visible";
-        winstate = true;
-        p1Score+=1;
-        p1Stats.innerText = p1Score;
-
-    }else if(win1 === winP2){
-        console.log(player2Name+" Wins!");
-        restartButtonjs.style.visibility = "visible";
-        winstate = true;
-        p2Score+=1;
-        p2Stats.innerText = p2Score;
-    }else if(win2 === winP2){
-        console.log(player2Name+" Wins!");
-        restartButtonjs.style.visibility = "visible";
-        winstate = true;
-        p2Score+=1;
-        p2Stats.innerText = p2Score;
-    }else if(win3 === winP2){
-        console.log(player2Name+" Wins!");
-        restartButtonjs.style.visibility = "visible";
-        winstate = true;
-        p2Score+=1;
-        p2Stats.innerText = p2Score;
-    }else if(win4 === winP2){
-        console.log(player2Name+" Wins!");
-        restartButtonjs.style.visibility = "visible";
-        winstate = true;
-        p2Score+=1;
-        p2Stats.innerText = p2Score;
-    }else if(win5 === winP2){
-        console.log(player2Name+" Wins!");
-        restartButtonjs.style.visibility = "visible";
-        winstate = true;
-        p2Score+=1;
-        p2Stats.innerText = p2Score;
-    }else if(win6 === winP2){
-        console.log(player2Name+" Wins!");
-        restartButtonjs.style.visibility = "visible";
-        winstate = true;
-        p2Score+=1;
-        p2Stats.innerText = p2Score;
-    }else if(win7 === winP2){
-        console.log(player2Name+" Wins!");
-        restartButtonjs.style.visibility = "visible";
-        winstate = true;
-        p2Score+=1;
-        p2Stats.innerText = p2Score;
-    }else if(win8 === winP2){
-        console.log(player2Name+" Wins!");
-        restartButtonjs.style.visibility = "visible";
-        winstate = true;
-        p2Score+=1;
-        p2Stats.innerText = p2Score;
-    }else if(tie === 9){
-        tieScore =1;
-        tieStats.innerText = tieScore;
-        console.log("Its a tie!")
-        restartButtonjs.style.visibility = "visible";
+    if (winstate == false){
+        if(win1 === winP1 || win2 === winP1 || win3 === winP1 || win4 === winP1 || win5 === winP1 || win6 === winP1 || win7 === winP1 || win8 === winP1){
+            console.log(player1Name+" Wins!");
+            restartButtonjs.style.visibility = "visible";
+            winstate = true;
+            p1Score+=1;
+            p1Stats.innerText = p1Score;
+        }else if(win1 === winP2 || win2 === winP2 || win3 === winP2 || win4 === winP2 || win5 === winP2 || win6 === winP2 || win7 === winP2 || win8 === winP2){
+            console.log(player2Name+" Wins!");
+            restartButtonjs.style.visibility = "visible";
+            winstate = true;
+            p2Score+=1;
+            p2Stats.innerText = p2Score;
+        }else if(tie > 9){
+            tie=0
+            console.log("Its a tie!")
+            restartButtonjs.style.visibility = "visible";
+            tieScore +=1;
+            tieStats.innerText = tieScore;
+        };
     };
 };//end of main game logic
+
 var newGame = function(){
 // this is to reset all button to null
     tie=0;
@@ -148,8 +66,3 @@ for (var i = 0; i <buttonpress.length;i++){
 //button press for new game
 restartButtonjs.addEventListener("click",newGame);
 // End of event listener site
-
-
-
-
-
