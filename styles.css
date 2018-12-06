@@ -51,8 +51,8 @@ h1 {
 
 .gameBoard {
 	background: rgb(228, 204, 125);
-	border-width: 5px;
-	padding: 10px;
+	border-width: 3px;
+	padding: 5px;
 	margin: auto;
 	border-radius: 10%;
 
@@ -64,15 +64,15 @@ h1 {
 
 .gameCell {
 	display: flex;
-	border: 5px solid rgb(228, 204, 125);
+	border: 2px solid rgb(228, 204, 125);
 	border-radius: 25%;
 	margin: auto;
-	width: 3.5rem;
-	height: 3.5rem;
+	width: 3rem;
+	height: 3rem;
 	align-items: center;
-	font-size: 100px;
+	font-size: 80px;
 	color: white;
-	padding: 4px;
+	padding: 3px;
 	text-align: center;
 	text-align: -moz-center;
 	text-align: -webkit-center;
@@ -108,7 +108,7 @@ h1 {
 
 #resetButton {
 	/* padding: 10px; */
-	font-size: .75rem;
+	font-size: .5rem;
 	font-weight: 800;
 	background-color: rgb(160, 12, 37);
 	color: white;
@@ -127,14 +127,14 @@ h1 {
 
 .msg {
 	display: flex;
-	border-width: 20px;
+	border-width: 15px;
 	/* margin: 30px; */
 }
 
 #msgBoard {
 	color: red;
 	font-weight: 900;
-	font-size: 1rem;
+	font-size: .75rem;
 }
 
 /* ipad */
