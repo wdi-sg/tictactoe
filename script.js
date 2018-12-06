@@ -1,13 +1,18 @@
 var currentPlayerDisplay;
-var boardSize;
+var boardSize = 0;
 var boardGridArray;
-var winCon
+var winCon;
 var currentPlayer;
 
 window.onload = function() {
-    boardSize = prompt("Make a x-by-x board. Eg. 9-by-9.\nEnter your desired x value.");
+    while (boardSize == 0) {
+        boardSize = prompt("Make a x-by-x board. Eg. 9-by-9.\nEnter your desired x value.");
+    }
     boardSize = parseInt(boardSize);
-    winCon = prompt("Decide how many in a row will determine a win.\nEnter any value >= 3");
+    winCon = boardSize + 1;
+    while (winCon > boardSize) {
+        winCon = prompt("Decide how many in a row will determine a win.\nEnter any value >= 3");
+    }
     winCon = parseInt(winCon);
     boardGridArray = [];
 
@@ -116,8 +121,12 @@ window.onload = function() {
             }
             if (currentSymbol == "O") {
                 playerCircleScore++;
-            } else {
+                alert("Player Circle Wins!")
+            } else if (currentSymbol == "X") {
                 playerCrossScore++;
+                alert("Player Cross Wins!")
+            } else {
+                alert("game is draw");
             }
             updatePlayersScore();
         }
@@ -125,13 +134,15 @@ window.onload = function() {
         for (var i = 0; i < boardSize; i++) {
             matches = 0;
             for (var j = 0; j < boardSize; j++) {
-                if (boardGridArray[j][i].textContent == currentSymbol) {
-                    matches++;
-                    if (matches >= winCon) {
-                        winMatch();
+                if (!(boardGridArray[j][i] == undefined)) {
+                    if (boardGridArray[j][i].textContent == currentSymbol) {
+                        matches++;
+                        if (matches >= winCon) {
+                            winMatch();
+                        }
+                    } else {
+                        matches = 0;
                     }
-                } else {
-                    matches = 0;
                 }
             }
         }
@@ -139,50 +150,70 @@ window.onload = function() {
         for (var i = 0; i < boardSize; i++) {
             matches = 0;
             for (var j = 0; j < boardSize; j++) {
-                if (boardGridArray[i][j].textContent == currentSymbol) {
-                    matches++;
-                    if (matches >= winCon) {
-                        winMatch();
+                if (!(boardGridArray[i][j] == undefined)) {
+                    if (boardGridArray[i][j].textContent == currentSymbol) {
+                        matches++;
+                        if (matches >= winCon) {
+                            winMatch();
+                        }
+                    } else {
+                        matches = 0;
                     }
-                } else {
-                    matches = 0;
                 }
             }
         }
         //Forward Slants
-        for (var i = 0; i < boardSize - winCon + 1; i++) {
-            for (var j = 0; j < boardSize - winCon + 1; j++) {
+        //iterate y
+        for (var i = 0; i < boardSize; i++) {
+            //iterate x
+            for (var j = 0; j < boardSize; j++) {
                 matches = 0;
+                //iterate how many boxes to check
                 for (var k = 0; k < winCon; k++) {
-                    if (boardGridArray[i + k][j + k].textContent == currentSymbol) {
-                        matches++;
-                        if (matches >= winCon) {
-                            winMatch();
+                    //skips undefined boxes
+                    console.log(i+k, j+k)
+                    if (!(boardGridArray[i+k] == undefined || boardGridArray[i + k][j + k] == undefined)) {
+                        //checks if current box symbol = current player symbol
+                        if (boardGridArray[i + k][j + k].textContent == currentSymbol) {
+                            //add 1 to match  ounter
+                            matches++;
+                            if (matches >= winCon) {
+                                winMatch();
+                            }
                         }
                     }
                 }
-
             }
         }
         //Backward Slants
-        for (var i = 0; i < boardSize - winCon + 1; i++) {
-            for (var j = boardSize-1; j > boardSize - winCon - 1; j--) {
+        for (var i = 0; i < boardSize; i++) {
+            for (var j = boardSize-1; j > 0; j--) {
                 matches = 0;
                 for (var k = 0; k < winCon; k++) {
-                    if (boardGridArray[i + k][j - k].textContent == currentSymbol) {
-                        matches++;
-                        if (matches >= winCon) {
-                            winMatch();
+                    if (!(boardGridArray[i+k] == undefined || boardGridArray[i + k][j - k] == undefined)) {
+                        if (boardGridArray[i + k][j - k].textContent == currentSymbol) {
+                            matches++;
+                            if (matches >= winCon) {
+                                winMatch();
+                            }
                         }
                     }
                 }
+            }
+        }
+        //Draw
+        var allBoxes = document.querySelectorAll("div.box");
+        for (var i = 0; i < allBoxes.length; i++) {
+            if (allBoxes[i].innerHTML == "") {
+                break;
+            } else {
 
             }
         }
     }
 
-    document.querySelector('body').appendChild(currentPlayerDisplay);
-    document.querySelector('body').appendChild(playerCircleScoreDisplay);
-    document.querySelector('body').appendChild(playerCrossScoreDisplay);
-    document.querySelector('body').appendChild(gameBoard);
+    document.querySelector('.container').appendChild(currentPlayerDisplay);
+    document.querySelector('.container').appendChild(playerCircleScoreDisplay);
+    document.querySelector('.container').appendChild(playerCrossScoreDisplay);
+    document.querySelector('.container').appendChild(gameBoard);
 }
