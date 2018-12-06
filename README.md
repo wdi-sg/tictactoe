@@ -43,6 +43,18 @@ else
 ### Further
 - let the player choose their symbol
 
+### Further
+- When one player wins, show them a congratulations screen / animation. Randomize this for every win.
+
+### Further
+- Set a time limit for each move. Player loses if they don't make a move.
+
+### Further
+- Set a time limit for each move. When the player goes above the time limit, make a random move for them.
+
+### Further
+- Use CSS animation to animate filling the board.
+
 ### Further - Dynamic Board
 - Ask the user in the beginning on the game how large of a board they want.
 - Ask them how many in a row they want to qualify as a win
