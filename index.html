@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="script.js"></script>
+  <title>Tic Tac Toe</title>
+</head>
+<body>
+  <h1>Tic Tac Toe</h1>
+  <h2>Turn: <span id="turnIndicator">X</span>'s</h2>
+  <div id="players">
+    <div class="row" id="player1">
+      <h3>X's</h3>
+      <p>Wins: <span id="X_score">0</span></p>
+    </div>
+    <div class="row" id="player2">
+      <h3>O's</h3>
+      <p>Wins: <span id="O_score">0</span></p>
+    </div>
+  </div>
+  <div id="game_board">
+    <div class="column">
+      <span class="game_space" id="space_1"></span>
+      <span class="game_space" id="space_2"></span>
+      <span class="game_space" id="space_3"></span>
+    </div>
+    <div class="column">
+      <span class="game_space" id="space_4"></span>
+      <span class="game_space" id="space_5"></span>
+      <span class="game_space" id="space_6"></span>
+    </div>
+    <div class="column">
+      <span class="game_space" id="space_7"></span>
+      <span class="game_space" id="space_8"></span>
+      <span class="game_space" id="space_9"></span>
+    </div>
+  </div>
+  <div id="controls"><button id="new_game">New Game</button>
+  <button id="reset">Reset</button></div>
+</body>
+</html>
