@@ -1,0 +1,21 @@
+h1{
+	text-align:center;
+}
+
+.boxes{
+	width:150px;
+	height:150px;
+	border:3px solid black;
+	margin:auto;
+	display:;
+	float:left;
+	text-align:center;
+	font-size:130px;
+}
+
+.wrap{
+	max-width:530px;
+	margin:auto;
+	padding-left:60px;
+	padding-top:60px;
+}
