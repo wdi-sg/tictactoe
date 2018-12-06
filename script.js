@@ -40,19 +40,26 @@ window.onload = function() {
     updatePlayersScore();
 
     var playersMove = function() {
-        if (currentPlayer  == "O" && !(this.innerHTML == "X" || this.innerHTML == "O")) {
+        if (currentPlayer  == "O" && (this.innerHTML == "")) {
             this.innerHTML = "O";
+            if (this.innerHTML == "X") {
+                currentPlayerDisplay.innerHTML = "Current Player: Circles";
+            } else if (this.innerHTML == "O") {
+                currentPlayerDisplay.innerHTML = "Current Player: Crosses";
+            }
+            this.style.fontSize = `${Math.floor(800/boardSize)}px`;
             currentPlayer = "X";
-        } else if (!(this.innerHTML == "X" || this.innerHTML == "O")) {
+        } else if (currentPlayer  == "X" && (this.innerHTML == "")) {
             this.innerHTML = "X";
+            if (this.innerHTML == "X") {
+                currentPlayerDisplay.innerHTML = "Current Player: Circles";
+            } else if (this.innerHTML == "O") {
+                currentPlayerDisplay.innerHTML = "Current Player: Crosses";
+            }
+            this.style.fontSize = `${Math.floor(800/boardSize)}px`;
             currentPlayer = "O";
         }
         checkWins(this.innerHTML);
-        if (this.innerHTML == "X") {
-            currentPlayerDisplay.innerHTML = "Current Player: Circles";
-        } else {
-            currentPlayerDisplay.innerHTML = "Current Player: Crosses";
-        }
     };
 
 //Original hardcoded 3x3
