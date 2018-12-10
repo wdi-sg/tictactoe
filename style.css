@@ -1,0 +1,22 @@
+
+body{
+    background-color: black;
+}
+.buttons{
+    background-color: white;
+    width: 900px;
+    height: 900px;
+
+}
+
+button{
+    width:220px;
+    height:250px;
+    margin: 5px;
+    border: 10px solid black;
+    color: black;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 220px;
+
+}
+
