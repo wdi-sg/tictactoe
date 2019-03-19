@@ -45,7 +45,11 @@ var showButton = function() {
 }
 
 var reload = function() {
-    window.location.reload(true);
+
+    for (var i = 0; i < squares.length; i++) {
+        squares[i].innerText = "😎";
+    }
+
 }
 
 button.addEventListener('click',reload);
@@ -70,9 +74,21 @@ function checkWins () {
         (three.innerText === "❌" && five.innerText === "❌" && seven.innerText === "❌") ||
         (three.innerText === "⭕️" && five.innerText === "⭕️" && seven.innerText === "⭕️")
         ){
-    alert("Congrats! You won.");
+
+    switch (playerTurn) {
+        case "circle":
+        message = alert("Congrats! Player ❌ won.");
+        break;
+        case "cross":
+        message = alert("Congrats! Player ⭕️ won.");
+        break;
+        default:
+        message = alert("It's a draw.");
+    }
+
     won++;
     showButton();
+
     } else {
     console.log("Blop!");
 }
