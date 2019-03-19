@@ -18,7 +18,7 @@ function checkHorizontal(x, y) {
     var winCountX = 0;
     if (horizontalSpace >= winCon) {
         for (var i = 0; i < winCon; i++) {
-            if (gameBoard[x][y] === gameBoard[x + i][y]) {
+            if (gameBoard[x][y] === gameBoard[x + i][y] && (gameBoard[x][y] != 0)) {
                 winCountX++;
             }
         }
@@ -32,7 +32,7 @@ function checkVertical(x, y) {
     var winCountY = 0;
     if (verticalSpace >= winCon) {
         for (var i = 0; i < winCon; i++) {
-            if (gameBoard[x][y] === gameBoard[x][y + i]) {
+            if (gameBoard[x][y] === gameBoard[x][y + i] && (gameBoard[x][y] != 0)) {
                 winCountY++;
             }
         }
@@ -48,7 +48,7 @@ function checkDiagonal(x, y) {
     var winCountXY = 0;
     if (diagonalSpace >= winCon) {
         for (var i = 0; i < winCon; i++) {
-            if (gameBoard[x][y] === gameBoard[x + i][y + i]) {
+            if (gameBoard[x][y] === gameBoard[x + i][y + i] && (gameBoard[x][y] != 0)) {
                 winCountXY++;
             }
         }
@@ -67,3 +67,4 @@ function checkWin() {
         }
     }
 }
+//write a function that alternates between returning the number 1 and the number 2 everytime it is called
