@@ -7,7 +7,7 @@ var boxClicked = function() {
   let y: number = parseInt(this.getAttribute("data-y"));
   let state: number = parseInt(this.getAttribute("data-state"));
   console.log("User clicked on box " + x + " " + y);
-  let currentText: string = this.innerText;
+  let currentText: string = this.childNodes[0].innerText;
   if (!(currentText === "X" || currentText === "O")) {
     let oneOrTwo: number = circleCross();
     let letter: string;
