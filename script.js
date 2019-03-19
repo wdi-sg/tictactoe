@@ -26,5 +26,21 @@ function startGame(){
   console.log("Printing the array originBoard");
   console.log(originBoard);
 //going to remove all the 'X's and 'O's whenever the startGame is called, i.e. when the game restarts...
-  for 
+//cells has already been declared above, before the starGame function
+  for (var i = 0; i<cells.length; i++){
+    cells[i].innerText = '';
+    cells[i].style.removeProperty('background-color');
+    cells[i].addEventListener('click',turnClick, false);
+  }
 }
+//then define the turnClick function here...
+function turnClick(square){
+  //console.log(square.target.id)
+  turn(square.target.id, huPlayer);
+}
+//then define the turn function here:
+function turn(squareId, player){
+  originBoard[squareId] = player;
+  document.getElementById(squareId).innerText = player;
+}
+//determine winner function here:
