@@ -1,0 +1,37 @@
+.gameBoard {
+	border: solid 2px black;
+	height: 300px;
+	width: 300px;
+}
+
+.row {
+	display: flex;
+	text-align: center;
+	height: 100px;
+}
+
+.column{
+	width: 100px;
+	flex-grow: 1;
+	border: solid 2px black;
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+  font-size: 90px;
+  padding: 10px;
+  vertical-align: center;
+}
+
+p{
+	margin: 0;
+	margin: auto;
+}
+
+#reset {
+	display: inline-block;
+	margin: 10px;
+}
+
+.inPlay {
+	background-color: #C75670;
+}
