@@ -1,0 +1,70 @@
+#game {
+	display: block;
+	width: 620px;
+	height: 620px;
+	margin: 0 auto;
+	background-color: grey;
+}
+
+.game-piece {
+	width: 200px;
+	height: 200px;
+	display: inline-block;
+	margin: 0;
+}
+
+#top-left {
+	border-right: solid black 2.5px;
+	border-bottom: solid black 2.5px;
+}
+
+#top-center {
+	border-left: solid black 2.5px;
+	border-right: solid black 2.5px;
+	border-bottom: solid black 2.5px;
+}
+
+#top-right {
+	border-left: solid black 2.5px;
+	border-bottom: solid black 2.5px;
+}
+
+#middle-left {
+	border-top: solid black 2.5px;
+	border-right: solid black 2.5px;
+	border-bottom: solid black 2.5px;
+}
+
+#middle-center {
+	border: solid black 2.5px;
+}
+
+#middle-right {
+	border-top: solid black 2.5px;
+	border-left: solid black 2.5px;
+	border-bottom: solid black 2.5px;
+}
+
+#bottom-left {
+	border-right: solid black 2.5px;
+	border-top: solid black 2.5px;
+}
+
+#bottom-center {
+	border-top: solid black 2.5px;
+	border-right: solid black 2.5px;
+	border-left: solid black 2.5px;
+}
+
+#bottom-right {
+	border-top: solid black 2.5px;
+	border-left: solid black 2.5px;
+}
+
+.blue {
+	background-color: blue;
+}
+
+.yellow {
+	background-color: yellow;
+}
