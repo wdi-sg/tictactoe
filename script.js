@@ -1,5 +1,7 @@
 console.log("Hi");
 
+var squares = [];
+
 var one = document.getElementById("1");
 var two = document.getElementById("2");
 var three = document.getElementById("3");
@@ -9,6 +11,16 @@ var six = document.getElementById("6");
 var seven = document.getElementById("7");
 var eight = document.getElementById("8");
 var nine = document.getElementById("9");
+
+squares.push(one);
+squares.push(two);
+squares.push(three);
+squares.push(four);
+squares.push(five);
+squares.push(six);
+squares.push(seven);
+squares.push(eight);
+squares.push(nine);
 
 playerTurn = "cross";
 
@@ -33,12 +45,10 @@ var showButton = function() {
 }
 
 var reload = function() {
-    window.location.reload();
+    window.location.reload(true);
 }
 
-var clickButton = function() {
-    button.addEventListener('click',reload);
-}
+button.addEventListener('click',reload);
 
 
 function checkWins () {
@@ -60,7 +70,7 @@ function checkWins () {
         (three.innerText === "❌" && five.innerText === "❌" && seven.innerText === "❌") ||
         (three.innerText === "⭕️" && five.innerText === "⭕️" && seven.innerText === "⭕️")
         ){
-    alert("Congrats you have won");
+    alert("Congrats! You won.");
     won++;
     showButton();
     } else {
@@ -68,21 +78,49 @@ function checkWins () {
 }
 }
 
+
+function checkDraw () {
+
+var playingSquares = 0;
+
+    for (var i = 0; i < squares.length; i++) {
+
+        if (squares[i].innerText !== "😎") {
+        playingSquares++
+        }
+
+        if (playingSquares === 9) {
+        showButton();
+        }
+    }
+    return playingSquares;
+}
+
+// if all spaces are filled up but nobody won, display Button
+
 var play = function() {
 
 if (won === 0) {
     if (playerTurn === "cross") {
+
         this.textContent = "❌";
         playerTurn = "circle";
         checkWins();
+        this.removeEventListener('click',play);
+        checkDraw();
+
     } else {
+
         this.textContent = "⭕️";
         playerTurn = "cross";
         checkWins();
+        this.removeEventListener('click',play);
+        checkDraw();
+
     }
-} else {
-    alert("The game is over.");
-}
+}   else {
+        alert("The game is over.");
+    }
 }
 
 one.addEventListener('click',play);
