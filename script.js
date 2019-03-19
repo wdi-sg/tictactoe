@@ -37,6 +37,9 @@ playerTurn = "cross";
 // 3 5 7
 
 var won = 0;
+var scoreX = 0;
+var scoreO = 0;
+
 var button = document.querySelector('button');
 var hideButton = button.setAttribute('style','display:none');
 
@@ -49,6 +52,18 @@ var reload = function() {
     for (var i = 0; i < squares.length; i++) {
         squares[i].innerText = "😎";
     }
+
+    won = 0;
+
+    one.addEventListener('click',play);
+    two.addEventListener('click',play);
+    three.addEventListener('click',play);
+    four.addEventListener('click',play);
+    five.addEventListener('click',play);
+    six.addEventListener('click',play);
+    seven.addEventListener('click',play);
+    eight.addEventListener('click',play);
+    nine.addEventListener('click',play);
 
 }
 
