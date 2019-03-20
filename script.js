@@ -129,4 +129,8 @@ var playerScores = function(){
 
 turn();
 restart.addEventListener("click",restartBoard);
+var score = restart.addEventListener("click",function(){
+    playerOneScore = 0;
+    playerTwoScore = 0;
+})
 setInterval(playerScores, 1000);
