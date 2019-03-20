@@ -112,7 +112,6 @@ function checkWinner() {
 	console.log("It's a draw!")
 	}
 }
-checkWinner();
 
 function playGame() {
 	for (var i = 0; i < tile.length; i++) {
