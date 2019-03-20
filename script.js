@@ -22,6 +22,18 @@ squares.push(seven);
 squares.push(eight);
 squares.push(nine);
 
+function startGame(){
+    one.addEventListener('click',play);
+    two.addEventListener('click',play);
+    three.addEventListener('click',play);
+    four.addEventListener('click',play);
+    five.addEventListener('click',play);
+    six.addEventListener('click',play);
+    seven.addEventListener('click',play);
+    eight.addEventListener('click',play);
+    nine.addEventListener('click',play);
+}
+
 playerTurn = "cross";
 
 // winning combinations
@@ -36,16 +48,35 @@ playerTurn = "cross";
 // 1 5 9
 // 3 5 7
 
+// Checks if if anyone (X or O has won)
 var won = 0;
+// Keeps score for player X
 var scoreX = 0;
+// Keeps score for player O
 var scoreO = 0;
 
-var button = document.querySelector('button');
-var hideButton = button.setAttribute('style','display:none');
+/* "Play again" button to "reset" the game */
 
+// DOM
+var button = document.querySelector('button');
+
+// Button is hidden when game is in "play" mode – (i) nobody has won; (ii) it is not a draw
+function hideButton() {
+    var hideButton = button.setAttribute('style','display:none');
+}
+
+hideButton();
+
+// Button is displayed when 1 player has won, or there is a draw
 var showButton = function() {
     button.setAttribute('style','display:show');
 }
+
+/* Reload function makes the game playable again */
+// 1. Change the squares' innerText to NOT crosses or circles
+// 2. Sets "won" back to 0 for the play function to work
+// 3. Starts the game again
+// 4. Hides "play again" button
 
 var reload = function() {
 
@@ -55,15 +86,9 @@ var reload = function() {
 
     won = 0;
 
-    one.addEventListener('click',play);
-    two.addEventListener('click',play);
-    three.addEventListener('click',play);
-    four.addEventListener('click',play);
-    five.addEventListener('click',play);
-    six.addEventListener('click',play);
-    seven.addEventListener('click',play);
-    eight.addEventListener('click',play);
-    nine.addEventListener('click',play);
+    startGame();
+
+    hideButton();
 
 }
 
@@ -90,16 +115,19 @@ function checkWins () {
         (three.innerText === "⭕️" && five.innerText === "⭕️" && seven.innerText === "⭕️")
         ){
 
-    switch (playerTurn) {
-        case "circle":
-        message = alert("Congrats! Player ❌ won.");
-        break;
-        case "cross":
-        message = alert("Congrats! Player ⭕️ won.");
-        break;
-        default:
-        message = alert("It's a draw.");
-    }
+        if (won = 1) {
+
+            switch (playerTurn) {
+                case "circle":
+                message = alert("Congrats! Player ❌ won.");
+                break;
+                case "cross":
+                message = alert("Congrats! Player ⭕️ won.");
+                break;
+                default:
+                message = alert("It's a draw.");
+            }
+        }
 
     won++;
     showButton();
@@ -127,7 +155,15 @@ var playingSquares = 0;
     return playingSquares;
 }
 
-// if all spaces are filled up but nobody won, display Button
+
+/* Play function makes it possible for the game to be played */
+// If current game is not won yet, players can play their moves one after another
+// Game starts with player = "cross"
+//// When player clicks on board, tile turns to their symbol with textContent
+//// Player turn is changed to their opponent's symbol so that in the next turn opponent gets to go
+// Function: checkWins – checks if player has won already
+// Event listener is removed from the tile just clicked, so that it does not change the symbols
+// Function: checkDraw – check if there is a draw
 
 var play = function() {
 
@@ -150,18 +186,9 @@ if (won === 0) {
 
     }
 }   else {
-        alert("The game is over.");
+        alert("Oops! An error occured.");
     }
 }
 
-one.addEventListener('click',play);
-two.addEventListener('click',play);
-three.addEventListener('click',play);
-four.addEventListener('click',play);
-five.addEventListener('click',play);
-six.addEventListener('click',play);
-seven.addEventListener('click',play);
-eight.addEventListener('click',play);
-nine.addEventListener('click',play);
-
-// notify when somebody has won
+startGame();
+play();
