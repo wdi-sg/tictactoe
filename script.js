@@ -48,6 +48,10 @@ playerTurn = "cross";
 // 1 5 9
 // 3 5 7
 
+// var key = "name";
+// var person = {[key]:"John"};
+// console.log(person); // should print  Object { name="John"}
+
 // Checks if if anyone (X or O has won)
 var won = 0;
 // Keeps score for player X
@@ -64,8 +68,6 @@ var button = document.querySelector('button');
 function hideButton() {
     var hideButton = button.setAttribute('style','display:none');
 }
-
-hideButton();
 
 // Button is displayed when 1 player has won, or there is a draw
 var showButton = function() {
@@ -94,6 +96,14 @@ var reload = function() {
 
 button.addEventListener('click',reload);
 
+/* Wins
+
+
+
+
+
+*/
+
 
 function checkWins () {
     if (
@@ -120,9 +130,11 @@ function checkWins () {
             switch (playerTurn) {
                 case "circle":
                 message = alert("Congrats! Player ❌ won.");
+                message = scoreX++;
                 break;
                 case "cross":
                 message = alert("Congrats! Player ⭕️ won.");
+                message = scoreO++;
                 break;
                 default:
                 message = alert("It's a draw.");
@@ -167,6 +179,8 @@ var playingSquares = 0;
 
 var play = function() {
 
+    hideButton();
+
 if (won === 0) {
     if (playerTurn === "cross") {
 
@@ -192,3 +206,5 @@ if (won === 0) {
 
 startGame();
 play();
+
+// Last edit: 20 Mar 11AM
