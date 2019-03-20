@@ -110,6 +110,7 @@ function newTurn(){
         //check if player has won. will return true if true
     if (turnNumber>=5){
         playerWin();
+        return;
     };
     // if max number of rounds without win, end game
     if (turnNumber === 9) {
@@ -134,11 +135,12 @@ Prompt players for n.
 within a square gameBoard (which should not have a fixed max-width), generate tiles numbering from 1 to n(squared).
 Most likely would have to use some form of flexbox to fit all the tiles into the square gameBoard.
 If n=4,
-gameBoardPlays =
-[01,02,03,04]
-[05,06,07,08]
-[09,10,11,12]
+gameBoardPlays = [
+[01,02,03,04],
+[05,06,07,08],
+[09,10,11,12],
 [13,14,15,16]
+]
 where each array has n items.
 winning condition would be if either one array has n items of the same value,
 OR [01,06,11,16] OR [04,07,10,13] has n items of the same value. Not sure how to even code the diagonal arrays though.
