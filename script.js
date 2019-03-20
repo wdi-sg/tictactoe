@@ -1,28 +1,21 @@
-console.log("Hi");
+console.log("Linked.");
+
+/* Accessing DOM */
+// Get all elements (playing squares) and store them into an array
 
 var squares = [];
 
-var one = document.getElementsByClassName('square')[0].getElementsByTagName('span')[0];
-var two = document.getElementsByClassName('square')[1].getElementsByTagName('span')[0];
-var three = document.getElementsByClassName('square')[2].getElementsByTagName('span')[0];
-var four = document.getElementsByClassName('square')[3].getElementsByTagName('span')[0];
-var five = document.getElementsByClassName('square')[4].getElementsByTagName('span')[0];
-var six = document.getElementsByClassName('square')[5].getElementsByTagName('span')[0];
-var seven = document.getElementsByClassName('square')[6].getElementsByTagName('span')[0];
-var eight = document.getElementsByClassName('square')[7].getElementsByTagName('span')[0];
-var nine = document.getElementsByClassName('square')[8].getElementsByTagName('span')[0];
+for (var i = 0; i < document.getElementsByClassName('square').length; i++) {
+    var squaries = document.getElementsByClassName('square')[i].getElementsByTagName('span')[0];
+    squares.push(squaries);
+}
 
-squares.push(one);
-squares.push(two);
-squares.push(three);
-squares.push(four);
-squares.push(five);
-squares.push(six);
-squares.push(seven);
-squares.push(eight);
-squares.push(nine);
-
-//add "arrays" to all the elements (I tried, but turned out as strings)
+/* Create 2-digit array, add it to all squares
+Outcome:
+[3,1] [3,2] [3,3]
+[2,1] [2,2] [2,3]
+[1,1] [1,2] [1,3]
+*/
 
 function makeArrays() {
 
@@ -47,25 +40,28 @@ function makeArrays() {
 
 makeArrays();
 
+// This function sets the stage for the game by adding event listeners to all squares
+// Also hides button for replaying the game
+
 var addEventListener = function(squares,i) {
     squares.addEventListener('click',play);
 }
 
 function startGame(){
-
     squares.forEach(addEventListener);
-
     hideButton();
-
 }
 
-playerTurn = "cross";
+// This variable helps ascertain whose turn to play
+var playerTurn = "cross";
 
-// Checks if if anyone (X or O has won)
-var won = 0;
+/* Keeping score */
+// 1. If the current state of the game has a win
 // Keeps score for player X
-var scoreX = 0;
 // Keeps score for player O
+
+var won = 0;
+var scoreX = 0;
 var scoreO = 0;
 
 /* "Play again" button to "reset" the game */
@@ -116,22 +112,29 @@ button.addEventListener('click',reload);
 function checkWins() {
 
     if (
-        (one.innerText === "❌" && two.innerText === "❌" && three.innerText === "❌") ||
-        (one.innerText === "⭕️" && two.innerText === "⭕️" && three.innerText === "⭕️") ||
-        (four.innerText === "❌" && five.innerText === "❌" && six.innerText === "❌") ||
-        (four.innerText === "⭕️" && five.innerText === "⭕️" && six.innerText === "⭕️") ||
-        (seven.innerText === "❌" && eight.innerText === "❌" && nine.innerText === "❌") ||
-        (seven.innerText === "⭕️" && eight.innerText === "⭕️" && nine.innerText === "⭕️") ||
-        (one.innerText === "❌" && four.innerText === "❌" && seven.innerText === "❌") ||
-        (one.innerText === "⭕️" && four.innerText === "⭕️" && seven.innerText === "⭕️") ||
-        (two.innerText === "❌" && five.innerText === "❌" && eight.innerText === "❌") ||
-        (two.innerText === "⭕️" && five.innerText === "⭕️" && eight.innerText === "⭕️") ||
-        (three.innerText === "❌" && six.innerText === "❌" && nine.innerText === "❌") ||
-        (three.innerText === "⭕️" && six.innerText === "⭕️" && nine.innerText === "⭕️") ||
-        (one.innerText === "❌" && five.innerText === "❌" && nine.innerText === "❌") ||
-        (one.innerText === "⭕️" && five.innerText === "⭕️" && nine.innerText === "⭕️") ||
-        (three.innerText === "❌" && five.innerText === "❌" && seven.innerText === "❌") ||
-        (three.innerText === "⭕️" && five.innerText === "⭕️" && seven.innerText === "⭕️")
+        (squares[0].innerText === "❌" && squares[1].innerText === "❌" && squares[2].innerText === "❌") ||
+        (squares[0].innerText === "⭕️" && squares[1].innerText === "⭕️" && squares[2].innerText === "⭕️") ||
+
+        (squares[3].innerText === "❌" && squares[4].innerText === "❌" && squares[5].innerText === "❌") ||
+        (squares[3].innerText === "⭕️" && squares[4].innerText === "⭕️" && squares[5].innerText === "⭕️") ||
+
+        (squares[6].innerText === "❌" && squares[7].innerText === "❌" && squares[8].innerText === "❌") ||
+        (squares[6].innerText === "⭕️" && squares[7].innerText === "⭕️" && squares[8].innerText === "⭕️") ||
+
+        (squares[0].innerText === "❌" && squares[3].innerText === "❌" && squares[6].innerText === "❌") ||
+        (squares[0].innerText === "⭕️" && squares[3].innerText === "⭕️" && squares[6].innerText === "⭕️") ||
+
+        (squares[1].innerText === "❌" && squares[4].innerText === "❌" && squares[7].innerText === "❌") ||
+        (squares[1].innerText === "⭕️" && squares[4].innerText === "⭕️" && squares[7].innerText === "⭕️") ||
+
+        (squares[2].innerText === "❌" && squares[5].innerText === "❌" && squares[8].innerText === "❌") ||
+        (squares[2].innerText === "⭕️" && squares[5].innerText === "⭕️" && squares[8].innerText === "⭕️") ||
+
+        (squares[0].innerText === "❌" && squares[4].innerText === "❌" && squares[8].innerText === "❌") ||
+        (squares[0].innerText === "⭕️" && squares[4].innerText === "⭕️" && squares[8].innerText === "⭕️") ||
+
+        (squares[2].innerText === "❌" && squares[4].innerText === "❌" && squares[6].innerText === "❌") ||
+        (squares[2].innerText === "⭕️" && squares[4].innerText === "⭕️" && squares[6].innerText === "⭕️")
         ) {
 
             won++;
@@ -164,26 +167,19 @@ function checkWins() {
 //// Playing squares are calculated after each move
 //// If tiles played === 9, show "play again" button so that players can play
 
-function checkDraw () {
-
 var playingSquares = 0;
 
-    for (var i = 0; i < squares.length; i++) {
+function checkDraw () {
 
-        if (document.getElementsByClassName('square')[i].getElementsByTagName('span')[0].innerText !== "😎") {
+        if (this.innerText !== "😎") {
         playingSquares++
         }
-    }
 
         if (playingSquares === 9) {
-
             showButton();
-
-            if (won = 0) {
-                console.log("It's a draw.");
-            } else {
-                console.log("Blop.")
-              }
+            if (won === 0) {
+                alert("It's a draw!");
+            }
         }
 
     return playingSquares;
@@ -207,7 +203,7 @@ if (won === 0) {
         this.textContent = "❌";
         playerTurn = "circle";
 
-        var arrayx = this.nextElementSibling.innerText;
+        // var arrayx = this.nextElementSibling.innerText;
 
         checkWins();
 
@@ -219,7 +215,7 @@ if (won === 0) {
         this.textContent = "⭕️";
         playerTurn = "cross";
 
-        var arrayo = this.nextElementSibling.innerText;
+        // var arrayo = this.nextElementSibling.innerText;
 
         checkWins();
         this.removeEventListener('click',play);
