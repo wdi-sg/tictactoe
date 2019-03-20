@@ -1,12 +1,11 @@
-button {
-	width: 100px;
-	height: 100px;
-	border-radius: 20%
-	font-size: 50px;
-	margin: 5px;
-	padding:0;
+.boardrow {
+	display:flex;
 }
 
-h1 {
-	color:red;
+button {
+	width:100px;
+	height: 100px;
+	background.color: white;
+	margin: 5px
+	font-size: 30px;
 }
