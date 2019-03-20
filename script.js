@@ -55,9 +55,6 @@ function gridBoxes() {
 
 gridBoxes();
 
-// var gridEvent = document.getElementsByClassName('grid-event')[0];
-// var gridBox = document.getElementsByClassName('hidden')[0];
-
 function reloadPage() {
         alert("You win!\nTry another round!\nThis page will auto refresh after 3 seconds!");
         setTimeout(function() {location.reload()}, 3000);
@@ -127,45 +124,7 @@ function gameEnd() {
 var gridLoop = document.querySelectorAll('.grid-event'); //returns an array of all 9 boxes.
 var hiddenText = document.querySelectorAll('.hidden'); // returns an array of H2 hidden texts
 
-console.log(hiddenText);
-
-// hiddenText.forEach(function(text,i) {
-
-
-//     text.style.visibility = "visible";
-//     text.innerHTML = "O";
-//     text.style.color = "white";
-//     text.style.textAlign = "center";
-//     turnOrder++;
-//     gridLog[i] = 'o';
-// });
-
-console.log(gridLog);
-
-// var gridEvent1 = document.getElementsByClassName('grid-event')[1];
-// var gridBox1 = document.getElementsByClassName('hidden')[1];
-
 gridLoop.forEach(function(gridBox,i) {
-
-// gridBox.addEventListener("click", function() {
-//         if (turnOrder % 2 === 0) {
-//           gridBox.innerHTML = "O";
-//           gridBox.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
-//           gridBox.style.color = "white";
-//           gridBox.style.textAlign = "center";
-//           turnOrder++;
-//           gridLog[i] = 'o';
-//           gameEnd();
-//       } else {
-//           gridBox.innerHTML = "X";
-//           gridBox.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
-//           gridBox.style.color = "white";
-//           gridBox.style.textAlign = "center"
-//           turnOrder++;
-//           gridLog[i] = 'x';
-//           gameEnd();
-//       }
-//     }, {once : true});
 
     gridBox.addEventListener("mouseover", function() {
     gridBox.style.backgroundColor = "green";
@@ -175,12 +134,49 @@ gridLoop.forEach(function(gridBox,i) {
     gridBox.style.backgroundColor = "blue";
 }); //this part changes the grid back to original color once user mouse has left the box
 
+    gridBox.addEventListener("click", function() {
+    if (turnOrder % 2 === 0) {
+      hiddenText[i].innerHTML = "O";
+      hiddenText[i].style.visibility = "visible"; //this replaces the hidden word and makes it visible.
+      hiddenText[i].style.color = "white";
+      hiddenText[i].style.textAlign = "center"
+      turnOrder++;
+      gridLog[i] = 'o';
+      gameEnd();
+    } else {
+      hiddenText[i].innerHTML = "X";
+      hiddenText[i].style.visibility = "visible"; //this replaces the hidden word and makes it visible.
+      hiddenText[i].style.color = "white";
+      hiddenText[i].style.textAlign = "center"
+      turnOrder++;
+      gridLog[i] = 'x';
+      gameEnd();
+    };
+
+    });
+
 });
+
+// var gridEvent1 = document.getElementsByClassName('grid-event')[1];
+// var gridBox1 = document.getElementsByClassName('hidden')[1];
+
+// for (i = 0; i < gridLoop.length; i++) {
+//     console.log(gridLoop[i]);
+//     gridLoop[i].addEventListener("click", function() {
+//           console.log(hiddenText[2]);
+
+//     });
+// }
+
+
 
 
 // // START OF GRID CHECK BOX
 
-// gridEvent.addEventListener("click", function() {
+// var gridEvent = document.getElementsByClassName('grid-event')[0];
+// var gridBox = document.getElementsByClassName('hidden')[0];
+
+// // gridEvent.addEventListener("click", function() {
 //     if (turnOrder % 2 === 0) {
 //       gridBox.innerHTML = "O";
 //       gridBox.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
