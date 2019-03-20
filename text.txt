@@ -1,0 +1,8 @@
+What do i want to do?
+
+DOM (Html to DOM)
+1. eventlisteners -> to be able to click on element ("click")
+2. Must register which element clicked
+3. so what if i know which one is clicked?//
+4. i can change the value of it (style or textcontent)
+5. change the state of an element through eventlisteners

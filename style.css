@@ -1,0 +1,113 @@
+body {
+	display:block;
+	position: absolute;
+	left:30%;
+	text-align: center;
+	background-color: grey;
+	width: 0 auto;
+
+}
+
+header {
+	display:block;
+	padding: 10px 0 10px 0;
+
+}
+
+.board {
+	display:block;
+	background-color: cyan;
+	justify-content:center;
+	width: 0 auto;
+
+
+}
+
+.grid {
+	display:block;
+	background-color: black;
+	width:150px;
+	height:150px;
+	margin:10px;
+	vertical-align: middle;
+	font: bold;
+	border-radius: 150px;
+	font-size: 120px
+}
+
+.row-one {
+	display:flex;
+	flex-direction: row;
+
+
+}
+
+.row-two {
+	display:flex;
+	flex-direction: row;
+	/*align-items: center;*/
+}
+
+.row-three {
+	display:flex;
+	flex-direction: row;
+	/*align-items: center;*/
+}
+
+.row-one span {
+	font-size: 40px;
+	position: relative;
+	top: 40%;
+}
+
+.row-two span {
+	font-size: 40px;
+	position: relative;
+	top: 40%;
+}
+
+.row-three span {
+	font-size: 40px;
+	position: relative;
+	top: 40%;
+}
+
+.myButton {
+	background-color:#44c767;
+	-moz-border-radius:28px;
+	-webkit-border-radius:28px;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:14px 48px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.myButton:hover {
+	background-color:#5cbf2a;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+.container{
+	display:flex;
+	flex-direction: row;
+	/*background-color: green;*/
+	justify-content: space-around;
+	font-size: 10px;
+
+}
+
+.row {
+	display:flex;
+	/*background-color: red;*/
+	justify-content: space-around;
+	padding:10px;
+	/*border: 2px solid red;*/
+}
