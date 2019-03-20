@@ -1,0 +1,11 @@
+.boardrow {
+	display:flex;
+}
+
+button {
+	width:100px;
+	height: 100px;
+	background.color: white;
+	margin: 5px
+	font-size: 30px;
+}
