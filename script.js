@@ -4,11 +4,9 @@ var turnOrder = 1; //turnorder dictates whether a X or O is written ;
 var body = document.body;
 
 var gridLog =
-[1,2,3,
- 4,5,6,
- 7,8,9];
-
-
+[0,1,2,
+ 3,4,5,
+ 6,7,8];
 
 function gameTitle() {
     var title = document.createElement('h1');
@@ -57,18 +55,8 @@ function gridBoxes() {
 
 gridBoxes();
 
-var gridEvent = document.getElementsByClassName('grid-event')[0];
-var gridBox = document.getElementsByClassName('hidden')[0];
-
-// This part allows users to mouse over and change color
-gridEvent.addEventListener("mouseover", function() {
-    gridEvent.style.backgroundColor = "green";
-});
-
-gridEvent.addEventListener("mouseleave", function() {
-    gridEvent.style.backgroundColor = "blue";
-});
-// this part changes the grid back to original color once user mouse has left the box
+// var gridEvent = document.getElementsByClassName('grid-event')[0];
+// var gridBox = document.getElementsByClassName('hidden')[0];
 
 function reloadPage() {
         alert("You win!\nTry another round!\nThis page will auto refresh after 3 seconds!");
@@ -77,7 +65,8 @@ function reloadPage() {
 
 function gameEnd() {
     if (turnOrder === 10) {
-        reloadPage();
+        alert("Game ended!\nTry another round!\nThis page will auto refresh after 3 seconds!");
+        setTimeout(function() {location.reload()}, 3000);
     };
 
     // [0,1,2
@@ -135,316 +124,288 @@ function gameEnd() {
 
 }
 
+var gridLoop = document.querySelectorAll('.grid-event'); //returns an array of all 9 boxes.
+var hiddenText = document.querySelectorAll('.hidden'); // returns an array of H2 hidden texts
+
+console.log(hiddenText);
+
+// hiddenText.forEach(function(text,i) {
 
 
-// START OF GRID CHECK BOX
+//     text.style.visibility = "visible";
+//     text.innerHTML = "O";
+//     text.style.color = "white";
+//     text.style.textAlign = "center";
+//     turnOrder++;
+//     gridLog[i] = 'o';
+// });
 
-gridEvent.addEventListener("click", function() {
-    if (turnOrder % 2 === 0) {
-      gridBox.innerHTML = "O";
-      gridBox.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
-      gridBox.style.color = "white";
-      gridBox.style.textAlign = "center"
-      turnOrder++;
-      gridLog[0] = 'o';
-      gameEnd();
-    } else {
-      gridBox.innerHTML = "X";
-      gridBox.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
-      gridBox.style.color = "white";
-      gridBox.style.textAlign = "center"
-      turnOrder++;
-      gridLog[0] = 'x';
-      gameEnd();
+console.log(gridLog);
 
-    }
-}, {once : true});  //this only allows the thing to run once, so you cannot create multiple X.
-// for reference, https://stackoverflow.com/questions/28610365/how-can-i-add-an-event-for-a-one-time-click-to-a-function
+// var gridEvent1 = document.getElementsByClassName('grid-event')[1];
+// var gridBox1 = document.getElementsByClassName('hidden')[1];
 
+gridLoop.forEach(function(gridBox,i) {
 
+// gridBox.addEventListener("click", function() {
+//         if (turnOrder % 2 === 0) {
+//           gridBox.innerHTML = "O";
+//           gridBox.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
+//           gridBox.style.color = "white";
+//           gridBox.style.textAlign = "center";
+//           turnOrder++;
+//           gridLog[i] = 'o';
+//           gameEnd();
+//       } else {
+//           gridBox.innerHTML = "X";
+//           gridBox.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
+//           gridBox.style.color = "white";
+//           gridBox.style.textAlign = "center"
+//           turnOrder++;
+//           gridLog[i] = 'x';
+//           gameEnd();
+//       }
+//     }, {once : true});
 
-var gridEvent1 = document.getElementsByClassName('grid-event')[1];
-var gridBox1 = document.getElementsByClassName('hidden')[1];
+    gridBox.addEventListener("mouseover", function() {
+    gridBox.style.backgroundColor = "green";
+});  //This part allows users to mouse over and change color
 
-// This part allows users to mouse over and change color
-gridEvent1.addEventListener("mouseover", function() {
-    gridEvent1.style.backgroundColor = "green";
+    gridBox.addEventListener("mouseleave", function() {
+    gridBox.style.backgroundColor = "blue";
+}); //this part changes the grid back to original color once user mouse has left the box
+
 });
 
-gridEvent1.addEventListener("mouseleave", function() {
-    gridEvent1.style.backgroundColor = "blue";
-});
-// this part changes the grid back to original color once user mouse has left the box
 
-gridEvent1.addEventListener("click", function() {
+// // START OF GRID CHECK BOX
 
-    if (turnOrder % 2 === 0) {
-      gridBox1.innerHTML = "O";
-      gridBox1.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
-      gridBox1.style.color = "white";
-      gridBox1.style.textAlign = "center";
-      gridLog[1] = 'o';
-      turnOrder++;
-      gameEnd();
-    } else {
-      gridBox1.innerHTML = "X";
-      gridBox1.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
-      gridBox1.style.color = "white";
-      gridBox1.style.textAlign = "center";
-      turnOrder++;
-      gridLog[1] = 'x'
-      gameEnd();
-    }
+// gridEvent.addEventListener("click", function() {
+//     if (turnOrder % 2 === 0) {
+//       gridBox.innerHTML = "O";
+//       gridBox.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
+//       gridBox.style.color = "white";
+//       gridBox.style.textAlign = "center"
+//       turnOrder++;
+//       gridLog[0] = 'o';
+//       gameEnd();
+//     } else {
+//       gridBox.innerHTML = "X";
+//       gridBox.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
+//       gridBox.style.color = "white";
+//       gridBox.style.textAlign = "center"
+//       turnOrder++;
+//       gridLog[0] = 'x';
+//       gameEnd();
 
-}, {once : true});
+//     }
+// }, {once : true});  //this only allows the thing to run once, so you cannot create multiple X.
+// // for reference, https://stackoverflow.com/questions/28610365/how-can-i-add-an-event-for-a-one-time-click-to-a-function
 
 
 
-var gridEvent2 = document.getElementsByClassName('grid-event')[2];
-var gridBox2 = document.getElementsByClassName('hidden')[2];
+// var gridEvent1 = document.getElementsByClassName('grid-event')[1];
+// var gridBox1 = document.getElementsByClassName('hidden')[1];
 
-// This part allows users to mouse over and change color
-gridEvent2.addEventListener("mouseover", function() {
-    gridEvent2.style.backgroundColor = "green";
-});
+// gridEvent1.addEventListener("click", function() {
 
-gridEvent2.addEventListener("mouseleave", function() {
-    gridEvent2.style.backgroundColor = "blue";
-});
-// this part changes the grid back to original color once user mouse has left the box
+//     if (turnOrder % 2 === 0) {
+//       gridBox1.innerHTML = "O";
+//       gridBox1.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
+//       gridBox1.style.color = "white";
+//       gridBox1.style.textAlign = "center";
+//       gridLog[1] = 'o';
+//       turnOrder++;
+//       gameEnd();
+//     } else {
+//       gridBox1.innerHTML = "X";
+//       gridBox1.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
+//       gridBox1.style.color = "white";
+//       gridBox1.style.textAlign = "center";
+//       turnOrder++;
+//       gridLog[1] = 'x'
+//       gameEnd();
+//     }
 
-gridEvent2.addEventListener("click", function() {
-
-    if (turnOrder % 2 === 0) {
-      gridBox2.innerHTML = "O";
-      gridBox2.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
-      gridBox2.style.color = "white";
-      gridBox2.style.textAlign = "center";
-      turnOrder++;
-      gridLog[2] = 'o';
-      gameEnd();
-    } else {
-      gridBox2.innerHTML = "X";
-      gridBox2.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
-      gridBox2.style.color = "white";
-      gridBox2.style.textAlign = "center";
-      turnOrder++;
-      gridLog[2] = 'x';
-      gameEnd();
-    }
-
-}, {once : true});  //
-
-var gridEvent3 = document.getElementsByClassName('grid-event')[3];
-var gridBox3 = document.getElementsByClassName('hidden')[3];
-
-// This part allows users to mouse over and change color
-gridEvent3.addEventListener("mouseover", function() {
-    gridEvent3.style.backgroundColor = "green";
-});
-
-gridEvent3.addEventListener("mouseleave", function() {
-    gridEvent3.style.backgroundColor = "blue";
-});
-// this part changes the grid back to original color once user mouse has left the box
-
-gridEvent3.addEventListener("click", function() {
-
-    if (turnOrder % 2 === 0) {
-      gridBox3.innerHTML = "O";
-      gridBox3.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
-      gridBox3.style.color = "white";
-      gridBox3.style.textAlign = "center"
-      turnOrder++;
-      gridLog[3] = 'o';
-      gameEnd();
-    } else {
-      gridBox3.innerHTML = "X";
-      gridBox3.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
-      gridBox3.style.color = "white";
-      gridBox3.style.textAlign = "center";
-      turnOrder++;
-      gridLog[3] = 'x';
-      gameEnd();
-    }
-
-}, {once : true});  //X
+// }, {once : true});
 
 
-var gridEvent4 = document.getElementsByClassName('grid-event')[4];
-var gridBox4 = document.getElementsByClassName('hidden')[4];
 
-// This part allows users to mouse over and change color
-gridEvent4.addEventListener("mouseover", function() {
-    gridEvent4.style.backgroundColor = "green";
-});
+// var gridEvent2 = document.getElementsByClassName('grid-event')[2];
+// var gridBox2 = document.getElementsByClassName('hidden')[2];
 
-gridEvent4.addEventListener("mouseleave", function() {
-    gridEvent4.style.backgroundColor = "blue";
-});
-// this part changes the grid back to original color once user mouse has left the box
+// gridEvent2.addEventListener("click", function() {
 
-gridEvent4.addEventListener("click", function() {
+//     if (turnOrder % 2 === 0) {
+//       gridBox2.innerHTML = "O";
+//       gridBox2.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
+//       gridBox2.style.color = "white";
+//       gridBox2.style.textAlign = "center";
+//       turnOrder++;
+//       gridLog[2] = 'o';
+//       gameEnd();
+//     } else {
+//       gridBox2.innerHTML = "X";
+//       gridBox2.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
+//       gridBox2.style.color = "white";
+//       gridBox2.style.textAlign = "center";
+//       turnOrder++;
+//       gridLog[2] = 'x';
+//       gameEnd();
+//     }
 
-    if (turnOrder % 2 === 0) {
-      gridBox4.innerHTML = "O";
-      gridBox4.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
-      gridBox4.style.color = "white";
-      gridBox4.style.textAlign = "center";
-      gridLog[4] = 'o';
-      turnOrder++;
-      gameEnd();
-    } else {
-      gridBox4.innerHTML = "X";
-      gridBox4.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
-      gridBox4.style.color = "white";
-      gridBox4.style.textAlign = "center";
-      gridLog[4] = 'x';
-      turnOrder++;
-      gameEnd();
-    }
+// }, {once : true});  //
 
-}, {once : true});
+// var gridEvent3 = document.getElementsByClassName('grid-event')[3];
+// var gridBox3 = document.getElementsByClassName('hidden')[3];
+
+// gridEvent3.addEventListener("click", function() {
+
+//     if (turnOrder % 2 === 0) {
+//       gridBox3.innerHTML = "O";
+//       gridBox3.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
+//       gridBox3.style.color = "white";
+//       gridBox3.style.textAlign = "center"
+//       turnOrder++;
+//       gridLog[3] = 'o';
+//       gameEnd();
+//     } else {
+//       gridBox3.innerHTML = "X";
+//       gridBox3.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
+//       gridBox3.style.color = "white";
+//       gridBox3.style.textAlign = "center";
+//       turnOrder++;
+//       gridLog[3] = 'x';
+//       gameEnd();
+//     }
+
+// }, {once : true});  //X
 
 
-var gridEvent5 = document.getElementsByClassName('grid-event')[5];
-var gridBox5 = document.getElementsByClassName('hidden')[5];
+// var gridEvent4 = document.getElementsByClassName('grid-event')[4];
+// var gridBox4 = document.getElementsByClassName('hidden')[4];
 
-// This part allows users to mouse over and change color
-gridEvent5.addEventListener("mouseover", function() {
-    gridEvent5.style.backgroundColor = "green";
-});
+// gridEvent4.addEventListener("click", function() {
 
-gridEvent5.addEventListener("mouseleave", function() {
-    gridEvent5.style.backgroundColor = "blue";
-});
-// this part changes the grid back to original color once user mouse has left the box
+//     if (turnOrder % 2 === 0) {
+//       gridBox4.innerHTML = "O";
+//       gridBox4.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
+//       gridBox4.style.color = "white";
+//       gridBox4.style.textAlign = "center";
+//       gridLog[4] = 'o';
+//       turnOrder++;
+//       gameEnd();
+//     } else {
+//       gridBox4.innerHTML = "X";
+//       gridBox4.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
+//       gridBox4.style.color = "white";
+//       gridBox4.style.textAlign = "center";
+//       gridLog[4] = 'x';
+//       turnOrder++;
+//       gameEnd();
+//     }
 
-gridEvent5.addEventListener("click", function() {
+// }, {once : true});
 
-    if (turnOrder % 2 === 0) {
-      gridBox5.innerHTML = "O";
-      gridBox5.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
-      gridBox5.style.color = "white";
-      gridBox5.style.textAlign = "center";
-      gridLog[5] = 'o';
-      turnOrder++;
-      gameEnd();
-    } else {
-      gridBox5.innerHTML = "X";
-      gridBox5.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
-      gridBox5.style.color = "white";
-      gridBox5.style.textAlign = "center";
-      gridLog[5] = 'x';
-      turnOrder++;
-      gameEnd();
-    }
-}, {once : true});
 
-var gridEvent6 = document.getElementsByClassName('grid-event')[6];
-var gridBox6 = document.getElementsByClassName('hidden')[6];
+// var gridEvent5 = document.getElementsByClassName('grid-event')[5];
+// var gridBox5 = document.getElementsByClassName('hidden')[5];
 
-// This part allows users to mouse over and change color
-gridEvent6.addEventListener("mouseover", function() {
-    gridEvent6.style.backgroundColor = "green";
-});
+// gridEvent5.addEventListener("click", function() {
 
-gridEvent6.addEventListener("mouseleave", function() {
-    gridEvent6.style.backgroundColor = "blue";
-});
-// this part changes the grid back to original color once user mouse has left the box
+//     if (turnOrder % 2 === 0) {
+//       gridBox5.innerHTML = "O";
+//       gridBox5.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
+//       gridBox5.style.color = "white";
+//       gridBox5.style.textAlign = "center";
+//       gridLog[5] = 'o';
+//       turnOrder++;
+//       gameEnd();
+//     } else {
+//       gridBox5.innerHTML = "X";
+//       gridBox5.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
+//       gridBox5.style.color = "white";
+//       gridBox5.style.textAlign = "center";
+//       gridLog[5] = 'x';
+//       turnOrder++;
+//       gameEnd();
+//     }
+// }, {once : true});
 
-gridEvent6.addEventListener("click", function() {
+// var gridEvent6 = document.getElementsByClassName('grid-event')[6];
+// var gridBox6 = document.getElementsByClassName('hidden')[6];
 
-    if (turnOrder % 2 === 0) {
-      gridBox6.innerHTML = "O";
-      gridBox6.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
-      gridBox6.style.color = "white";
-      gridBox6.style.textAlign = "center";
-      gridLog[6] = 'o';
-      turnOrder++;
-      gameEnd();
-    } else {
-      gridBox6.innerHTML = "X";
-      gridBox6.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
-      gridBox6.style.color = "white";
-      gridBox6.style.textAlign = "center";
-      gridLog[6] = 'x';
-      turnOrder++;
-      gameEnd();
-    }
+// gridEvent6.addEventListener("click", function() {
 
-}, {once : true});
+//     if (turnOrder % 2 === 0) {
+//       gridBox6.innerHTML = "O";
+//       gridBox6.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
+//       gridBox6.style.color = "white";
+//       gridBox6.style.textAlign = "center";
+//       gridLog[6] = 'o';
+//       turnOrder++;
+//       gameEnd();
+//     } else {
+//       gridBox6.innerHTML = "X";
+//       gridBox6.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
+//       gridBox6.style.color = "white";
+//       gridBox6.style.textAlign = "center";
+//       gridLog[6] = 'x';
+//       turnOrder++;
+//       gameEnd();
+//     }
 
-var gridEvent7 = document.getElementsByClassName('grid-event')[7];
-var gridBox7 = document.getElementsByClassName('hidden')[7];
+// }, {once : true});
 
-// This part allows users to mouse over and change color
-gridEvent7.addEventListener("mouseover", function() {
-    gridEvent7.style.backgroundColor = "green";
-});
+// var gridEvent7 = document.getElementsByClassName('grid-event')[7];
+// var gridBox7 = document.getElementsByClassName('hidden')[7];
 
-gridEvent7.addEventListener("mouseleave", function() {
-    gridEvent7.style.backgroundColor = "blue";
-});
-// this part changes the grid back to original color once user mouse has left the box
+// gridEvent7.addEventListener("click", function() {
 
-gridEvent7.addEventListener("click", function() {
+//     if (turnOrder % 2 === 0) {
+//       gridBox7.innerHTML = "O";
+//       gridBox7.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
+//       gridBox7.style.color = "white";
+//       gridBox7.style.textAlign = "center";
+//       gridLog[7] = 'o';
+//       turnOrder++;
+//       gameEnd();
+//     } else {
+//       gridBox7.innerHTML = "X";
+//       gridBox7.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
+//       gridBox7.style.color = "white";
+//       gridBox7.style.textAlign = "center";
+//       gridLog[7] = 'x';
+//       turnOrder++;
+//       gameEnd();
+//     }
 
-    if (turnOrder % 2 === 0) {
-      gridBox7.innerHTML = "O";
-      gridBox7.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
-      gridBox7.style.color = "white";
-      gridBox7.style.textAlign = "center";
-      gridLog[7] = 'o';
-      turnOrder++;
-      gameEnd();
-    } else {
-      gridBox7.innerHTML = "X";
-      gridBox7.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
-      gridBox7.style.color = "white";
-      gridBox7.style.textAlign = "center";
-      gridLog[7] = 'x';
-      turnOrder++;
-      gameEnd();
-    }
+// }, {once : true});
 
-}, {once : true});
+// var gridEvent8 = document.getElementsByClassName('grid-event')[8];
+// var gridBox8 = document.getElementsByClassName('hidden')[8];
 
-var gridEvent8 = document.getElementsByClassName('grid-event')[8];
-var gridBox8 = document.getElementsByClassName('hidden')[8];
+// gridEvent8.addEventListener("click", function() {
 
-// This part allows users to mouse over and change color
-gridEvent8.addEventListener("mouseover", function() {
-    gridEvent8.style.backgroundColor = "green";
-});
+//     if (turnOrder % 2 === 0) {
+//       gridBox8.innerHTML = "O";
+//       gridBox8.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
+//       gridBox8.style.color = "white";
+//       gridBox8.style.textAlign = "center";
+//       gridLog[8] = 'o';
+//       turnOrder++;
+//       gameEnd();
 
-gridEvent8.addEventListener("mouseleave", function() {
-    gridEvent8.style.backgroundColor = "blue";
-});
-// this part changes the grid back to original color once user mouse has left the box
+//     } else {
+//       gridBox8.innerHTML = "X";
+//       gridBox8.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
+//       gridBox8.style.color = "white";
+//       gridBox8.style.textAlign = "center";
+//       gridLog[8] = 'x';
+//       turnOrder++;
+//       gameEnd();
+//     }
 
-gridEvent8.addEventListener("click", function() {
+// }, {once : true});
 
-    if (turnOrder % 2 === 0) {
-      gridBox8.innerHTML = "O";
-      gridBox8.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
-      gridBox8.style.color = "white";
-      gridBox8.style.textAlign = "center";
-      gridLog[8] = 'o';
-      turnOrder++;
-      gameEnd();
-
-    } else {
-      gridBox8.innerHTML = "X";
-      gridBox8.style.visibility = "visible"; //this replaces the hidden word and makes it visible.
-      gridBox8.style.color = "white";
-      gridBox8.style.textAlign = "center";
-      gridLog[8] = 'x';
-      turnOrder++;
-      gameEnd();
-    }
-
-}, {once : true});
-
-// END OF GRID CHECK BOX
+// // END OF GRID CHECK BOX
