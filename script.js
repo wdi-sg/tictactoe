@@ -8,6 +8,8 @@ var gridLog =
  4,5,6,
  7,8,9];
 
+
+
 function gameTitle() {
     var title = document.createElement('h1');
     title.innerHTML = "Play TicTacToe";
@@ -68,15 +70,69 @@ gridEvent.addEventListener("mouseleave", function() {
 });
 // this part changes the grid back to original color once user mouse has left the box
 
+function reloadPage() {
+        alert("You win!\nTry another round!\nThis page will auto refresh after 3 seconds!");
+        setTimeout(function() {location.reload()}, 3000);
+}
+
 function gameEnd() {
     if (turnOrder === 10) {
-        alert("GAME END!\nTry another round! This page will auto refresh after 5 seconds!");
-        setTimeout(function() {location.reload()}, 5000);
+        reloadPage();
     };
 
+    // [0,1,2
+    //  3,4,5
+    //  6,7,8]
+
     if (gridLog[0] === 'x' && gridLog[1] === 'x' && gridLog[2] === 'x') {
-        alert("game end!");
-    };
+        reloadPage();
+    } else if (gridLog[0] === 'o' && gridLog[1] === 'o' && gridLog[2] === 'o') {
+        reloadPage();
+    }; // win condition row 1
+
+    if (gridLog[3] === 'x' && gridLog[4] === 'x' && gridLog[5] === 'x') {
+        reloadPage();
+    } else if (gridLog[3] === 'o' && gridLog[4] === 'o' && gridLog[5] === 'o') {
+        reloadPage();
+    } //win condition row 2
+
+    if (gridLog[6] === 'x' && gridLog[7] === 'x' && gridLog[8] === 'x') {
+        reloadPage();
+    } else if (gridLog[6] === 'o' && gridLog[7] === 'o' && gridLog[8] === 'o') {
+        reloadPage();
+    } //win condition row 3
+
+    if (gridLog[0] === 'x' && gridLog[3] === 'x' && gridLog[6] === 'x') {
+        areloadPage();
+    } else if (gridLog[0] === 'o' && gridLog[3] === 'o' && gridLog[6] === 'o') {
+        reloadPage();
+    } //win condition col 1
+
+    if (gridLog[1] === 'x' && gridLog[4] === 'x' && gridLog[7] === 'x') {
+        reloadPage();
+    } else if (gridLog[1] === 'o' && gridLog[4] === 'o' && gridLog[7] === 'o') {
+        reloadPage();
+    } //win condition col 2
+
+    if (gridLog[2] === 'x' && gridLog[5] === 'x' && gridLog[8] === 'x') {
+        reloadPage();
+    } else if (gridLog[2] === 'o' && gridLog[5] === 'o' && gridLog[8] === 'o') {
+        reloadPage();
+    } //win condition col 3
+
+    if (gridLog[0] === 'x' && gridLog[4] === 'x' && gridLog[8] === 'x') {
+        reloadPage();
+    } else if (gridLog[0] === 'o' && gridLog[4] === 'o' && gridLog[8] === 'o') {
+        reloadPage();
+    } //win condition diagonal 1
+
+    if (gridLog[2] === 'x' && gridLog[4] === 'x' && gridLog[6] === 'x') {
+        reloadPage();
+    } else if (gridLog[2] === 'o' && gridLog[4] === 'o' && gridLog[6] === 'o') {
+        reloadPage();
+    } //win condition diagonal 2
+
+
 }
 
 
