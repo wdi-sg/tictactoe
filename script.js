@@ -22,35 +22,19 @@ squares.push(seven);
 squares.push(eight);
 squares.push(nine);
 
+var addEventListener = function(squares,i) {
+    squares.addEventListener('click',play);
+}
+
 function startGame(){
-    one.addEventListener('click',play);
-    two.addEventListener('click',play);
-    three.addEventListener('click',play);
-    four.addEventListener('click',play);
-    five.addEventListener('click',play);
-    six.addEventListener('click',play);
-    seven.addEventListener('click',play);
-    eight.addEventListener('click',play);
-    nine.addEventListener('click',play);
+
+    squares.forEach(addEventListener);
+
+    hideButton();
+
 }
 
 playerTurn = "cross";
-
-// winning combinations
-// 1 2 3
-// 4 5 6
-// 7 8 9
-
-// 1 4 7
-// 2 5 8
-// 3 6 9
-
-// 1 5 9
-// 3 5 7
-
-// var key = "name";
-// var person = {[key]:"John"};
-// console.log(person); // should print  Object { name="John"}
 
 // Checks if if anyone (X or O has won)
 var won = 0;
@@ -96,13 +80,7 @@ var reload = function() {
 
 button.addEventListener('click',reload);
 
-/* Wins
-
-
-
-
-
-*/
+/* Wins*/
 
 
 function checkWins () {
@@ -125,6 +103,9 @@ function checkWins () {
         (three.innerText === "⭕️" && five.innerText === "⭕️" && seven.innerText === "⭕️")
         ){
 
+        won++;
+        showButton();
+
         if (won = 1) {
 
             switch (playerTurn) {
@@ -141,14 +122,17 @@ function checkWins () {
             }
         }
 
-    won++;
-    showButton();
-
     } else {
     console.log("Blop!");
 }
 }
 
+
+/* This function checks for a draw, i.e. all tiles are clicked, but nobody has won */
+// Game starts with playing squares set to 0; i.e. no tiles have been played yet
+// When moves are made, innerText is changed to X or O
+//// Playing squares are calculated after each move
+//// If tiles played === 9, show "play again" button so that players can play
 
 function checkDraw () {
 
@@ -171,15 +155,14 @@ var playingSquares = 0;
 /* Play function makes it possible for the game to be played */
 // If current game is not won yet, players can play their moves one after another
 // Game starts with player = "cross"
-//// When player clicks on board, tile turns to their symbol with textContent
-//// Player turn is changed to their opponent's symbol so that in the next turn opponent gets to go
+//// When player clicks on board, tile turns to their symbol using textContent
+//// playerTurn is changed to their opponent's symbol, so that next turn opponent gets to go
 // Function: checkWins – checks if player has won already
 // Event listener is removed from the tile just clicked, so that it does not change the symbols
 // Function: checkDraw – check if there is a draw
 
 var play = function() {
 
-    hideButton();
 
 if (won === 0) {
     if (playerTurn === "cross") {
@@ -204,7 +187,47 @@ if (won === 0) {
     }
 }
 
-startGame();
-play();
-
 // Last edit: 20 Mar 11AM
+
+//----------------------------------------------------------------
+
+startGame();
+
+
+//---------------------------EXTRA STUFF---------------------------
+
+
+/*
+
+function startGame(){
+    // one.addEventListener('click',play);
+    // two.addEventListener('click',play);
+    // three.addEventListener('click',play);
+    // four.addEventListener('click',play);
+    // five.addEventListener('click',play);
+    // six.addEventListener('click',play);
+    // seven.addEventListener('click',play);
+    // eight.addEventListener('click',play);
+    // nine.addEventListener('click',play);
+
+    hideButton();
+}
+
+// winning combinations
+// 1 2 3
+// 4 5 6
+// 7 8 9
+
+// 1 4 7
+// 2 5 8
+// 3 6 9
+
+// 1 5 9
+// 3 5 7
+
+// var key = "name";
+// var person = {[key]:"John"};
+// console.log(person); // should print  Object { name="John"}
+
+
+*/
