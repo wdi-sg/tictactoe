@@ -15,12 +15,16 @@ td {
 }
 
 .gameMessage {
-	font-size: 14px;
+	font-size: 20px;
 	margin-top: 10px;
 }
 
 .win {
 	background-color: #4CAF50;
+}
+
+.lose {
+	background-color: #DE5045;
 }
 
 .gameButton {
