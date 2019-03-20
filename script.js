@@ -20,6 +20,7 @@ startGame();
 function startGame(){
 //whenever the browser loads the web page, the 'endgame' class div window would not be visible since display is set to none;
   document.querySelector(".endgame").style.display = "none";
+  document.querySelector(".text").innerText = "";
 //after game ends, the display--we will create eventually, will set to appear. but once the startgame function is run, this will go off agin.
   originBoard = Array.from(Array(9).keys());
 //in the above, we are creating an array with nine values. Array.from creates an array from array-like objects. While .keys returns the enumerable properties of an array;
@@ -52,7 +53,7 @@ function turn(squareId, player){
 //determine win outcome here, want to check if a certain player has won:
   let gameWon = checkWin(originBoard, player);
 //if game has been won, call the game over function with the game won variable.
-  if (gameWon) gameOver (gameWon)
+  if (gameWon) gameOver (gameWon);
 }
 //we have to pass in the originBoard array into the board array here. The board array may not necessarily be the same as origin board.
 function checkWin(board, player){
@@ -75,10 +76,19 @@ function gameOver(gameWon){
     document.getElementById(index).style.backgroundColor =
       gameWon.player == huPlayer ? "blue" : "red";
   }
-  for (var i =1; i < cells.length; i++){
-    cells[i].removeEventListener('click',turnClick,false)
+  for (var i = 1; i < cells.length; i++){
+    cells[i].removeEventListener('click',turnClick,false);
   }
+  declareWinner(gameWon.player == huPlayer ? "You win!" : "You lose.");
 }
+
+function declareWinner(who){
+  document.querySelector(".endgame").style.display = "block";
+  document.querySelector(".text").innerText = who;
+  document.querySelector(".endgame").innerText = who;
+
+}
+
 //We are going to include a basic AI player here (w/o the minMax algorithm)...
 function emptySquares(){
   //filter every element in the original board to see if the type of is a number, if it is still a number, it means no player has yet played there and is empty.
@@ -91,10 +101,20 @@ function bestSpot(){
 
 function checkTie(){
 //means every square is filled up, and no body has won yet because everytime someone plays a turn, we had created a fucntion to check if there has been a win.
-  if emptySquares().length == 0)
-    for (var i =0;i<cells.length; i++){
-      cells.[i].style.backgroundColor = 'green';
-      cells.[i]removeEventListener('click',turnClick, false);
+  if (emptySquares().length == 0){
+    for (var i = 0; i < cells.length; i++){
+      cells[i].style.backgroundColor = "green";
+      cells[i].removeEventListener("click",turnClick, false);
     }
-    declareWinner()
-}
+    declareWinner("Tie Game!")
+    return true;
+    }
+    return false;
+  }
+//Now we create an AI that will use the minimax algorithm
+//It is a recursive function
+//1. Return a value if a terminal state is found
+//2. go through avaiable spots on the originBoard
+//3. call the minimax function on each available spot (recursion)
+//4. evaluate returning values from function calls
+//5. and return the best value. 
