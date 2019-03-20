@@ -35,8 +35,15 @@ function startGame(){
 }
 //then define the turnClick function here...
 function turnClick(square){
-  //console.log(square.target.id)
-  turn(square.target.id, huPlayer);
+  // add logic of not being able to click at a place if it has already been clicked:
+  if (typeof originBoard[square.target.id] == 'number'){
+    //recall that the initial squareId has a number value. once a player has clicked on the cell, it should turn into either an 'O' or an "X" letter.
+    //therefore, if the squareId is still a number, then it follows that no player has yet clicked on that spot.
+    turn(square.target.id, huPlayer);
+    //before the AI player takes a turn, we are going to check if the game is a draw. A draw is defined as all the cells being filled.
+    //if there is not a tie, then the computer will take a turn;
+    if(!checkTie()) turn(bestSpot(),aiPlayer);
+  }
 }
 //then define the turn function here:
 function turn(squareId, player){
@@ -71,4 +78,23 @@ function gameOver(gameWon){
   for (var i =1; i < cells.length; i++){
     cells[i].removeEventListener('click',turnClick,false)
   }
+}
+//We are going to include a basic AI player here (w/o the minMax algorithm)...
+function emptySquares(){
+  //filter every element in the original board to see if the type of is a number, if it is still a number, it means no player has yet played there and is empty.
+  return originBoard.filter(s => typeof s == 'number');
+}
+
+function bestSpot(){
+  return emptySquares()[0];
+}
+
+function checkTie(){
+//means every square is filled up, and no body has won yet because everytime someone plays a turn, we had created a fucntion to check if there has been a win.
+  if emptySquares().length == 0)
+    for (var i =0;i<cells.length; i++){
+      cells.[i].style.backgroundColor = 'green';
+      cells.[i]removeEventListener('click',turnClick, false);
+    }
+    declareWinner()
 }
