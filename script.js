@@ -2,15 +2,15 @@ console.log("Hi");
 
 var squares = [];
 
-var one = document.getElementById("1");
-var two = document.getElementById("2");
-var three = document.getElementById("3");
-var four = document.getElementById("4");
-var five = document.getElementById("5");
-var six = document.getElementById("6");
-var seven = document.getElementById("7");
-var eight = document.getElementById("8");
-var nine = document.getElementById("9");
+var one = document.getElementsByClassName('square')[0].getElementsByTagName('span')[0];
+var two = document.getElementsByClassName('square')[1].getElementsByTagName('span')[0];
+var three = document.getElementsByClassName('square')[2].getElementsByTagName('span')[0];
+var four = document.getElementsByClassName('square')[3].getElementsByTagName('span')[0];
+var five = document.getElementsByClassName('square')[4].getElementsByTagName('span')[0];
+var six = document.getElementsByClassName('square')[5].getElementsByTagName('span')[0];
+var seven = document.getElementsByClassName('square')[6].getElementsByTagName('span')[0];
+var eight = document.getElementsByClassName('square')[7].getElementsByTagName('span')[0];
+var nine = document.getElementsByClassName('square')[8].getElementsByTagName('span')[0];
 
 squares.push(one);
 squares.push(two);
@@ -21,6 +21,31 @@ squares.push(six);
 squares.push(seven);
 squares.push(eight);
 squares.push(nine);
+
+//add "arrays" to all the elements (I tried, but turned out as strings)
+
+function makeArrays() {
+
+    var wrap = document.getElementsByClassName('wrap')[0];
+    var boards = wrap.getElementsByClassName('board');
+
+
+    for (var j = 0; j < boards.length; j++) {
+
+        var squaries = boards[j].getElementsByClassName('square');
+
+        for (var i = 0; i < squaries.length; i++) {
+
+            var div = document.createElement('div');
+            var array = [j+1, i+1];
+            div.innerText = "[" + array + "]";
+
+            squaries[i].appendChild(div);
+        }
+    }
+}
+
+makeArrays();
 
 var addEventListener = function(squares,i) {
     squares.addEventListener('click',play);
@@ -67,7 +92,7 @@ var showButton = function() {
 var reload = function() {
 
     for (var i = 0; i < squares.length; i++) {
-        squares[i].innerText = "😎";
+        document.getElementsByClassName('square')[i].getElementsByTagName('span')[0].innerText = "😎";
     }
 
     won = 0;
@@ -81,9 +106,15 @@ var reload = function() {
 button.addEventListener('click',reload);
 
 /* Wins*/
+// 1. All possible winning combinations are hardcoded within the first if statement
+// 2. If there's a win, win is = 1
+// 3. Play button is displayed
+// 4. Specific player is congratulated
+// 5. Score for specific played is added
+//// 🌟 Future: Use the "arrays" associated with the squares to check for wins
 
+function checkWins() {
 
-function checkWins () {
     if (
         (one.innerText === "❌" && two.innerText === "❌" && three.innerText === "❌") ||
         (one.innerText === "⭕️" && two.innerText === "⭕️" && three.innerText === "⭕️") ||
@@ -101,30 +132,29 @@ function checkWins () {
         (one.innerText === "⭕️" && five.innerText === "⭕️" && nine.innerText === "⭕️") ||
         (three.innerText === "❌" && five.innerText === "❌" && seven.innerText === "❌") ||
         (three.innerText === "⭕️" && five.innerText === "⭕️" && seven.innerText === "⭕️")
-        ){
+        ) {
 
-        won++;
-        showButton();
+            won++;
 
-        if (won = 1) {
+            if (won === 1) {
+                showButton();
 
-            switch (playerTurn) {
-                case "circle":
-                message = alert("Congrats! Player ❌ won.");
-                message = scoreX++;
-                break;
-                case "cross":
-                message = alert("Congrats! Player ⭕️ won.");
-                message = scoreO++;
-                break;
-                default:
-                message = alert("It's a draw.");
+                switch (playerTurn) {
+                    case "circle":
+                    message = alert("Congrats! Player ❌ won.");
+                    message = scoreX++;
+                    break;
+                    case "cross":
+                    message = alert("Congrats! Player ⭕️ won.");
+                    message = scoreO++;
+                    break;
+                    default:
+                    message = console.log("Bloop.");
+                }
             }
-        }
-
-    } else {
-    console.log("Blop!");
-}
+        } else {
+        console.log("Blop!");
+    }
 }
 
 
@@ -140,14 +170,22 @@ var playingSquares = 0;
 
     for (var i = 0; i < squares.length; i++) {
 
-        if (squares[i].innerText !== "😎") {
+        if (document.getElementsByClassName('square')[i].getElementsByTagName('span')[0].innerText !== "😎") {
         playingSquares++
         }
+    }
 
         if (playingSquares === 9) {
-        showButton();
+
+            showButton();
+
+            if (won = 0) {
+                console.log("It's a draw.");
+            } else {
+                console.log("Blop.")
+              }
         }
-    }
+
     return playingSquares;
 }
 
@@ -161,15 +199,18 @@ var playingSquares = 0;
 // Event listener is removed from the tile just clicked, so that it does not change the symbols
 // Function: checkDraw – check if there is a draw
 
-var play = function() {
 
+var play = function() {
 
 if (won === 0) {
     if (playerTurn === "cross") {
-
         this.textContent = "❌";
         playerTurn = "circle";
+
+        var arrayx = this.nextElementSibling.innerText;
+
         checkWins();
+
         this.removeEventListener('click',play);
         checkDraw();
 
@@ -177,57 +218,18 @@ if (won === 0) {
 
         this.textContent = "⭕️";
         playerTurn = "cross";
+
+        var arrayo = this.nextElementSibling.innerText;
+
         checkWins();
         this.removeEventListener('click',play);
         checkDraw();
 
     }
 }   else {
-        alert("Oops! An error occured.");
+        alert("Oops! The game is over.");
     }
 }
 
-// Last edit: 20 Mar 11AM
-
-//----------------------------------------------------------------
 
 startGame();
-
-
-//---------------------------EXTRA STUFF---------------------------
-
-
-/*
-
-function startGame(){
-    // one.addEventListener('click',play);
-    // two.addEventListener('click',play);
-    // three.addEventListener('click',play);
-    // four.addEventListener('click',play);
-    // five.addEventListener('click',play);
-    // six.addEventListener('click',play);
-    // seven.addEventListener('click',play);
-    // eight.addEventListener('click',play);
-    // nine.addEventListener('click',play);
-
-    hideButton();
-}
-
-// winning combinations
-// 1 2 3
-// 4 5 6
-// 7 8 9
-
-// 1 4 7
-// 2 5 8
-// 3 6 9
-
-// 1 5 9
-// 3 5 7
-
-// var key = "name";
-// var person = {[key]:"John"};
-// console.log(person); // should print  Object { name="John"}
-
-
-*/
