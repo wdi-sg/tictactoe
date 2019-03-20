@@ -1,6 +1,10 @@
 var gameBoard = [];
-var gameSize = 3;
-var winCon = 3;
+var gameSize = parseInt(prompt("Specify size of Board"));
+var winCon = parseInt(prompt("Specify how many in a row to win."));
+while (gameSize < winCon || (gameSize === NaN || winCon === NaN)) {
+    gameSize = parseInt(prompt("Specify size of Board"));
+    winCon = parseInt(prompt("Specify how many in a row to win."));
+}
 var boxClicked = function () {
     var x = parseInt(this.getAttribute("data-x"));
     var y = parseInt(this.getAttribute("data-y"));
@@ -62,6 +66,12 @@ function checkHorizontal(x, y) {
     }
     if (winCountX === winCon) {
         console.log("horizontal win condition met");
+        if (gameBoard[x][y] === 1) {
+            alert("X won!");
+        }
+        else {
+            alert("O won!");
+        }
     }
 }
 function checkVertical(x, y) {
@@ -76,6 +86,12 @@ function checkVertical(x, y) {
     }
     if (winCountY === winCon) {
         console.log("vertical win condition met");
+        if (gameBoard[x][y] === 1) {
+            alert("X won!");
+        }
+        else {
+            alert("O won!");
+        }
     }
 }
 function checkDiagonal(x, y) {
@@ -101,6 +117,12 @@ function checkDiagonal(x, y) {
     }
     if (winCountXY === winCon) {
         console.log("diagonal win condition met");
+        if (gameBoard[x][y] === 1) {
+            alert("X won!");
+        }
+        else {
+            alert("O won!");
+        }
     }
 }
 function checkWin() {
