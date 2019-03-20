@@ -42,5 +42,33 @@ function turnClick(square){
 function turn(squareId, player){
   originBoard[squareId] = player;
   document.getElementById(squareId).innerText = player;
+//determine win outcome here, want to check if a certain player has won:
+  let gameWon = checkWin(originBoard, player);
+//if game has been won, call the game over function with the game won variable.
+  if (gameWon) gameOver (gameWon)
 }
-//determine winner function here:
+//we have to pass in the originBoard array into the board array here. The board array may not necessarily be the same as origin board.
+function checkWin(board, player){
+  let plays = board.reduce((a,e,i)=>
+  (e === player) ? a.concat(i) : a,[])
+  let gameWon = null;
+  for (let [index,win]of winCombos.entries()){
+    if(win.every(elem=>plays.indexOf(elem)>-1)){
+//gameWon defined up here...
+      gameWon = {index: index, player: player};
+      break;
+    }
+  }
+  return gameWon;
+}
+//Now we define the "Game Over" function...with two for loops
+
+function gameOver(gameWon){
+  for (let index of winCombos[gameWon.index]){
+    document.getElementById(index).style.backgroundColor =
+      gameWon.player == huPlayer ? "blue" : "red";
+  }
+  for (var i =1; i < cells.length; i++){
+    cells[i].removeEventListener('click',turnClick,false)
+  }
+}
