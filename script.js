@@ -383,7 +383,9 @@ var getWinningCellIndexForHumanPlayer = function () {
                 }
 
                 // shortest path which is board size - 1
-                if (temp === boardSize - 1) {
+                // make sure that the 2nd loop is complete before executing this check
+                // this is to fix a bug whereby if the first 2 cell matches the pattern
+                if (temp === boardSize - 1 && b === winningCombination[a].length - 1) {
                     shortestPathToWinningCombination = winningCombination[a];
                     break outer_loop;
                 }
