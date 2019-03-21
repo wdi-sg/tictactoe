@@ -1,9 +1,3 @@
-/*var players = ["one", "two"];
-var playerOne = player[0];
-var playerTwo = player[1];
-*/
-
-var playerText = "";
 var position = [];   // to check the position of the current click
 var players = [
 {
@@ -20,7 +14,7 @@ var playerTurn = "circle";
 var getId;
 
 function change() {
-    getId = event.target.id;
+    getId = event.target.id;    // to get the id of what the user click
     var boxIdElement = document.getElementById(getId);
 
     if (getId === "startGame") {
@@ -75,11 +69,6 @@ function check(a, b, c) {
     }
 }
 
-
-function reset() {
-    location.reload();
-};
-
 function winner() {
     if (playerTurn === "circle") {
         var playerName = players[0].name;
@@ -94,10 +83,6 @@ function winner() {
     }
 }
 
-
-console.log(players)
-
-var updatedElements;
 document.addEventListener("click", function(){
     change();   // changing of element happen
     //  after the updated body
