@@ -5,28 +5,62 @@ var playerTwo = player[1];
 
 var playerText = "";
 var position = [];   // to check the position of the current click
+var players = [
+{
+    name: "",
+    symbol: ""
+},
+{
+    name: "",
+    symbol: "",
+}
+]
 
-var clicker = 0;
+var playerTurn = "circle";
+var getId;
 
 function change() {
-    var getId = event.target.id;
+    getId = event.target.id;
     var boxIdElement = document.getElementById(getId);
 
-    if (boxIdElement !== null) {    // to make sure user click on the box
+    if (getId === "startGame") {
+        var playerOne = prompt("Enter name of Player One");
+        var playerTwo = prompt("Enter name of Player Two");
+
+        players[0].name = playerOne;
+        players[1].name = playerTwo;
+
+        alert(players[0].name + " start the game!");
+        document.getElementById("startGame").style.visibility = "hidden";
+
+    } else if (getId === "endGame") {
+        window.location.reload();
+
+    } else if (boxIdElement !== null) {    // to make sure user click on the box
         if (boxIdElement.textContent === "") {   // to make sure that innertext is empty
             position.push(boxIdElement)
 
             for (var i = 0; i < position.length; i++) {
-                if (i % 2 === 0) {
-                    boxIdElement.textContent = "0";
-                } else {
-                    boxIdElement.textContent = "X";
+                if (position.length < 9) {
+                    if (i % 2 === 0) {
+                        players[0].symbol = "0";
+                        boxIdElement.textContent = "0";
+                        playerTurn = "circle";
+                    } else {
+                        players[1].symbol = "X";
+                        boxIdElement.textContent = "X";
+                        playerTurn = "cross";
+                    }
+                } else if (position.length === 9) {
+                    playerTurn = "none";
+                    //console.log("Game end")
                 }
-            } // end of for loo
+            } // end of for loop
+            //console.log(players);
         } else {
             alert("Please click on an empty box!");
         } // end of checking if inner text is empty
-    } else {
+    } else if (boxIdElement === null) {
         alert("Please click on a box!");
     }
 } // end of change function
@@ -35,7 +69,7 @@ function change() {
 //  parameter is id
 function check(a, b, c) {
     if (a === b && a === c && a !== "") {
-        return "yes";
+        return "yes"
     } else {
         return "no"
     }
@@ -46,9 +80,27 @@ function reset() {
     location.reload();
 };
 
+function winner() {
+    if (playerTurn === "circle") {
+        var playerName = players[0].name;
+        return playerName + " won!";
+
+    } else if (playerTurn === "cross") {
+        var playerName = players[1].name;
+        return playerName + " won!";
+
+    } else if (playerTurn === "none") {
+        return "Game End! \nNoone won~"
+    }
+}
+
+
+console.log(players)
+
 var updatedElements;
 document.addEventListener("click", function(){
-    change();
+    change();   // changing of element happen
+    //  after the updated body
     var boxList = document.querySelectorAll(".innerContainer");
 
     var box1 = boxList[0].innerText;
@@ -61,13 +113,15 @@ document.addEventListener("click", function(){
     var box8 = boxList[7].innerText;
     var box9 = boxList[8].innerText;
 
-    //  checkRow
-    if (check(box1, box2, box3) === "yes" || check(box4, box5, box6) === "yes" || check(box7, box8, box9) === "yes") {
-        if(!alert("Someone Won! \nClick ok to restart.")){window.location.reload();}
-    } else if (check(box1, box4, box7) === "yes" || check(box2, box5, box8) === "yes" || check(box3, box6, box9) === "yes") {  // checkcolumn
-        if(!alert("Someone Won! \nClick ok to restart.")){window.location.reload();}
-    } else if (check(box1, box5, box9) === "yes" || check(box3, box5, box7) === "yes") {  // check diagonal
-        if(!alert("Someone Won! \nClick ok to restart.")){window.location.reload();}
-    }
+    console.log(playerTurn);
 
-});
+        if (check(box1, box2, box3) === "yes" || check(box4, box5, box6) === "yes" || check(box7, box8, box9) === "yes") {  // check row
+            if(!alert(`${winner()} won! \n`));
+        } else if (check(box1, box4, box7) === "yes" || check(box2, box5, box8) === "yes" || check(box3, box6, box9) === "yes") {  // checkcolumn
+            if(!alert(`${winner()} won!`));
+        } else if (check(box1, box5, box9) === "yes" || check(box3, box5, box7) === "yes") {  // check diagonal
+            //if(!alert(`${winner()} won! \nClick ok to restart.`)){window.location.reload();}
+            if(!alert(`${winner()} won!`));
+        };
+
+});  // end of event listener
