@@ -14,44 +14,27 @@ span {
 }
 
 .container {
-	width: 310px;
-	max-height: 310px;
+	/*width: 300px;*/
 	margin: 0 auto;
 }
 
 .wrapper {
 		display: flex;
 		flex-wrap: wrap;
+/*		width: 300px;*/
+		margin: 0 auto;
 }
 
-.box {
-	border-top: solid black 1px;
-	border-right: solid black 1px;
-	border-left: solid black 1px;
-	border-bottom: solid black 1px;
-	width: 100px;
-	height: 100px;
+/*.box {
+	border: solid black 1px;
+	width: 95px;
+	height: 97px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	font-size: 30px;
-}
-
-.left {
-	border-left: none;
-}
-
-.right {
-	border-right: none;
-}
-
-.top {
-	border-top: none;
-}
-
-.btm {
-	border-bottom: none;
-}
+	margin: 0;
+}*/
 
 .button {
 	display: inline-block;
