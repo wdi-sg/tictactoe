@@ -4,6 +4,7 @@ var createGameBoard = function () {
 
     for (let a = 0; a < boardSize; a++) {
         let row = [];
+
         for (let b = 0; b < boardSize; b++) {
             row.push("");
         }
@@ -324,6 +325,7 @@ var computerPlayerDefensiveAggressiveApproach = function () {
     } else if (humanPlayerWinningCellIndex === false) {
         computerPlayerRandomApproach();
     } else {
+        // block human player
         document.querySelector('[data-id="' + humanPlayerWinningCellIndex + '"]').click();
     }
 }
@@ -335,7 +337,7 @@ var getWinningCellIndexForHumanPlayer = function () {
     let humanPlayerSymbolPosition = [];
     let shortestPathToWinningCombination = [];
 
-    // find all the position the human player have place the symbol
+    // find all the position the human player have placed the symbol
     for (let a = 0; a < playerGameBoard.length; a++) {
         for (let b = 0; b < playerGameBoard.length; b++) {
             if (playerGameBoard[a][b] === humanPlayer["symbol"]) {
@@ -372,7 +374,7 @@ var getWinningCellIndexForHumanPlayer = function () {
                 // check if the any combination contain symbols by computer player
                 if (playerGameBoard[xAxis][yAxis] == computerPlayer["symbol"]) {
                     temp = 0;
-                    break;
+                    break inner_loop;
                 }
 
                 // find combination that are 1 cell away from completion
@@ -406,7 +408,7 @@ var getWinningCellIndexForComputerPlayer = function () {
     let computerPlayerSymbolPosition = [];
     let shortestPathToWinningCombination = [];
 
-    // find all the position the human player have place the symbol
+    // find all the position the computer player have placed the symbol
     for (let a = 0; a < playerGameBoard.length; a++) {
         for (let b = 0; b < playerGameBoard.length; b++) {
             if (playerGameBoard[a][b] === computerPlayer["symbol"]) {
@@ -437,13 +439,14 @@ var getWinningCellIndexForComputerPlayer = function () {
         let temp = 0;
 
         inner_loop: for (let b = 0; b < winningCombination[a].length; b++) {
+
                 let xAxis = winningCombination[a][b].split(",")[0];
                 let yAxis = winningCombination[a][b].split(",")[1];
 
                 // check if the any combination contain symbols by computer player
                 if (playerGameBoard[xAxis][yAxis] == humanPlayer["symbol"]) {
                     temp = 0;
-                    break;
+                    break inner_loop;
                 }
 
                 // find combination that are 1 cell away from completion
@@ -452,7 +455,9 @@ var getWinningCellIndexForComputerPlayer = function () {
                 }
 
                 // shortest path which is board size - 1
-                if (temp === boardSize - 1) {
+                // make sure that the 2nd loop is complete before executing this check
+                // this is to fix a bug whereby if the first 2 cell matches the pattern
+                if (temp === boardSize - 1 && b === winningCombination[a].length - 1) {
                     shortestPathToWinningCombination = winningCombination[a];
                     break outer_loop;
                 }
