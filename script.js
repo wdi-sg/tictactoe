@@ -1,7 +1,7 @@
 var baseBoard;
 //Original board for reference
-const player1 = 'O';
-const player2 = 'X';
+let player1 = 'O';
+let player2 = 'X';
 //Player creation O/X
 const win = [
 [0,1,2],
@@ -15,33 +15,51 @@ const win = [
 ]
 //Possible winning conditions
 
-const cells = document.querySelectorAll('.cell'); startGame();
-//HTML's Cell variable will now store reference for fresh game (startGame function)
+const cells = document.querySelectorAll('.cell');
 
+//Tracks turns
+let whoseTurn = 1;
+const check = function (event) {
+    if(whoseTurn%2 === 1 && event.target.textContent === "")
+    {event.target.textContent = "O";
+    whoseTurn++;
+}
+else if (whoseTurn%2 === 0 && event.target.textContent === "") {
+    event.target.textContent = "X";
+    whoseTurn++
+}
+}
+
+//Tracks cell id
+let player1Array =[];
+let player2Array = [];
+const createPlayerArray = function (event) {
+    if(whoseTurn%2 === 1 && event.target.textContent === "") {
+    player1Array.push(event.target.id);
+    console.log(player1Array);
+}
+else if (whoseTurn%2 === 0 && event.target.textContent === "") {
+   player2Array.push(event.target.id);
+   console.log(player2Array);
+}
+}
+
+//Reset everything
 function startGame () {
     document.querySelector(".endGame").style.display = "none";
 //Reset function to clear the board
     baseBoard = Array.from(Array(9).keys());
+    player1Array = [];
+    player2Array = [];
 //Creates array of array
-//console.log(baseBoard);
+console.log(baseBoard);
     for (var i = 0; i < cells.length; i++) {
         cells[i].innerText = '';
-        //Clears all cells
         cells[i].style.removeProperty('background-color');
-        //*Remove highlight when win condition is met
-        cells[i].addEventListener('click', turnClick, false);
-        //*Makes 'turnClick' function execute when a 'click' is detected
+        cells[i].addEventListener('click', createPlayerArray);
+        cells[i].addEventListener('click', check);
     }
 }
 
-function turnClick(cell) {
-    turn(cell.target.id, player1);
-    //console.log(square.target.id);
-    //^Shows which cell is being clicked
-}
-
-function turn(cellId, player) {
-    console.log(baseBoard[cellId] = player);
-    //Shows which player clicked where
-    document.getElementById(cellId).innerText = player;
-}
+startGame();
+//HTML's Cell variable will now store reference for fresh game (startGame function)
