@@ -6,25 +6,9 @@ body {
 	justify-content: center;
 }
 
-td {
-	width: 120px;
-	height: 120px;
-	font-size: 80px;
-	text-align: center;
-	border: 2px solid black;
-}
-
 .gameMessage {
 	font-size: 20px;
 	margin-top: 10px;
-}
-
-.win {
-	background-color: #4CAF50;
-}
-
-.lose {
-	background-color: #DE5045;
 }
 
 .gameButton {
@@ -57,4 +41,64 @@ td {
 .gameButton:active {
 	outline:none;
   transform: translateY(4px);
+}
+
+.win {
+	background-color: #4CAF50;
+}
+
+.lose {
+	background-color: #DE5045;
+}
+
+/*styling for tic tac toe game board*/
+table {
+	border-spacing: 0px;
+}
+
+td {
+	width: 120px;
+	height: 120px;
+	font-size: 100px;
+	text-align: center;
+	border: 2px solid black;
+	font-family: 'Gochi Hand', cursive;
+}
+
+tr:nth-child(1) > td:nth-child(1){
+  border-top: 0px;
+  border-left: 0px;
+}
+
+tr:nth-child(1) > td:nth-child(2){
+  border-top: 0px;
+}
+
+tr:nth-child(1) > td:nth-child(3){
+  border-top: 0px;
+  border-right: 0px;
+}
+
+
+tr:nth-child(2) > td:nth-child(1){
+  border-left: 0px;
+}
+
+tr:nth-child(2) > td:nth-child(3){
+  border-right: 0px;
+}
+
+
+tr:nth-child(3) > td:nth-child(1){
+  border-bottom: 0px;
+  border-left: 0px;
+}
+
+tr:nth-child(3) > td:nth-child(2){
+  border-bottom: 0px;
+}
+
+tr:nth-child(3) > td:nth-child(3){
+  border-bottom: 0px;
+  border-right: 0px;
 }
