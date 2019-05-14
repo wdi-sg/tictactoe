@@ -3,8 +3,8 @@
 //3. basic AI and winner notification
 //4. minmax algorithm
 var originBoard;
-const huPlayer = 'O';
-const aiPlayer = 'X';
+const huPlayer = 'X';
+const aiPlayer = 'O';
 const winCombos = [
   [0,1,2],
   [3,4,5],
@@ -117,4 +117,4 @@ function checkTie(){
 //2. go through avaiable spots on the originBoard
 //3. call the minimax function on each available spot (recursion)
 //4. evaluate returning values from function calls
-//5. and return the best value. 
+//5. and return the best value.
