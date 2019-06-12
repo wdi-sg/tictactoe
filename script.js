@@ -13,6 +13,8 @@ var tileInPlay = 0;
 var player1Tiles = [];
 var player2Tiles = [];
 
+var playerHasWon = false;
+
 //n = number of tile per side
 //when n=3:
 var winningArrays = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]];
@@ -49,6 +51,7 @@ function resetGame(){
     for (var i = clearTile.length - 1; i >= 0; i--) {
         clearTile[i].innerHTML = "";
     };
+    playerHasWon = false;
     turnNumber = -1;
     currentPlayer = null;
     tileInPlay = 0;
@@ -82,6 +85,7 @@ function playerWon(){
 //if player won, alert player won, maybe highlight winning set?
 function playerWin(){
     if (playerWon()) {
+        playerHasWon = true;
         setTimeout(function(){ alert(currentPlayer.toUpperCase() + ", YOU ARE WINNER"); }, 100);
     }
 }
@@ -110,17 +114,15 @@ function newTurn(){
     console.log("current round!!!", turnNumber);
     console.log(currentPlayer + ". Moves played: " + playerMove);
         //check if player has won. will return true if true
-    if (turnNumber>=5 && turnNumber < 9){
+    if (turnNumber>=5 ){
         console.log("CHECKINGGGG");
         playerWin();
+        if (playerHasWon === false && turnNumber === 9) {
+            console.log("MAX ROUNDSSS");
+            maxRounds();
+        };
         return;
     };
-    // if max number of rounds without win, end game
-    if (turnNumber === 9) {
-        console.log("MAX ROUNDSSS");
-        maxRounds();
-    };
-
 };
 
 //run game button
