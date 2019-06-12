@@ -1,34 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>Tic Tac Toe</title>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <h1>Tic Tac Toe</h1>
+    <div class="pageWrapper">
 
-    <div class="container">
-    <button id="runGame">Run Game</button>
-    <button id="reset">Reset Game</button>
-    <div class="gameBoard">
-        <div class="row">
-            <div id="1" class="column"></div>
-            <div id="2" class="column"></div>
-            <div id="3" class="column"></div>
+        <h1>Tic Tac Toe</h1>
+        <div class="menu">
+            <button id="runGame">Run Game</button>
+            <button id="reset">Reset Game</button>
         </div>
-        <div class="row">
-            <div id="4" class="column"></div>
-            <div id="5" class="column"></div>
-            <div id="6" class="column"></div>
+        <div class="gameWrapper">
+            <div class="container">
+            <div class="gameBoard">
+                <div class="row">
+                    <div id="1" class="column"></div>
+                    <div id="2" class="column"></div>
+                    <div id="3" class="column"></div>
+                </div>
+                <div class="row">
+                    <div id="4" class="column"></div>
+                    <div id="5" class="column"></div>
+                    <div id="6" class="column"></div>
+                </div>
+                <div class="row">
+                    <div id="7" class="column"></div>
+                    <div id="8" class="column"></div>
+                    <div id="9" class="column"></div>
+                </div>
+            </div>
         </div>
-        <div class="row">
-            <div id="7" class="column"></div>
-            <div id="8" class="column"></div>
-            <div id="9" class="column"></div>
+        <!-- <div class="container">
+            <h2>Current Player:</h2>
+            <h2 id="playerDisplay"></h2>
+        </div> -->
+        </div>
+
+        <div class="footer">
+            Made by <a href="https://nicoraven.github.io">khyreerusydi</a> in <a href="https://generalassemb.ly">GA</a>, 2019
         </div>
     </div>
-    </div>
-
     <script type="text/javascript" src="script.js"></script>
+    <!-- <script type="text/javascript" src="working-script.js"></script> -->
 </body>
 </html>

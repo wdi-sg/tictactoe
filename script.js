@@ -39,7 +39,8 @@ function gameRun(){
     turnNumber++;
     console.log("Game starts");
     // console.log("Round 1. Current Player: " + currentPlayer);
-    gameBoard.addEventListener('click', newTurn)
+    gameBoard.addEventListener('click', newTurn);
+    console.log("Round: " + (turnNumber+1));
 };
 
 //to reset game
@@ -106,14 +107,17 @@ function newTurn(){
         };
         playerMove.push(parseInt(tileInPlay.id))
     };
+    console.log("current round!!!", turnNumber);
     console.log(currentPlayer + ". Moves played: " + playerMove);
         //check if player has won. will return true if true
-    if (turnNumber>=5){
+    if (turnNumber>=5 && turnNumber < 9){
+        console.log("CHECKINGGGG");
         playerWin();
         return;
     };
     // if max number of rounds without win, end game
     if (turnNumber === 9) {
+        console.log("MAX ROUNDSSS");
         maxRounds();
     };
 
