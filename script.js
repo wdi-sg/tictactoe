@@ -1,5 +1,5 @@
 // create a back end game board
-var createGameBoard = function () {
+const createGameBoard = function () {
     let gameBoard = [];
 
     for (let a = 0; a < boardSize; a++) {
@@ -15,7 +15,7 @@ var createGameBoard = function () {
 }
 
 // generate game board UI using the back end game board
-var createGameBoardUI = function (gameBoard) {
+const createGameBoardUI = function (gameBoard) {
     let tableElement = document.createElement("table");
 
     for (let a = 0; a < gameBoard.length; a++) {
@@ -37,7 +37,7 @@ var createGameBoardUI = function (gameBoard) {
     document.querySelector(".gameBoard").appendChild(tableElement);
 }
 
-var generateGame = function () {
+const generateGame = function () {
     // remove the old game before generating a new game
     if (document.querySelector(".gameBoard > table") !== null) {
         document.querySelector(".gameBoard > table").remove();
@@ -51,17 +51,17 @@ var generateGame = function () {
     if (humanPlayer["turn"] === true) {
         setGameMessage("It is now " + humanPlayer["name"] + "'s turn.");
     } else {
+        setTimeout(computerPlayerAction, 350);
         setGameMessage("It is now " + computerPlayer["name"] + "'s turn.");
     }
 
-    // start computer player engine
-    computerPlayerEngine = setInterval(computerPlayerAction, 500);
+    hidePlayAgainButton();
 
     return playerGameBoard;
 }
 
 // click event for each cells
-var clickOnCell = function (event) {
+const clickOnCell = function (event) {
     let xAxis = this.getAttribute("data-id").split(",")[0];
     let yAxis = this.getAttribute("data-id").split(",")[1];
 
@@ -73,9 +73,11 @@ var clickOnCell = function (event) {
         computerPlayer["turn"] = true;
 
         setGameMessage("It is now " + computerPlayer["name"] + "'s turn.");
-        hidePlayAgainButton();
         this.removeEventListener("click", clickOnCell);
         checkForMatch(this, humanPlayer);
+
+        // computer players turn right after player takes an action
+        setTimeout(computerPlayerAction, 350);
 
     } else if (computerPlayer["turn"] === true) {
         event.target.textContent = computerPlayer["symbol"];
@@ -85,14 +87,13 @@ var clickOnCell = function (event) {
         humanPlayer["turn"] = true;
 
         setGameMessage("It is now " + humanPlayer["name"] + "'s turn.");
-        hidePlayAgainButton();
         this.removeEventListener("click", clickOnCell);
         checkForMatch(this, computerPlayer);
     }
 }
 
 // check for winning matches based on user input
-var checkForMatch = function (userInput, player) {
+const checkForMatch = function (userInput, player) {
     let matchFound = false;
     let winningCombinationBasedOnUserInput = getWinningCombinationBasedOnUserInput(userInput.getAttribute("data-id"));
 
@@ -142,7 +143,7 @@ var checkForMatch = function (userInput, player) {
 }
 
 // check if the board is completely filled and determined if it is a draw
-var checkGameIsDraw = function (matchFound) {
+const checkGameIsDraw = function (matchFound) {
     let filled = true;
 
     for (let a = 0; a < playerGameBoard.length; a++) {
@@ -162,7 +163,7 @@ var checkGameIsDraw = function (matchFound) {
     }
 }
 
-var getListOfIndexForEmptyCellOnGameBoard = function () {
+const getListOfIndexForEmptyCellOnGameBoard = function () {
     let temp  = [];
 
     for (let a = 0; a < playerGameBoard.length; a++) {
@@ -177,7 +178,7 @@ var getListOfIndexForEmptyCellOnGameBoard = function () {
 }
 
 // get all the winning combination for row, column, diagonal
-var getAllWinningCombination = function () {
+const getAllWinningCombination = function () {
     let temp = [];
     let winningCombination = [];
 
@@ -220,7 +221,7 @@ var getAllWinningCombination = function () {
 }
 
 // find all possible winning combination based on user input
-var getWinningCombinationBasedOnUserInput = function (userInputIndex) {
+const getWinningCombinationBasedOnUserInput = function (userInputIndex) {
     let winningCombinationBasedOnUserInput = [];
     let winningCombination = getAllWinningCombination(boardSize);
 
@@ -234,49 +235,44 @@ var getWinningCombinationBasedOnUserInput = function (userInputIndex) {
     return winningCombinationBasedOnUserInput;
 }
 
-var showScoreBoard = function () {
+const showScoreBoard = function () {
     console.log("Round: " + gameRound);
     console.log("# of Draw: " + gameDraw);
     console.log(humanPlayer["name"] + " has won " + humanPlayer["win"] + " round.");
     console.log(computerPlayer["name"] + " has won " + computerPlayer["win"] + " round.");
 }
 
-var showPlayAgainButton = function () {
+const showPlayAgainButton = function () {
     let buttonElement = document.querySelector(".gameButton");
     buttonElement.addEventListener("click", generateGame);
     buttonElement.style.display = "block";
     showScoreBoard();
 }
 
-var hidePlayAgainButton = function () {
+const hidePlayAgainButton = function () {
     let buttonElement = document.querySelector(".gameButton");
     buttonElement.removeEventListener("click", generateGame);
     buttonElement.style.display = "none";
 }
 
-var disableGameBoard = function () {
+const disableGameBoard = function () {
     let cellElement = document.querySelectorAll("td");
 
     for (let i = 0; i < cellElement.length; i++) {
         cellElement[i].removeEventListener("click", clickOnCell);
     }
-
-    // pause the computer player engine
-    clearInterval(computerPlayerEngine);
 }
 
 // set game message for the player
-var setGameMessage = function (message) {
+const setGameMessage = function (message) {
     document.querySelector(".gameMessage").textContent =
         "Round " + gameRound + ": " + message;
 }
 
-var computerPlayerAction = function () {
-    if (computerPlayer["turn"] === true && computerPlayer["mode"] === "computer" ) {
-        //computerPlayerRandomApproach();
-        //computerPlayerDefensiveApproach();
-        computerPlayerDefensiveAggressiveApproach();
-    }
+const computerPlayerAction = function () {
+    //computerPlayerRandomApproach();
+    //computerPlayerDefensiveApproach();
+    computerPlayerDefensiveAggressiveApproach();
 }
 
 //make the computer play by randomly picking a spot on the board
@@ -292,7 +288,7 @@ var computerPlayerRandomApproach = function () {
 // check all of human player move
 // check for all the possible combination the human player can win
 // find the path closest to winning and block the human player
-var computerPlayerDefensiveApproach = function () {
+const computerPlayerDefensiveApproach = function () {
     // always aim for the center of the board for defense as the first step
     // only apply to odd number board size game because only odd number board have a center cell
     // if there is no winning move by the player, randomize the next move
@@ -310,7 +306,7 @@ var computerPlayerDefensiveApproach = function () {
 
 // make the computer player to be defensive and block the human player from winning
 // computer player will also be looking out for winning move and try to win the game
-var computerPlayerDefensiveAggressiveApproach = function () {
+const computerPlayerDefensiveAggressiveApproach = function () {
     // always aim for the center of the board for defense as the first step
     // only apply to odd number board size game because only odd number board have a center cell
     // if there is no winning move by the player, randomize the next move
@@ -332,7 +328,7 @@ var computerPlayerDefensiveAggressiveApproach = function () {
 
 // this function like the eye of the computer
 // it helps the computer identify where it can win the game
-var getWinningCellIndexForHumanPlayer = function () {
+const getWinningCellIndexForHumanPlayer = function () {
     let winningCombination = [];
     let humanPlayerSymbolPosition = [];
     let shortestPathToWinningCombination = [];
@@ -405,7 +401,7 @@ var getWinningCellIndexForHumanPlayer = function () {
     return false;
 }
 
-var getWinningCellIndexForComputerPlayer = function () {
+const getWinningCellIndexForComputerPlayer = function () {
     let winningCombination = [];
     let computerPlayerSymbolPosition = [];
     let shortestPathToWinningCombination = [];
@@ -479,7 +475,7 @@ var getWinningCellIndexForComputerPlayer = function () {
     return false;
 }
 
-let humanPlayer = {
+const humanPlayer = {
     name: "Human",
     symbol: "O",
     mode: "human",
@@ -488,7 +484,7 @@ let humanPlayer = {
     win: 0
 }
 
-let computerPlayer = {
+const computerPlayer = {
     name: "AI Godzilla Xtreme",
     symbol: "X",
     mode: "computer",
@@ -502,6 +498,5 @@ let gameDraw = 0;
 let gameRound = 1;
 let boardSize = 3;
 let playerGameBoard = [];
-let computerPlayerEngine = null;
 
 generateGame();
