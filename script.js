@@ -1,5 +1,6 @@
 // create a back end game board
 const createGameBoard = function () {
+    // testing minimax
     const gameBoard = [];
 
     for (let a = 0; a < boardSize; a++) {
@@ -76,8 +77,12 @@ const clickOnCell = function (event) {
         this.removeEventListener("click", clickOnCell);
         checkForWinState(this, playerGameBoard, humanPlayer);
 
-        // computer players turn right after player takes an action
-        setTimeout(computerPlayerAction, 350);
+
+        if (getListOfIndexForEmptyCellOnGameBoard(playerGameBoard).length > 0) {
+            // computer players turn right after player takes an action
+            setTimeout(computerPlayerAction, 350);
+        }
+
 
     } else if (computerPlayer["turn"] === true) {
         event.target.textContent = computerPlayer["symbol"];
@@ -268,41 +273,45 @@ const setGameMessage = function (message) {
         "Round " + gameRound + ": " + message;
 }
 
-
-
-
-
 const computerPlayerAction = function () {
-    const bestMove = minimax(createSnapshot(playerGameBoard), computerPlayer);
-    document.querySelector('[data-id="' + bestMove.index + '"]').click();
+    computerPlayerDefensiveAggressiveApproach();
 }
 
+// as tic tac toe is a 0 sum game, one players misfortune is the other player fortunate
+// minimax will be used to determine the best outcome for the computer player based on the worst outcome from the human player
 // max always start with computer player
 // min always for human player
-// this algorithm try to get the max outcome for the computer base on the min outcome of the human
+// this algorithm try to get the best outcome for the computer base on the worst outcome for the human based on their response
 const minimax = function (newGameBoard, player) {
+    // get the list of empty cells on the game board
+    // computer player will try to get the maximum score based on the given empty cells
     const availableCellsIndex = getListOfIndexForEmptyCellOnGameBoard(newGameBoard);
 
     // this is the base method for terminating the recursive minimax function
     if (checkForWin(newGameBoard, humanPlayer) === true) {
         return { score: -10 };
-    } else if (checkForWin(newGameBoard, computerPlayer) === true ) {
+    } else if (checkForWin(newGameBoard, computerPlayer) === true) {
         return { score: 10 };
     } else if (availableCellsIndex.length === 0) {
         return { score: 0 };
     }
 
+    let bestMove;
     let moves = [];
 
+    // run through all the empty cells
+    // for each of the cell, computer player will try to fill in with it's symbol to find the best outcome - max
     for (let i = 0; i < availableCellsIndex.length; i++) {
         let move = {};
-        move.index = availableCellsIndex[i];
-
         const xAxis = availableCellsIndex[i].split(",")[0];
         const yAxis = availableCellsIndex[i].split(",")[1];
 
+        move.index = availableCellsIndex[i];
         newGameBoard[xAxis][yAxis] = player.symbol;
 
+        // run minimax on the human player to get their response which they will setup for the worst outcome for the computer player
+        // human player will always try to get the lowest possible score to oppose the computer player
+        // a recursion will run to determine the score
         if (player["mode"] === "computer") {
             let result = minimax(createSnapshot(newGameBoard), humanPlayer);
             move.score = result.score;
@@ -310,12 +319,12 @@ const minimax = function (newGameBoard, player) {
             let result = minimax(createSnapshot(newGameBoard), computerPlayer);
             move.score = result.score;
         }
-
+        newGameBoard[xAxis][yAxis] = "";
         moves.push(move);
     }
 
-    let bestMove;
-
+    // based on the move list returned from the recursion, consolidate and find the min/max outcome for the player
+    // depending on the stage, if this is on the max stage. Computer  will get the best possible outcome
     if(player["mode"] === "computer") {
         let bestScore = -10000;
 
@@ -326,6 +335,8 @@ const minimax = function (newGameBoard, player) {
             }
         }
     } else {
+         // human player will get the best possible outcome which in turn is the worst outcome for the computer player
+         // this means that human player will always try to get the lowest possible score to oppose the computer player
         let bestScore = 10000;
 
         for(let i = 0; i < moves.length; i++) {
@@ -369,7 +380,7 @@ const computerPlayerDefensiveApproach = function () {
 }
 
 // make the computer player to be defensive and block the human player from winning
-// computer player will also be looking out for winning move and try to win the game
+// computer player will also be looking out for winning move and try to win the game using minimax
 const computerPlayerDefensiveAggressiveApproach = function () {
     // always aim for the center of the board for defense as the first step
     // only apply to odd number board size game because only odd number board have a center cell
@@ -380,13 +391,18 @@ const computerPlayerDefensiveAggressiveApproach = function () {
 
     if (playerGameBoard[indexForCenterOfBoardCell][indexForCenterOfBoardCell] === "" && boardSize % 2 === 1) {
         document.querySelector('[data-id="' + indexForCenterOfBoardCell + "," + indexForCenterOfBoardCell + '"]').click();
-    } else if (computerPlayerWinningCellIndex !== false) {
+    } else if (computerPlayerWinningCellIndex === true) {
+        // always try to win
         document.querySelector('[data-id="' + computerPlayerWinningCellIndex + '"]').click();
-    } else if (humanPlayerWinningCellIndex === false) {
-        computerPlayerRandomApproach();
-    } else {
-        // block human player
+    } else if (humanPlayerWinningCellIndex === true) {
+        // if unable to win, always try to block human player's move
         document.querySelector('[data-id="' + humanPlayerWinningCellIndex + '"]').click();
+    } else {
+        // choose the best move using minimax
+        // once filtered based on the 3 criteria above, run minimax
+        // because of the above criteria, there are some form of alpha pruning achieve before running minimax which save computation
+        const bestMove = minimax(createSnapshot(playerGameBoard), computerPlayer);
+        document.querySelector('[data-id="' + bestMove.index + '"]').click();
     }
 }
 
