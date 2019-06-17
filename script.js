@@ -1,6 +1,5 @@
 // create a back end game board
 const createGameBoard = function () {
-    // testing minimax
     const gameBoard = [];
 
     for (let a = 0; a < boardSize; a++) {
@@ -391,10 +390,10 @@ const computerPlayerDefensiveAggressiveApproach = function () {
 
     if (playerGameBoard[indexForCenterOfBoardCell][indexForCenterOfBoardCell] === "" && boardSize % 2 === 1) {
         document.querySelector('[data-id="' + indexForCenterOfBoardCell + "," + indexForCenterOfBoardCell + '"]').click();
-    } else if (computerPlayerWinningCellIndex === true) {
+    } else if (computerPlayerWinningCellIndex !== false) {
         // always try to win
         document.querySelector('[data-id="' + computerPlayerWinningCellIndex + '"]').click();
-    } else if (humanPlayerWinningCellIndex === true) {
+    } else if (humanPlayerWinningCellIndex !== false) {
         // if unable to win, always try to block human player's move
         document.querySelector('[data-id="' + humanPlayerWinningCellIndex + '"]').click();
     } else {
