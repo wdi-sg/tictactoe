@@ -1,6 +1,6 @@
 // create a back end game board
 const createGameBoard = function () {
-    let gameBoard = [];
+    const gameBoard = [];
 
     for (let a = 0; a < boardSize; a++) {
         let row = [];
@@ -16,10 +16,10 @@ const createGameBoard = function () {
 
 // generate game board UI using the back end game board
 const createGameBoardUI = function (gameBoard) {
-    let tableElement = document.createElement("table");
+    const tableElement = document.createElement("table");
 
     for (let a = 0; a < gameBoard.length; a++) {
-        let rowElement = document.createElement("tr");
+        const rowElement = document.createElement("tr");
 
         for (let b = 0; b < gameBoard.length; b++) {
             let cellElement = document.createElement("td");
@@ -45,7 +45,7 @@ const generateGame = function () {
     }
 
     // overwrite the global game board variable
-    playerGameBoard = createGameBoard(boardSize);
+    playerGameBoard = createGameBoard();
     createGameBoardUI(playerGameBoard);
 
     if (humanPlayer["turn"] === true) {
@@ -74,7 +74,7 @@ const clickOnCell = function (event) {
 
         setGameMessage("It is now " + computerPlayer["name"] + "'s turn.");
         this.removeEventListener("click", clickOnCell);
-        checkForMatch(this, humanPlayer);
+        checkForWinState(this, playerGameBoard, humanPlayer);
 
         // computer players turn right after player takes an action
         setTimeout(computerPlayerAction, 350);
@@ -88,22 +88,22 @@ const clickOnCell = function (event) {
 
         setGameMessage("It is now " + humanPlayer["name"] + "'s turn.");
         this.removeEventListener("click", clickOnCell);
-        checkForMatch(this, computerPlayer);
+        checkForWinState(this, playerGameBoard, computerPlayer);
     }
 }
 
 // check for winning matches based on user input
-const checkForMatch = function (userInput, player) {
+const checkForWinState = function (userInput, newGameBoard, player) {
     let matchFound = false;
-    let winningCombinationBasedOnUserInput = getWinningCombinationBasedOnUserInput(userInput.getAttribute("data-id"));
+    const winningCombinationBasedOnUserInput = getWinningCombinationBasedOnUserInput(userInput.getAttribute("data-id"));
 
     // check if user input matches one of the possibilities
     for (let i = 0; i < winningCombinationBasedOnUserInput.length; i++) {
         matchFound = winningCombinationBasedOnUserInput[i].every(function(item) {
-            let xAxis = item.split(",")[0];
-            let yAxis = item.split(",")[1];
+            const xAxis = item.split(",")[0];
+            const yAxis = item.split(",")[1];
 
-            return playerGameBoard[xAxis][yAxis] === userInput.textContent;
+            return newGameBoard[xAxis][yAxis] === userInput.textContent;
         });
 
         // set the style of the cells to show the win class
@@ -111,7 +111,7 @@ const checkForMatch = function (userInput, player) {
         // alert player that he have win the game
         if (matchFound === true) {
             for (let r = 0; r < winningCombinationBasedOnUserInput[i].length; r++) {
-                let tempElement = document.querySelector('[data-id="' + winningCombinationBasedOnUserInput[i][r] + '"]');
+                const tempElement = document.querySelector('[data-id="' + winningCombinationBasedOnUserInput[i][r] + '"]');
 
                 if (player["mode"] === "human") {
                     tempElement.className = "win";
@@ -139,11 +139,11 @@ const checkForMatch = function (userInput, player) {
         }
     }
 
-    checkGameIsDraw(matchFound);
+    checkForDrawState(matchFound);
 }
 
 // check if the board is completely filled and determined if it is a draw
-const checkGameIsDraw = function (matchFound) {
+const checkForDrawState = function (winState) {
     let filled = true;
 
     for (let a = 0; a < playerGameBoard.length; a++) {
@@ -154,21 +154,21 @@ const checkGameIsDraw = function (matchFound) {
         }
     }
 
-    if (filled === true && matchFound === false) {
-        disableGameBoard();
-        setGameMessage("The game is a draw!");
+    if (filled === true && winState === false) {
         gameDraw++;
 
+        disableGameBoard();
         showPlayAgainButton();
+        setGameMessage("The game is a draw!");
     }
 }
 
-const getListOfIndexForEmptyCellOnGameBoard = function () {
-    let temp  = [];
+const getListOfIndexForEmptyCellOnGameBoard = function (newGameBoard) {
+    const temp  = [];
 
-    for (let a = 0; a < playerGameBoard.length; a++) {
-        for (let b = 0; b < playerGameBoard.length; b++) {
-            if (playerGameBoard[a][b] === ""){
+    for (let a = 0; a < newGameBoard.length; a++) {
+        for (let b = 0; b < newGameBoard.length; b++) {
+            if (newGameBoard[a][b] === ""){
                 temp.push(a + "," + b);
             }
         }
@@ -180,7 +180,7 @@ const getListOfIndexForEmptyCellOnGameBoard = function () {
 // get all the winning combination for row, column, diagonal
 const getAllWinningCombination = function () {
     let temp = [];
-    let winningCombination = [];
+    const winningCombination = [];
 
     // 3 row winning sequence
     for (let a = 0; a < boardSize; a++) {
@@ -222,8 +222,7 @@ const getAllWinningCombination = function () {
 
 // find all possible winning combination based on user input
 const getWinningCombinationBasedOnUserInput = function (userInputIndex) {
-    let winningCombinationBasedOnUserInput = [];
-    let winningCombination = getAllWinningCombination(boardSize);
+    const winningCombinationBasedOnUserInput = [];
 
     // find all possible winning possibilities based on user input
     for (let i = 0; i < winningCombination.length; i++) {
@@ -243,20 +242,20 @@ const showScoreBoard = function () {
 }
 
 const showPlayAgainButton = function () {
-    let buttonElement = document.querySelector(".gameButton");
+    const buttonElement = document.querySelector(".gameButton");
     buttonElement.addEventListener("click", generateGame);
     buttonElement.style.display = "block";
     showScoreBoard();
 }
 
 const hidePlayAgainButton = function () {
-    let buttonElement = document.querySelector(".gameButton");
+    const buttonElement = document.querySelector(".gameButton");
     buttonElement.removeEventListener("click", generateGame);
     buttonElement.style.display = "none";
 }
 
 const disableGameBoard = function () {
-    let cellElement = document.querySelectorAll("td");
+    const cellElement = document.querySelectorAll("td");
 
     for (let i = 0; i < cellElement.length; i++) {
         cellElement[i].removeEventListener("click", clickOnCell);
@@ -269,17 +268,82 @@ const setGameMessage = function (message) {
         "Round " + gameRound + ": " + message;
 }
 
+
+
+
+
 const computerPlayerAction = function () {
-    //computerPlayerRandomApproach();
-    //computerPlayerDefensiveApproach();
-    computerPlayerDefensiveAggressiveApproach();
+    const bestMove = minimax(createSnapshot(playerGameBoard), computerPlayer);
+    document.querySelector('[data-id="' + bestMove.index + '"]').click();
+}
+
+// max always start with computer player
+// min always for human player
+// this algorithm try to get the max outcome for the computer base on the min outcome of the human
+const minimax = function (newGameBoard, player) {
+    const availableCellsIndex = getListOfIndexForEmptyCellOnGameBoard(newGameBoard);
+
+    // this is the base method for terminating the recursive minimax function
+    if (checkForWin(newGameBoard, humanPlayer) === true) {
+        return { score: -10 };
+    } else if (checkForWin(newGameBoard, computerPlayer) === true ) {
+        return { score: 10 };
+    } else if (availableCellsIndex.length === 0) {
+        return { score: 0 };
+    }
+
+    let moves = [];
+
+    for (let i = 0; i < availableCellsIndex.length; i++) {
+        let move = {};
+        move.index = availableCellsIndex[i];
+
+        const xAxis = availableCellsIndex[i].split(",")[0];
+        const yAxis = availableCellsIndex[i].split(",")[1];
+
+        newGameBoard[xAxis][yAxis] = player.symbol;
+
+        if (player["mode"] === "computer") {
+            let result = minimax(createSnapshot(newGameBoard), humanPlayer);
+            move.score = result.score;
+        } else {
+            let result = minimax(createSnapshot(newGameBoard), computerPlayer);
+            move.score = result.score;
+        }
+
+        moves.push(move);
+    }
+
+    let bestMove;
+
+    if(player["mode"] === "computer") {
+        let bestScore = -10000;
+
+        for(let i = 0; i < moves.length; i++) {
+            if (moves[i].score > bestScore) {
+                bestScore = moves[i].score;
+                bestMove = i;
+            }
+        }
+    } else {
+        let bestScore = 10000;
+
+        for(let i = 0; i < moves.length; i++) {
+            if (moves[i].score < bestScore) {
+                bestScore = moves[i].score;
+                bestMove = i;
+            }
+        }
+    }
+
+    return moves[bestMove];
 }
 
 //make the computer play by randomly picking a spot on the board
-var computerPlayerRandomApproach = function () {
-    let listOfIndexForEmptyCellOnGameBoard = getListOfIndexForEmptyCellOnGameBoard();
-    let random =  Math.floor((Math.random() * listOfIndexForEmptyCellOnGameBoard.length));
-    let randomIndex = listOfIndexForEmptyCellOnGameBoard[random];
+const computerPlayerRandomApproach = function () {
+    const listOfIndexForEmptyCellOnGameBoard = getListOfIndexForEmptyCellOnGameBoard();
+    const random =  Math.floor((Math.random() * listOfIndexForEmptyCellOnGameBoard.length));
+    const randomIndex = listOfIndexForEmptyCellOnGameBoard[random];
 
     document.querySelector('[data-id="' + randomIndex + '"]').click();
 }
@@ -292,8 +356,8 @@ const computerPlayerDefensiveApproach = function () {
     // always aim for the center of the board for defense as the first step
     // only apply to odd number board size game because only odd number board have a center cell
     // if there is no winning move by the player, randomize the next move
-    let humanPlayerWinningCellIndex = getWinningCellIndexForHumanPlayer();
-    let indexForCenterOfBoardCell = Math.floor(boardSize / 2);
+    const humanPlayerWinningCellIndex = getWinningCellIndexForHumanPlayer();
+    const indexForCenterOfBoardCell = Math.floor(boardSize / 2);
 
     if (playerGameBoard[indexForCenterOfBoardCell][indexForCenterOfBoardCell] === "" && boardSize % 2 === 1) {
         document.querySelector('[data-id="' + indexForCenterOfBoardCell + "," + indexForCenterOfBoardCell + '"]').click();
@@ -310,9 +374,9 @@ const computerPlayerDefensiveAggressiveApproach = function () {
     // always aim for the center of the board for defense as the first step
     // only apply to odd number board size game because only odd number board have a center cell
     // if there is no winning move by the player, randomize the next move
-    let humanPlayerWinningCellIndex = getWinningCellIndexForHumanPlayer();
-    let computerPlayerWinningCellIndex = getWinningCellIndexForComputerPlayer();
-    let indexForCenterOfBoardCell = Math.floor(boardSize / 2);
+    const humanPlayerWinningCellIndex = getWinningCellIndexForHumanPlayer();
+    const computerPlayerWinningCellIndex = getWinningCellIndexForComputerPlayer();
+    const indexForCenterOfBoardCell = Math.floor(boardSize / 2);
 
     if (playerGameBoard[indexForCenterOfBoardCell][indexForCenterOfBoardCell] === "" && boardSize % 2 === 1) {
         document.querySelector('[data-id="' + indexForCenterOfBoardCell + "," + indexForCenterOfBoardCell + '"]').click();
@@ -326,8 +390,8 @@ const computerPlayerDefensiveAggressiveApproach = function () {
     }
 }
 
-// this function like the eye of the computer
-// it helps the computer identify where it can win the game
+// this function like the eye of the computer player
+// it helps the computer identify where the human player can win the game
 const getWinningCellIndexForHumanPlayer = function () {
     let winningCombination = [];
     let humanPlayerSymbolPosition = [];
@@ -390,8 +454,8 @@ const getWinningCellIndexForHumanPlayer = function () {
 
     // find the cell which is empty from the combination
     for (let i = 0; i < shortestPathToWinningCombination.length; i++) {
-        let xAxis = shortestPathToWinningCombination[i].split(",")[0];
-        let yAxis = shortestPathToWinningCombination[i].split(",")[1];
+        const xAxis = shortestPathToWinningCombination[i].split(",")[0];
+        const yAxis = shortestPathToWinningCombination[i].split(",")[1];
 
         if (playerGameBoard[xAxis][yAxis] === "") {
             return shortestPathToWinningCombination[i];
@@ -401,6 +465,8 @@ const getWinningCellIndexForHumanPlayer = function () {
     return false;
 }
 
+// this function like the eye of the computer player
+// it helps the computer identify where it can win the game
 const getWinningCellIndexForComputerPlayer = function () {
     let winningCombination = [];
     let computerPlayerSymbolPosition = [];
@@ -464,8 +530,8 @@ const getWinningCellIndexForComputerPlayer = function () {
 
     // find the cell which is empty from the combination
     for (let i = 0; i < shortestPathToWinningCombination.length; i++) {
-        let xAxis = shortestPathToWinningCombination[i].split(",")[0];
-        let yAxis = shortestPathToWinningCombination[i].split(",")[1];
+        const xAxis = shortestPathToWinningCombination[i].split(",")[0];
+        const yAxis = shortestPathToWinningCombination[i].split(",")[1];
 
         if (playerGameBoard[xAxis][yAxis] === "") {
             return shortestPathToWinningCombination[i];
@@ -474,6 +540,47 @@ const getWinningCellIndexForComputerPlayer = function () {
 
     return false;
 }
+
+const checkForWin = function (newGameBoard, player) {
+    let matchFound = false;
+
+    for (let i = 0; i < winningCombination.length; i++) {
+        matchFound = winningCombination[i].every(function(item) {
+            const xAxis = item.split(",")[0];
+            const yAxis = item.split(",")[1];
+
+            return newGameBoard[xAxis][yAxis] === player.symbol;
+        });
+
+        if (matchFound === true) {
+            break;
+        }
+    }
+
+    return matchFound;
+}
+
+// to enable deep cloning of an  object
+// this is to overcome the issue of shallow cloning object in JS
+// spread does not work because the game board is an mutable object storing a list of mutable objects
+var createSnapshot = function (gameBoard) {
+    let temp = [ [],[],[] ];
+
+    for (let a = 0; a < gameBoard.length; a++) {
+        for (let b = 0; b < gameBoard[a].length; b++) {
+            temp[a].push(gameBoard[a][b]);
+        }
+    }
+
+    return temp;
+}
+
+let gameDraw = 0;
+let gameRound = 1;
+let playerGameBoard = [];
+
+const boardSize = 3;
+const winningCombination = getAllWinningCombination();
 
 const humanPlayer = {
     name: "Human",
@@ -492,11 +599,5 @@ const computerPlayer = {
     lose: 0,
     win: 0
 }
-
-// main
-let gameDraw = 0;
-let gameRound = 1;
-let boardSize = 3;
-let playerGameBoard = [];
 
 generateGame();
