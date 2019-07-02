@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+    <header>
+        <h1>TicTacToe</h1>
+    </header>
+    <h2> Start Game </h2>
+    Board Size: <input class="number-input" id="board-size" type="number"><br>
+    Win Condition: <input class="number-input" id="win-condition" type="number"><br>
+    Player 1 Name: <input class = "name-input" id="P1-name" type="text"><br>
+    Player 1 Symbol: <input class = 'symbol-input' id = 'symbol' type='text'><br>
+    Player 2 Name: <input class = "name-input" id="P2-name" type="text"><br>
+    <button class ="buttons" id="startgame" onclick="createBoard(); createGameArray()"> Start Game </button>
+    <h1> Output </h1>
+    <main>
+        <div id="game-display">
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
