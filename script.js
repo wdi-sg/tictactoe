@@ -41,8 +41,17 @@ for (var i = 0; i < box.length; i++ ) {
 ////////////////////////////////////////////////////////
 // 2nd Version//////////////////////////////////////////
 ////////////////////////////////////////////////////////
-var squares = [];
+
 var playerTurn = null; // null becos it's an empty square in the beginning.
+var numOfRows = 3;
+var sqPerRows = 3;
+
+var scoreBoard = [
+    [null, null, null],
+    [null, null, null],
+    [null, null, null],
+]
+
 
 // start the game
 console.log("Hello");
@@ -71,12 +80,12 @@ var startGame = function(event) {
     var board = document.createElement('div');
     board.className = 'board';
 
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < numOfRows; i++) {
         var row = document.createElement('div');
         row.className = 'game-row';
         board.appendChild(row);
 
-        for (var j = 0; j < 3; j++) {
+        for (var j = 0; j < sqPerRows; j++) {
             var square = document.createElement('button');
             square.className = 'game-square';
             row.appendChild(square);
