@@ -13,18 +13,15 @@ var startGame = function() {
     board = Array.from(Array(9).keys());
     for(var i = 0; i <cells.length; i++){
         cells[i].innerText = '';
-        cells[i].style.removeProperty('background-color');
-        //LINE 16 MAY HAVE PROB
         cells[i].addEventListener('click', turnclick);
     }
 };
 var turnclick = function(square){
     //console.log(square.target.id);
-    if(playerTurn == null || playerTurn == 'o'){
-        playerTurn = 'x'
-    }
-    else {
-        playerTurn = 'o'
+    if (playerTurn == null || playerTurn == "○") {
+      playerTurn = "✕";
+    } else {
+      playerTurn = "○";
     };
     turn(square.target.id, playerTurn);
 };
