@@ -1,0 +1,51 @@
+body {
+	height:40%;
+	width: 40%;
+	margin: 0 auto;
+	background-color: rgb(238, 232, 205);
+}
+
+h1 {
+	font-size: 60px;
+	font-family: 'Poppins', sans-serif;
+	text-align: center;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	background-color: white;
+}
+
+td {
+	width: 33.333%
+	border:solid 6px #222;
+}
+
+td::after {
+	content: "";
+	display: block;
+	margin-top: 100%;
+}
+
+td {
+	border:solid 6px #222;
+}
+
+td: first-of-type {
+	border-left-color: transparent;
+	border-top-color: transparent;
+}
+
+td: nth-of-type(2) {
+	border-top-color: transparent;
+}
+
+td: nth-of-type(3) {
+	border-right-color: transparent;
+	border-top-color: transparent;
+}
+
+tr: nth-of-type(3) {
+	border-bottom-color: transparent;
+}
