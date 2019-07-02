@@ -4,25 +4,30 @@
 // Step-4. user clicks another box (o)
 // Step-5. go back to step 3.
 
-// user clicks on game-square, text of element changes to X
+var playerTurn = null; // null becos it's an empty square in the beginning.
 
 // start the game
 console.log("Hello");
 
 // create function to check for click event
 var squareClick = function (event) {
-    console.log('clicked ' + event.target.innerText);
-    this.innerText = 'X';
-}
+    // when box is clicked show id of box
+    console.log('clicked ' + this.id);
 
-// create a button element
+    // check current playerTurn to determined next playerTurn
+    if ((playerTurn == null) || (playerTurn == 'O')) {
+        playerTurn = 'X';
+    } else {
+        playerTurn = 'O';
+    }
+    // update innerText of box click with playerTurn
+    this.innerText = playerTurn;
+};
+
+// create a box element
 var box = document.getElementsByClassName('game-square');
 
 for (var i = 0; i < box.length; i++ ) {
     // when button clicked run squareClick function;
     box[i].addEventListener('click', squareClick);
-}
-
-var changeContent = function (event) {
-    this.style.backgroundColor = '#ff0000';
 }
