@@ -1,0 +1,19 @@
+#board {
+	width: 960px;
+	margin: 0 auto;
+	border: 1px solid red;
+}
+
+.game-row {
+	height: 300px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.game-square {
+	display: inline-block;
+	height: 300px;
+	width: 33%;
+	border: 1px solid green;
+}
