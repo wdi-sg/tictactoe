@@ -34,21 +34,30 @@ var setTurn = function(){
     }
     console.log("Turn of " + input);
 }
-//...........................
+//...............turn-changer
 
 var inputSign = function(event){
     event.target.innerHTML = input;
-    if (input === null | input === "O"){
+    if (input === "O"){
         input = "X";
+        clickedO.push(event.target);
     } else if (input === "X"){
         input = "O";
+        clickedX.push(event.target);
     }
     console.log("Turn of " + input);
 }
+//--------------------
 
+//----------------score keeper
+var clickedX = [];
+var clickedO = [];
+// var check = function(){
 
+// }
 
 //---------------board setter
+//creates rows IDed 1-3, and boxes inside IDed 1-3
 var numOfRows = 3;
 var boxPerRow = 3;
 var row = null;
@@ -57,12 +66,15 @@ var createBoard = function(){
     for (i = 0; i < numOfRows; i += 1){
         row = document.createElement('div');
         row.setAttribute("class", "row");
+        row.setAttribute("id", "row"+[i+1])
         document.body.appendChild(row);
-        //this creates each row
+
         for (j = 0; j < boxPerRow; j += 1){
             box = document.createElement('span');
             box.addEventListener('click', inputSign)
             box.setAttribute("class", "box");
+            box.classList.add("inRow"+[i+1]);
+            box.setAttribute("id", "box"+[j+1])
             row.appendChild(box);
         }
     }

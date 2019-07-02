@@ -20,8 +20,11 @@
 }
 
 .box{
+	font-size: 76px;
 	text-align: center;
-	display: inline-block;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	border: 1px solid black;
 	min-height: 100px;
 	min-width: 100px;
