@@ -12,6 +12,7 @@ console.log("Hello");
 // create function to check for click event
 var squareClick = function (event) {
     console.log('clicked ' + event.target.innerText);
+    this.innerText = 'X';
 }
 
 // create a button element
@@ -20,4 +21,8 @@ var box = document.getElementsByClassName('game-square');
 for (var i = 0; i < box.length; i++ ) {
     // when button clicked run squareClick function;
     box[i].addEventListener('click', squareClick);
+}
+
+var changeContent = function (event) {
+    this.style.backgroundColor = '#ff0000';
 }
