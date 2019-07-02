@@ -16,6 +16,7 @@ Build the CSS for your game as you go along.
 - The simplest implementation of this game is simply 9 buttons or divs with click events attached to each of them. Clicking on a square just changes the text of the element to X or O. After 9 moves are played the game doesn't do anything else. If the users want to continue playing they can refresh the page.
 - The first version of the game can just be a grid - no need to create the tictactoe board faithfully.
 - When the user clicks each button it sets a global variable that holds the current player. (starts as a null value when the game loads, is x after the first turn, then switches between players)
+- The first version of the game you can simply start with the elements already in the HTML.
 ```
 if player turn is null or player turn is o
   player turn is x
@@ -23,14 +24,45 @@ else
   player turn is o
 ```
 
+##### Second Version
+Create the game board using javascript.
+
 ### further
 
 ##### Detecting a win state
 - modify your game so that the game knows when one player has won or lost
+
 - notify the users when that happens
 - Use either of the following techniques to detect the win state
   - the easiest win state is to simply check for every hard coded possibility
   - more difficult: counting if there are three of any player's moves in a row / column / diagonal
+
+- you should keep track of the state of the game board in a javascript variable
+
+One way to represent the state of the board as data in javascript could be:
+
+```js
+var board = [
+  [ null, null, "O" ],
+  [ null, null, "O" ],
+  [ null, "O", null ]
+];
+```
+
+Or:
+```js
+var board = {
+  top: [null,"X",null],
+  middle: [null,null,null],
+  bottom: ["O","X","O"]
+
+};
+```
+
+Use and modify this data structure as the users play.
+
+Use this data structure to see if one player or the other has the correct values in the correct squares for a "win".
+
 
 ### Further
 - have a start game button that disappears when the game is started
