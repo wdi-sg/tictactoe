@@ -11,6 +11,15 @@ var player2Name = "";
 var player1WinCounter = 0;
 var player2WinCounter = 0;
 
+var player1Time = 300;
+var palyer2Time = 300;
+
+var countdown1 = 0;
+var countdown2 = 0;
+
+var intervalRef1 = null;
+var intervalRef2 = null;
+
 //DOM nodes
 var getBody = document.querySelector("body");
 
@@ -19,10 +28,14 @@ var getBody = document.querySelector("body");
 function writeTextInBox (event){
     if(counter%2 === 0){
         event.target.innerText = "X";
+        // clearInterval(intervalRef1);
+        // startTimer2();
         counter+=1;
         xPositions.push(parseInt(event.target.id));
     }else{
         event.target.innerText = "O";
+        // clearInterval(intervalRef2);
+        // startTimer1();
         counter+=1;
         oPositions.push(parseInt(event.target.id));
     }
@@ -83,23 +96,20 @@ document.addEventListener("DOMContentLoaded",function(event){
 
     getBody.appendChild(createInputContainer);
 
+    //create choice of symbol
+
+
 
 })
 
 function preCreateBoard(){
     if(!gameStart){
         gameStart = true;
-
         //get input value then remove them
         player1Name = document.getElementById("input-1").value;
         player2Name = document.getElementById("input-2").value;
         var getInputContainer = document.querySelector(".input-container")
         getBody.removeChild(getInputContainer);
-        console.log(player1Name);
-        console.log(player2Name);
-
-
-
         createBoard();
 
     }else{
@@ -161,6 +171,28 @@ function createBoard(){
     createBoardContainer.appendChild(makePlayerNameDisplayScore);
 
 
+    //make Timer Display
+    // var makeTimerContainer = document.createElement("div");
+    // makeTimerContainer.setAttribute("class","player-status-container clearfix");
+
+
+    //     var makePlayer1Timer = document.createElement("div");
+    //     makePlayer1Timer.setAttribute("class","player-1");
+    //     makePlayer1Timer.setAttribute("id","timer-1");
+    //     makePlayer1Timer.innerHTML = "5 : 00"
+    //     makeTimerContainer.appendChild(makePlayer1Timer)
+
+    //     var makePlayer2Timer = document.createElement("div");
+    //     makePlayer2Timer.setAttribute("id","timer-2");
+    //     makePlayer2Timer.setAttribute("class","player-2");
+    //     makePlayer2Timer.innerHTML = "5 : 00"
+    //     makeTimerContainer.appendChild(makePlayer2Timer);
+
+    // createBoardContainer.appendChild(makeTimerContainer);
+
+    // //Make Timer
+    // startTimer1();
+
     //start creating board here
     for(i=0;i<3;i++){
         createRow = document.createElement("div");
@@ -219,22 +251,42 @@ function checkWin(symbol,symbolArray){
 
 }
 
-// function checkPosition(){
 
+// function timer1(){
 
-//     for(i=0;i<9;i++){
-//         var getBox = document.getElementById((i+1).toString());
-//         var getSymbol = getBox.value;
-//         if(getSymbol === "X");
-//             xPositions.push(i+1)
-//         else if(getSymbol === "O")
-//             oPositions.push(i+1);
-//     }
+//     var getTimer = document.getElementById("timer-1");
+//     countdown1++;
+//     getTimer.innerHTML = convertSeconds(player1Time-countdown1);
+// }
+
+// function timer2(){
+
+//     var getTimer = document.getElementById("timer-2");
+//     countdown1++;
+//     getTimer.innerHTML = convertSeconds(player1Time-countdown1);
 // }
 
 
+// function convertSeconds(s){
+//     var min = Math.floor(s/60);
+//     var sec = s%60;
+//     return min + ':' + sec;
+// }
 
+// function startTimer1(){
+//     intervalRef1 = setInterval(timer1,1000);
 
+// }
 
+// function stopTimer1(){
+//     clearInterval(intervalRef1);
+// }
 
+// function startTimer2(){
+//     intervalRef2 = setInterval(timer2,1000);
 
+// }
+
+// function stopTimer2(){
+//     clearInterval(intervalRef2);
+// }
