@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div id="board">
+      <div class="game-row">
+        <span class="game-square"><button class="class-button" id="0"></button></span>
+        <span class="game-square"><button class="class-button" id="1"></button></span>
+        <span class="game-square"><button class="class-button" id="2"></button></span>
+    </div>
+    <div class="game-row">
+        <span class="game-square"><button class="class-button" id="3"></button></span>
+        <span class="game-square"><button class="class-button" id="4"></button></span>
+        <span class="game-square"><button class="class-button" id="5"></button></span>
+    </div>
+    <div class="game-row">
+        <span class="game-square"><button class="class-button" id="6"></button></span>
+        <span class="game-square"><button class="class-button" id="7"></button></span>
+        <span class="game-square"><button class="class-button" id="8"></button></span>
+    </div>
+</div>
+<div class="endgame">
+    <div class="text"></div>
+</div>
+<button id="id-btn-replay">Replay</button>
+<script src="script.js"></script>
+<script type="text/javascript">
+    btnReplay.addEventListener('click', startGame);
+
+    var display = function( data ){
+        var output = document.querySelector('#output');
+        output.innerText = data;
+
+    };
+</script>
+</body>
+</html>
