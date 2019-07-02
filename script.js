@@ -69,7 +69,7 @@ var startGame = function(event) {
     //console.log("create board");
 
     var board = document.createElement('div');
-    board.setAttribute("id", "board");
+    board.className = 'board';
 
     for (var i = 0; i < 3; i++) {
         var row = document.createElement('div');
@@ -80,6 +80,7 @@ var startGame = function(event) {
             var square = document.createElement('button');
             square.className = 'game-square';
             row.appendChild(square);
+            square.addEventListener('click', squareClick);
         }
     }
      // gameBoard.push(square);
