@@ -56,3 +56,11 @@
 .R3.C3 {
 	grid-area: 3 / 3 / 4 / 4;
 }
+
+section {
+	font-family: "Poppins", sans serif;
+	font-size: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
