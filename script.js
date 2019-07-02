@@ -87,7 +87,7 @@ var createBoard = function (){
             currentRow++;
         }
 
-        if (currentColumn===3){
+        if (currentColumn===boardLength){
             currentColumn=0;
         }
 
@@ -163,9 +163,11 @@ var checkWin = function(winCondition){
         return;x``
     }
 
-    var checkArray = '';
+    var checkArray;
     //check each row
     for (var i=0; i < boardLength; i++) {
+        checkArray=' ';
+        checkArray=currentArray[i].join('');
         if(checkArray.includes(winCondition)){
             winAlready=true;
             alert('winR');
@@ -180,9 +182,6 @@ var checkWin = function(winCondition){
         for (var j=0; j < boardLength; j++){
             checkArray += currentArray[j][i];
         }
-        console.log(checkArray);
-        console.log(' ');
-        console.log(winCondition);
         if(checkArray.includes(winCondition)){
             winAlready=true;
             alert('winC');
