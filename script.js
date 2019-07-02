@@ -46,36 +46,12 @@ var playerTurn = null; // null becos it's an empty square in the beginning.
 var numOfRows = 3;
 var sqPerRows = 3;
 
-var scoreBoardRow1 = [
-    ['0', '0', '0'],
-    [null, null, null],
-    [null, null, null]
-];
-
-var scoreBoardRow2 = [
-    [null, null, null],
-    ['0', '0', '0'],
-    [null, null, null]
-];
-
-var scoreBoardRow3 = [
-    [null, null, null],
-    [null, null, null],
-    ['0', '0', '0']
-];
-
-var scoreBoardCol1 = [
-    [null, null, null],
-    [null, null, null],
-    ['0', '0', '0']
-];
-
-
-var userBoard = [
+var gameHistory = [
     [null, null, null],
     [null, null, null],
     [null, null, null]
 ];
+
 
 // start the game
 console.log("Hello");
@@ -96,11 +72,38 @@ var squareClick = function (event) {
     this.innerText = playerTurn;
     console.log(playerTurn + "click" + this.id + this.value);
 
-    var gameHistory = [
-        [],
-        [],
-        []
-    ];
+    // Store clicked position into game history
+    var posX = this.id;
+    var posY = this.value;
+
+    // Store either X or O into posX & posY of gameHistory
+    gameHistory[posX][posY] = playerTurn;
+    console.log(gameHistory);
+
+    var gameCounter = 0;
+    for (var x = 0; x < 3; x++) {
+        for (var y = 0; y < 3; y++) {
+            if ((gameHistory[x][y] === 'X') || (gameHistory[x][y] === 'O')) {
+                gameCounter = gameCounter + 1;
+            }
+            if (gameCounter === 3) {
+                alert("MATCH");
+            }
+        }
+        gameCounter = 0;
+    }
+
+    for (var x = 0; x < 3; x++) {
+        for (var y = 0; y < 3; y++) {
+            if ((gameHistory[y][x] === 'X') || (gameHistory[y][x] === 'O')) {
+                gameCounter = gameCounter + 1;
+            }
+            if (gameCounter === 3) {
+                console.log("MATCH");
+            }
+        }
+        gameCounter = 0;
+    }
 };
 
 // create an empty game board
