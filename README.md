@@ -1,4 +1,4 @@
-# tictactoe
+<!-- # tictactoe
 ![https://media.giphy.com/media/l1Et6k00qp9fMTP8s/giphy.gif](https://media.giphy.com/media/l1Et6k00qp9fMTP8s/giphy.gif)
 
 #### Build a game of tic tac toe.
@@ -48,7 +48,7 @@ One version of the game board could be:
 
 ##### Second Version
 Using DOM manipluation (`document.createElement`), create the game board using javascript. (i.e., the game starts with no elements in the body of the HTML file) 
-
+ -->
 ### further
 
 ##### Detecting a win state
@@ -86,10 +86,10 @@ Use and modify this data structure as the users play.
 Use this data structure to see if one player or the other has the correct values in the correct squares for a "win".
 
 
-### Further
+<!-- ### Further
 - have a start game button that disappears when the game is started
 - have the button reappear when the game has ended
-
+ -->
 ### Further
 - ask for the names of players 1 and 2 and display that back to them as they play and win
 
