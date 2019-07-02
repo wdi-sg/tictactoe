@@ -23,3 +23,9 @@ span{
 
     text-align:center;
 }
+
+#win-display{
+    font-size:100px;
+    font-weight: bold;
+    color: red;
+}

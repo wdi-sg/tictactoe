@@ -16,8 +16,10 @@ function writeTextInBox (event){
         oPositions.push(parseInt(event.target.id));
     }
 
-    console.log()
-    checkWin();
+    console.log(xPositions);
+
+    checkWin("X",xPositions);
+    checkWin("O",oPositions);
 
 };
 
@@ -28,6 +30,7 @@ document.addEventListener("DOMContentLoaded",function(event){
     createButton.addEventListener("click",function(){
         createBoard();
     })
+    createButton.setAttribute("id","start-button");
     createButton.innerText = "Start Game";
     getBody.appendChild(createButton);
 
@@ -35,7 +38,8 @@ document.addEventListener("DOMContentLoaded",function(event){
 
 //function to create board
 function createBoard(){
-
+    var getBody = document.querySelector("body");
+    getBody.value="";
     var j = 1;
     var createRow = null;
     var createBox = null;
@@ -58,7 +62,7 @@ function createBoard(){
         console.log(i);
     }
 
-    var getBody = document.querySelector("body");
+
     getBody.appendChild(createThe3x3);
 
     for(l=0;l<9;l++){
@@ -66,23 +70,34 @@ function createBoard(){
         aBox.addEventListener("click", writeTextInBox);
 
     }
+    //for show win only
+    var makeWinDisplay = document.createElement("p");
+    makeWinDisplay.setAttribute("id","win-display");
+    getBody.appendChild(makeWinDisplay);
+
+    var getButton = document.getElementById("start-button");
+    getButton.style.visibility = "hidden";
 }
 
-function checkWin(){
+function checkWin(symbol,symbolArray){
     var counter = 0;
-    for(i=0;i<winningArray.lengthh;i++){
-        for(j=0;j<xPositions.length;j++){
-            if(winningArray[i].includes(xPositions[j]) ){
+    var getWinDisplay = document.getElementById("win-display");
+    for(i=0;i<winningArray.length;i++){
+        for(j=0;j<symbolArray.length;j++){
+            if(winningArray[i].includes(symbolArray[j]) ){
                 counter +=1;
             }
         }
         if(counter === 3){
-            console.log("You Win!")
+            getWinDisplay.innerText = `\"${symbol}\" Wins!!!`;
+            var getButton = document.getElementById("start-button");
+            getButton.style.visibility = "visible";
+            break;
         }else{
             counter = 0;
-            continue;
         }
     }
+
 
 
 }
