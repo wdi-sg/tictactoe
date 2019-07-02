@@ -66,22 +66,25 @@ var squareClick = function (event) {
 var gameBoard = [];
 
 var startGame = function(event) {
-    console.log("create board");
+    //console.log("create board");
 
     var board = document.createElement('div');
     board.setAttribute("id", "board");
 
+    for (var i = 0; i < 3; i++) {
+        var row = document.createElement('div');
+        row.className = 'game-row';
+        board.appendChild(row);
 
-    // for (var i = 0; i < squares.length; i++) {
-
-    //     var square = document.createElement('button');
-    //     document.body.appendChild(square);
-
-    //     gameBoard.push(square);
-    // }
-
+        for (var j = 0; j < 3; j++) {
+            var square = document.createElement('button');
+            square.className = 'game-square';
+            row.appendChild(square);
+        }
+    }
+     // gameBoard.push(square);
     document.body.appendChild(board);
-};
+}
 
 // create a box element
 var box = document.getElementsByClassName('game-square');
