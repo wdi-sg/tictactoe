@@ -72,9 +72,9 @@ var createBoard = function(){
         for (j = 0; j < boxPerRow; j += 1){
             box = document.createElement('span');
             box.addEventListener('click', inputSign)
-            box.setAttribute("class", "box");
+            box.setAttribute("id", "box");
+            box.setAttribute("class", "box"+[j+1])
             box.classList.add("inRow"+[i+1]);
-            box.setAttribute("id", "box"+[j+1])
             row.appendChild(box);
         }
     }
