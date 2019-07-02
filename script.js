@@ -2,6 +2,8 @@ console.log('linked');
 
 var userATurn = true;
 var displayTurn = document.getElementById('display-turn');
+var gameboard = document.getElementById('gameboard');
+var numTiles = 9;
 
 var indicatePlayerTurn = function(){
   if (userATurn === true){
@@ -11,17 +13,44 @@ var indicatePlayerTurn = function(){
   }
 }
 
-indicatePlayerTurn();
+var sayHi = function(){
+  console.log('hi');
+}
 
-var drawSymbol = function(data){
+var createBoard = function(){
+  for (var i =0; i < numTiles; i++){
+    var box = document.createElement('div');
+    box.setAttribute("class", "box");
+    box.setAttribute("id", "box-" + (i+1));
+    box.innerHTML = "";
+    gameboard.appendChild(box);
+    box.addEventListener('click', function(){
+      drawSymbol(event);
+      console.log("in create board function");
+      console.log(event);
+    });
+  }
+  console.log('end');
+}
+
+indicatePlayerTurn();
+createBoard();
+
+var drawSymbol = function(event){
+  console.log("in drawSymbol function");
+  console.log(event.target.innerHTML);
   if(userATurn === true){
-    console.log("x  " + data.innerText);
-    data.innerText = "x";
+    console.log("x");
+    event.target.innerHTML = "x";
+    console.log(event.target.innerHTML);
+    console.log("works");
     userATurn = false;
     indicatePlayerTurn();
   } else {
-    console.log("o  " + data.innerText);
-    data.innerText = "o";
+    console.log("o");
+    event.target.innerHTML = "o";
+    console.log(event.target.innerHTML);
+    console.log("works");
     userATurn = true;
     indicatePlayerTurn();
   }
