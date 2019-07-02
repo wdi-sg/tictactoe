@@ -1,8 +1,13 @@
 console.log("Hello World!")
 var counter = 0;
+var gameStart = false;
 var winningArray = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]];
 var xPositions = [];
 var oPositions = [];
+
+//DOM nodes
+var getBody = document.querySelector("body");
+
 
 //changing the X and O
 function writeTextInBox (event){
@@ -18,17 +23,29 @@ function writeTextInBox (event){
 
     console.log(xPositions);
 
-    checkWin("X",xPositions);
-    checkWin("O",oPositions);
+    if(checkWin("X",xPositions)){
+        removeClickListener();
+    }else if(checkWin("O",oPositions)){
+        removeClickListener();
+    }
+
 
 };
+
+function removeClickListener(){
+    for(i=0;i<9;i++){
+        var aBox = document.getElementById((i+1).toString());
+        aBox.removeEventListener("click", writeTextInBox )
+
+
+    }
+}
 
 //on start, create a start button for creating board
 document.addEventListener("DOMContentLoaded",function(event){
     var createButton = document.createElement("button");
-    var getBody = document.querySelector("body");
     createButton.addEventListener("click",function(){
-        createBoard();
+        preCreateBoard();
     })
     createButton.setAttribute("id","start-button");
     createButton.innerText = "Start Game";
@@ -36,10 +53,22 @@ document.addEventListener("DOMContentLoaded",function(event){
 
 })
 
+function preCreateBoard(){
+    if(!gameStart){
+        gameStart = true;
+        createBoard();
+    }else{
+        var getBoard = document.getElementById("board");
+        getBody.removeChild(getBoard);
+        xPositions = [];
+        oPositions= [];
+        createBoard();
+    }
+}
+
 //function to create board
 function createBoard(){
-    var getBody = document.querySelector("body");
-    getBody.value="";
+
     var j = 1;
     var createRow = null;
     var createBox = null;
@@ -62,18 +91,17 @@ function createBoard(){
         console.log(i);
     }
 
-
     getBody.appendChild(createThe3x3);
-
     for(l=0;l<9;l++){
         var aBox = document.getElementById((l+1).toString());
         aBox.addEventListener("click", writeTextInBox);
 
     }
+
     //for show win only
     var makeWinDisplay = document.createElement("p");
     makeWinDisplay.setAttribute("id","win-display");
-    getBody.appendChild(makeWinDisplay);
+    createThe3x3.appendChild(makeWinDisplay);
 
     var getButton = document.getElementById("start-button");
     getButton.style.visibility = "hidden";
@@ -92,7 +120,8 @@ function checkWin(symbol,symbolArray){
             getWinDisplay.innerText = `\"${symbol}\" Wins!!!`;
             var getButton = document.getElementById("start-button");
             getButton.style.visibility = "visible";
-            break;
+
+            return true;
         }else{
             counter = 0;
         }
