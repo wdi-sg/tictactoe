@@ -1,6 +1,8 @@
 //all da variablessss
 var counter = 1;
 var gameSquares = [];
+var playerOneWon = 0;
+var playerTwoWon = 0;
 
 var C1Array = [];
 var C2Array = [];
@@ -59,11 +61,29 @@ var newGame = function() {
 
 //when winner is found, creates overlay which you can click away to start new game
 var winnerFound = function() {
-  var overlay = document.getElementById("overlay")
-  overlay.style.display = "block";
-  overlay.addEventListener("click", function (event) {
-    overlay.style.display = "none";
-    newGame();
+    var winnerIs = counter % 2;
+    if (winnerIs === 0) {
+        winnerIs = "Player One"
+        playerOneWon += 1;
+    } else {
+        winnerIs = "Player Two"
+        playerTwoWon += 1;
+    }
+    console.log(winnerIs);
+    var winnerText = document.createElement("span");
+    winnerText.innerHTML = `${winnerIs} WINS!<br><br>Player One has won ${playerOneWon} times. Player Two has won ${playerTwoWon} times.`;
+    var overlay = document.getElementById("overlay")
+    overlay.appendChild(winnerText);
+    overlay.style.display = "block";
+    overlay.addEventListener("click", function(event) {
+        var allSpans = document.querySelectorAll('span');
+        for (var i = 0; i < allSpans.length; i++) {
+            while (allSpans[i].firstChild) {
+                allSpans[i].removeChild(allSpans[i].firstChild);
+            }
+        }
+        overlay.style.display = "none";
+        newGame();
     });
 };
 
@@ -121,19 +141,3 @@ var checkForWin = function() {
         }
     }
 };
-
-//unused but working for loop (just in case)
-// var checkForWin = function (){
-//     var matchCount = 0;
-//     C1Array = document.querySelectorAll(".C1");
-//     for (let i = 1; i < C1Array.length; i++) {
-//     if (C1Array[0].innerHTML === C1Array[i].innerHTML) {
-//         matchCount += 1;
-//         }
-//     }
-//     if (matchCount === 2) {
-//         console.log("Issa match!");
-//     } else {
-//         console.log("C1 does not match.")
-//     }
-// };

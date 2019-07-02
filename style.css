@@ -88,7 +88,7 @@ section {
   cursor: pointer;
 }
 
-#overlayText {
+#overlay span {
 	font-family: "Poppins", sans serif;
 	font-size: 90px;
   position: absolute;
