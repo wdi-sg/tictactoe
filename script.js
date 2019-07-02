@@ -1,8 +1,13 @@
 //all da variableessss
 var counter = 1;
+var gameSquares = [];
 
 var C1Array = [];
 var C2Array = [];
+var C3Array = [];
+var R1Array = [];
+var R2Array = [];
+var R3Array = [];
 
 //p1 turn function
 var playerOneTurn = function() {
@@ -25,8 +30,6 @@ var playGame = function() {
         playerTwoTurn();
     }
 };
-
-var gameSquares = [];
 
 //add event listener for click to each game square, triggers playGame() function
 var initialiseSquares = function() {
@@ -76,17 +79,33 @@ var checkForWin = function() {
         } else {
             console.log("R3 is not a win.")//i think this can just be empty, must test
         }
+    //Check diagonals using IDs
+        var mid = document.getElementById("middle");
+        var tl = document.getElementById("top-left");
+        var tr = document.getElementById("top-right");
+        var bl = document.getElementById("bottom-left");
+        var br = document.getElementById("bottom-right");
+
+        if (mid.innerHTML === tl.innerHTML && tl.innerHTML === br.innerHTML) {
+            console.log("match diagonal from top left!")
+        }
+        else if (mid.innerHTML === tr.innerHTML && tr.innerHTML === bl.innerHTML){
+            console.log("match diagonal from top right!")
+        }
 };
 
-var matchCount = 0;
 
-for (let i = 1; i < C1Array.length; i++) {
-    if (C1Array[0].innerHTML === C1Array[i].innerHTML) {
-        matchCount += 1;
-            if matchCount === 2 {
-                console.log("issa match!")
-            } else {
-                matchCount = 0
-            }
-    }
-};
+// var checkForWin = function (){
+//     var matchCount = 0;
+//     C1Array = document.querySelectorAll(".C1");
+//     for (let i = 1; i < C1Array.length; i++) {
+//     if (C1Array[0].innerHTML === C1Array[i].innerHTML) {
+//         matchCount += 1;
+//         }
+//     }
+//     if (matchCount === 2) {
+//         console.log("Issa match!");
+//     } else {
+//         console.log("C1 does not match.")
+//     }
+// };
