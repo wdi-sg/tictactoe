@@ -23,7 +23,9 @@ else
   player turn is o
 ```
 
-### Detecting a win state
+### further
+
+##### Detecting a win state
 - modify your game so that the game knows when one player has won or lost
 - notify the users when that happens
 - Use either of the following techniques to detect the win state
