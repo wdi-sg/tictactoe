@@ -1,0 +1,25 @@
+#board{
+	width: 600px;
+	height: 600px;
+}
+
+.game-row{
+	box-sizing: border-box;
+	position: relative;
+	width: 100%;
+	height: 200px;
+}
+
+.game-square{
+	border: 1px solid tomato;
+	box-sizing: border-box;
+	float: left;
+	width: 33%;
+	height: 200px;
+}
+
+span{
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 180px
+}
