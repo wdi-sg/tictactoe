@@ -1,0 +1,13 @@
+#top-row, #middle-row, #last-row {
+	width: 300px;
+	display: flex;
+}
+
+.square {
+	display: inline-flex;
+	width: 30%;
+	height: 90px;
+	border: 1px solid red;
+	margin: 2px;
+
+}
