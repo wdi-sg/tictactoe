@@ -47,11 +47,11 @@ span{
     margin-bottom:0px;
 }
 
-#player-1{
+.player-1{
     color:blue;
 }
 
-#player-2{
+.player-2{
     color:red;
 }
 
@@ -63,18 +63,16 @@ span{
     font-size:30px;
 }
 
-.player-name-container{
+.player-status-container{
     font-size:20px;
 }
 
 #player-1-display{
-    color:blue;
     float:left;
 
 }
 
 #player-2-display{
-    color:red;
     float:right;
 }
 
@@ -84,5 +82,14 @@ span{
   display: table;
 }
 
+#player-1-score{
+    float:left;
+
+}
+
+#player-2-score{
+    float:right;
+
+}
 
 

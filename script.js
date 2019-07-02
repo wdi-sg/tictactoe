@@ -8,6 +8,9 @@ var oPositions = [];
 var player1Name = "";
 var player2Name = "";
 
+var player1WinCounter = 0;
+var player2WinCounter = 0;
+
 //DOM nodes
 var getBody = document.querySelector("body");
 
@@ -27,8 +30,10 @@ function writeTextInBox (event){
     console.log(xPositions);
 
     if(checkWin(player1Name,xPositions)){
+        player1WinCounter +=1;
         removeClickListener();
     }else if(checkWin(player2Name,oPositions)){
+        player2WinCounter +=1;
         removeClickListener();
     }
 
@@ -62,9 +67,7 @@ document.addEventListener("DOMContentLoaded",function(event){
     for(i=1;i<3;i++){
 
         var createPlayerLabel = document.createElement("p")
-        createPlayerLabel.setAttribute("class","player");
-
-        createPlayerLabel.setAttribute("id","player-"+i.toString());
+        createPlayerLabel.setAttribute("class","player player-"+i.toString());
         createPlayerLabel.innerText = "Player "+i;
 
         var createPlayerInput = document.createElement("input");
@@ -120,21 +123,45 @@ function createBoard(){
 
     //display players name
     var makePlayerNameDisplayContainer = document.createElement("div");
-    makePlayerNameDisplayContainer.setAttribute("class","player-name-container clearfix");
+    makePlayerNameDisplayContainer.setAttribute("class","player-status-container clearfix");
 
 
         var makePlayer1NameDiv = document.createElement("div");
+        makePlayer1NameDiv.setAttribute("class","player-1");
         makePlayer1NameDiv.setAttribute("id","player-1-display");
         makePlayer1NameDiv.innerText = "Player 1: "+player1Name+" - 'X'";
         makePlayerNameDisplayContainer.appendChild(makePlayer1NameDiv)
 
         var makePlayer2NameDiv = document.createElement("div");
+        makePlayer2NameDiv.setAttribute("class","player-2");
         makePlayer2NameDiv.setAttribute("id","player-2-display");
         makePlayer2NameDiv.innerText = "Player 2: "+player2Name+" - 'O'";
         makePlayerNameDisplayContainer.appendChild(makePlayer2NameDiv)
 
     createBoardContainer.appendChild(makePlayerNameDisplayContainer);
 
+
+    //display players score
+    var makePlayerNameDisplayScore = document.createElement("div");
+    makePlayerNameDisplayScore.setAttribute("class","player-status-container clearfix");
+
+
+        var makePlayer1ScoreDiv = document.createElement("div");
+        makePlayer1ScoreDiv.setAttribute("class","player-1");
+        makePlayer1ScoreDiv.setAttribute("id","player-1-score");
+        makePlayer1ScoreDiv.innerText = "Win :"+player1WinCounter;
+        makePlayerNameDisplayScore.appendChild(makePlayer1ScoreDiv)
+
+        var makePlayer2ScoreDiv = document.createElement("div");
+        makePlayer2ScoreDiv.setAttribute("id","player-2-score");
+        makePlayer2ScoreDiv.setAttribute("class","player-2");
+        makePlayer2ScoreDiv.innerText = "Win :"+player2WinCounter;
+        makePlayerNameDisplayScore.appendChild(makePlayer2ScoreDiv);
+
+    createBoardContainer.appendChild(makePlayerNameDisplayScore);
+
+
+    //start creating board here
     for(i=0;i<3;i++){
         createRow = document.createElement("div");
         createRow.setAttribute("class","game-row")
