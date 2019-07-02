@@ -62,66 +62,67 @@ var winnerFound = function() {
   var overlay = document.getElementById("overlay")
   overlay.style.display = "block";
   overlay.addEventListener("click", function (event) {
-    this.remove();
+    overlay.style.display = "none";
     newGame();
     });
 };
 
-//the motherlode of functions
+//the mother lode of conditionals
 var checkForWin = function() {
     //check rows and columns
     C1Array = document.querySelectorAll(".C1");
+    if (C1Array[0].innerHTML === "X" || C1Array[0].innerHTML === "O") {
         if (C1Array[0].innerHTML === C1Array[1].innerHTML && C1Array[1].innerHTML === C1Array[2].innerHTML) {
             winnerFound();
-        } else {
-            console.log("C1 is not a win.")
         }
+    }
     C2Array = document.querySelectorAll(".C2");
+    if (C2Array[0].innerHTML === "X" || C2Array[0].innerHTML === "O") {
         if (C2Array[0].innerHTML === C2Array[1].innerHTML && C2Array[1].innerHTML === C2Array[2].innerHTML) {
             winnerFound();
-        // } else {
-        //     console.log("C2 is not a win.")
-        // }
+        }
+    }
     C3Array = document.querySelectorAll(".C3");
+    if (C3Array[0].innerHTML === "X" || C3Array[0].innerHTML === "O") {
         if (C3Array[0].innerHTML === C3Array[1].innerHTML && C3Array[1].innerHTML === C3Array[2].innerHTML) {
-            console.log("C3 matches!")//change to something more obvs later.
-        } else {
-            console.log("C3 is not a win.")
+            winnerFound();
         }
+    }
     R1Array = document.querySelectorAll(".R1");
+    if (R1Array[0].innerHTML === "X" || R1Array[0].innerHTML === "O"){
         if (R1Array[0].innerHTML === R1Array[1].innerHTML && R1Array[1].innerHTML === R1Array[2].innerHTML) {
-            console.log("R1 matches!")//change to something more obvs later.
-        } else {
-            console.log("R1 is not a win.")
+            winnerFound();
         }
+    }
     R2Array = document.querySelectorAll(".R2");
+    if (R2Array[0].innerHTML === "X" || R2Array[0].innerHTML === "O") {
         if (R2Array[0].innerHTML === R2Array[1].innerHTML && R2Array[1].innerHTML === R2Array[2].innerHTML) {
-            console.log("R2 matches!")//change to something more obvs later.
-        } else {
-            console.log("R2 is not a win.")
+            winnerFound();
         }
+    }
     R3Array = document.querySelectorAll(".R3");
+    if (R3Array[0].innerHTML === "X" || R3Array[0].innerHTML === "O") {
         if (R3Array[0].innerHTML === R3Array[1].innerHTML && R3Array[1].innerHTML === R3Array[2].innerHTML) {
-            console.log("R3 matches!")//change to something more obvs later.
-        } else {
-            console.log("R3 is not a win.")
+            winnerFound();
         }
+    }
     //Check diagonals using IDs
-        var mid = document.getElementById("middle");
-        var tl = document.getElementById("top-left");
-        var tr = document.getElementById("top-right");
-        var bl = document.getElementById("bottom-left");
-        var br = document.getElementById("bottom-right");
+    var mid = document.getElementById("middle");
+    var tl = document.getElementById("top-left");
+    var tr = document.getElementById("top-right");
+    var bl = document.getElementById("bottom-left");
+    var br = document.getElementById("bottom-right");
 
+    if (mid.innerHTML === "X" || mid.innerHTML === "O") {
         if (mid.innerHTML === tl.innerHTML && tl.innerHTML === br.innerHTML) {
-            console.log("match diagonal from top left!")
+            winnerFound();
+        } else if (mid.innerHTML === tr.innerHTML && tr.innerHTML === bl.innerHTML) {
+            winnerFound();
         }
-        else if (mid.innerHTML === tr.innerHTML && tr.innerHTML === bl.innerHTML){
-            console.log("match diagonal from top right!")
-        }
+    }
 };
 
-//unused but working for loop
+//unused but working for loop (just in case)
 // var checkForWin = function (){
 //     var matchCount = 0;
 //     C1Array = document.querySelectorAll(".C1");
