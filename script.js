@@ -60,38 +60,8 @@ var gameCounter = {
     "O": 0
 };
 
-// start the game
-console.log("Hello");
-
-// create function to check for click event
-var squareClick = function (event) {
-    // when box is clicked show id of box
-    // console.log('clicked ' + this.id);
-    // console.log(this);
-
-    // check current playerTurn to determined next playerTurn
-    if ((playerTurn == null) || (playerTurn == 'O')) {
-        playerTurn = 'X';
-    } else {
-        playerTurn = 'O';
-    }
-
-    // update innerText of box click with playerTurn
-    this.innerText = playerTurn;
-    console.log(playerTurn + "click" + this.id + this.value);
-
-    // Store clicked position into game history
-    var posX = this.id;
-    var posY = this.value;
-
-    // Store either X or O into posX & posY of gameHistory
-    gameHistory[posX][posY] = playerTurn;
-    console.log(gameHistory);
-
-    checkingRows();
-    checkingColumns();
-};
-
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
 
 var checkingRows = function() {
     // run thru every rows
@@ -105,7 +75,7 @@ var checkingRows = function() {
                 gameCounter[playerTurn]++;
             };
 
-            // if 3 Xs are found, there's a match
+            // if 3 Xs or 3 Os are found, there's a match
             if (gameCounter[playerTurn] === 3) {
                 alert(playerTurn + " WINS");
             }
@@ -151,6 +121,8 @@ var checkingColumns = function() {
     }
 }
 
+ // start the game
+console.log("Hello");
 
 var startGame = function(event) {
     //console.log("create board");
@@ -190,3 +162,33 @@ var startGame = function(event) {
     var button = document.querySelector('#start');
     button.addEventListener('click', startGame);
 });
+
+
+// When square is clicked
+var squareClick = function (event) {
+    // when square is clicked show id of box
+    // console.log('clicked ' + this.id);
+    // console.log(this);
+
+    // check current playerTurn to determined next playerTurn
+    if ((playerTurn == null) || (playerTurn == 'O')) {
+        playerTurn = 'X';
+    } else {
+        playerTurn = 'O';
+    }
+
+    // update innerText of box click with playerTurn
+    this.innerText = playerTurn;
+    console.log(playerTurn + "click" + this.id + this.value);
+
+    // Store clicked position into game history
+    var posX = this.id;
+    var posY = this.value;
+
+    // Store either X or O into posX & posY of gameHistory
+    gameHistory[posX][posY] = playerTurn;
+    console.log(gameHistory);
+
+    checkingRows();
+    checkingColumns();
+};
