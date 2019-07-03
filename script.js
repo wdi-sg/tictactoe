@@ -16,8 +16,8 @@ var boardArray = [[null,null,null],[null,null,null],[null,null,null]];
 var countdown = 0;
 
 
-// var intervalRef1 = null;
-// var intervalRef2 = null;
+var intervalRef1 = null;
+var intervalRef2 = null;
 
 //DOM nodes
 var getBody = document.querySelector("body");
@@ -38,12 +38,13 @@ var writeTextInBox = function(event){
            getXAxis = checkXAxis(parseInt(event.target.id));
            getYAxis = checkYAxis(parseInt(event.target.id));
            boardArray[getYAxis][getXAxis] = player1Symbol;
-            clearInterval(intervalRef1);
 
+            stopTimer1();
             for(i=0;i<2;i++){
                 getTimer[i].innerHTML = "5s"
             }
             startTimer2();
+
             counter+=1;
 
         }
@@ -58,7 +59,7 @@ var writeTextInBox = function(event){
             getYAxis = checkYAxis(parseInt(event.target.id));
             boardArray[getYAxis][getXAxis] = player2Symbol;
 
-            clearInterval(intervalRef2);
+            stopTimer2();
             for(i=0;i<2;i++){
                 getTimer[i].innerHTML = "5s"
             }
@@ -364,36 +365,91 @@ var checkYAxis = function(num){
 }
 
 //create Timing
-function timer1(){
+var timesUp = function(sym){
+    var getTimer = document.querySelectorAll(".timing");
+    var stopper = false
+    stopTimer1();
+    stopTimer2();
+    for(i=0;i<2;i++){
+        getTimer[i].innerHTML = "5s"
+    }
+
+    var getBox = null;
+    while(!stopper){
+        getBox = document.getElementById((Math.floor(Math.random()*8))+1);
+        if(getBox.innerText){
+            continue;
+        }else{
+            getBox.innerText=sym;
+            stopper = true;
+        }
+    }
+    var getXAxis = null;
+    var getYAxis = null;
+    getXAxis = checkXAxis(parseInt(getBox.id));
+    getYAxis = checkYAxis(parseInt(getBox.id));
+    boardArray[getYAxis][getXAxis] = sym;
+    counter++;
+    if(sym === "X"){
+        startTimer2();
+    }else{
+        startTimer1();
+    }
+
+    if(checkAll(player1Symbol)){
+        player1WinCounter +=1;
+        stopTimer1();
+        stopTimer2();
+        removeClickListener();
+    }else if(checkAll(player2Symbol)){
+        player2WinCounter +=1;
+        stopTimer1();
+        stopTimer2();
+        removeClickListener();
+    }
+
+}
+
+
+var timer1 = function(){
 
     var getTimer = document.getElementById("timer-1");
     countdown++;
     getTimer.innerHTML = (5-countdown)+"s";
+
+    if (countdown===5){
+        timesUp(player1Symbol);
+    }
 }
 
-function timer2(){
+var timer2 = function(){
     var getTimer = document.getElementById("timer-2");
     countdown++;
-    getTimer.innerHTML = (5-countdown)+"s"
+    getTimer.innerHTML = (5-countdown)+"s";
+
+    if (countdown===5){
+        timesUp(player2Symbol);
+    }
 }
 
-function startTimer1(){
+var startTimer1 = function(){
     countdown = 0;
     intervalRef1 = setInterval(timer1,1000);
 }
 
-function stopTimer1(){
+var stopTimer1 = function(){
     clearInterval(intervalRef1);
 }
 
-function startTimer2(){
+var startTimer2 = function(){
     countdown = 0;
     intervalRef2 = setInterval(timer2,1000);
 }
 
-function stopTimer2(){
+var stopTimer2 = function(){
     clearInterval(intervalRef2);
 }
+
 
 
 //on start, create a start button for creating board
@@ -457,5 +513,4 @@ document.addEventListener("DOMContentLoaded",function(event){
 
 
 })
-
 
