@@ -5,22 +5,50 @@ html {
 
 #output {
     font-size: 2em;
-    color: blue;
+    color: #222831;
+	text-align: center;
+	padding: 10px;
 }
 
 button {
-    font-size: 1.3em;
+    font-size: 1em;
+	color: #393E46;
+	display: inline-block;
+	width: 150px;
+	height:2em;
+	background-color: #7C7575;
 }
 
 h1 {
-	color: blue;
+	color: #222831;
+	text-align: center;
 }
 
 td {
-	background-color: lightblue;
+	background-color: #00ADB5;
 	width: 150px;
 	height: 150px;
 	text-align: center;
 	vertical-align: middle;
+	color: #222831;
 	font-size: 3em;
+}
+
+.main_container{
+	width:60%;
+	min-width: 500px;
+	height: 80%;
+	margin:0 auto;
+	border: 2px solid #222831;
+	border-radius: 15px;
+	box-shadow: 2px 2px #222831;
+	background-color: #EEEEEE;
+
+}
+.buttons_container {
+	display:flex;
+	justify-content: center;
+}
+table{
+	margin: 10px auto;
 }
