@@ -2,8 +2,6 @@ console.log("Hello World!")
 var counter = 0;
 var gameStart = false;
 var winningArray = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]];
-var xPositions = [];
-var oPositions = [];
 
 var player1Name = "";
 var player2Name = "";
@@ -12,6 +10,9 @@ var player2Symbol = null;
 
 var player1WinCounter = 0;
 var player2WinCounter = 0;
+console.log(1%3);
+console.log(1/3);
+var boardArray = [[null,null,null],[null,null,null],[null,null,null]];
 
 // var player1Time = 300;
 // var palyer2Time = 300;
@@ -26,17 +27,24 @@ var player2WinCounter = 0;
 var getBody = document.querySelector("body");
 
 
+
+
 //changing the X and O
-function writeTextInBox (event){
+var writeTextInBox = function(event){
+    var getXAxis = null;
+    var getYAxis = null;
     if(counter%2 === 0){
         if(event.target.innerText){
             console.log("error");
         }else{
            event.target.innerText = player1Symbol;
+           getXAxis = checkXAxis(parseInt(event.target.id));
+           getYAxis = checkYAxis(parseInt(event.target.id));
+           boardArray[getYAxis][getXAxis] = player1Symbol;
         // clearInterval(intervalRef1);
         // startTimer2();
             counter+=1;
-            xPositions.push(parseInt(event.target.id));
+
         }
     }
 
@@ -44,20 +52,22 @@ function writeTextInBox (event){
         if(event.target.innerText){
             console.log("error");
         }else{
-        event.target.innerText = player2Symbol;
-        // clearInterval(intervalRef2);
-        // startTimer1();
-        counter+=1;
-        oPositions.push(parseInt(event.target.id));
+            event.target.innerText = player2Symbol;
+            getXAxis = checkXAxis(parseInt(event.target.id));
+            getYAxis = checkYAxis(parseInt(event.target.id));
+            boardArray[getYAxis][getXAxis] = player2Symbol;
+            // clearInterval(intervalRef2);
+            // startTimer1();
+            counter+=1;
+
         }
     }
 
-    console.log(xPositions);
 
-    if(checkWin(player1Name,xPositions)){
+    if(checkAll(player1Symbol)){
         player1WinCounter +=1;
         removeClickListener();
-    }else if(checkWin(player2Name,oPositions)){
+    }else if(checkAll(player2Symbol)){
         player2WinCounter +=1;
         removeClickListener();
     }
@@ -65,7 +75,7 @@ function writeTextInBox (event){
 
 };
 
-function removeClickListener(){
+var removeClickListener = function(){
     for(i=0;i<9;i++){
         var aBox = document.getElementById((i+1).toString());
         aBox.removeEventListener("click", writeTextInBox )
@@ -74,69 +84,8 @@ function removeClickListener(){
     }
 }
 
-//on start, create a start button for creating board
-document.addEventListener("DOMContentLoaded",function(event){
-    var createButton = document.createElement("button");
-    createButton.addEventListener("click",function(){
-        preCreateBoard();
-    })
-    createButton.setAttribute("id","start-button");
-    createButton.innerText = "Start Game";
-    getBody.appendChild(createButton);
 
-    //create player names input container
-    var createInputContainer = document.createElement("div");
-    createInputContainer.setAttribute("class","input-container")
-
-
-    for(i=1;i<3;i++){
-
-        var createPlayerLabel = document.createElement("p")
-        createPlayerLabel.setAttribute("class","player player-"+i.toString());
-        createPlayerLabel.innerText = "Player "+i;
-
-        var createPlayerInput = document.createElement("input");
-        createPlayerInput.setAttribute("type","text");
-        createPlayerInput.setAttribute("class","player-input");
-        createPlayerInput.setAttribute("placeholder","Please enter name of Player "+i);
-        createPlayerInput.setAttribute("id","input-"+i.toString());
-
-        createInputContainer.appendChild(createPlayerLabel);
-        createInputContainer.appendChild(createPlayerInput);
-
-    }
-
-    getBody.appendChild(createInputContainer);
-
-    //create choice of symbol
-    var createShortDescription = document.createElement("p");
-    createShortDescription.setAttribute("id","short-description");
-    createShortDescription.innerText="Player 1 please choose your symbol:";
-
-    createInputContainer.appendChild(createShortDescription);
-
-    var createSymbolChoice = document.createElement("select");
-    createSymbolChoice.setAttribute("id","select-box");
-
-        var createOption1 = document.createElement("option");
-        var createOption2 = document.createElement("option");
-        createOption1.setAttribute("id","option-1");
-        createOption2.setAttribute("id","option-2");
-        createOption1.setAttribute("value","X");
-        createOption2.setAttribute("value","O");
-        createOption1.innerText = "X";
-        createOption2.innerText = "O";
-
-    createSymbolChoice.appendChild(createOption1);
-    createSymbolChoice.appendChild(createOption2);
-
-    createInputContainer.appendChild(createSymbolChoice);
-
-
-
-})
-
-function preCreateBoard(){
+var preCreateBoard= function(){
     if(!gameStart){
         gameStart = true;
         //get input value then remove them
@@ -159,14 +108,13 @@ function preCreateBoard(){
         var getBoard = document.getElementById("board");
         counter = 0;
         getBody.removeChild(getBoard);
-        xPositions = [];
-        oPositions= [];
+        boardArray = [[null,null,null],[null,null,null],[null,null,null]];
         createBoard();
     }
 }
 
 //function to create board
-function createBoard(){
+var createBoard = function(){
 
     var j = 1;
     var createRow = null;
@@ -270,29 +218,205 @@ function createBoard(){
     getButton.style.visibility = "hidden";
 }
 
-function checkWin(symbol,symbolArray){
-    var counter = 0;
-    var getWinDisplay = document.getElementById("win-display");
-    for(i=0;i<winningArray.length;i++){
-        for(j=0;j<symbolArray.length;j++){
-            if(winningArray[i].includes(symbolArray[j]) ){
-                counter +=1;
+//check Horizontal Wins
+var checkHorizontal = function(arr,sym){
+    var checkCounter = 0;
+    for(i=0;i<arr.length;i++){
+        for(j=0;j<arr.length;j++){
+            if(arr[i][j]===sym){
+                 checkCounter++;
+            }
+            else{
+                checkCounter = 0;
+                break;
             }
         }
-        if(counter === 3){
-            getWinDisplay.innerText = `${symbol} Wins!!!`;
-            var getButton = document.getElementById("start-button");
-            getButton.style.visibility = "visible";
+        if(checkCounter ===arr.length){
+            break;
+        }
+        else{
+            checkCounter = 0;
+            continue;
+        }
+    }
+    if(checkCounter === arr.length)
+        return true
+    else
+        return false
+}
 
-            return true;
-        }else{
-            counter = 0;
+//check vertical wins
+var checkVertical = function(arr,sym){
+    var checkCounter = 0;
+    for(i=0;i<arr.length;i++){
+        for(j=0;j<arr.length;j++){
+            if(arr[j][i]===sym){
+                 checkCounter++;
+            }
+            else{
+                checkCounter = 0;
+                break;
+            }
+        }
+        if(checkCounter ===arr.length){
+            break;
+        }
+        else{
+            checkCounter = 0;
+            continue;
+        }
+    }
+    if(checkCounter === arr.length)
+        return true
+    else
+        return false
+}
+
+//check X wins
+var checkX = function(arr,sym){
+    var checkCounter = 0;
+    for(i=0;i<arr.length;i++){
+        if(arr[i][i]===sym){
+            checkCounter++;
+        }
+        else{
+            checkCounter = 0;
+            break;
         }
     }
 
+    if(checkCounter === arr.length){
+        return true
+    }else{
+        checkCounter =0;
+        var k = 0;
+        for(j=arr.length-1;j>=0;j--){
+            if(arr[k][j]===sym){
+                checkCounter++;
+                k++;
+            }
+            else{
+                checkCounter = 0;
+                break;
+            }
+        }
 
+        if(checkCounter === arr.length){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 }
+
+//run all checks
+var checkAll = function(sym){
+    var emptyArr = [checkHorizontal(boardArray,sym),checkVertical(boardArray,sym),checkX(boardArray,sym)]
+    var getWinDisplay = document.getElementById("win-display");
+    if(emptyArr.includes(true) && sym === player1Symbol){
+        getWinDisplay.innerText = `${player1Name} Wins!!!`;
+            var getButton = document.getElementById("start-button");
+            getButton.style.visibility = "visible";
+            return true;
+    }else if (emptyArr.includes(true) && sym === player2Symbol){
+        getWinDisplay.innerText = `${player2Name} Wins!!!`;
+            var getButton = document.getElementById("start-button");
+            getButton.style.visibility = "visible";
+            return true;
+    }else
+        return false
+
+}
+
+//get X Axis num
+var checkXAxis = function(num){
+    var aNum =null
+
+    if(num<=boardArray.length)
+        return num-1
+    else{
+        if(num%boardArray.length === 0){
+
+            return (boardArray.length-1)
+        }
+        else{
+
+            return num%boardArray.length-1
+        }
+
+    }
+}
+
+//get Y Axis num
+var checkYAxis = function(num){
+
+    return Math.floor((num-1)/boardArray.length);
+}
+
+
+//on start, create a start button for creating board
+document.addEventListener("DOMContentLoaded",function(event){
+    var createButton = document.createElement("button");
+    createButton.addEventListener("click",function(){
+        preCreateBoard();
+    })
+    createButton.setAttribute("id","start-button");
+    createButton.innerText = "Start Game";
+    getBody.appendChild(createButton);
+
+    //create player names input container
+    var createInputContainer = document.createElement("div");
+    createInputContainer.setAttribute("class","input-container")
+
+
+    for(i=1;i<3;i++){
+
+        var createPlayerLabel = document.createElement("p")
+        createPlayerLabel.setAttribute("class","player player-"+i.toString());
+        createPlayerLabel.innerText = "Player "+i;
+
+        var createPlayerInput = document.createElement("input");
+        createPlayerInput.setAttribute("type","text");
+        createPlayerInput.setAttribute("class","player-input");
+        createPlayerInput.setAttribute("placeholder","Please enter name of Player "+i);
+        createPlayerInput.setAttribute("id","input-"+i.toString());
+
+        createInputContainer.appendChild(createPlayerLabel);
+        createInputContainer.appendChild(createPlayerInput);
+
+    }
+
+    getBody.appendChild(createInputContainer);
+
+    //create choice of symbol
+    var createShortDescription = document.createElement("p");
+    createShortDescription.setAttribute("id","short-description");
+    createShortDescription.innerText="Player 1 please choose your symbol:";
+
+    createInputContainer.appendChild(createShortDescription);
+
+    var createSymbolChoice = document.createElement("select");
+    createSymbolChoice.setAttribute("id","select-box");
+
+        var createOption1 = document.createElement("option");
+        var createOption2 = document.createElement("option");
+        createOption1.setAttribute("id","option-1");
+        createOption2.setAttribute("id","option-2");
+        createOption1.setAttribute("value","X");
+        createOption2.setAttribute("value","O");
+        createOption1.innerText = "X";
+        createOption2.innerText = "O";
+
+    createSymbolChoice.appendChild(createOption1);
+    createSymbolChoice.appendChild(createOption2);
+
+    createInputContainer.appendChild(createSymbolChoice);
+
+
+
+})
+
 
 
 // function timer1(){
