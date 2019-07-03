@@ -25,7 +25,7 @@ body{
   justify-content: center;
   align-items: center;
   font-size: 80px;
-  width: 33.333%;
+  /* width: 33.333%; */
   height: 200px;
   display: flex;
   border: 1px solid red;
