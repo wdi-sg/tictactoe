@@ -2,9 +2,11 @@ console.log('linked');
 
 var userATurn = true;
 var displayTurn = document.getElementById('display-turn');
-var gameboard = document.getElementById('gameboard');
+var gameboardUI = document.getElementById('gameboard');
 var numTiles = 9;
-var gameArray = [];
+var userGame = [];
+var gameboard = [];
+var boardSize = 3;
 
 var indicatePlayerTurn = function(){
   if (userATurn === true){
@@ -14,17 +16,33 @@ var indicatePlayerTurn = function(){
   }
 }
 
+var newCreateBoard = function(){
+  for (let a = 0; a < boardSize; a++) {
+        let row = [];
+
+        for (let b = 0; b < boardSize; b++) {
+            row.push("");
+        }
+        gameboard.push(row);
+      }
+  console.log(gameboard);
+  return gameboard;
+}
+
+newCreateBoard();
+
+
 var sayHi = function(){
   console.log('hi');
 }
 
-var createBoard = function(){
+var createBoardUI = function(){
   for (var i =0; i < numTiles; i++){
     var box = document.createElement('div');
     box.setAttribute("class", "box");
     box.setAttribute("id", "box-" + (i+1));
     box.innerHTML = "";
-    gameboard.appendChild(box);
+    gameboardUI.appendChild(box);
     box.addEventListener('click', function(){
       drawSymbol(event);
       console.log("in create board function");
@@ -35,13 +53,13 @@ var createBoard = function(){
 }
 
 indicatePlayerTurn();
-createBoard();
+createBoardUI();
 
 var drawSymbol = function(event){
   console.log("in drawSymbol function");
   console.log(event.target.innerHTML);
   if(userATurn === true){
-    gameArray.push('x');
+    userGame.push('x');
     console.log("x");
     event.target.innerHTML = "x";
     console.log(event.target.innerHTML);
@@ -49,7 +67,7 @@ var drawSymbol = function(event){
     userATurn = false;
     indicatePlayerTurn();
   } else {
-    gameArray.push('o');
+    userGame.push('o');
     console.log("o");
     event.target.innerHTML = "o";
     console.log(event.target.innerHTML);
@@ -57,5 +75,5 @@ var drawSymbol = function(event){
     userATurn = true;
     indicatePlayerTurn();
   }
-  console.log('game array is ' + gameArray);
+  console.log('game array is ' + userGame);
 }
