@@ -1,0 +1,26 @@
+body,
+html {
+	height: 100%;
+}
+
+#output {
+    font-size: 2em;
+    color: blue;
+}
+
+button {
+    font-size: 1.3em;
+}
+
+h1 {
+	color: blue;
+}
+
+td {
+	background-color: lightblue;
+	width: 150px;
+	height: 150px;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 3em;
+}
