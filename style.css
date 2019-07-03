@@ -1,0 +1,82 @@
+.starter{
+    width: 500px;
+  height: 500px;
+  font-size:30px;
+  padding:10px;
+  display:block;
+  margin:40px auto;
+  border:3px solid grey;
+  text-align: center;
+
+}
+
+#output{
+  background-color:pink;
+  height: 400px;
+  width: 400px;
+}
+
+div {
+width: 70%;
+/*border: 3px solid red;*/
+margin: 50px auto;
+
+}
+
+
+
+h2 {
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+
+div .cell {
+    width:100px;
+    height:100px;
+    background-color: pink;
+    border: 1px solid red;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+
+}
+
+#board {
+    background-color: grey;
+    border: 1px solid red;
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+    padding: 0;
+    /*font-size: 0;*/
+
+}
+.game-row {
+    display:block;
+    width:100%;
+    /*border: 1px solid blue;*/
+    margin: 0 auto;
+    position: relative;
+    /*padding: 0;*/
+    /*font-size: 0;*/
+}
+.game-square {
+    display: inline-block;
+    width: 32%;
+    height: 32%;
+    border: 1px solid grey;
+    margin: 0;
+    background-color: white;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    font-size: 50px;
+
+
+
+
+}
