@@ -13,108 +13,95 @@ var winPerm = [
     [1,5,9],
     [3,5,7]
 ];
-// var winArray = [];
-
-var div1 = document.getElementById("1");
-var div2 = document.getElementById("2");
-var div3 = document.getElementById("3");
-var div4 = document.getElementById("4");
-var div5 = document.getElementById("5");
-var div6 = document.getElementById("6");
-var div7 = document.getElementById("7");
-var div8 = document.getElementById("8");
-var div9 = document.getElementById("9");
 
 
-console.log(winPerm[0]);
-console.log(playerOne);
 
 
-// if ((winPerm[0].every(element => playerOne.includes(element)))=== true ) {
-//     console.log("fucntion works");
+////// TO UPDATE CREATE DYNAMIC BOARD////////
+// var board = function(){
+
+//     for (i=1;i<10;i++){
+//         var gameSquare = document.createElement("div");
+//         gameSquare.setAttribute("id", i);
+//         gameSquare.setAttribute("class", "game-square");
+//         var board = document.getElementById("board");
+//         board.appendChild(gameSquare);
+//     }
 // }
+ // div1.setAttribute("style", "font-size: 30px")
+    // }
+// board();
+/////////////////////////////////////////////
 
-
-
-var checkWin = function (element) {
-    for (i=0;i<winPerm.length;i++) {
-
-        if ((winPerm[i].every(element => playerOne.includes(element)))=== true ) {
-        console.log("playerOne Wins!");
-        alert("Player 1 Won")
-        } else if ((winPerm[i].every(element => playerOne.includes(element)))=== true ) {
-            console.log("playerTwo Wins!");
-            alert("Player 2 WON")
-        }
+var createBoard = function() {
+    console.log("create board works");
+    turn = 0;
+    playerOne = [];
+    playerTwo = [];
+    for (i=0;i<9;i++) {
+        var gameSquare = document.querySelectorAll(".game-square");
+        gameSquare[i].innerText = i+1;
+        gameSquare[i].style.color = "red";
     }
 }
 
 
-
-var changeText = function(event){
+var clickBox = function(event){
     if (turn === 0 || turn%2 === 0) {
         console.log("P1 clicked: "+ event.target.innerText);
         playerOne.push(parseInt(event.target.innerText));
         console.log(playerOne);
         event.target.innerText = "X";
+        event.target.style.color = "white";
         turn++;
         checkWin();
     } else {
         console.log("P2 clicked: "+ event.target.innerText);
-        playerTwo.push(event.target.innerText);
+        playerTwo.push(parseInt(event.target.innerText));
         console.log(playerTwo);
         event.target.innerText = "O";
+        event.target.style.color = "white";
         turn++;
-        checkWin
+        checkWin();
     }
 
-
 }
+
+
+//ES6 Syntax to check if array is subet of another
+// if ((subset.every(element => mainArray.includes(element)))=== true ) {
+//     console.log("function works");
+// }
+var checkWin = function (element) {
+    for (i=0;i<winPerm.length;i++) {
+
+        if ((winPerm[i].every(element => playerOne.includes(element)))=== true ) {
+        console.log("playerOne Wins!");
+        setTimeout(function(){alert("Player 1 Won")},500);
+        } else if ((winPerm[i].every(element => playerTwo.includes(element)))=== true ) {
+            setTimeout(function(){alert("Player 2 Won")},500);
+        }
+    }
+}
+
+
+var startButton = document.createElement("button")
+startButton.innerText = "New Game";
+document.body.appendChild(startButton);
+
 
 
 
 document.addEventListener('DOMContentLoaded', function( event ){
 
-    div1.addEventListener('click', changeText);
-    div2.addEventListener('click', changeText);
-    div3.addEventListener('click', changeText);
-    div4.addEventListener('click', changeText);
-    div5.addEventListener('click', changeText);
-    div6.addEventListener('click', changeText);
-    div7.addEventListener('click', changeText);
-    div8.addEventListener('click', changeText);
-    div9.addEventListener('click', changeText);
+    createBoard();
 
+    startButton.addEventListener('click', createBoard);
 
-  // now that the dom is ready, set the button click
-  // var button = document.querySelector('#start');
-
-  // button.addEventListener('click', startGame);
-
+    for (i=0;i<9;i++){
+        var div = document.querySelectorAll(".game-square")[i];
+        // console.log(div);
+        div.addEventListener('click', clickBox);
+    }
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var inputHappened = function(currentInput){
-//   console.log( currentInput );
-//   display( "WOW SOMETHING HAPPENED" );
-// };

@@ -1,28 +1,20 @@
 body {
 	background-color: grey;
-/*	display: flex;*/
-	/*align-items: center;*/
-	}
+
+}
 
 #board {
 	background-color: black;
 	color: white;
 	border: 5px solid green;
-	height: 70%;
-/*	display: flex;*/
-	/*align-items: center;*/
+
 }
 
 .game-row {
-	/*display: flex;
-	justify-content: space-around;
-	align-items: center;*/
-	/*display: inline-block;*/
-	background-color: orange;
-	border: 1px solid blue;
-	height: 32%;
-	text-align: center;
-	/*align-items: center;*/
+	border: 1px solid orange;
+	display: flex;
+	justify-content: space-between;
+	height:150px;
 }
 
 .game-square {
@@ -31,6 +23,9 @@ body {
 	height: 90%;
 	display: inline-block;
 	text-align: center;
+	font-family: "arial", sans-serif;
+	font-size: 55px;
+
 }
 
 
