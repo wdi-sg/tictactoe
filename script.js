@@ -3,26 +3,8 @@ var inputHappened = function(currentInput){
   console.log( currentInput );
   setTurn();
   createBoard();
-  display( "WOW SOMETHING HAPPENED" );
+  display( "start!" );
 };
-
-
-// create 9 divs. try using JS and 0 HTML
-
-// each div is blank
-
-// on click, each div can change to X or O
-
-// set a global variable to signify whose turn it is. This should
-// mean that it is linked to which symbol you draw.
-//     possible turn-over mech: if O, turn = X. If X, turn = O
-
-// THIS IS ALL YOU NEED!
-
-// further1:
-// add win conidtion and notification
-// To track the state of the board, possibly use an array
-
 
 //----------------turn-setter
 var input = null;
@@ -45,6 +27,7 @@ var inputSign = function(event){
         input = "O";
         clickedX.push(event.target);
     }
+    checkRow();
     console.log("Turn of " + input);
 }
 //--------------------
@@ -52,10 +35,32 @@ var inputSign = function(event){
 //----------------score keeper
 var clickedX = [];
 var clickedO = [];
-// var check = function(){
+var storage = [];
 
-// }
+//----------------row checker works
+var checkRow = function(){
+for (a = 0; a < 3; a += 1){
+    storage = document.querySelectorAll('.inRow'+(a+1));
+    let counterX = 0;
+    let counterO = 0;
+    for (b = 0; b < 3; b += 1){
+        if (storage[b].innerHTML === 'X'){
+        counterX += 1;
+        } else if (storage[b].innerHTML === 'O'){
+        counterO += 1;
+        }
+    }
+    if (counterX === 3){
+        console.log('X wins!');
+    } else if (counterO === 3){
+        console.log('O wins!');
+    }
+}
+}
 
+
+
+//element.classList.contains('class')
 //---------------board setter
 //creates rows IDed 1-3, and boxes inside IDed 1-3
 var numOfRows = 3;
@@ -80,3 +85,6 @@ var createBoard = function(){
     }
 }
 //---------------------------
+
+//queryselector (all?)
+//YES QUERYSELECTOR A ROW OR BOX(COL) AND THEN CHECK THEIR INNERHTMLS!
