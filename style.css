@@ -1,6 +1,7 @@
 .board {
 	width: 450px;
-	margin: 0 auto;
+	height: 100%;
+	margin: 10px auto 80px auto;
 }
 
 .game-row {
@@ -14,7 +15,7 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	background-color: pink;
+	background-color: #ff6f61;
 	font-family: sans-serif;
 	font-size: 5em;
 	text-align: center;
@@ -23,15 +24,19 @@
 	border: 3px solid white;
 }
 
-
 #start {
 	margin: 20px 0;
-	background-color: pink;
-	font-size: .7em;
-	width: 120px;
-	height: 40px;
+	background-color: #ff6f61;
+	font-size: 1.2em;
+	width: 250px;
+	height: 50px;
 }
 
 .hidden {
 	display: none;
+}
+
+footer {
+	display: flex;
+	justify-content: center;
 }
