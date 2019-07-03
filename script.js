@@ -80,30 +80,85 @@ var squareClick = function (event) {
     gameHistory[posX][posY] = playerTurn;
     console.log(gameHistory);
 
-    var gameCounter = 0;
+    // var gameCounter.X = 0;
+    // var gameCounter.O = 0;
+
+    var gameCounter = {
+        "X": 0,
+        "O": 0
+    };
+
+    // run thru every rows
     for (var x = 0; x < 3; x++) {
+        console.log("we are on row: " + x);
+        // run thru every col
         for (var y = 0; y < 3; y++) {
-            if ((gameHistory[x][y] === 'X') || (gameHistory[x][y] === 'O')) {
-                gameCounter = gameCounter + 1;
-            }
-            if (gameCounter === 3) {
-                alert("MATCH");
+
+            // if a square has either X or 0 as value, increase the counter by 1
+            if ((gameHistory[x][y] === playerTurn)) {
+                console.log("BANANA");
+                gameCounter[playerTurn]++;
+
+            };
+
+            // if 3 Xs are found, there's a match
+            if (gameCounter[playerTurn] === 3) {
+                alert(playerTurn + " WINS");
             }
         }
-        gameCounter = 0;
+
+        console.log("Counter X: " + gameCounter["X"]);
+        console.log("Counter O: " + gameCounter["O"]);
+
+        gameCounter = {
+            "X": 0,
+            "O": 0
+        };
     }
 
-    for (var x = 0; x < 3; x++) {
-        for (var y = 0; y < 3; y++) {
-            if ((gameHistory[y][x] === 'X') || (gameHistory[y][x] === 'O')) {
-                gameCounter = gameCounter + 1;
+
+    // run thru every col
+    for (var y = 0; y < 3; y++) {
+        console.log("we are on col: " + y);
+
+        // run thru every col
+        for (var x = 0; x < 3; x++) {
+
+            // if a square has either X or 0 as value, increase the counter by 1
+            if ((gameHistory[x][y] === playerTurn)) {
+                // || (gameHistory[x][y] === 'O')) {
+                // console.log("X in col: " + y);
+                // console.log("X in row: " + x);
+                gameCounter[playerTurn]++ ;
+
             }
-            if (gameCounter === 3) {
-                console.log("MATCH");
+
+            // if 3 Xs are found, there's a match
+            if (gameCounter[playerTurn] === 3) {
+                alert("X WINS");
             }
         }
-        gameCounter = 0;
+        console.log("Counter X: " + gameCounter["X"]);
+        console.log("Counter O: " + gameCounter["O"]);
+
+        gameCounter = {
+            "X": 0,
+            "O": 0
+        };
     }
+
+
+//     for (var x = 0; x < 3; x++) {
+//         for (var y = 0; y < 3; y++) {
+//             if ((gameHistory[y][x] === 'X') || (gameHistory[y][x] === 'O')) {
+//                 gameCounter = gameCounter + 1;
+//             }
+//             if (gameCounter === 3) {
+//                 console.log("MATCH");
+//             }
+//         }
+//         gameCounter = 0;
+//     }
 };
 
 // create an empty game board
