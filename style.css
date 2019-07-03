@@ -82,7 +82,7 @@ div.btncontainer {
 
 div.control {
 	margin: auto 25px auto 10px;
-	height: 400px;
+	height: 250px;
 	-webkit-box-shadow: 5px 5px 5px 0px #000000,
 	inset 4px 4px 15px 0px #000000, 5px 5px 30px 10px #000000;
 	box-shadow: 5px 5px 5px 0px #000000,
@@ -119,7 +119,7 @@ div.control {
 	padding:25px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #4d3534;
-	margin: 0 20px;
+	margin: 20px;
 
 
 }

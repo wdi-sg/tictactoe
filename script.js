@@ -15,35 +15,8 @@ var winCombo = {
     8: [[0,4,8],[2,5,8],[6,7,8]]
 }
 
-
 var isGameRunning = false;
 var isGameWon = false;
-
-
-var startGame= function(){
-    if(!isGameRunning){
-        console.log("Start the Game.")
-        isGameRunning = true;
-        event.target.innerHTML = "STOP"
-    }
-    if(isGameRunning){
-        console.log("Game Stopped")
-        isGameRunning = false;
-        event.target.innerHTML = "Start"
-    }
-
-}
-
-var getBtnId = function(buttonId){
-    return Number.parseInt(buttonId.replace('btn', ''));
-}
-var randomChoice = function(array) {
-    return Math.floor(Math.random() * array.length);
-};
-
-var btnArray = function() {
-    return Array.from(document.querySelectorAll("button"))
-};
 
 var btnAddEventList = function() {
     btnArray().forEach(function(item) {
@@ -55,16 +28,43 @@ var btnRemoveEventList = function() {
         item.removeEventListener('click', check)
     })
 };
+var startGame = function(){
+    if(!isGameRunning){
+        btnAddEventList();
+        console.log("Start the Game.")
+        alert("game start")
+        isGameRunning = true;
+    }
+
+}
+var resetGame = function(){
+    if(!isGameRunning){
+        btnRemoveEventList();
+        item.innerHTML = "";
+        currentBoard = [];
+        playerXMoves = [];
+        btnRemoveEventList
+    }
+}
+var getBtnId = function(buttonId){
+    return Number.parseInt(buttonId.replace('btn', ''));
+}
+var randomChoice = function(array) {
+    return Math.floor(Math.random() * array.length);
+};
+var btnArray = function() {
+    return Array.from(document.querySelectorAll("button"))
+};
 
 var loadBoard = function(){
     return currentBoard = btnArray();
 }
-
 var check = function(event){
     if(currentBoard.length === 0){
         loadBoard();
+        console.log(currentBoard);
     }
-    if(currentBoard.length === 1){
+    if(currentBoard.length === 2){
         console.log("ITS A DRAW!")
     }
     drawEx();
@@ -75,19 +75,28 @@ var check = function(event){
 var setWinCombo = function(id){
     if(playerXMoves.length === 1){
         pWin = winCombo[id];
+        console.log(pWin);
+
     }
 }
 
 var checkMatch = function(){
-    console.log("checking");
-    if(playerXMoves.length >=3)
-    for (var i = 0; i <= pWin.length; i++) {
-        var a = pWin[i].includes(playerXMoves[0] &&
+    var pm = playerXMoves.length;
+    console.log(pWin);
+
+    if(pm >= 3){
+        console.log("checking");
+        for (var i = 0; i < pWin.length; i++) {
+            console.log(i);
+            var a = pWin[i].includes(playerXMoves[0] &&
             playerXMoves[1] && playerXMoves[2])
-        if(a){
-            console.log("YOU WON")
-            isGameWon = true
-            btnRemoveEventList;
+            if(a){
+                console.log("YOU WON")
+                alert('you won the game')
+                isGameWon = true
+                btnRemoveEventList;
+                return isGameWon
+            }
         }
     }
 }
@@ -102,7 +111,7 @@ var drawEx = function(){
     playerXMoves.push(id);
     setWinCombo(id)
 
-    checkMatch(id);
+    checkMatch();
     console.log("player X checked " + id);
 
     currentBoard.splice(id, 1);
@@ -116,12 +125,15 @@ var drawEx = function(){
 }
 var drawOh = function(){
     setTimeout(function(){
-        var b = currentBoard.length;
+
 
         var r = randomChoice(currentBoard);
+        var id = getBtnId(currentBoard[r].id);
+
+
         currentBoard[r].innerHTML = "O";
 
-        console.log("player O checked " + r);
+        console.log("player O checked " + id);
 
         currentBoard.splice(r, 1);
         console.log(currentBoard)
