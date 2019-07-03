@@ -1,0 +1,40 @@
+header {
+	color: #f9f9f9;
+	font-family: sans-serif;
+	font-weight: bold;
+	font-size: 50px;
+	text-align: center;
+	text-shadow:2px 4px 3px rgba(0,0,0,0.3);
+	margin-top: 20px;
+	margin-bottom: 20px;
+	position:relative;
+}
+
+.s {
+	border:1px solid black;
+	height:100px;
+	width: 100px;
+	cursor: pointer;
+	font-size:75px;
+	font-family: sans-serif;
+	text-align: center;
+	background-color:tan;
+	color: #f9f9f9;
+}
+
+.s:hover {
+	background-color: azure;
+
+}
+
+.table_wrapper {
+	position: relative;
+  margin: auto;
+  width: 400px;
+}
+
+
+
+body {
+	background-color: #D3D3D3;
+}
