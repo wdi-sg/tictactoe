@@ -87,6 +87,9 @@ var winnerFound = function() {
     });
 };
 
+var restart = document.getElementById("restartButton");
+restart.addEventListener("click", newGame);
+
 //the mother lode of conditionals
 var checkForWin = function() {
     //check rows and columns
