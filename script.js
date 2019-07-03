@@ -89,6 +89,8 @@ function checkLeftRight(posX, posY, sign){
       basePosX+=1;
       if (gameArray[basePosX][posY] === signInPlay){
         setCount+=1;
+      }else {
+        break;
       }
     }
   }
@@ -100,6 +102,8 @@ function checkLeftRight(posX, posY, sign){
       basePosX-=1;
       if (gameArray[basePosX][posY] === signInPlay){
         setCount+=1;
+      }else {
+        break;
       }
     }
   }
