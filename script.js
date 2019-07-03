@@ -1,14 +1,10 @@
 // console.log('linked');
 
 var displayTurn = document.getElementById('display-turn');
-var gameboardUI = document.getElementById('gameboard');
 var container = document.querySelector('.container');
 
 //game defaults
 var userATurn = true;
-var numTiles = 9;
-var userGame = [];
-var gameboard = [];
 var boardSize = 3;
 var game = [];
 var boxCount = 0;
@@ -33,7 +29,7 @@ var createBoard = function(){
         var row = [];
         for (var j = 0; j < boardSize; j++) {
             // row.push(i+""+j);
-            row.push("");
+            row.push((boxCount+1));
             var box = document.createElement('div');
             box.setAttribute('id', "box-"+ (boxCount+1));
             box.setAttribute('class', "box");
@@ -44,6 +40,11 @@ var createBoard = function(){
             // box.innerHTML = boxCount+1;
             box.style.width = 100/boardSize + "%";
             board.appendChild(box);
+
+            var numBox = document.createElement('div');
+            numBox.setAttribute('class', "numBox");
+            numBox.innerHTML = boxCount+1;
+            box.appendChild(numBox);
 
             // TODO: change to set event listener, check with Akira
             box.addEventListener('click', function(){
@@ -72,15 +73,30 @@ indicatePlayerTurn();
   //else if all filled game ends
   //else do nothing, continue game
 
-var checkWin = function(game){
-  console.log("in checkwin function");
+
+var checkWin = function(game,event){
+  var loopCount = 0;
+  console.log(event);
   console.log(game);
-  console.log('win');
+  console.log("played " + event.target.attributes.played.value);
+  for (var i = 0; i < game.length; i++){
+    for (var j = 0; j < game[i].length ; j++){
+      loopCount ++;
+      console.log('loopCount' + loopCount);
+      console.log('i is ' + i);
+      console.log('j is ' + j);
+      console.log(game[i][j]);
+      //if all y is the same
+      //if all x is the same
+      //if diagonal same
+      //if all anti-diagonal is the same
+    }
+  }
 }
 
 var drawSymbol = function(event){
-  // console.log("in drawSymbol function");
-  console.log(`game[${event.target.attributes.posx.value}][${event.target.attributes.posy.value}]`)
+  console.clear()
+  console.log(`game[${event.target.attributes.posy.value}][${event.target.attributes.posx.value}]`)
   var xValue = event.target.attributes.posx.value;
   var yValue = event.target.attributes.posy.value;
   console.log("played " + event.target.attributes.played.value);
@@ -89,21 +105,18 @@ var drawSymbol = function(event){
   if(userATurn === true){
     game[yValue][xValue]= 'x';
     event.target.innerHTML = "x";
-    event.target.classList.add('drawn');
-    console.log(event);
+    event.target.classList.add('filled');
     userATurn = false;
     event.target.attributes.played.value = true;
     indicatePlayerTurn();
   } else if (userATurn === false) {
     game[yValue][xValue]= 'o';
     event.target.innerHTML = "o";
-    event.target.classList.add('drawn');
-    console.log(event);
+    event.target.classList.add('filled');
     userATurn = true;
     event.target.attributes.played.value = true;
     indicatePlayerTurn();
   }
 
-  console.log(game);
-  checkWin(game);
+  checkWin(game,event);
 }

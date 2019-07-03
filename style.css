@@ -35,7 +35,12 @@ body{
   color: #aaa;
 }
 
-.drawn{
+.numBox{
+  font-size: 30px;
+  align-self: flex-end;
+  color: red;
+}
+.filled{
   background: white;
   color: black;
 }
