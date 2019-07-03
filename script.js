@@ -45,6 +45,7 @@ for (var i = 0; i < box.length; i++ ) {
 var playerTurn = null; // null becos it's an empty square in the beginning.
 var numOfRows = 3;
 var sqPerRows = 3;
+var won = 0;
 
 // create an empty game board
 var gameBoard = [];
@@ -60,13 +61,14 @@ var gameCounter = {
     "O": 0
 };
 
+
 ///////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////
+// Checking for rows
 
 var checkingRows = function() {
     // run thru every rows
     for (var x = 0; x < 3; x++) {
-        console.log("we are on row: " + x);
+        // console.log("we are on row: " + x);
         // run thru every col
         for (var y = 0; y < 3; y++) {
 
@@ -78,11 +80,12 @@ var checkingRows = function() {
             // if 3 Xs or 3 Os are found, there's a match
             if (gameCounter[playerTurn] === 3) {
                 alert(playerTurn + " WINS");
+
             }
         }
 
-        console.log("Counter X: " + gameCounter["X"]);
-        console.log("Counter O: " + gameCounter["O"]);
+        // console.log("Counter X: " + gameCounter["X"]);
+        // console.log("Counter O: " + gameCounter["O"]);
 
         gameCounter = {
             "X": 0,
@@ -91,12 +94,13 @@ var checkingRows = function() {
     }
 }
 
-
+///////////////////////////////////////////////////////////
+// Checking for columns
 
 var checkingColumns = function() {
     // run thru every col
     for (var y = 0; y < 3; y++) {
-        console.log("we are on col: " + y);
+        // console.log("we are on col: " + y);
 
         // run thru every col
         for (var x = 0; x < 3; x++) {
@@ -108,11 +112,12 @@ var checkingColumns = function() {
             }
             // if 3 Xs or 3 0s are found, there's a match
             if (gameCounter[playerTurn] === 3) {
-                alert("X WINS");
+                alert(playerTurn + " WINS");
+
             }
         }
-        console.log("Counter X: " + gameCounter["X"]);
-        console.log("Counter O: " + gameCounter["O"]);
+        // console.log("Counter X: " + gameCounter["X"]);
+        // console.log("Counter O: " + gameCounter["O"]);
 
         gameCounter = {
             "X": 0,
@@ -120,8 +125,56 @@ var checkingColumns = function() {
         };
     }
 }
+///////////////////////////////////////////////////////////
+// Checking for diagonals
+var checkingDiagonalLeftRight = function() {
 
+    for (var x = 0; x < 3; x++) {
+        // Checking diagonal left to right
+        if (gameHistory[x][x] === playerTurn) {
+            gameCounter[playerTurn]++ ;
+        }
+        if (gameCounter[playerTurn] === 3) {
+                alert(playerTurn + " WINS");
+        }
+    }
+
+    // var y = 3 - 1;
+    // for (var x = 0; x < 3; x++, y--) {
+    //     if (gameHistory[x][y] == playerTurn) {
+    //         console.log(playerTurn + " WINS");
+    //         alert(playerTurn + " WINS");
+    //     }
+    // }
+
+    gameCounter = {
+            "X": 0,
+            "O": 0
+    };
+} // end of checkingDiagonanlLeftRight
+
+var checkingDiagonalRightLeft = function() {
+    var y = 3 - 1;
+
+    for (var x = 0; x < 3; x++) {
+        if (gameHistory[x][y] === playerTurn) {
+            gameCounter[playerTurn]++ ;
+        }
+        if (gameCounter[playerTurn] === 3) {
+                alert(playerTurn + " WINS");
+        }
+        y = y - 1;
+    }
+
+    gameCounter = {
+        "X": 0,
+        "O": 0
+    };
+}
+
+///////////////////////////////////////////////////////////
  // start the game
+
 console.log("Hello");
 
 var startGame = function(event) {
@@ -149,7 +202,7 @@ var startGame = function(event) {
             // checking if posX & posY are captured
             var tempX = square.getAttribute('id');
             var tempY = square.getAttribute('value');
-            console.log(tempX + tempY);
+            // console.log(tempX + tempY);
         }
     }
      // gameBoard.push(square);
@@ -163,7 +216,7 @@ var startGame = function(event) {
     button.addEventListener('click', startGame);
 });
 
-
+///////////////////////////////////////////////////////////
 // When square is clicked
 var squareClick = function (event) {
     // when square is clicked show id of box
@@ -187,8 +240,10 @@ var squareClick = function (event) {
 
     // Store either X or O into posX & posY of gameHistory
     gameHistory[posX][posY] = playerTurn;
-    console.log(gameHistory);
+    // console.log(gameHistory);
 
     checkingRows();
     checkingColumns();
+    checkingDiagonalLeftRight();
+    checkingDiagonalRightLeft();
 };
