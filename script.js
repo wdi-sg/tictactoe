@@ -50,12 +50,14 @@ var moves = 0;
 // create an empty game board
 var gameBoard = [];
 
+// array to store history of the game
 var gameHistory = [
 [null, null, null],
 [null, null, null],
 [null, null, null]
 ];
 
+// counter to check number of X or 0 clicked.
 var gameCounter = {
     "X": 0,
     "O": 0
@@ -168,7 +170,25 @@ var stopGame = function() {
     for (var i = 0; i < 9; i++ ) {
         fullStop[i].removeEventListener('click', squareClick);
     }
+    showStartBtn();
 };
+
+// Hide the Start button
+var hideStartBtn = function(){
+  var startButton = document.querySelector('#start');
+  startButton.classList.add('hidden');
+  console.log("hide button");
+};
+
+// Show the Start button
+var showStartBtn = function(){
+  var startButton = document.querySelector('#start');
+  startButton.classList.remove('hidden');
+  console.log("show button");
+};
+
+
+
 
 ///////////////////////////////////////////////////////////
  // start the game
@@ -177,6 +197,7 @@ console.log("Hello");
 
 var startGame = function(event) {
     //console.log("create board");
+    hideStartBtn();
 
     var board = document.createElement('div');
     board.className = 'board';
@@ -207,6 +228,7 @@ var startGame = function(event) {
     }
      // gameBoard.push(square);
      document.body.appendChild(board);
+
  }
 
 
@@ -241,6 +263,7 @@ var squareClick = function (event) {
     } else {
         console.log("DRAW");
         alert("DRAW");
+        showStartBtn();
     }
 
 
