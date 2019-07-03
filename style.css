@@ -23,10 +23,15 @@
 	border: 3px solid white;
 }
 
+
 #start {
 	margin: 20px 0;
 	background-color: pink;
 	font-size: .7em;
 	width: 120px;
 	height: 40px;
+}
+
+.hidden {
+	display: none;
 }
