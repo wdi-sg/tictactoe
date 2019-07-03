@@ -11,14 +11,14 @@ var player1WinCounter = 0;
 var player2WinCounter = 0;
 console.log(1%3);
 console.log(1/3);
-var boardArray = [[null,null,null],[null,null,null],[null,null,null]];
-
+var boardArray = [];
 var countdown = 0;
 
 
 var intervalRef1 = null;
 var intervalRef2 = null;
 
+var boardSize = null;
 //DOM nodes
 var getBody = document.querySelector("body");
 
@@ -72,18 +72,38 @@ var writeTextInBox = function(event){
 
     if(checkAll(player1Symbol)){
         player1WinCounter +=1;
-        clearInterval(intervalRef1);
-        clearInterval(intervalRef2);
+        stopTimer1();
+        stopTimer2();
         removeClickListener();
     }else if(checkAll(player2Symbol)){
         player2WinCounter +=1;
-        clearInterval(intervalRef1);
-        clearInterval(intervalRef2);
+        stopTimer1();
+        stopTimer2();
         removeClickListener();
     }
 
+    var testEmpty = 0;
+    for(i=0;i<boardArray.length;i++){
+        for(j=0;j<boardArray.length;j++){
+            if(boardArray[i][j]===null){
+                testEmpty+=1;
+            }
+        }
+    }
+    if(testEmpty === 0){
+        endGameByFull();
+    }
 
 };
+
+var endGameByFull = function(){
+    stopTimer1();
+    stopTimer2();
+    removeClickListener();
+    document.getElementById("win-display").innerText = `Nobody Wins`;
+    var getButton = document.getElementById("start-button");
+    getButton.style.visibility = "visible";
+}
 
 var removeClickListener = function(){
     for(i=0;i<9;i++){
@@ -97,28 +117,49 @@ var removeClickListener = function(){
 
 var preCreateBoard= function(){
     if(!gameStart){
-        gameStart = true;
-        //get input value then remove them
-        player1Name = document.getElementById("input-1").value;
-        player2Name = document.getElementById("input-2").value;
+        boardSize = parseInt(document.querySelector(".board-size").value);
+        if(boardSize<3){
+            alert("Need to enter a value larger than 2!")
+        }else{
+            gameStart = true;
+            //get input value then remove them
+            player1Name = document.getElementById("input-1").value;
+            player2Name = document.getElementById("input-2").value;
 
-        //get symbol
-        player1Symbol = document.getElementById("select-box").value;
-        if(player1Symbol==="X")
-            player2Symbol ="O";
-        else
-            player2Symbol = "X";
+            //get symbol
+            player1Symbol = document.getElementById("select-box").value;
+            if(player1Symbol==="X")
+                player2Symbol ="O";
+            else
+                player2Symbol = "X";
 
-        //remove the whole input container
-        var getInputContainer = document.querySelector(".input-container")
-        getBody.removeChild(getInputContainer);
-        createBoard();
+            //remove the whole input container
+            var getInputContainer = document.querySelector(".input-container")
+            getBody.removeChild(getInputContainer);
+
+            for(i=0;i<boardSize;i++){
+                var emptyArray =[]
+                for(j=0;j<boardSize;j++){
+                    emptyArray.push(null);
+                }
+                boardArray.push(emptyArray);
+            }
+
+            createBoard();
+        }
 
     }else{
         var getBoard = document.getElementById("board");
         counter = 0;
         getBody.removeChild(getBoard);
-        boardArray = [[null,null,null],[null,null,null],[null,null,null]];
+        boardArray=[];
+        for(i=0;i<boardSize;i++){
+            var emptyArray =[]
+            for(j=0;j<boardSize;j++){
+                emptyArray.push(null);
+            }
+            boardArray.push(emptyArray);
+        }
         createBoard();
     }
 }
@@ -195,25 +236,28 @@ var createBoard = function(){
     startTimer1();
 
     //start creating board here
-    for(i=0;i<3;i++){
+    var createGameBoard = document.createElement("div");
+    createGameBoard.setAttribute("class","game-board");
+
+    for(i=0;i<boardSize;i++){
         createRow = document.createElement("div");
         createRow.setAttribute("class","game-row")
 
 
-        for(k=0;k<3;k++){
+        for(k=0;k<boardSize;k++){
             createBox = document.createElement("span");
             createBox.setAttribute("class","game-square");
             createBox.setAttribute("id",(j).toString());
             createRow.appendChild(createBox);
             j++;
         }
-        createBoardContainer.appendChild(createRow);
+        createGameBoard.appendChild(createRow);
         console.log(i);
     }
-
+    createBoardContainer.appendChild(createGameBoard);
     //give each span an id from 1-9
     getBody.appendChild(createBoardContainer);
-    for(l=0;l<9;l++){
+    for(l=0;l<(boardSize*boardSize);l++){
         var aBox = document.getElementById((l+1).toString());
         aBox.addEventListener("click", writeTextInBox);
     }
@@ -226,6 +270,8 @@ var createBoard = function(){
 
     var getButton = document.getElementById("start-button");
     getButton.style.visibility = "hidden";
+
+
 }
 
 //check Horizontal Wins
@@ -376,7 +422,7 @@ var timesUp = function(sym){
 
     var getBox = null;
     while(!stopper){
-        getBox = document.getElementById((Math.floor(Math.random()*8))+1);
+        getBox = document.getElementById((Math.floor(Math.random()*(boardSize*boardSize-1)))+1);
         if(getBox.innerText){
             continue;
         }else{
@@ -407,6 +453,7 @@ var timesUp = function(sym){
         stopTimer2();
         removeClickListener();
     }
+
 
 }
 
@@ -510,6 +557,15 @@ document.addEventListener("DOMContentLoaded",function(event){
 
     createInputContainer.appendChild(createSymbolChoice);
 
+    //input board size
+    var createAnotherDescription = document.createElement("p");
+    createAnotherDescription.innerText = "Please input board size:"
+    var createBoardSizeInput = document.createElement("input");
+    createBoardSizeInput.setAttribute("class","player-input board-size");
+    createBoardSizeInput.setAttribute("type","text");
+
+    createInputContainer.appendChild(createAnotherDescription);
+    createInputContainer.appendChild(createBoardSizeInput);
 
 
 })
