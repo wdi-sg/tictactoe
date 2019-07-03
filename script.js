@@ -33,21 +33,23 @@ var createBoard = function(){
         var row = [];
         for (var j = 0; j < boardSize; j++) {
             // row.push(i+""+j);
-            row.push(boxCount+1);
+            row.push("");
             var box = document.createElement('div');
             box.setAttribute('id', "box-"+ (boxCount+1));
             box.setAttribute('class', "box");
             box.setAttribute('posX',[j]);
             box.setAttribute('posY',[i]);
+            box.setAttribute('played','false');
             box.innerHTML = [i]+','+[j];
             // box.innerHTML = boxCount+1;
             box.style.width = 100/boardSize + "%";
             board.appendChild(box);
+
+            // TODO: change to set event listener, check with Akira
             box.addEventListener('click', function(){
               drawSymbol(event);
-              // console.log("in create board function");
-              // console.log(event);
             });
+
             boxCount ++;
         }
         game.push(row);
@@ -65,23 +67,43 @@ var sayHi = function(){
 
 indicatePlayerTurn();
 
+//check if win
+  //if win, game ends
+  //else if all filled game ends
+  //else do nothing, continue game
+
+var checkWin = function(game){
+  console.log("in checkwin function");
+  console.log(game);
+  console.log('win');
+}
+
 var drawSymbol = function(event){
   // console.log("in drawSymbol function");
   console.log(`game[${event.target.attributes.posx.value}][${event.target.attributes.posy.value}]`)
   var xValue = event.target.attributes.posx.value;
   var yValue = event.target.attributes.posy.value;
+  console.log("played " + event.target.attributes.played.value);
 
+  // todo check if already drawn
   if(userATurn === true){
     game[yValue][xValue]= 'x';
     event.target.innerHTML = "x";
+    event.target.classList.add('drawn');
+    console.log(event);
     userATurn = false;
+    event.target.attributes.played.value = true;
     indicatePlayerTurn();
-  } else {
+  } else if (userATurn === false) {
     game[yValue][xValue]= 'o';
     event.target.innerHTML = "o";
+    event.target.classList.add('drawn');
+    console.log(event);
     userATurn = true;
+    event.target.attributes.played.value = true;
     indicatePlayerTurn();
   }
 
   console.log(game);
+  checkWin(game);
 }
