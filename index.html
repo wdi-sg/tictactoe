@@ -4,36 +4,32 @@
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css?family=Exo:900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
     <title>Tic Tac Toe</title>
 </head>
 <body>
 <main>
     <div class="content" >
-        <div class="displayWrapper" id="display" >
-
-            <div class="buttoncontainer">
-                <button class="gameBtn" id="btnOne"value="1"></button>
-                <button class="gameBtn" id="btnTwo"value="2"></button>
-                <button class="gameBtn" id="btnThree"value="3"></button>
+        <div class="game-board" id="display" >
+            <div class="btncontainer">
+                <button class="gameBtn" id="btn0"></button>
+                <button class="gameBtn" id="btn1"></button>
+                <button class="gameBtn" id="btn2"></button>
             </div>
-            <div class="buttoncontainer">
-                <button class="gameBtn" id="btnFour"value="4"></button>
-                <button class="gameBtn" id="btnFive"value="5"></button>
-                <button class="gameBtn" id="btnSix"value="6"></button>
+            <div class="btncontainer">
+                <button class="gameBtn" id="btn3"></button>
+                <button class="gameBtn" id="btn4"></button>
+                <button class="gameBtn" id="btn5"></button>
             </div>
-            <div class="buttoncontainer">
-                <button class="gameBtn" id="btnSeven"value="7"></button>
-                <button class="gameBtn" id="btnEight" value="8"></button>
-                <button class="gameBtn" id="btnNine" value="9"></button>
+            <div class="btncontainer">
+                <button class="gameBtn" id="btn6"></button>
+                <button class="gameBtn" id="btn7"></button>
+                <button class="gameBtn" id="btn8"></button>
             </div>
-
-
         </div>
-        <div class="inputWrapper">
-            <a href="#" class="controlBtn" onclick="buttonAddEvent()">start</a>
-
+        <div class="control">
+            <a href="#" class="controlBtn" onclick="btnAddEventList()">START</a>
         </div>
-
     </div>
 </main>
 
