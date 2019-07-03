@@ -45,7 +45,7 @@ for (var i = 0; i < box.length; i++ ) {
 var playerTurn = null; // null becos it's an empty square in the beginning.
 var numOfRows = 3;
 var sqPerRows = 3;
-var won = 0;
+var moves = 0;
 
 // create an empty game board
 var gameBoard = [];
@@ -75,19 +75,16 @@ var checkingRows = function() {
             // if a square has either X or 0 as value, increase the counter by 1
             if ((gameHistory[x][y] === playerTurn)) {
                 gameCounter[playerTurn]++;
-            };
+            }
 
             // if 3 Xs or 3 Os are found, there's a match
             if (gameCounter[playerTurn] === 3) {
                 alert(playerTurn + " WINS");
                 stopGame();
-
             }
         }
-
         // console.log("Counter X: " + gameCounter["X"]);
         // console.log("Counter O: " + gameCounter["O"]);
-
         gameCounter = {
             "X": 0,
             "O": 0
@@ -109,7 +106,6 @@ var checkingColumns = function() {
             // if a square has either X or 0 as value, increase the counter by 1
             if ((gameHistory[x][y] === playerTurn)) {
                 gameCounter[playerTurn]++ ;
-
             }
             // if 3 Xs or 3 0s are found, there's a match
             if (gameCounter[playerTurn] === 3) {
@@ -120,7 +116,6 @@ var checkingColumns = function() {
         }
         // console.log("Counter X: " + gameCounter["X"]);
         // console.log("Counter O: " + gameCounter["O"]);
-
         gameCounter = {
             "X": 0,
             "O": 0
@@ -141,15 +136,6 @@ var checkingDiagonalLeftRight = function() {
                 stopGame();
         }
     }
-
-    // var y = 3 - 1;
-    // for (var x = 0; x < 3; x++, y--) {
-    //     if (gameHistory[x][y] == playerTurn) {
-    //         console.log(playerTurn + " WINS");
-    //         alert(playerTurn + " WINS");
-    //     }
-    // }
-
     gameCounter = {
             "X": 0,
             "O": 0
@@ -246,7 +232,18 @@ var squareClick = function (event) {
 
     // update innerText of box click with playerTurn
     this.innerText = playerTurn;
-    console.log(playerTurn + "click" + this.id + this.value);
+    // console.log(playerTurn + " click " + this.id + " " + this.value);
+
+    // If number of moves equals to 9, means no player wins = draw
+    if (moves !== 9 - 1 ) {
+        moves = moves + 1;
+        console.log(moves);
+    } else {
+        console.log("DRAW");
+        alert("DRAW");
+    }
+
+
     // Disable click for this square once it had been clicked.
     this.removeEventListener('click', squareClick);
 
