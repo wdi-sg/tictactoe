@@ -1,4 +1,5 @@
-var counter = 1;
+var counter1 = 1;
+var counter2 = 0
 var input;
 var startGame = function(event){
     console.log("Game Board created");
@@ -39,41 +40,44 @@ var checkForWin = function(){
                 // if winArray[i] === arrayX || winArray[i] === arrayO {
                     // sth happens
                     //}
-
+            if(counter2 < 9){;
                 if((winArray[0][0] === "X" && winArray[0][1] === "X" && winArray[0][2] === "X" )|| (winArray[0][0] === "O" && winArray[0][1] === "O" && winArray[0][2] === "O")){
-                    console.log("what is the value ", winArray[i][j]);
-
+                    console.log("Row one wins");
+                    stopClicking();
                 }
-
                 else if(winArray[1][0] === "X" && winArray[1][1] === "X" && winArray[1][2] === "X" || winArray[1][0] === "O" && winArray[1][1] === "O" && winArray[1][2] === "O"){
-                    console.log("What is the value", winArray[i][j]);
-
+                    console.log("Row two wins");
+                    stopClicking();
                 }
                 else if(winArray[2][0] === "X" && winArray[2][1] === "X" && winArray[2][2] === "X" || winArray[2][0] === "X" && winArray[2][1] === "O" && winArray[2][2] === "O"){
-                    console.log("What is the value", winArray[i][j]);
-                    // break;
+                    console.log("Row three wins");
+                    stopClicking();
                 }
                 else if(winArray[0][0] === "X" && winArray[1][0] === "X" && winArray[2][0] === "X" || winArray[0][0] === "O" && winArray[1][0] === "O" && winArray[2][0] === "O"){
-                    console.log("column at winArray[0] wins");
-                    // break;
+                    console.log("column one wins");
+                    stopClicking();
                 }
                 else if(winArray[0][1] === "X" && winArray[1][1] === "X" && winArray[2][1] === "X" || winArray[0][1] === "O" && winArray[1][1] === "O" && winArray[2][1] === "O"){
-                    console.log("column at winArray[1] wins");
-                    // break;
+                    console.log("column two wins");
+                    stopClicking();
                 }
                 else if(winArray[0][2] === "X" && winArray[1][2] === "X" && winArray[2][2] === "X" || winArray[0][2] === "O" && winArray[1][2] === "O" && winArray[2][2] === "O"){
-                    console.log("column at winArray[2] wins");
-                    // break;
+                    console.log("column 3 wins");
+                    stopClicking();
                 }
                 else if(winArray[0][0] === "X" && winArray[1][1] === "X" && winArray[2][2] === "X" || winArray[0][0] === "O" && winArray[1][1] === "O" && winArray[2][2] === "O"){
                     console.log("ltr diagonal wins");
-                    // break;
+                    stopClicking();
                 }
                 else if(winArray[0][2] === "X" && winArray[1][1] === "X" && winArray[2][0] === "X" || winArray[0][2] === "O" && winArray[1][1] === "O" && winArray[2][0] === "O"){
                     console.log("rtl diagonal wins");
-                    // break;
+                    stopClicking();
                 }
             // }
+            }
+            else{
+                alert("ITS A DRAW");
+            }
         }
      // }
 // }
@@ -84,6 +88,13 @@ var checkForWin = function(){
 //                 ["i1,j0 = 3","i1,j1 = 4","i1,j2 = 5"],
 //                 ["i2,j0 = 6","i2,j1 = 7","i2,j2 = 8"]
 //                 ];
+
+var stopClicking = function () {
+    var stopClick = document.querySelectorAll(".box")
+    for(let i = 0; i < 9; i++){
+        stopClick[i].removeEventListener("click", clickFunction);
+    }
+}
 
 var pushToArray = function(event,input){
     // var clickValue = document.getElementById(event.target.id);
@@ -97,6 +108,8 @@ var pushToArray = function(event,input){
             if (clickedId === winArray[i][j]) {
                 winArray[i][j] = clickedInput;
                 document.getElementById(clickedId).removeEventListener("click", clickFunction);
+                counter2 ++;
+                console.log("COUNTER = ",counter2);
             }
 
 
@@ -132,7 +145,7 @@ var clickFunction = function(event){
 
     // if()
     //if counter is even is player one turns
-        if(counter%2 === 0){
+        if(counter1%2 === 0){
             console.log("Event target id: ", event.target.id)
             input = document.getElementById(event.target.id);
             console.log("input element ", input);
@@ -148,7 +161,7 @@ var clickFunction = function(event){
             console.log("player two", event.target.id);
             pushToArray(input.textContent,input);
         }
-        counter ++;
+        counter1 ++;
         // checkForWin();
 }
 
@@ -179,6 +192,7 @@ var tableCreate = function(){
 }
 
 }
+alert("Start Game");
 tableCreate();
 
 //create the game
