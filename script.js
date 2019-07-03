@@ -167,7 +167,9 @@ var clickFunction = function(event){
 
 //create table
 var k = 0;
+
 var tableCreate = function(){
+    btn.removeEventListener("click", tableCreate);
     var table = document.createElement("table");
     for (let i = 0; i < 3; i++){
         var tr = table.insertRow();
@@ -192,7 +194,11 @@ var tableCreate = function(){
 }
 
 }
-alert("Start Game");
-tableCreate();
-
+var btn;
 //create the game
+document.addEventListener("DOMContentLoaded", function(event){
+    btn = document.createElement("button");
+    btn.innerHTML = "Start game";
+    btn.addEventListener("click", tableCreate);
+    document.body.appendChild(btn);
+});
