@@ -1,7 +1,6 @@
 console.log("Hello World!")
 var counter = 0;
 var gameStart = false;
-var winningArray = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]];
 
 var player1Name = "";
 var player2Name = "";
@@ -14,11 +13,8 @@ console.log(1%3);
 console.log(1/3);
 var boardArray = [[null,null,null],[null,null,null],[null,null,null]];
 
-// var player1Time = 300;
-// var palyer2Time = 300;
+var countdown = 0;
 
-// var countdown1 = 0;
-// var countdown2 = 0;
 
 // var intervalRef1 = null;
 // var intervalRef2 = null;
@@ -33,6 +29,7 @@ var getBody = document.querySelector("body");
 var writeTextInBox = function(event){
     var getXAxis = null;
     var getYAxis = null;
+    var getTimer = document.querySelectorAll(".timing");
     if(counter%2 === 0){
         if(event.target.innerText){
             console.log("error");
@@ -41,8 +38,12 @@ var writeTextInBox = function(event){
            getXAxis = checkXAxis(parseInt(event.target.id));
            getYAxis = checkYAxis(parseInt(event.target.id));
            boardArray[getYAxis][getXAxis] = player1Symbol;
-        // clearInterval(intervalRef1);
-        // startTimer2();
+            clearInterval(intervalRef1);
+
+            for(i=0;i<2;i++){
+                getTimer[i].innerHTML = "5s"
+            }
+            startTimer2();
             counter+=1;
 
         }
@@ -56,8 +57,12 @@ var writeTextInBox = function(event){
             getXAxis = checkXAxis(parseInt(event.target.id));
             getYAxis = checkYAxis(parseInt(event.target.id));
             boardArray[getYAxis][getXAxis] = player2Symbol;
-            // clearInterval(intervalRef2);
-            // startTimer1();
+
+            clearInterval(intervalRef2);
+            for(i=0;i<2;i++){
+                getTimer[i].innerHTML = "5s"
+            }
+            startTimer1();
             counter+=1;
 
         }
@@ -66,9 +71,13 @@ var writeTextInBox = function(event){
 
     if(checkAll(player1Symbol)){
         player1WinCounter +=1;
+        clearInterval(intervalRef1);
+        clearInterval(intervalRef2);
         removeClickListener();
     }else if(checkAll(player2Symbol)){
         player2WinCounter +=1;
+        clearInterval(intervalRef1);
+        clearInterval(intervalRef2);
         removeClickListener();
     }
 
@@ -163,26 +172,26 @@ var createBoard = function(){
 
 
     //make Timer Display
-    // var makeTimerContainer = document.createElement("div");
-    // makeTimerContainer.setAttribute("class","player-status-container clearfix");
+    var makeTimerContainer = document.createElement("div");
+    makeTimerContainer.setAttribute("class","player-status-container clearfix");
 
 
-    //     var makePlayer1Timer = document.createElement("div");
-    //     makePlayer1Timer.setAttribute("class","player-1");
-    //     makePlayer1Timer.setAttribute("id","timer-1");
-    //     makePlayer1Timer.innerHTML = "5 : 00"
-    //     makeTimerContainer.appendChild(makePlayer1Timer)
+        var makePlayer1Timer = document.createElement("div");
+        makePlayer1Timer.setAttribute("class","player-1 timing");
+        makePlayer1Timer.setAttribute("id","timer-1");
+        makePlayer1Timer.innerHTML = "5s";
+        makeTimerContainer.appendChild(makePlayer1Timer)
 
-    //     var makePlayer2Timer = document.createElement("div");
-    //     makePlayer2Timer.setAttribute("id","timer-2");
-    //     makePlayer2Timer.setAttribute("class","player-2");
-    //     makePlayer2Timer.innerHTML = "5 : 00"
-    //     makeTimerContainer.appendChild(makePlayer2Timer);
+        var makePlayer2Timer = document.createElement("div");
+        makePlayer2Timer.setAttribute("id","timer-2");
+        makePlayer2Timer.setAttribute("class","player-2 timing");
+        makePlayer2Timer.innerHTML = "5s";
+        makeTimerContainer.appendChild(makePlayer2Timer);
 
-    // createBoardContainer.appendChild(makeTimerContainer);
+    createBoardContainer.appendChild(makeTimerContainer);
 
-    // //Make Timer
-    // startTimer1();
+    //Make Timer
+    startTimer1();
 
     //start creating board here
     for(i=0;i<3;i++){
@@ -201,11 +210,11 @@ var createBoard = function(){
         console.log(i);
     }
 
+    //give each span an id from 1-9
     getBody.appendChild(createBoardContainer);
     for(l=0;l<9;l++){
         var aBox = document.getElementById((l+1).toString());
         aBox.addEventListener("click", writeTextInBox);
-
     }
 
     //for show win only
@@ -354,6 +363,38 @@ var checkYAxis = function(num){
     return Math.floor((num-1)/boardArray.length);
 }
 
+//create Timing
+function timer1(){
+
+    var getTimer = document.getElementById("timer-1");
+    countdown++;
+    getTimer.innerHTML = (5-countdown)+"s";
+}
+
+function timer2(){
+    var getTimer = document.getElementById("timer-2");
+    countdown++;
+    getTimer.innerHTML = (5-countdown)+"s"
+}
+
+function startTimer1(){
+    countdown = 0;
+    intervalRef1 = setInterval(timer1,1000);
+}
+
+function stopTimer1(){
+    clearInterval(intervalRef1);
+}
+
+function startTimer2(){
+    countdown = 0;
+    intervalRef2 = setInterval(timer2,1000);
+}
+
+function stopTimer2(){
+    clearInterval(intervalRef2);
+}
+
 
 //on start, create a start button for creating board
 document.addEventListener("DOMContentLoaded",function(event){
@@ -418,42 +459,3 @@ document.addEventListener("DOMContentLoaded",function(event){
 })
 
 
-
-// function timer1(){
-
-//     var getTimer = document.getElementById("timer-1");
-//     countdown1++;
-//     getTimer.innerHTML = convertSeconds(player1Time-countdown1);
-// }
-
-// function timer2(){
-
-//     var getTimer = document.getElementById("timer-2");
-//     countdown1++;
-//     getTimer.innerHTML = convertSeconds(player1Time-countdown1);
-// }
-
-
-// function convertSeconds(s){
-//     var min = Math.floor(s/60);
-//     var sec = s%60;
-//     return min + ':' + sec;
-// }
-
-// function startTimer1(){
-//     intervalRef1 = setInterval(timer1,1000);
-
-// }
-
-// function stopTimer1(){
-//     clearInterval(intervalRef1);
-// }
-
-// function startTimer2(){
-//     intervalRef2 = setInterval(timer2,1000);
-
-// }
-
-// function stopTimer2(){
-//     clearInterval(intervalRef2);
-// }
