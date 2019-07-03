@@ -73,10 +73,10 @@ let startGame = function () {
     refresh.id = 'refresh'
     refresh.textContent = 'Restart Game'
 
-    for (let i=0; i<3; i++){
+    for (let i=0; i<5; i++){
         let div = document.createElement('div');
             div.classList.add('game-row')
-        for (let j=0; j<3; j++){
+        for (let j=0; j<5; j++){
             let span = document.createElement('span');
             span.addEventListener('click', checkClick)
             span.classList.add('game-square')
