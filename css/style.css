@@ -1,22 +1,25 @@
 body,
 html {
 	height: 100%;
+	font-family: sans-serif;
+	background-color: #EEEEEE;
 }
 
 #output {
-    font-size: 2em;
-    color: #222831;
+	font-size: 2em;
+	color: #222831;
 	text-align: center;
 	padding: 10px;
 }
 
 button {
-    font-size: 1em;
+	font-size: 1em;
 	color: #393E46;
 	display: inline-block;
-	width: 150px;
-	height:2em;
-	background-color: #7C7575;
+	width: 153px;
+	height: 2em;
+	background-color: #00ADB5;
+	border-radius: 15px;
 }
 
 h1 {
@@ -31,24 +34,55 @@ td {
 	text-align: center;
 	vertical-align: middle;
 	color: #222831;
-	font-size: 3em;
+	font-size: 4em;
 }
 
-.main_container{
-	width:60%;
+.main_container {
+	width: 60%;
 	min-width: 500px;
-	height: 80%;
-	margin:0 auto;
+	height: 55%;
+	margin: 0 auto;
 	border: 2px solid #222831;
 	border-radius: 15px;
 	box-shadow: 2px 2px #222831;
-	background-color: #EEEEEE;
-
+	background-color: white;
 }
+
 .buttons_container {
-	display:flex;
+	display: flex;
 	justify-content: center;
 }
-table{
+
+table {
 	margin: 10px auto;
+}
+
+.scoreboard {
+	width: 100%;
+	height: 150px;
+	display: flex;
+	justify-content: center;
+	align-items: stretch;
+}
+
+.span {
+	display: inline-block;
+	width: 100%;
+}
+
+.player {
+	text-align: center;
+	line-height: 1.5em;
+	display: inline-block;
+	width: 25%;
+	border: 1px solid black;
+	border-radius: 15px;
+	margin: 10px;
+	box-shadow: 3px 3px darkgrey;
+}
+
+.score {
+	text-align: center;
+	font-size: 3em;
+	padding-top: 30px;
 }
