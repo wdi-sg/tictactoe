@@ -96,6 +96,7 @@ var pushToArray = function(event,input){
         for (let j=0; j<3; j++) {
             if (clickedId === winArray[i][j]) {
                 winArray[i][j] = clickedInput;
+                document.getElementById(clickedId).removeEventListener("click", clickFunction);
             }
 
 
