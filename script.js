@@ -30,6 +30,7 @@ var inputSign = function(event){
     checkRow();
     checkCol();
     checkDiag1();
+    checkDiag2();
     console.log("Turn of " + input);
 }
 //--------------------
@@ -46,12 +47,33 @@ var checkDiag1 = function(){
         storage.push(document.getElementsByClassName(`col${p+1} inRow${p+1}`));
         let counterX = 0;
         let counterO = 0;
-        console.log(storage);
         for (q = 0; q < storage.length; q += 1){
             if (storage[q][0].innerHTML === 'X'){
             counterX += 1;
-            console.log(`counterx:${counterX}`);
             } else if (storage[q][0].innerHTML === 'O'){
+            counterO += 1;
+            }
+        }
+        if (counterX === 3){
+        console.log('X wins!');
+        } else if (counterO === 3){
+        console.log('O wins!');
+        }
+    }
+}
+
+var checkDiag2 = function(){
+    let storage= [];
+    for (r = 0; r < 3; r += 1)
+        storage.push(document.getElementsByClassName(`col${r+1} inRow${3-r}`));
+        let counterX = 0;
+        let counterO = 0;
+        console.log(storage);
+        for (s = 0; s < storage.length; s += 1){
+            if (storage[s][0].innerHTML === 'X'){
+            counterX += 1;
+            console.log(`counterx:${counterX}`);
+            } else if (storage[s][0].innerHTML === 'O'){
             counterO += 1;
             console.log(counterO);
             }
@@ -62,8 +84,11 @@ var checkDiag1 = function(){
         } else if (counterO === 3){
         console.log('O wins!');
         }
-    }
 }
+
+
+
+
 
 
 //-------------col checker works
