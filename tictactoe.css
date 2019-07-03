@@ -1,0 +1,18 @@
+#main {
+height: 600px;
+width: 600px;
+border:black 3px solid;
+margin: 0 auto;
+}
+
+button {
+    border: black 5px solid;
+    /* padding: 10px; */
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: -2px;
+    font-family: Arial;
+    font-size: 90px;
+}
+/* input {width: 133px;height:150px;} */
