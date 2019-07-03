@@ -9,6 +9,7 @@ var boardSize = 3;
 var game = [];
 var boxCount = 0;
 var gameWin = false;
+var gameEnd = false;
 var winCross = "";
 var winCircle = "";
 var lastPlayer = "";
@@ -37,9 +38,9 @@ var generateWinCircle = function(boardSize){
 // display Player turn
 var indicatePlayerTurn = function(){
   if (userATurn === true){
-    displayTurn.innerText = "Player A's Turn";
+    displayTurn.innerText = "Player A's Turn, Draw x";
   } else {
-    displayTurn.innerText = "Player B's Turn";
+    displayTurn.innerText = "Player B's Turn, Draw o";
   }
 }
 
@@ -108,7 +109,8 @@ var createBoard = function(){
             box.setAttribute('posX',[j]);
             box.setAttribute('posY',[i]);
             box.setAttribute('played','false');
-            box.innerHTML = [i]+','+[j];
+            box.innerHTML = '';
+            // box.innerHTML = [i]+','+[j];
             // box.innerHTML = boxCount+1;
             box.style.width = 100/boardSize + "%";
             board.appendChild(box);
@@ -145,7 +147,7 @@ indicatePlayerTurn();
   //else do nothing, continue game
 
 
-var checkWin = function(game,event,symbol){
+var checkWin = function(game){
   var loopCount = 0;
   for (var i = 0; i < game.length; i++){
 
@@ -183,8 +185,15 @@ var checkWin = function(game,event,symbol){
   if (gameWin === true){
     setTimeout(function(){
     alert(`Game Ends. Player ${lastPlayer} wins!`);
-  }, 200);
+    }, 200);
+    gameEnd === true;
+    //disable board
   }
+}
+
+var checkDraw = function(game){
+  //if all the boxes are filled and gameWin === false
+  // then gameEnd === true;
 }
 
 var drawSymbol = function(event){
@@ -217,6 +226,7 @@ var drawSymbol = function(event){
     event.target.attributes.played.value = true;
     indicatePlayerTurn();
   }
-  // console.log(game,event,symbol);
-  checkWin(game,event,symbol);
+
+  checkWin(game);
+  checkDraw(game);
 }

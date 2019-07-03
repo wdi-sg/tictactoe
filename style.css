@@ -2,7 +2,7 @@
 
 body{
   font-family: 'Poppins', sans-serif;
-  background: #ccc;
+  background: #aaa;
 }
 
 .container{
@@ -36,9 +36,10 @@ body{
 }
 
 .numBox{
+  display: none;
   font-size: 30px;
   align-self: flex-end;
-  color: red;
+  color: darkgrey;
 }
 .filled{
   background: white;
