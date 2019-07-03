@@ -4,6 +4,7 @@ var userATurn = true;
 var displayTurn = document.getElementById('display-turn');
 var gameboard = document.getElementById('gameboard');
 var numTiles = 9;
+var gameArray = [];
 
 var indicatePlayerTurn = function(){
   if (userATurn === true){
@@ -40,6 +41,7 @@ var drawSymbol = function(event){
   console.log("in drawSymbol function");
   console.log(event.target.innerHTML);
   if(userATurn === true){
+    gameArray.push('x');
     console.log("x");
     event.target.innerHTML = "x";
     console.log(event.target.innerHTML);
@@ -47,6 +49,7 @@ var drawSymbol = function(event){
     userATurn = false;
     indicatePlayerTurn();
   } else {
+    gameArray.push('o');
     console.log("o");
     event.target.innerHTML = "o";
     console.log(event.target.innerHTML);
@@ -54,4 +57,5 @@ var drawSymbol = function(event){
     userATurn = true;
     indicatePlayerTurn();
   }
+  console.log('game array is ' + gameArray);
 }
