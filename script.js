@@ -80,6 +80,7 @@ var checkingRows = function() {
             // if 3 Xs or 3 Os are found, there's a match
             if (gameCounter[playerTurn] === 3) {
                 alert(playerTurn + " WINS");
+                stopGame();
 
             }
         }
@@ -113,6 +114,7 @@ var checkingColumns = function() {
             // if 3 Xs or 3 0s are found, there's a match
             if (gameCounter[playerTurn] === 3) {
                 alert(playerTurn + " WINS");
+                stopGame();
 
             }
         }
@@ -136,6 +138,7 @@ var checkingDiagonalLeftRight = function() {
         }
         if (gameCounter[playerTurn] === 3) {
                 alert(playerTurn + " WINS");
+                stopGame();
         }
     }
 
@@ -151,7 +154,7 @@ var checkingDiagonalLeftRight = function() {
             "X": 0,
             "O": 0
     };
-} // end of checkingDiagonanlLeftRight
+} //////// end of checkingDiagonanlLeftRight ////////
 
 var checkingDiagonalRightLeft = function() {
     var y = 3 - 1;
@@ -162,6 +165,7 @@ var checkingDiagonalRightLeft = function() {
         }
         if (gameCounter[playerTurn] === 3) {
                 alert(playerTurn + " WINS");
+                stopGame();
         }
         y = y - 1;
     }
@@ -170,7 +174,15 @@ var checkingDiagonalRightLeft = function() {
         "X": 0,
         "O": 0
     };
-}
+} //////// end of checkingDiagonanlRightLeft /////////////
+
+
+var stopGame = function() {
+    var fullStop = document.querySelectorAll('.game-square');
+    for (var i = 0; i < 9; i++ ) {
+        fullStop[i].removeEventListener('click', squareClick);
+    }
+};
 
 ///////////////////////////////////////////////////////////
  // start the game
@@ -197,6 +209,8 @@ var startGame = function(event) {
             //STORE posY
             square.setAttribute("value", y);
             row.appendChild(square);
+
+            // Call squareClick function to make squares click-able
             square.addEventListener('click', squareClick);
 
             // checking if posX & posY are captured
@@ -233,6 +247,8 @@ var squareClick = function (event) {
     // update innerText of box click with playerTurn
     this.innerText = playerTurn;
     console.log(playerTurn + "click" + this.id + this.value);
+    // Disable click for this square once it had been clicked.
+    this.removeEventListener('click', squareClick);
 
     // Store clicked position into game history
     var posX = this.id;
