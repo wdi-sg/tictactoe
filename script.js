@@ -28,6 +28,7 @@ var inputSign = function(event){
         clickedX.push(event.target);
     }
     checkRow();
+    checkCol();
     console.log("Turn of " + input);
 }
 //--------------------
@@ -36,6 +37,30 @@ var inputSign = function(event){
 var clickedX = [];
 var clickedO = [];
 var storage = [];
+
+//-------------col checker works
+var checkCol = function(){
+    for (c = 0; c < 3; c += 1){
+        let storage = document.querySelectorAll('.box'+(c+1));
+        let counterX = 0;
+        let counterO = 0;
+        for (d = 0; d < 3; d += 1){
+            if (storage[d].innerHTML === 'X'){
+            counterX += 1;
+            } else if (storage[d].innerHTML === 'O'){
+            counterO += 1;
+            }
+        }
+        if (counterX === 3){
+        console.log('X wins!');
+        } else if (counterO === 3){
+        console.log('O wins!');
+        }
+    }
+}
+
+
+
 
 //----------------row checker works
 var checkRow = function(){
@@ -77,9 +102,9 @@ var createBoard = function(){
         for (j = 0; j < boxPerRow; j += 1){
             box = document.createElement('span');
             box.addEventListener('click', inputSign)
-            box.setAttribute("class", "box");
+            box.setAttribute("id", "box");
+            box.setAttribute("class", "box"+[j+1])
             box.classList.add("inRow"+[i+1]);
-            box.setAttribute("id", "box"+[j+1])
             row.appendChild(box);
         }
     }
