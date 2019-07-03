@@ -1,4 +1,4 @@
-#top-row, #middle-row, #last-row {
+.row {
 	width: 300px;
 	display: flex;
 }
@@ -11,3 +11,9 @@
 	margin: 2px;
 
 }
+
+/*#gameboard {
+	width: 300px;
+	height: 300px;
+	border: 1px solid red;
+}*/
