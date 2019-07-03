@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="style.css">
+	<title>Tictacto</title>
+</head>
+<body>
+	<div class = container>
+		<input type="text" id = "input" placeholder = "Name" autofocus autocomplete="off">
+		<div id = "info">
+			<div class = "player" id = "playerOne">
+				<p>Player 1: <span class = "gameFont" id = "nameOne"></span>
+					<br>
+				   Win rate:<span id = "winRateOne"> </span>
+				   <br>
+				   Game timer: <span id = "gameTimer"> </span>
+				</p>
+
+			</div>
+
+			<div class = "player" id = "playerTwo">
+				<p>Player 2: <span class = "gameFont" id = "nameTwo"></span>
+					<br>
+				   Win rate:<span id = "winRateTwo"> </span>
+				   <br>
+				   Move timer: <span id = "moveTimer"> </span>
+				</p>
+
+			</div>
+		</div>
+		<div id = "boardHere"></div>
+		<div id ="gameOver"><h1>GAME OVER <h1></div>
+
+	</div>
+	<script src = "script.js"></script>
+</body>
+</html>
