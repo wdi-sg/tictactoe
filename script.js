@@ -7,18 +7,20 @@ var oPositions = [];
 
 var player1Name = "";
 var player2Name = "";
+var player1Symbol = null;
+var player2Symbol = null;
 
 var player1WinCounter = 0;
 var player2WinCounter = 0;
 
-var player1Time = 300;
-var palyer2Time = 300;
+// var player1Time = 300;
+// var palyer2Time = 300;
 
-var countdown1 = 0;
-var countdown2 = 0;
+// var countdown1 = 0;
+// var countdown2 = 0;
 
-var intervalRef1 = null;
-var intervalRef2 = null;
+// var intervalRef1 = null;
+// var intervalRef2 = null;
 
 //DOM nodes
 var getBody = document.querySelector("body");
@@ -27,17 +29,27 @@ var getBody = document.querySelector("body");
 //changing the X and O
 function writeTextInBox (event){
     if(counter%2 === 0){
-        event.target.innerText = "X";
+        if(event.target.innerText){
+            console.log("error");
+        }else{
+           event.target.innerText = player1Symbol;
         // clearInterval(intervalRef1);
         // startTimer2();
-        counter+=1;
-        xPositions.push(parseInt(event.target.id));
-    }else{
-        event.target.innerText = "O";
+            counter+=1;
+            xPositions.push(parseInt(event.target.id));
+        }
+    }
+
+    else{
+        if(event.target.innerText){
+            console.log("error");
+        }else{
+        event.target.innerText = player2Symbol;
         // clearInterval(intervalRef2);
         // startTimer1();
         counter+=1;
         oPositions.push(parseInt(event.target.id));
+        }
     }
 
     console.log(xPositions);
@@ -97,6 +109,28 @@ document.addEventListener("DOMContentLoaded",function(event){
     getBody.appendChild(createInputContainer);
 
     //create choice of symbol
+    var createShortDescription = document.createElement("p");
+    createShortDescription.setAttribute("id","short-description");
+    createShortDescription.innerText="Player 1 please choose your symbol:";
+
+    createInputContainer.appendChild(createShortDescription);
+
+    var createSymbolChoice = document.createElement("select");
+    createSymbolChoice.setAttribute("id","select-box");
+
+        var createOption1 = document.createElement("option");
+        var createOption2 = document.createElement("option");
+        createOption1.setAttribute("id","option-1");
+        createOption2.setAttribute("id","option-2");
+        createOption1.setAttribute("value","X");
+        createOption2.setAttribute("value","O");
+        createOption1.innerText = "X";
+        createOption2.innerText = "O";
+
+    createSymbolChoice.appendChild(createOption1);
+    createSymbolChoice.appendChild(createOption2);
+
+    createInputContainer.appendChild(createSymbolChoice);
 
 
 
@@ -108,6 +142,15 @@ function preCreateBoard(){
         //get input value then remove them
         player1Name = document.getElementById("input-1").value;
         player2Name = document.getElementById("input-2").value;
+
+        //get symbol
+        player1Symbol = document.getElementById("select-box").value;
+        if(player1Symbol==="X")
+            player2Symbol ="O";
+        else
+            player2Symbol = "X";
+
+        //remove the whole input container
         var getInputContainer = document.querySelector(".input-container")
         getBody.removeChild(getInputContainer);
         createBoard();
@@ -139,13 +182,13 @@ function createBoard(){
         var makePlayer1NameDiv = document.createElement("div");
         makePlayer1NameDiv.setAttribute("class","player-1");
         makePlayer1NameDiv.setAttribute("id","player-1-display");
-        makePlayer1NameDiv.innerText = "Player 1: "+player1Name+" - 'X'";
+        makePlayer1NameDiv.innerText = "Player 1: "+player1Name+" - "+player1Symbol;
         makePlayerNameDisplayContainer.appendChild(makePlayer1NameDiv)
 
         var makePlayer2NameDiv = document.createElement("div");
         makePlayer2NameDiv.setAttribute("class","player-2");
         makePlayer2NameDiv.setAttribute("id","player-2-display");
-        makePlayer2NameDiv.innerText = "Player 2: "+player2Name+" - 'O'";
+        makePlayer2NameDiv.innerText = "Player 2: "+player2Name+" - "+player2Symbol;
         makePlayerNameDisplayContainer.appendChild(makePlayer2NameDiv)
 
     createBoardContainer.appendChild(makePlayerNameDisplayContainer);
