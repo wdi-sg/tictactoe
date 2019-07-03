@@ -74,10 +74,14 @@ indicatePlayerTurn();
   //else do nothing, continue game
 
 
-var checkWin = function(game,event){
+var checkWin = function(game,event,symbol){
   var loopCount = 0;
+  console.log("event");
   console.log(event);
+  console.log("game");
   console.log(game);
+  console.log("symbol");
+  console.log(symbol);
   console.log("played " + event.target.attributes.played.value);
   for (var i = 0; i < game.length; i++){
     for (var j = 0; j < game[i].length ; j++){
@@ -100,6 +104,7 @@ var drawSymbol = function(event){
   var xValue = event.target.attributes.posx.value;
   var yValue = event.target.attributes.posy.value;
   console.log("played " + event.target.attributes.played.value);
+  var symbol = "";
 
   // todo check if already drawn
   if(userATurn === true){
@@ -109,6 +114,7 @@ var drawSymbol = function(event){
     userATurn = false;
     event.target.attributes.played.value = true;
     indicatePlayerTurn();
+    symbol = 'x';
   } else if (userATurn === false) {
     game[yValue][xValue]= 'o';
     event.target.innerHTML = "o";
@@ -116,7 +122,8 @@ var drawSymbol = function(event){
     userATurn = true;
     event.target.attributes.played.value = true;
     indicatePlayerTurn();
+    symbol = 'o';
   }
-
-  checkWin(game,event);
+  // console.log(game,event,symbol);
+  checkWin(game,event,symbol);
 }
