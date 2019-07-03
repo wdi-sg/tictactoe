@@ -5,30 +5,32 @@ var container = document.querySelector('.container');
 
 //game defaults
 var userATurn = true;
-var boardSize = 4;
+var boardSize = 3;
 var game = [];
 var boxCount = 0;
 var gameWin = false;
 var winCross = "";
 var winCircle = "";
+var lastPlayer = "";
 
+//dynamically generate winning combination based on board size
 
+//function to generate xxxx if board size = 4, for comparison later
 var generateWinCross = function(boardSize){
   var array = [];
   for(var i =0; i < boardSize; i++){
     array.push("x");
   }
   winCross = array.join("");
-  console.log(winCross);
 }
 
+//function to generate oooo if board size = 4, for comparison later
 var generateWinCircle = function(boardSize){
   var array = [];
   for(var i =0; i < boardSize; i++){
     array.push("o");
   }
   winCircle = array.join("");
-  console.log(winCircle);
 }
 
 
@@ -42,7 +44,8 @@ var indicatePlayerTurn = function(){
 }
 
 
-//transpose game
+//transpose the 2d array so that can get the "columns" value to compare later,
+
 var transpose = function(array){
   var newArray = [];
   for(var i = 0; i < array.length; i++){
@@ -58,7 +61,7 @@ var transpose = function(array){
   return newArray;
 }
 
-//get diagonal values of the game array
+//get diagonal values of the game array to compare later
 var diagonal = function(array){
   var newArray = [];
   for(var i = 0; i < array.length; i++){
@@ -68,7 +71,7 @@ var diagonal = function(array){
   return newArray;
 }
 
-//get antiDiagonal values of the game array
+//get antiDiagonal values of the game array to compare later
 var antiDiagonal = function(array){
   var newArray = [];
   for(var i = 0; i < array.length; i++){
@@ -81,13 +84,19 @@ var antiDiagonal = function(array){
 // dynamically create board based on boardSize
 
 var createBoard = function(){
+
+  // generate the 2 winning conditions based on boardsize, e.g. if boardsize = 3, return xxx and ooo
+  generateWinCircle(boardSize);
+  generateWinCross(boardSize);
+  // console.log('win x = ' + winCross);
+  // console.log('win o = ' + winCircle);
+
+  //create the gameboard div in the html
   var board = document.createElement('div');
   board.setAttribute('id', 'gameboard');
   container.appendChild(board);
-  generateWinCircle(boardSize);
-  generateWinCross(boardSize);
-  console.log('win x = ' + winCross);
-  console.log('win o = ' + winCircle);
+
+  //generate the tiles in the board based on the boardsize
   for (var i = 0; i < boardSize; i++) {
         var row = [];
         for (var j = 0; j < boardSize; j++) {
@@ -118,17 +127,16 @@ var createBoard = function(){
         }
         game.push(row);
       }
+
   console.log(game);
   return game;
+
 }
 
+//run the createBoard function
 createBoard();
 
-
-var sayHi = function(){
-  console.log('hi');
-}
-
+//show the player turn
 indicatePlayerTurn();
 
 //check if win
@@ -139,19 +147,9 @@ indicatePlayerTurn();
 
 var checkWin = function(game,event,symbol){
   var loopCount = 0;
-  // console.log("event");
-  // console.log(event);
-  // console.log("game");
-  // console.log(game);
-  // console.log("symbol");
-  // console.log(symbol);
-  // console.log("played " + event.target.attributes.played.value);
   for (var i = 0; i < game.length; i++){
-    var gameRow = game[i].join('');
-    console.log(gameRow);
 
     var gameTransposed = transpose(game);
-
     console.log('gameTransposed');
     console.log(gameTransposed);
 
@@ -179,19 +177,13 @@ var checkWin = function(game,event,symbol){
       console.log('win');
     }
 
-    // for (var j = 0; j < game[i].length ; j++){
-    //   loopCount ++;
-    //   // console.log('loopCount' + loopCount);
-    //   // console.log('i is ' + i);
-    //   // console.log('j is ' + j);
-    //   console.log(game[i][j]);
-    //   console.log(symbol);
-    //
-    //   //if all y is the same
-    //   //if all x is the same
-    //   //if diagonal same
-    //   //if all anti-diagonal is the same
-    // }
+    //else game gontinues
+  }
+
+  if (gameWin === true){
+    setTimeout(function(){
+    alert(`Game Ends. Player ${lastPlayer} wins!`);
+  }, 200);
   }
 }
 
@@ -208,20 +200,22 @@ var drawSymbol = function(event){
     game[yValue][xValue]= 'x';
     event.target.innerHTML = "x";
     event.target.classList.add('filled');
+    symbol = 'x';
+    lastPlayer = "A";
+
     userATurn = false;
     event.target.attributes.played.value = true;
     indicatePlayerTurn();
-    symbol = 'x';
-    console.log('player A plays  ' + symbol);
   } else if (userATurn === false) {
     game[yValue][xValue]= 'o';
     event.target.innerHTML = "o";
     event.target.classList.add('filled');
+    symbol = 'o';
+    lastPlayer = "B";
+
     userATurn = true;
     event.target.attributes.played.value = true;
     indicatePlayerTurn();
-    symbol = 'o';
-    console.log('player B plays  ' + symbol);
   }
   // console.log(game,event,symbol);
   checkWin(game,event,symbol);
