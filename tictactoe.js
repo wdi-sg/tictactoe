@@ -2,7 +2,7 @@ console.log("~Life is good~");
 
 //global variables
 var turnNumber = null;
-var winArray=[[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]];
+var turnArray=[];
 var playerX=[];
 var playerO=[];
 
@@ -17,7 +17,10 @@ var gameLogic = function (){
         input.textContent="X";
         //console.log('id is: ',input.id);
         playerX.push(input.id);
-        console.log(`Player X array is: `+playerX)
+        turnArray.push(input.id);
+        //console.log(`Player X array is: `+playerX);
+        input.removeEventListener("click",gameLogic)
+
 
 //if turn number is odd, it is player O
     } else if (turnNumber%2>0){
@@ -26,9 +29,11 @@ var gameLogic = function (){
         input.textContent="O";
         //console.log('id is: ',input.id);
         playerO.push(input.id);
-        console.log(`Player O array is: `+playerO)
+        turnArray.push(input.id);
+        //console.log(`Player O array is: `+playerO)
+        input.removeEventListener("click",gameLogic)
     }
-
+    console.log(`The sequence is :`,turnArray);
     toWin();
 //***Above completes: X and O appear alternately, and players have their position array stored separately
 
@@ -62,36 +67,37 @@ var toWin = function (){
     var diago2=(x[2].textContent==x[4].textContent)&&(x[2].textContent===x[6].textContent)&&(x[2].textContent!=="");
     //console.log("diago2:"+diago2);
 
-     var empty= function (){
-        for (var i=0; i<9; i++){
-            if (x[i].textContent==""){
-            return true
-        } else {
-            return false
-        }
-     }
- };
-
-    var filled= function (){
-        for (var i=0; i<9; i++){
-            if (x[i].textContent!==""){
-            return true
-        } else {
-            return false
-        }
-     } console.log("Empty:"+empty());
- };
-
-
 
     if ( hori1 || hori2 || hori3 || verti1 || verti2 || verti3 || diago1 || diago2){
 
         setTimeout(function(){
-            alert(`You won!`)
-        },400);
 
-    } else  {
+            var lastBox=parseInt(turnArray[turnArray.length-1]);
+            var x = document.getElementsByTagName("td");
+
+            if (x[lastBox].textContent==="X"){
+            alert(`Player X has won!`)
+
+        } else if (x[lastBox].textContent==="O"){
+            alert(`Player O has won!`)
+    }
+        },300);
+
+        for (var i=0; i<9; i++){
+
+        var stopClick = document.getElementsByTagName("td")
+
+        stopClick[i].removeEventListener("click", gameLogic);
+    }
+
+
+    } else if ((playerX.length)+(playerO.length)===9) {
+
+        setTimeout(function(){
+        //console.log(`board is filled`);
             alert(`Sorry try again!`);
+        },300);
+
         }
 };
 
@@ -113,23 +119,23 @@ var startGame = function(event){
 
     //first row
     row = table.insertRow(0);
-    col1 = row.insertCell(0).setAttribute("id", "1");
-    col = row.insertCell(1).setAttribute("id", "2");
-    col = row.insertCell(2).setAttribute("id", "3");
+    col1 = row.insertCell(0).setAttribute("id", "0");
+    col = row.insertCell(1).setAttribute("id", "1");
+    col = row.insertCell(2).setAttribute("id", "2");
 
 
     //second row
     row = table.insertRow(1);
-    col = row.insertCell(0).setAttribute("id", "4");
-    col = row.insertCell(1).setAttribute("id", "5");
-    col = row.insertCell(2).setAttribute("id", "6");
+    col = row.insertCell(0).setAttribute("id", "3");
+    col = row.insertCell(1).setAttribute("id", "4");
+    col = row.insertCell(2).setAttribute("id", "5");
 
 
     //third row
     row = table.insertRow(2);
-    col = row.insertCell(0).setAttribute("id", "7");
-    col = row.insertCell(1).setAttribute("id", "8");
-    col = row.insertCell(2).setAttribute("id", "9");
+    col = row.insertCell(0).setAttribute("id", "6");
+    col = row.insertCell(1).setAttribute("id", "7");
+    col = row.insertCell(2).setAttribute("id", "8");
 
 //append table to body
     document.querySelector("body").appendChild(table);
@@ -146,12 +152,6 @@ var startGame = function(event){
     totalBox[i].addEventListener("click", gameLogic);
     }
 }
-
-
-
-
-
-
 
 
 //to make sure the dom is ready
