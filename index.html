@@ -5,21 +5,64 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
-    <header>
-        <h1>TicTacToe</h1>
-    </header>
-    <h2> Start Game </h2>
-    Board Size: <input class="number-input" id="board-size" type="number"><br>
-    Win Condition: <input class="number-input" id="win-condition" type="number"><br>
-    Player 1 Name: <input class = "name-input" id="P1-name" type="text"><br>
-    Player 1 Symbol: <input class = 'symbol-input' id = 'symbol' type='text'><br>
-    Player 2 Name: <input class = "name-input" id="P2-name" type="text"><br>
-    <button class ="buttons" id="startgame" onclick="createBoard(); createGameArray()"> Start Game </button>
-    <h1> Output </h1>
-    <main>
-        <div id="game-display">
+        <div id="start-screen">
+            <h1> Choose your mode </h1>
+            <img src="img/ttc.jpeg" id="image" />
+            <button id="pvp-button" onclick="playerVsPlayer()">Player vs Player</button>
         </div>
-    </main>
+
+        <div id="player-information">
+            <h1> Input Player Details </h1>
+            <div id="pi-display">
+                <div id="player1">
+                    <h2>Player 1</h2>
+                    <p> Name: </p>
+                    <input class = "name-input" id="P1-name" type="text"><br>
+                    <p> Choose your symbol (either 'O' or 'X')</p>
+                    <input class = 'symbol-input' id = 'P1-symbol' type='text'>
+                </div>
+                <div id="player2">
+                    <h2>Player 2</h2>
+                    <p>Name: </p>
+                    <input class = "name-input" id="P2-name" type="text">
+                    <p>Choose your symbol (either 'O' or 'X')</p>
+                    <input class = 'symbol-input' id = 'P2-symbol' type='text'>
+                </div>
+            </div>
+            <button id="submit-info" onclick="submitPlayerInformation()">Submit</button>
+        </div>
+
+        <div id ="game-details">
+            <h1> Details </h1>
+            <div id = "game-details-input">
+                <p> Board Size: </p>
+                <input class="number-input" id="board-size" type="number"><br>
+                <p> Win Condition: </p>
+                <input class="number-input" id="win-condition" type="number">
+            </div>
+            <button class ="buttons" id="startgame" onclick="createGame(); createGameArray()"> Start Game </button>
+        </div>
+
+        <div id="main-game-display">
+            <div id="player1-display">
+                <h2 id="display-name1">Player Name</h2>
+                <p  id="p1-dispsym"> O </p>
+            </div>
+            <div id="game-display">
+                <h2 id="game-score">Game Score</h2>
+                <h2 id="game-message">Game Message</h2>
+                <div id="ttc-display">
+                </div>
+                <div id="game-button">
+                    <button id="game-reset" onclick="resetGame()">Reset Game</button>
+                    <button id="game-pa" onclick="playAgain()"> Play Again</button>
+                </div>
+            </div>
+            <div id="player2-display">
+                <h2 id="display-name2">Player Name</h2>
+                <p id="p2-dispsym"> O </p>
+            </div>
+        </div>
 
     <script src="script.js"></script>
 </body>
