@@ -48,7 +48,13 @@ table {
 	border: 2px solid gray;
 	border-collapse: collapse;
 }
-#boardHere {
+#boardHereconsole.log(timer);
+function startTimer () {
+	
+	timer +=1;
+document.getElementById('gameTimer').innerHTML = timer;
+console.log(timer);
+}; {
 	display:none;
 }
 
