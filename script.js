@@ -26,6 +26,9 @@ for (let i = 0; i < inputArray.length; i++) {
 //part 2
 
 var playerTurnCount = 0;
+var p1ans = [];
+var p2ans = [];
+var winningArrays = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
 
 var inputArray = document.getElementsByClassName("ansdiv"); //gets all ansdivs
 console.log(inputArray);
@@ -62,13 +65,19 @@ var setListener = function(inputArray, index){
             if(playerTurnCount % 2 === 0) {
                 console.log("inputArray: "+ index);
                 inputArray[index].innerHTML = "O";
+                p1ans.push(index);
+                console.log("p1ans: " + p1ans);
                 playerTurnCount++;
             } else {
                 console.log("inputArray: " + index);
                 inputArray[index].innerHTML = "X";
+                p2ans.push(index);
+                console.log("p2ans: " + p2ans);
                 playerTurnCount++;
             }
         }
+        console.log("outside p1ans: " + p1ans);
+        console.log("outside p2ans: " + p2ans);
     });
 };
 
@@ -80,12 +89,14 @@ var startGame = function(event){
 
     for (var i = 0; i < 3; i++) {
         var row = document.createElement("div");
-        row.setAttribute("class", "rowdiv")
-        console.log('created a row' + row);
+        row.setAttribute("class", "rowdiv");
+        row.setAttribute("id", `rowdiv${i}`);
+        console.log(`created a row ${row.class} and ${row.id}`);
         for (var j = 0; j < 3; j++) {
             var ansbox = document.createElement("span");
             ansbox.setAttribute("class", "ansdiv");
-            console.log('created a box' + ansbox);
+            ansbox.setAttribute("id", `ansdiv${j}`);
+            console.log(`created a box ${ansbox.class} and ${ansbox.id}`);
             row.appendChild(ansbox);
             console.log("Append ansbox to row");
         }
@@ -96,7 +107,37 @@ var startGame = function(event){
     divClick();
 };
 
+var winCheck = function() {
+    if (playerTurnCount >= 5) {
+        var sortp1 = p1ans.sort();
+        console.log(sortp1);
+        //var rowArray = document.getElementsByClassName("rowdiv");
+        for (var i = 0; i < winningArrays.length; i++){
+            console.log("value of i in 1st for loop, win check: " + i);
+            for (var j=0; j < sortp1.length; j++) {
+                console.log("value of i in 2nd for loop, win check: " + i);
+                console.log("value of j in 2nd for loop, win check: " + j);
+                if (sortp1[j] === winningArrays[i][j]){
+                    console.log("there is a match at" + sortp1[j] + " and " + winningArrays[i][j]);
+                }
+            }
+        }
+    }
+};
 
+/*var winCheck = function() {
+    if (playerTurnCount >= 6) {
+        var rowNum = document.getElementsByClassName("rowdiv");
+        for (let i = 0; i < rowNum.length; i++){
+            for(let j = 0; j < inputArray.length; j++) {
+                if ( inputArray[0].innerText === "O" && (inputArray[1].innerText && inputArray[2].innerText === "O")) {
+                    console.log("Winner found!");
+                    break;
+                }
+            }
+        }
+    }
+};*/
 
 
 document.addEventListener('DOMContentLoaded', function( event ){
