@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>TIC TAC TOE!</title>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <div class="main_container">
+        <h1>TIC TAC TOE</h1>
+        <div class="buttons_container">
+            <button type="button" name="try_again" id="try_again">Try Again</button>
+            <button type="button" name="reset_game" id="reset_game">Reset Game</button>
+            <button type="button" name="game_mode" id="auto_game">1P Vs 2P</button>
+        </div>
+        <table>
+            <tr>
+                <td class="box" id="0"></td>
+                <td class="box" id="1"></td>
+                <td class="box" id="2"></td>
+            </tr>
+            <tr>
+                <td class="box" id="3"></td>
+                <td class="box" id="4"></td>
+                <td class="box" id="5"></td>
+            </tr>
+            <tr>
+                <td class="box" id="6"></td>
+                <td class="box" id="7"></td>
+                <td class="box" id="8"></td>
+            </tr>
+        </table>
+        <div class="scoreboard">
+            <div class="player">
+                <span>Player One</span>
+                <div class="score" id="score1">
+                    0
+                </div>
+            </div>
+            <div class="player">
+                <span>Draw</span>
+                <div class="score" id="scoreD">
+                    0
+                </div>
+            </div>
+            <div class="player">
+                <span>Player Two</span>
+                <div class="score" id="score2">
+                    0
+                </div>
+            </div>
+
+        </div>
+        <div id=output></div>
+    </div>
+
+    <script src='js/script.js' type="text/javascript">
+
+    </script>
+
+</body>
+
+</html>
