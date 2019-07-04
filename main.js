@@ -34,7 +34,6 @@ function makeBlocks() {
             document.querySelector('#board').appendChild(row);
         }
     }
-    makeBlocks();
 
 //check what's the current move
     var currentMove = "X";
@@ -48,13 +47,29 @@ function makeBlocks() {
         }
     }
 
-//push to box
-var box = document.querySelectorAll("span")
-for(var i = 0; i < box.length; i++){
-    box[i].addEventListener("click", playerTurn);
-        // board.push(box[i].innerText)
 
+
+
+//Game starts
+makeBlocks();
+//click and push to box
+var box = document.querySelectorAll("span")
+
+
+    for(var i = 0; i < box.length; i++){
+    //not clickable when there's value in box
+    if (box[i].innerText !== "X" || box[i].innerText !== "O" ){
+        box[i].addEventListener("click", playerTurn);
+        // board.push(box[i].innerText)
+    } else {
+        box[i].removeEventListener("click", function(){alert("Pls click on an empty box.")} )
     }
+}
+
+
+
+
+
 
 
 
