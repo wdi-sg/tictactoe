@@ -95,7 +95,7 @@ let checkClick = function (event) {
         }
     }
     //now that I have both the index of Div and Span, I can reassign the board to be equal to the latest currentMove
-    board[indexOfDiv-6][indexOfSpan] = currentMove;
+    board[indexOfDiv-5][indexOfSpan] = currentMove;
     console.log(board);
     checkWin();
 }
@@ -109,7 +109,7 @@ let toggleMove = function () {
         event.target.textContent = 'O';
     }
     moveHappened = true;
-    runCountdown();
+    // runCountdown();
 }
 //////////////////////////////////////////////////////////////
 //                      Countdown Timer                      //
@@ -139,39 +139,39 @@ let toggleMove = function () {
 // start.addEventListener('click', runCountdown); //runs 1st
 
 ///// REFACTOR
-let displayTimer = document.createElement('p');
-let timer = 5;
+// let displayTimer = document.createElement('p');
+// let timer = 5;
 
-let startTimer = function () {
-    if (timer === 0) {
-        alert('You lose!')
-    } else if (timer > 0) {
-        timer -= 1;
-        displayTimer.textContent = timer;
-    }
-    console.log(timer);
-}
-let runCountdown = function () {
-    let board = document.getElementById('board');
-    let h1 = document.getElementsByTagName('h1')[0];
-    displayTimer.textContent = timer;
-    board.insertBefore(displayTimer, h1);
+// let startTimer = function () {
+//     if (timer === 0) {
+//         alert('You lose!')
+//     } else if (timer > 0) {
+//         timer -= 1;
+//         displayTimer.textContent = timer;
+//     }
+//     console.log(timer);
+// }
+// let runCountdown = function () {
+//     let board = document.getElementById('board');
+//     let h1 = document.getElementsByTagName('h1')[0];
+//     displayTimer.textContent = timer;
+//     board.insertBefore(displayTimer, h1);
 
-    if (moveHappened === true){
-        stopTimer();
-        timer = 5;
-        moveHappened = false;
-    }
+//     if (moveHappened === true){
+//         stopTimer();
+//         timer = 5;
+//         moveHappened = false;
+//     }
 
-    let runInterval;
-    runInterval = setInterval(startTimer, 1000)
-    let stopTimer = function (){
-        clearInterval(runInterval);
-    }
-    setTimeout(stopTimer, 6000);
+//     let runInterval;
+//     runInterval = setInterval(startTimer, 1000)
+//     let stopTimer = function (){
+//         clearInterval(runInterval);
+//     }
+//     setTimeout(stopTimer, 6000);
 
-}
-start.addEventListener('click', runCountdown); //runs 1st;
+// }
+// start.addEventListener('click', runCountdown); //runs 1st;
 //////////////////////////////////////////////////////////////
 //                        Start Game.                       //
 //////////////////////////////////////////////////////////////
