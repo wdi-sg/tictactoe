@@ -4,6 +4,19 @@ let button = document.createElement('button');
 button.innerHTML = "Start";
 button.className = "btn";
 
+var timer =0;
+
+console.log(timer);
+function startTimer () {
+	
+	timer +=1;
+document.getElementById('gameTimer').innerHTML = timer;
+console.log(timer);
+};
+// setInterval(startTimer, 1000);
+
+
+
 document.body.prepend(button);
 //when the button is clicked, the button disapears
 //the board appears
@@ -12,19 +25,12 @@ button.addEventListener("click", function() {
 	button.style.display = "none";
 	document.getElementById("input").style.display = 'none';
 	document.getElementById("boardHere").style.display = 'block';
-	setInterval( gameTimer, 1000);
+	setInterval(startTimer, 1000);
+	});
 
-});
 
-var timer =0;
 
-function startTimer () {
-	
-	timer += 1;
-	
-}
 
-var timerId = setInterval( startTimer, 1000);
 document.getElementById('gameTimer').innerHTML = timer;
 
 //create table
@@ -59,7 +65,8 @@ var makeMove = function(event){
 }
 var square = document.querySelectorAll(".square");
 for(let i=0; i < square.length; i++){
-	// square[i].setAttribute("id",i);
+	square[i].setAttribute("id",i);
+	console.log(square[i]);
 	square[i].addEventListener("click", makeMove);
 
 
@@ -81,6 +88,24 @@ document.querySelector("#nameOne").innerHTML = name;
 numOfChange +=1;	
 } ;
 
+//checking for a winner
+//if there's a winner: board disappears, gameOver appears, then congratulation winner appears
+var gameMove = {
+	top: [],
+	middle: [],
+	bottom: [],
+
+}
+
+
+
+var winner = function() {
+if( winner===true){
+	document.getElementById("boardHere").style.display = 'none';
+	document.getElementById("gameOver").style.display ="block";
+	setTimeout(congrat,1000);
+}
+}
 
 
 
