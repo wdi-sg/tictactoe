@@ -105,7 +105,6 @@ var toWin = function (){
 
 
 
-
 //To start game and game mechanism
 var startGame = function(event){
 
