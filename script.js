@@ -74,6 +74,7 @@ var setListener = function(inputArray, index){
                 inputArray[index].innerHTML = "X";
                 p2ans.push(index);
                 console.log("p2ans: " + p2ans);
+                winCheck();
                 playerTurnCount++;
             }
         }
@@ -108,10 +109,10 @@ var startGame = function(event){
     divClick();
 };
 
+//Check for winner
 var winCheck = function() {
-    if (playerTurnCount >= 5) {
+    if (playerTurnCount % 2 === 0 && playerTurnCount >= 4) {
         var sortp1 = p1ans.sort();
-        var sortp2 = p2ans.sort();
         console.log(sortp1);
         //var rowArray = document.getElementsByClassName("rowdiv");
         for (var i = 0; i < winningArrays.length; i++){
@@ -127,6 +128,26 @@ var winCheck = function() {
                     console.log("winCount: " + winCount);
                     if (winCount === 3){
                     console.log('Player 1 wins!');
+                    return;
+                    }
+                }
+            }
+        }
+    } else if (playerTurnCount % 2 != 0 && playerTurnCount >= 4) {
+        var sortp2 = p2ans.sort();
+        for (var i = 0; i < winningArrays.length; i++){
+            console.log("value of i in 1st for loop, win check: " + i);
+            var winCount = 0;
+            console.log("winCount val" + winCount)
+            for (var j=0; j < sortp2.length; j++) {
+                console.log("value of i in 2nd for loop, win check: " + i);
+                console.log("value of j in 2nd for loop, win check: " + j);
+                if (sortp2[j] === winningArrays[i][j]){
+                    console.log("there is a match at" + sortp2[j] + " and " + winningArrays[i][j]);
+                    winCount++;
+                    console.log("winCount: " + winCount);
+                    if (winCount === 3){
+                    console.log('Player 2 wins!');
                     return;
                     }
                 }
