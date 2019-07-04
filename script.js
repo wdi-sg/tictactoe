@@ -164,4 +164,8 @@ setTurn();
 //---------------------------
 
 //queryselector (all?)
+<<<<<<< HEAD
 //YES QUERYSELECTOR A ROW OR BOX(COL) AND THEN CHECK THEIR INNERHTMLS!
+=======
+//YES QUERYSELECTOR A ROW OR BOX(COL) AND THEN CHECK THEIR INNERHTMLS!
+>>>>>>> e5a442b39adab2307faca157068e28dae8e5a12a
