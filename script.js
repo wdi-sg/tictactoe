@@ -67,6 +67,7 @@ var setListener = function(inputArray, index){
                 inputArray[index].innerHTML = "O";
                 p1ans.push(index);
                 console.log("p1ans: " + p1ans);
+                winCheck();
                 playerTurnCount++;
             } else {
                 console.log("inputArray: " + index);
