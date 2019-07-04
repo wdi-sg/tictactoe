@@ -1,19 +1,31 @@
-.row {
-	width: 300px;
+.gameboard {
+	width: 500px;
+	height: 450px;
 	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: 0 auto;
+
 }
 
 .square {
-	display: inline-flex;
 	width: 30%;
-	height: 90px;
-	border: 1px solid red;
+	height: 130px;
+	border: 2px solid blue;
 	margin: 2px;
-
 }
 
-/*#gameboard {
-	width: 300px;
-	height: 300px;
-	border: 1px solid red;
-}*/
+body {
+	font-family: Arial;
+	font-size: 50px;
+	text-align: center;
+	line-height: 120px;
+}
+
+#buttonStart{
+	width: 80px;
+	height: 30px;
+	font-size: 18px;
+	margin-bottom: 20px;
+}
