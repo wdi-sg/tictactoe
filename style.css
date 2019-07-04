@@ -53,6 +53,7 @@ div .cell {
     margin: 0 auto;
     padding: 0;
     /*font-size: 0;*/
+    position: relative;
 
 }
 .game-row {
@@ -66,17 +67,17 @@ div .cell {
 }
 .game-square {
     display: inline-block;
+    font-family: 'Permanent Marker', cursive;
     width: 32%;
     height: 32%;
     border: 1px solid grey;
     margin: 0;
-    background-color: white;
+    background-image: linear-gradient(white, #dadada);
     overflow: hidden;
     position: relative;
     text-align: center;
-    font-size: 50px;
-
-
+    font-size: 100px;
+    line-height: 1.3;
 
 
 }
