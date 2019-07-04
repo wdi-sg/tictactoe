@@ -17,6 +17,12 @@ var winPerm = [
 
 
 
+var createDOMBoard = function() {
+    var div1 = document.body.createElement("div");
+    div1.inner
+}
+
+
 ////// TO UPDATE CREATE DYNAMIC BOARD////////
 // var board = function(){
 
@@ -33,17 +39,20 @@ var winPerm = [
 // board();
 /////////////////////////////////////////////
 
+
+
 var createBoard = function() {
-    console.log("create board works");
     turn = 0;
     playerOne = [];
     playerTwo = [];
     for (i=0;i<9;i++) {
         var gameSquare = document.querySelectorAll(".game-square");
         gameSquare[i].innerText = i+1;
-        gameSquare[i].style.color = "red";
+        gameSquare[i].style.color = "black";
     }
+    console.log("create board works");
 }
+
 
 
 var clickBox = function(event){
@@ -51,6 +60,7 @@ var clickBox = function(event){
         console.log("P1 clicked: "+ event.target.innerText);
         playerOne.push(parseInt(event.target.innerText));
         console.log(playerOne);
+        document.querySelectorAll(".game-square")[parseInt(event.target.innerText)-1].disabled = true;
         event.target.innerText = "X";
         event.target.style.color = "white";
         turn++;
@@ -87,7 +97,7 @@ var checkWin = function (element) {
 
 var startButton = document.createElement("button")
 startButton.innerText = "New Game";
-document.body.appendChild(startButton);
+document.getElementById("button").appendChild(startButton);
 
 
 
@@ -99,9 +109,9 @@ document.addEventListener('DOMContentLoaded', function( event ){
     startButton.addEventListener('click', createBoard);
 
     for (i=0;i<9;i++){
-        var div = document.querySelectorAll(".game-square")[i];
+        var div = document.querySelectorAll(".game-square");
         // console.log(div);
-        div.addEventListener('click', clickBox);
+        div[i].addEventListener('click', clickBox);
     }
 
 });

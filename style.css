@@ -1,12 +1,13 @@
 body {
 	background-color: grey;
-
+	max-width: 600px;
 }
 
 #board {
 	background-color: black;
 	color: white;
 	border: 5px solid green;
+	max-width: 600px;
 
 }
 
@@ -14,20 +15,32 @@ body {
 	border: 1px solid orange;
 	display: flex;
 	justify-content: space-between;
-	height:150px;
+	height:30%;
 }
 
 .game-square {
 	border: 5px solid pink;
-	width: 30%;
-	height: 90%;
+	box-sizing: border-box;
+	width: 33%;
+	height: 100%;
 	display: inline-block;
 	text-align: center;
+	vertical-align: middle;
 	font-family: "arial", sans-serif;
-	font-size: 55px;
+	font-size: 150px;
 
 }
 
+#button {
+	text-align: center;
+	margin: 10px;
+}
+
+button {
+	text-align: center;
+	padding: 5px 15px;
+	border-radius: 10px;
+}
 
 
 
