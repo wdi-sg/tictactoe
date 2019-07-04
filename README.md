@@ -90,11 +90,11 @@ Use this data structure to see if one player or the other has the correct values
 - have a start game button that disappears when the game is started
 - have the button reappear when the game has ended
  -->
+<!-- ### Further
+- ask for the names of players 1 and 2 and display that back to them as they play and win -->
+<!-- 
 ### Further
-- ask for the names of players 1 and 2 and display that back to them as they play and win
-
-### Further
-- keep score of the players wins and losses
+- keep score of the players wins and losses -->
 
 ### Further
 - let the player choose their symbol
