@@ -1,3 +1,4 @@
+/*
 .cell {
 	border:  2px solid #333;
 	height:  100px;
@@ -8,6 +9,7 @@
 	font-size:  70px;
 	cursor: pointer;
 }
+*/
 
 .board {
 	border-collapse: collapse;
@@ -15,4 +17,22 @@
 	left: 50%;
 	margin-left: -155px;
 	top: 50px;
+}
+.class-button{
+	font-size: 24px;
+}
+.class-board{
+	align-items: center;
+	margin: 0 auto;
+	font-weight: 100;
+	font-size: xx-large;
+	text-align: center;
+}
+.class-div-btn-replay{
+	align-items: center;
+	text-align: center;
+	padding: 20px;
+}
+h1{
+	text-align: center;
 }

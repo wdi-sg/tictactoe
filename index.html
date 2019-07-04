@@ -3,30 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <div id="board">
-      <div class="game-row">
-        <span class="game-square"><button class="class-button" id="0"></button></span>
-        <span class="game-square"><button class="class-button" id="1"></button></span>
-        <span class="game-square"><button class="class-button" id="2"></button></span>
-    </div>
-    <div class="game-row">
-        <span class="game-square"><button class="class-button" id="3"></button></span>
-        <span class="game-square"><button class="class-button" id="4"></button></span>
-        <span class="game-square"><button class="class-button" id="5"></button></span>
-    </div>
-    <div class="game-row">
-        <span class="game-square"><button class="class-button" id="6"></button></span>
-        <span class="game-square"><button class="class-button" id="7"></button></span>
-        <span class="game-square"><button class="class-button" id="8"></button></span>
-    </div>
-</div>
+    <h1>Tictactoe</h1>
+	<table width="70%" height="392" border="3" class="class-board">
+  <tbody>
+    <tr>
+      <td width="33%" height="124" class="game-square" id="0">&nbsp;</td>
+      <td width="34%" class="game-square" id="1">&nbsp;</td>
+      <td width="33%" class="game-square" id="2">&nbsp;</td>
+    </tr>
+    <tr>
+      <td height="128" class="game-square" id="3">&nbsp;</td>
+      <td class="game-square" id="4">&nbsp;</td>
+      <td class="game-square" id="5">&nbsp;</td>
+    </tr>
+    <tr>
+      <td height="126" class="game-square" id="6">&nbsp;</td>
+      <td class="game-square" id="7">&nbsp;</td>
+      <td class="game-square" id="8" style="font-weight: 100">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
 <div class="endgame">
-    <div class="text"></div>
+  <div class="text"></div>
 </div>
+<div class="class-div-btn-replay">
 <button id="id-btn-replay">Replay</button>
+	</div>
 <script src="script.js"></script>
 <script type="text/javascript">
     btnReplay.addEventListener('click', startGame);
@@ -36,6 +42,6 @@
         output.innerText = data;
 
     };
-</script>
+  </script>
 </body>
 </html>

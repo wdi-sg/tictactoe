@@ -5,11 +5,11 @@ var playerTurn = null;
 //const winPatterns;
 
 var btnReplay = document.getElementById("id-btn-replay");
-const cells = document.querySelectorAll(".class-button");
+var cells = document.querySelectorAll(".game-square");
 
 var startGame = function() {
   console.log("Game Started");
-  btnReplay.style.display = "none";
+//  btnReplay.style.display = "none";
     board = Array.from(Array(9).keys());
     for(var i = 0; i <cells.length; i++){
         cells[i].innerText = '';
@@ -18,10 +18,10 @@ var startGame = function() {
 };
 var turnclick = function(square){
     //console.log(square.target.id);
-    if (playerTurn == null || playerTurn == "○") {
+    if (playerTurn === null || playerTurn === "◯") {
       playerTurn = "✕";
     } else {
-      playerTurn = "○";
+      playerTurn = "◯";
     };
     turn(square.target.id, playerTurn);
 };
