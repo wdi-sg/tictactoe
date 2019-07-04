@@ -110,15 +110,24 @@ var startGame = function(event){
 var winCheck = function() {
     if (playerTurnCount >= 5) {
         var sortp1 = p1ans.sort();
+        var sortp2 = p2ans.sort();
         console.log(sortp1);
         //var rowArray = document.getElementsByClassName("rowdiv");
         for (var i = 0; i < winningArrays.length; i++){
             console.log("value of i in 1st for loop, win check: " + i);
+            var winCount = 0;
+            console.log("winCount val" + winCount)
             for (var j=0; j < sortp1.length; j++) {
                 console.log("value of i in 2nd for loop, win check: " + i);
                 console.log("value of j in 2nd for loop, win check: " + j);
                 if (sortp1[j] === winningArrays[i][j]){
                     console.log("there is a match at" + sortp1[j] + " and " + winningArrays[i][j]);
+                    winCount++;
+                    console.log("winCount: " + winCount);
+                    if (winCount === 3){
+                    console.log('Player 1 wins!');
+                    return;
+                    }
                 }
             }
         }
