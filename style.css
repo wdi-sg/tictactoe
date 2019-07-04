@@ -10,7 +10,7 @@ body{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 720px;
+  width: 600px;
   margin: 0 auto;
 }
 
@@ -25,14 +25,20 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 80px;
+  font-size: 60px;
   /* width: 33.333%; */
-  height: 200px;
+  /* height: 150px; */
   display: flex;
   border: 1px solid #ccc;
   box-sizing: border-box;
   background: lightgrey;
   color: #aaa;
+}
+
+.box:after{
+  content: "";
+  display: block;
+  padding-bottom: 100%;
 }
 
 .numBox{

@@ -5,9 +5,10 @@ var container = document.querySelector('.container');
 
 //game defaults
 var userATurn = true;
-var boardSize = 3;
+var boardSize = parseInt(prompt('How big do you want the board to be?'));
 var game = [];
 var boxCount = 0;
+var filledSquares = 0;
 var gameWin = false;
 var gameEnd = false;
 var winCross = "";
@@ -122,7 +123,7 @@ var createBoard = function(){
 
             // TODO: change to set event listener, check with Akira
             box.addEventListener('click', function(){
-              drawSymbol(event);
+              playTurn(event);
             });
 
             boxCount ++;
@@ -192,11 +193,29 @@ var checkWin = function(game){
 }
 
 var checkDraw = function(game){
+   console.log('checkdraw');
   //if all the boxes are filled and gameWin === false
   // then gameEnd === true;
+  filledSquares = 0;
+  for (var i = 0; i < game.length; i++){
+    for (var j=0; j < game[i].length; j++){
+       if( game[i][j] === "o" ||  game[i][j] === "x" ){
+         console.log(game[i][j]);
+         filledSquares++;
+         console.log("filledSquares =" + filledSquares );
+       }
+    }
+  }
+  if (filledSquares === (boardSize*boardSize)){
+    console.log('game ends!');{
+      if (gameWin === false){
+        alert('Game draw!');
+      }
+    }
+  }
 }
 
-var drawSymbol = function(event){
+var playTurn = function(event){
   console.clear();
   // console.log(`game[${event.target.attributes.posy.value}][${event.target.attributes.posx.value}]`);
   var xValue = event.target.attributes.posx.value;
