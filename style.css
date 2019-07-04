@@ -1,0 +1,13 @@
+#board {
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: repeat(3,1fr);
+	margin: 0 auto;
+	width: 1000px;
+}
+
+.game-field {
+	padding: 115px;
+	width: 30%;
+	background-color: yellow;
+}
