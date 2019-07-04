@@ -1,11 +1,3 @@
-
-// var inputHappened = function(currentInput){
-//   console.log( currentInput );
-//   setTurn();
-//   createBoard();
-//   display( "start!" );
-// };
-
 //----------------turn-setter
 var input = null;
 var setTurn = function(){
