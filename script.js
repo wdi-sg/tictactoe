@@ -1,9 +1,8 @@
 // ensure that the entire document is loaded before executing any function
 window.onload = function() {
     var numOfTurns = 0;
-    var xTurn = "✕";
-    var oTurn = "◯";
-    var gameStarted = false;
+    var p1Symbol = "✕";
+    var p2Symbol = "◯";
     var displayMsg = document.getElementById("current-turn");
     var boardTracker = [
       [ 0, 0, 0 ],
@@ -14,44 +13,58 @@ window.onload = function() {
     var winner = null;
     var loser = null;
     var startButton = document.getElementById("start-button");
+    var playerInfo = document.getElementById("player-info");
+    var p1Input = document.getElementById("p1-input");
+    var p2Input = document.getElementById("p2-input");
+    var p1 = null;
+    var p2 = null;
     var wrapper = document.getElementById("wrapper");
 
     var createBoard = function(event) {
         if (document.getElementById("board") != null){
             wrapper.removeChild(document.getElementById("board"));
         }
-        startButton.style.display = "none";
-        displayMsg.innerText = `${xTurn} player's turn`;
-        wrapper.appendChild(displayMsg);
-        var board = document.createElement("div");
-        board.setAttribute("id","board");
-
-        var gameRow = document.createElement("div");
-        gameRow.setAttribute("class","game-row");
-
-        var gameSquare = document.createElement("span");
-        gameSquare.setAttribute("class","game-square");
-
-        let row = 0;
-        let col = 0;
-        for (var i=0;i<3;i++){
-            let clonedSquare = gameSquare.cloneNode(true);
-            clonedSquare.setAttribute("data-col",col);
-            gameRow.appendChild(clonedSquare);
-            col++;
+        if (p1Input.value.trim() === "" || p2Input.value.trim() === "") {
+            displayMsg.style.color = "red";
+            displayMsg.innerText = `Please fill in the names before starting.`
         }
-        for (var i=0;i<3;i++){
-            let clonedRow = gameRow.cloneNode(true);
-            clonedRow.setAttribute("data-row",row);
-            board.appendChild(clonedRow);
-            row++
+        else {
+            startButton.style.display = "none";
+            playerInfo.style.display = "none";
+            p1 = p1Input.value.trim();
+            p2 = p2Input.value.trim();
+            displayMsg.style.color = "black";
+            displayMsg.innerText = `${p1}'s turn`;
+            wrapper.appendChild(displayMsg);
+            var board = document.createElement("div");
+            board.setAttribute("id","board");
+
+            var gameRow = document.createElement("div");
+            gameRow.setAttribute("class","game-row");
+
+            var gameSquare = document.createElement("span");
+            gameSquare.setAttribute("class","game-square");
+
+            let row = 0;
+            let col = 0;
+            for (var i=0;i<3;i++){
+                let clonedSquare = gameSquare.cloneNode(true);
+                clonedSquare.setAttribute("data-col",col);
+                gameRow.appendChild(clonedSquare);
+                col++;
+            }
+            for (var i=0;i<3;i++){
+                let clonedRow = gameRow.cloneNode(true);
+                clonedRow.setAttribute("data-row",row);
+                board.appendChild(clonedRow);
+                row++
+            }
+            wrapper.appendChild(board);
+            let squares = document.querySelectorAll(".game-square");
+            for (var i=0;i<squares.length;i++){
+                squares[i].addEventListener("click",fillSquare);
+            }
         }
-        wrapper.appendChild(board);
-        let squares = document.querySelectorAll(".game-square");
-        for (var i=0;i<squares.length;i++){
-            squares[i].addEventListener("click",fillSquare);
-        }
-        gameStarted = true;
     }
     startButton.addEventListener("click",createBoard);
 
@@ -59,13 +72,13 @@ window.onload = function() {
         if (!winner){
             if (event.target.innerText === ""){
                 if (numOfTurns%2 === 0){
-                    event.target.innerText = xTurn;
-                    displayMsg.innerText = `${oTurn} player's turn`;
+                    event.target.innerText = p1Symbol;
+                    displayMsg.innerText = `${p2}'s turn`;
                     trackBoard(this.parentNode,this, 1);
                 }
                 else {
-                    event.target.innerText = oTurn;
-                    displayMsg.innerText = `${xTurn} player's turn`;
+                    event.target.innerText = p2Symbol;
+                    displayMsg.innerText = `${p1}'s turn`;
                     trackBoard(this.parentNode,this, -1);
                 }
                 numOfTurns++
@@ -74,7 +87,7 @@ window.onload = function() {
                 if (checkGame()) {
                     startButton.innerText = "Restart Game";
                     startButton.style.display = "inline-block";
-                    displayMsg.innerText = `${winner} player wins!\n${loser} player have to treat ${winner} player a drink.`;
+                    displayMsg.innerText = `${winner} wins!\n${loser} have to treat ${winner} a drink.`;
                     winner = null;
                     loser = null;
                     boardTracker = [
@@ -84,8 +97,20 @@ window.onload = function() {
                     ];
                     numOfTurns = 0;
                 }
-                else if (numOfTurns>8){
-                    displayMsg.innerText = "Game Draw!";
+                else {
+                    if (numOfTurns>8){
+                        startButton.innerText = "Restart Game";
+                        startButton.style.display = "inline-block";
+                        displayMsg.innerText = "Game Draw!";
+                        winner = null;
+                        loser = null;
+                        boardTracker = [
+                          [ 0, 0, 0 ],
+                          [ 0, 0, 0 ],
+                            [ 0, 0, 0 ]
+                        ];
+                        numOfTurns = 0;
+                    }
                 }
             }
         }
@@ -104,13 +129,13 @@ window.onload = function() {
             for (var j=0;j<boardTracker[i].length;j++){
                 totalValue = totalValue + boardTracker[i][j];
                 if (totalValue === 3) {
-                    winner = xTurn;
-                    loser = oTurn;
+                    winner = p1;
+                    loser = p2;
                     return true;
                 }
                 else if (totalValue === -3){
-                    winner = oTurn;
-                    loser = xTurn;
+                    winner = p2;
+                    loser = p1;
                     return true;
                 }
             }
@@ -124,13 +149,13 @@ window.onload = function() {
             for (var j=0;j<boardTracker[i].length;j++){
                 totalValue = totalValue + boardTracker[j][currentCol];
                 if (totalValue === 3) {
-                    winner = xTurn;
-                    loser = oTurn;
+                    winner = p1;
+                    loser = p2;
                     return true;
                 }
                 else if (totalValue === -3){
-                    winner = oTurn;
-                    loser = xTurn;
+                    winner = p2;
+                    loser = p1;
                     return true;
                 }
             }
@@ -142,28 +167,28 @@ window.onload = function() {
             totalValue = totalValue + boardTracker[i][i];
             //console.log(totalValue);
             if (totalValue === 3) {
-                winner = xTurn;
-                loser = oTurn;
+                winner = p1;
+                loser = p2;
                 return true;
             }
             else if (totalValue === -3){
-                winner = oTurn;
-                loser = xTurn;
+                winner = p2;
+                loser = p1;
                 return true;
             }
-            totalValue = 0;
         }
+        totalValue = 0;
         // check reverse diagonally
         for (var i=0;i<numOfSquares;i++){
             totalValue = totalValue + boardTracker[i][numOfSquares-(i+1)];
             if (totalValue === 3) {
-                winner = xTurn;
-                loser = oTurn;
+                winner = p2;
+                loser = p1;
                 return true;
             }
             else if (totalValue === -3){
-                winner = oTurn;
-                loser = xTurn;
+                winner = p2;
+                loser = p1;
                 return true;
             }
         }
