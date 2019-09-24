@@ -4,24 +4,23 @@ var board = [[null,null,null],
              [null,null,null],
              [null,null,null]];
 
-
 // add X or O to the board
 var addMarker = function(event) {
+    // debugger;
     if (playerTurn === null || playerTurn === "O") {
         playerTurn = "X";
     } else {
         playerTurn = "O";
     }
     event.target.innerText = playerTurn;
+
+    var col = parseInt(event.target.id);
+    var row = parseInt(event.target.parentElement.id);
+
+    board[row][col] = playerTurn;
+    console.log(board);
+
 };
-
-// add id to each square
-var addId = function(squares) {
-    squares.forEach(function(square, index) {
-        square.setAttribute("id", index);
-    })
-}
-
 
 // create board
 var createBoard = function() {
@@ -32,11 +31,12 @@ var createBoard = function() {
     for (var i = 0; i < 3; i++) {
         var gameRow = document.createElement("div");
         gameRow.classList.add("game-row");
-
+        gameRow.setAttribute("id", i);
         // append 3 squares to row
         for (var j = 0; j < 3; j++) {
             var gameSquare = document.createElement("span");
             gameSquare.classList.add("game-square");
+            gameSquare.setAttribute("id", j);
             gameSquare.addEventListener("click", addMarker, { once: true });
             gameRow.appendChild(gameSquare);
         }
@@ -50,13 +50,6 @@ var createBoard = function() {
     // remove the start button
     var startButton = document.querySelector(".start-button");
     startButton.remove();
-
-    var squares = document.querySelectorAll(".game-square");
-    var rows = document.querySelectorAll(".game-row");
-
-    addId(squares);
-    addId(rows);
-
 };
 
 var startButton = document.querySelector(".start-button");
