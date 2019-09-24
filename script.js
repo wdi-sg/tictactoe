@@ -7,7 +7,7 @@ var board = [
     [null, null, null]
 ]
 
-var boardSquares = 9;
+var boardSquares = 3;
 var counter = 0;
 
 function createBoard(){
@@ -17,10 +17,13 @@ function createBoard(){
     body.appendChild(divContainer);
     //add div class boxes
     for (let i =0; i<boardSquares; i++){
+
+        for (let j=0; j<boardSquares; j++){
         var box = document.createElement("div");
         box.setAttribute("class", "box");
-        box.setAttribute("id", `box${[i]}`);
+        box.setAttribute("id", `${[i]}${j}`);
         divContainer.appendChild(box);
+        }
     }
 }
 createBoard();
@@ -43,21 +46,27 @@ function addItem(){
        clickedBox.innerText = "O"
     };
 
-    var firstBox= document.getElementById("box0")
 
+    for (let i =0; i<boardSquares; i++){
+        for (let j=0; j<boardSquares; j++){
+            let box = document.getElementById(`${i}${j}`);
 
-    if (firstBox.innerText === "X"){
-        board[0][0] = "X";
-    } else if (firstBox.innerText === "O"){
-        board[0][0] = "0"
-console.log(board)
+            if (box.innerText === "X"){
+                board[i][j] = "X";
+            } else if (box.innerText === "O"){
+                board[i][j] = "0"
+            console.log(board)
+            }
+        }
     }
-
-
-//If you click on first box, board [0][0]=filled
-
-
 }
+
+
+
+
+
+
+
 
 // create event listener for each box
 for(let i = 0; i < emptyBox.length; i++){
