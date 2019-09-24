@@ -1,0 +1,27 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0 0 0 0;
+  background-color: black;
+  color: white;
+}
+
+.container {
+background-color: #;
+  width: 600px;
+  margin: 0 auto;
+  padding: 0px 0px;
+  text-align: center;
+}
+
+h1 {
+
+}
+
+button {
+	width: 200px;
+	height: 200px;
+	background-color: white;
+	color: black;
+	border: 1px solid #ccc;
+}
