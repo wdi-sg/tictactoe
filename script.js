@@ -66,23 +66,34 @@ const winMes = () => {
 //     }
 // }
 
-const checkResult = (x) => {
+const checkResult = (y) => {
+    let x = parseInt(y);
     let arr = [];
     for (let i=0; i<9; i++) {
         arr.push(gameBoard[i].innerText);
-        if (x < 3) {
-           if (arr[x] === arr[x+3] && arr[x] === arr[x+6]) {
+    }
+    if (x < 3 && arr[x+3] !== undefined && arr[x+6] !== undefined) {
+        if (arr[x] === arr[x+3] && arr[x] === arr[x+6]) {
             winMes()
-            };
-        } else if (x >= 6) {
-            if (arr[x] === arr[x-3] && arr[x] === arr[x-6]) {winMes()
-            };
-        } else {
-            if (arr[x] === arr[x-3] && arr[x] === arr[x+3]) {winMes()
-            };
-        }
+        };
+    } else if (x >= 6 && arr[x-3] !== undefined && arr[x-6] !== undefined) {
+        if (arr[x] === arr[x-3] && arr[x] === arr[x-6]) {winMes()
+        };
+    } else if (arr[x-3] !== undefined && arr[x+3] !== undefined) {
+        if (arr[x] === arr[x-3] && arr[x] === arr[x+3]) {winMes()
+        };
+    }
+
+    if (x%3 === 0 && arr[x+1] !== undefined && arr[x+2] !== undefined) {
+        if (arr[x] === arr[x+1] && arr[x] === arr[x+2]) {
+            winMes()}
+    } else if (x%3 === 1 && arr[x-1] !== undefined && arr[x+1] !== undefined) {
+        if (arr[x] === arr[x-1] && arr[x] === arr[x+1]) {winMes()};
+    } else if (x%3 === 2 && arr[x-1] !== undefined && arr[x-2] !== undefined) {
+        if (arr[x] === arr[x-1] && arr[x] === arr[x-2]) {winMes()};
     }
 }
+
 
 
 
