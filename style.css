@@ -38,4 +38,26 @@
 .game-interface {
 		/*border: 1px solid red;*/
 		text-align: center;
+		display: flex;
+		;
+		flex-direction: column;
+		align-items: center;
+}
+
+#board-size {
+		border: 2px solid #ccc;
+		width: 200px;
+		height: 50px;
+		font-family: Helvetica, sans-serif;
+		font-size: 30px;
+		color: #ccc;
+		border-radius: 20px;
+		text-align: center;
+}
+
+.board-size {
+		margin-top: 10px;
+		font-family: Helvetica, sans-serif;
+		font-size: 20px;
+		color: #ccc;
 }
