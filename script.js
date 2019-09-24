@@ -11,11 +11,35 @@ var addMarker = function(event) {
     event.target.innerText = playerTurn;
 };
 
-// get all the squares
-var squares = document.getElementsByClassName("game-square");
+// create board
+var createBoard = function() {
+    var board = document.createElement("div");
+    board.setAttribute("id", "board");
 
-// add event listener to each square
-for (var i = 0; i < squares.length; i++) {
-    var square = squares[i];
-    square.addEventListener('click', addMarker, {once: true});
-}
+    // append 3 rows to board
+    for (var i = 0; i < 3; i++) {
+        var gameRow = document.createElement("div");
+        gameRow.classList.add("game-row");
+
+        // append 3 squares to row
+        for (var j = 0; j < 3; j++) {
+            var gameSquare = document.createElement("span");
+            gameSquare.classList.add("game-square");
+            gameSquare.setAttribute("id",j);
+            gameSquare.addEventListener("click", addMarker, { once: true });
+            gameRow.appendChild(gameSquare);
+        }
+        board.appendChild(gameRow);
+    }
+
+    // append board to game interface
+    var gameInterface = document.querySelector(".game-interface");
+    gameInterface.appendChild(board);
+
+    var startButton = document.querySelector(".start-button");
+    startButton.remove();
+
+};
+
+var startButton = document.querySelector(".start-button");
+startButton.addEventListener("click", createBoard);
