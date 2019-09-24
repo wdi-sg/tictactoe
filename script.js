@@ -1,5 +1,9 @@
 // stores X or O
 var playerTurn = null;
+var board = [[null,null,null],
+             [null,null,null],
+             [null,null,null]];
+
 
 // add X or O to the board
 var addMarker = function(event) {
@@ -43,12 +47,15 @@ var createBoard = function() {
     var gameInterface = document.querySelector(".game-interface");
     gameInterface.appendChild(board);
 
+    // remove the start button
     var startButton = document.querySelector(".start-button");
     startButton.remove();
 
     var squares = document.querySelectorAll(".game-square");
+    var rows = document.querySelectorAll(".game-row");
 
     addId(squares);
+    addId(rows);
 
 };
 
