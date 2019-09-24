@@ -33,26 +33,36 @@ function checkWin() {
     console.log("check checkWin")
     for (let i=0; i<boardSquares; i++){
 
-            if (JSON.stringify(board[i]) === JSON.stringify(["X", "X", "X"]) || JSON.stringify(board[i]) === JSON.stringify(["0", "0", "0"]))
-            {
-                function alertRow(){
-                    alert ("OMG, you won through the cunning use of ROWS!")
-                }
-                setTimeout(alertRow,150)
-                console.log("WOW ROW")
-            } else if (board[i][0] == board[i+1][0] && board[i][0] == board[i+2][0])
-             // || board[i][1] == board[i+1][1] && board[i][1] == board[i+2][1] || board[i][2] == board[i+1][2] && board[i][2] == board[i+2][2])
-            {
-                function alertColumn(){
-                    alert ("OMG, you won through the cunning use of COLUMNS!")
-                }
-                setTimeout(alertColumn,150)
-                console.log("WOW")
-
-
+        // check if rows match
+        if (JSON.stringify(board[i]) === JSON.stringify(["X", "X", "X"]) || JSON.stringify(board[i]) === JSON.stringify(["0", "0", "0"]))
+        {
+            function alertRow(){
+                alert ("OMG, you won through the cunning use of ROWS!")
             }
-
+            setTimeout(alertRow,150)
+            console.log("WOW ROW")
+        }
     }//end outer loop
+
+        //check if columns match
+
+        if (board[0][0] === board[1][0] && board[0][0] === board[2][0] && board[1][0]!==null
+            || board[0][1] === board[1][1] && board[0][1] === board[2][1] && board[1][1] !==null
+            || board[0][2] == board[1][2] && board[0][2] == board[2][2] && board[1][2] !==null)
+        {
+
+    // || (board[0][1] == board[1][1] && board[0][1] == board[2][1] ))
+         // || board[i][2] == board[i+1][2] && board[i][2] == board[i+2][2])
+
+            function alertColumn(){
+                alert ("OMG, you won through the cunning use of COLUMNS!")
+            }
+            setTimeout(alertColumn,150)
+            console.log("WOW COLUMN")
+         }
+
+
+
 }//end of checkWin()
 
 
