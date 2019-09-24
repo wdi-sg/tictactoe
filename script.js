@@ -6,11 +6,15 @@ container.classList.add('wrapper');
 
 document.body.appendChild(container);
 
+/*Use DOM manipulation to create the game board*/
+
 // Create div: board
 var board = document.createElement('div');
 board.classList.add('board');
 
 container.appendChild(board);
+
+var gameSquareLocation = [[],[],[]];
 
 for(var row = 0; row < 3; row++) {
 
@@ -20,20 +24,36 @@ for(var row = 0; row < 3; row++) {
 
     board.appendChild(gameRow);
 
+    gameSquareLocation[row] = gameRow;
+
     for(var square = 0; square < 3; square++) {
         // Create span: game-square
         var gameSquare = document.createElement('div');
         gameSquare.classList.add('game-square');
 
         gameRow.appendChild(gameSquare);
-
+        gameSquareLocation[square] = gameSquare;
     }
 }
 
+/*Event listener for user's click on each box*/
 var userClickCount = 1;
 
 // Function to display X or O to user on the game square
-var showNumber = function(event) {
+var displayResult = function(event) {
+
+    /*Identify each game squares in the game board array*/
+    gameSquareLocation[0][0] = "Row 1 Column 1";
+    gameSquareLocation[0][1] = "Row 1 Column 2";
+    gameSquareLocation[0][2] = "Row 1 Column 3";
+
+    gameSquareLocation[1][0] = "Row 2 Column 1";
+    gameSquareLocation[1][1] = "Row 2 Column 2";
+    gameSquareLocation[1][2] = "Row 2 Column 3";
+
+    gameSquareLocation[2][0] = "Row 3 Column 1";
+    gameSquareLocation[2][1] = "Row 3 Column 2";
+    gameSquareLocation[2][2] = "Row 3 Column 3";
 
     console.log("User click count is " + userClickCount);
 
@@ -56,5 +76,5 @@ var squareBoxes = document.querySelectorAll(".game-square");
 // set an event listener on each element
 for(var i = 0; i < squareBoxes.length; i++) {
 
-    squareBoxes[i].addEventListener("click",showNumber);
+    squareBoxes[i].addEventListener("click",displayResult);
 }
