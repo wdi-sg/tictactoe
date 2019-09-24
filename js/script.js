@@ -4,6 +4,7 @@ console.log("start game");
 
 var currentPlayer = "Player 1";
 var playerId = 0;
+var playCount = 0;
 
 var players = [
 {
@@ -29,6 +30,7 @@ var players = [
 
 var boxClicked = function (event) {
 		console.log("pressed:" + event);
+		playCount++;
 
 if (currentPlayer === "Player 1") {
 	currentPlayer = "Player 2";
@@ -43,9 +45,27 @@ console.log(location)
 recordPosition(playerId, location);
 changeBox (playerId, location)
 changePlayer (currentPlayer);
+// game over
+if (playCount=== 9){
+	// finalize
+		document.querySelector('h2').innerHTML = "Game Over";
+}
 }
 
+var changeBox = function (playerId, location) {
+// switch off ability to click again
+	document.getElementById(location).style.pointerEvents = 'none';
+	if (playerId===0){
+	document.getElementById(location).innerHTML = "X";
+	// change it so it can't be clicked
+	// document.getElementById(location).setAttribute("id", "chosen");
+	} else {
+	document.getElementById(location).innerHTML = "O";	
+	// document.getElementById(location).setAttribute("id", "chosen");
+	}
 
+
+}
 
 var changePlayer = function (currentPlayer) {
 	document.querySelector('h2').innerHTML = "Your turn "+ currentPlayer;
@@ -110,3 +130,23 @@ box8.addEventListener('click', boxClicked );
 
 var box9 = document.querySelector('#box9');
 box9.addEventListener('click', boxClicked );
+
+
+
+var winningCombos = {
+
+	// HORIZONTAL
+	//  R0,0 R0,1 R0,2
+	//  R1,0 R1,1 R1,2
+	//  R2,0 R2,1 R2,2
+
+	// VERTICAL
+	//  R0,0 R1,0 R2,0
+	//  R0,1 R1,1 R2,1
+	//  R0,2 R1,2 R2,2
+
+	// DIAGONAL
+	//  R0,0 R1,1 R2,2
+	//  R0,2 R1,1 R2,0
+
+}
