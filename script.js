@@ -47,7 +47,8 @@ function createReset(){
         button.innerText = "RESET";
         var body = document.querySelector("body");
         body.appendChild(button);
-    }
+        }
+    button.addEventListener("click", function(){document.location.reload()})
 }
 
 
@@ -69,7 +70,7 @@ function checkWin() {
 
         //check if columns match
         for (let j=0; j<boardSquares; j++){
-            if (board[i][j] === board[i+1][j] && board[0][j] === board[i+2][j] && board[i+1][j]!==null)
+            if (board[i][j] === board[i+1][j] && board[0][j] === board[i+2][j] && board[i+1][j]!==null) //WHY IS THERE AN ERROR ON THIS LINE(but everything still works)
             {
                 function alertColumn(){
                     alert ("OMG, you won through the cunning use of COLUMNS!")
