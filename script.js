@@ -55,6 +55,19 @@ function createReset(){
 //check if items match in the grid
 function checkWin() {
     console.log("check checkWin")
+
+     if (board[0][0] === board[1][1] && board [0][0] === board [2][2] && board[1][1] !== null
+            || board[0][2] === board[1][1] && board [0][2] === board [2][0] && board[1][1] !== null){
+
+            function alertDiagonal(){
+                alert ("OMG, you won through the cunning use of DIAGONALS!")
+            }
+            setTimeout(alertDiagonal,150)
+            console.log("WOW DIAGONAL")
+            youWon = true;
+            createReset();
+        }
+
     for (let i=0; i<boardSquares; i++){
 
         // check if rows match
@@ -66,7 +79,9 @@ function checkWin() {
             setTimeout(alertRow,150)
             console.log("WOW ROW")
             youWon = true;
+            createReset();
         }
+
 
         //check if columns match
         for (let j=0; j<boardSquares; j++){
@@ -78,24 +93,10 @@ function checkWin() {
                 setTimeout(alertColumn,150)
                 console.log("WOW COLUMN")
                 youWon = true;
+                createReset();
              }
-        }//end inner loops
-
-         if (board[0][0] === board[1][1] && board [0][0] === board [2][2] && board[1][1] !== null
-            || board[0][2] === board[1][1] && board [0][2] === board [2][0] && board[1][1] !== null){
-
-            function alertDiagonal(){
-                alert ("OMG, you won through the cunning use of DIAGONALS!")
-            }
-            setTimeout(alertDiagonal,150)
-            console.log("WOW DIAGONAL")
-            youWon = true;
-
-        }
-    console.log("tryreset")
-    createReset();
-    console.log("read reset")
-    }//end outer loop
+        }//end inner loop
+  }//end outer loop
 
 }//end of checkWin()
 
