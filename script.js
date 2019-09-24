@@ -32,17 +32,26 @@ createBoard();
 function checkWin() {
     console.log("check checkWin")
     for (let i=0; i<boardSquares; i++){
-        for (let j=0; j<boardSquares; j++) {}
+
             if (JSON.stringify(board[i]) === JSON.stringify(["X", "X", "X"]) || JSON.stringify(board[i]) === JSON.stringify(["0", "0", "0"]))
             {
-                alert ("OMG, you won through a cunning use of rows!")
-                console.log("WOW")
-            } else if (board[i][0] == board[i+1][0] && board[i][0] == board[i+][0])
+                function alertRow(){
+                    alert ("OMG, you won through the cunning use of ROWS!")
+                }
+                setTimeout(alertRow,150)
+                console.log("WOW ROW")
+            } else if (board[i][0] == board[i+1][0] && board[i][0] == board[i+2][0])
+             // || board[i][1] == board[i+1][1] && board[i][1] == board[i+2][1] || board[i][2] == board[i+1][2] && board[i][2] == board[i+2][2])
             {
+                function alertColumn(){
+                    alert ("OMG, you won through the cunning use of COLUMNS!")
+                }
+                setTimeout(alertColumn,150)
+                console.log("WOW")
 
 
             }
-        }//end inner loop
+
     }//end outer loop
 }//end of checkWin()
 
