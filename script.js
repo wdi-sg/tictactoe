@@ -5,22 +5,15 @@ var board = [
     [null, null, null],
     [null, null, null],
     [null, null, null]
-]
+]//consider creating board array with nested forloop?
 
-var youWon = false
 
-//consider creating board array with nested forloop?
-// function boardArray(){}
-//  for (let i =0; i<boardSquares; i++){
+var youWon = false //tests if player has won
 
-//         for (let j=0; j<boardSquares; j++){
-//         board.push(null)
-//         }
-//     };
-
-var boardSquares = 3; //consider whether to change on user input?
+var boardSquares = 3; //consider whether to change on user input
 var counter = 0;
 
+//creates initial grid for board
 function createBoard(){
     var body = document.querySelector("body");
     var divContainer = document.createElement("div");
@@ -54,34 +47,36 @@ function createReset(){
 
 //check if items match in the grid
 function checkWin() {
-    console.log("check checkWin")
+    console.log("call checkWin")
 
-     if (board[0][0] === board[1][1] && board [0][0] === board [2][2] && board[1][1] !== null
-            || board[0][2] === board[1][1] && board [0][2] === board [2][0] && board[1][1] !== null){
-
+     //check if diagonals match
+      if (board[0][0] === board[1][1] && board [0][0] === board [2][2] && board[1][1] !== null
+            || board[0][2] === board[1][1] && board [0][2] === board [2][0] && board[1][1] !== null)
+      {
             function alertDiagonal(){
                 alert ("OMG, you won through the cunning use of DIAGONALS!")
             }
+
             setTimeout(alertDiagonal,150)
             console.log("WOW DIAGONAL")
             youWon = true;
             createReset();
-        }
+      }
 
+    // check if rows match
     for (let i=0; i<boardSquares; i++){
 
-        // check if rows match
-        if (JSON.stringify(board[i]) === JSON.stringify(["X", "X", "X"]) || JSON.stringify(board[i]) === JSON.stringify(["0", "0", "0"]))
-        {
+      if (JSON.stringify(board[i]) === JSON.stringify(["X", "X", "X"]) || JSON.stringify(board[i]) === JSON.stringify(["0", "0", "0"]))
+      {
             function alertRow(){
                 alert ("OMG, you won through the cunning use of ROWS!")
             }
+
             setTimeout(alertRow,150)
             console.log("WOW ROW")
             youWon = true;
             createReset();
-        }
-
+      }
 
         //check if columns match
         for (let j=0; j<boardSquares; j++){
@@ -90,17 +85,16 @@ function checkWin() {
                 function alertColumn(){
                     alert ("OMG, you won through the cunning use of COLUMNS!")
                 }
+
                 setTimeout(alertColumn,150)
                 console.log("WOW COLUMN")
                 youWon = true;
                 createReset();
+
              }
         }//end inner loop
   }//end outer loop
-
 }//end of checkWin()
-
-
 
 function boxListen(){
 // create event listener for each box
@@ -110,8 +104,6 @@ function boxListen(){
     }
 };
 boxListen();
-
-
 
 // add X or O to board on click
 function addItem(){
