@@ -1,0 +1,13 @@
+
+.board {
+	max-width: 800px;
+}
+
+
+
+.game-square {
+	width: 200px;
+	height: 200px;
+  background-color: #EC7257;
+  display: inline-block;
+}
