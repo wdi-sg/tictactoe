@@ -1,5 +1,16 @@
 console.log('linked')
 
+// let input = 0;
+
+// const checkInput = () => {
+//     for (let i=0; i>8; i++) {
+//         if (gameBoard[i].innerText !== undefined) {
+//             input++;
+//         }
+//     }
+//     return input;
+// }
+
 let board = document.createElement('div');
 board.id = 'board';
 for (let i=0; i<3; i++) {
@@ -18,7 +29,11 @@ for (let i=0; i<3; i++) {
             } else {
                 event.target.innerText = 'X';
             }
-            checkCol(event.target.id);
+            // if (checkInput()>4) {
+                // checkCol(event.target.id);
+                // checkRow(event.target.id);
+            // }
+            checkResult(event.target.id);
         })
     }
     board.append(row);
@@ -27,37 +42,50 @@ document.body.append(board);
 
 let gameBoard = document.querySelectorAll('.box');
 
-console.log(gameBoard)
-
 const winMes = () => {
-    alert(`YOU WON!`)
+    alert(`YOU WON!`);
 }
 
-const checkCol = (x) => {
-    if (x < 3) {
-       if (gameBoard[x].innerText === gameBoard[x+3].innerText && gameBoard[x].innerText === gameBoard[x+6].innerText) {winMes()};
-    } else if (x >= 6) {
-        if (gameBoard[x].innerText === gameBoard[x-3].innerText && gameBoard[x].innerText === gameBoard[x-6].innerText) {winMes()};
-    } else {
-        if (gameBoard[x].innerText === gameBoard[x-3].innerText && gameBoard[x].innerText === gameBoard[x+3].innerText) {winMes()};
+// const checkCol = (x) => {
+//     if (x < 3) {
+//        if (gameBoard[x].innerText === gameBoard[x+3].innerText && gameBoard[x].innerText === gameBoard[x+6].innerText) {winMes()};
+//     } else if (x >= 6) {
+//         if (gameBoard[x].innerText === gameBoard[x-3].innerText && gameBoard[x].innerText === gameBoard[x-6].innerText) {winMes()};
+//     } else {
+//         if (gameBoard[x].innerText === gameBoard[x-3].innerText && gameBoard[x].innerText === gameBoard[x+3].innerText) {winMes()};
+//     }
+// }
+
+// const checkRow = (x) => {
+//     if (x%3 === 0) {
+//         if (gameBoard[x].innerText === gameBoard[x+1].innerText && gameBoard[x].innerText === gameBoard[x+2].innerText) {winMes()}
+//     } else if (x%3 === 1) {
+//         if (gameBoard[x].innerText === gameBoard[x-1].innerText && gameBoard[x].innerText === gameBoard[x+1].innerText) {winMes()};
+//     } else if (x%3 === 2) {
+//         if (gameBoard[x].innerText === gameBoard[x-1].innerText && gameBoard[x].innerText === gameBoard[x-2].innerText) {winMes()};
+//     }
+// }
+
+const checkResult = (x) => {
+    let arr = [];
+    for (let i=0; i<9; i++) {
+        arr.push(gameBoard[i].innerText);
+        if (x < 3) {
+           if (arr[x] === arr[x+3] && arr[x] === arr[x+6]) {
+            winMes()
+            };
+        } else if (x >= 6) {
+            if (arr[x] === arr[x-3] && arr[x] === arr[x-6]) {winMes()
+            };
+        } else {
+            if (arr[x] === arr[x-3] && arr[x] === arr[x+3]) {winMes()
+            };
+        }
     }
 }
 
-const checkRow = (x) => {
-    switch (x%3) {
-        case 0:
-            if (gameBoard[x].innerText === gameBoard[x+1].innerText && gameBoard[x].innerText === gameBoard[x+2].innerText) {winMes()};
-            break;
-        case 1:
-            if (gameBoard[x].innerText === gameBoard[x-1].innerText && gameBoard[x].innerText === gameBoard[x+1].innerText) {winMes()};
-            break;
-        case 2:
-            if (gameBoard[x].innerText === gameBoard[x-1].innerText && gameBoard[x].innerText === gameBoard[x-2].innerText) {winMes()};
-            break;
-        default:
-            break;
-    }
-}
+
+
 
 // check row
 // const checkRow = () => {
