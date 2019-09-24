@@ -1,5 +1,5 @@
 // Start the HTML body with no elements
-// document.body.innerHTML = "";
+document.body.innerHTML = "";
 
 var container = document.createElement('div');
 container.classList.add('wrapper');
@@ -11,8 +11,6 @@ var board = document.createElement('div');
 board.classList.add('board');
 
 container.appendChild(board);
-
-console.log(board);
 
 for(var row = 0; row < 3; row++) {
 
@@ -32,25 +30,31 @@ for(var row = 0; row < 3; row++) {
     }
 }
 
-// Add the for loop to generate the numbers in a function
-// Create counter that loops through 9 times
-    // If counter is odd number, show X
-    // If counter is even number, show O
+var userClickCount = 1;
 
-var showNumber = function() {
-    for(var i = 1; i <= 9; i++) {
-        if(i % 2 !== 0) {
-            console.log("Odd Number: X " + i);
-        } else {
-            console.log("Even Number: O " + i);
-        }
+// Function to display X or O to user on the game square
+var showNumber = function(event) {
+
+    console.log("User click count is " + userClickCount);
+
+    // If count is odd number, show X
+    // If count is even number, show O
+    if (userClickCount % 2 !== 0) {
+        this.innerHTML = "X";
+    } else {
+        this.innerHTML = "O";
     }
+
+    // Increase user click count after the player clicks a box
+    userClickCount = userClickCount + 1;
+
 };
 
+// select a set of elements
+var squareBoxes = document.querySelectorAll(".game-square");
 
-// Select button
-var myButton = document.querySelector('button');
+// set an event listener on each element
+for(var i = 0; i < squareBoxes.length; i++) {
 
-// Add event listener to the button
-    // Click on button, show number in each box
-myButton.addEventListener('click', showNumber);
+    squareBoxes[i].addEventListener("click",showNumber);
+}
