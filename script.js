@@ -7,6 +7,17 @@ var board = [
     [null, null, null]
 ]
 
+var youWon = false
+
+//consider creating board array with nested forloop?
+// function boardArray(){}
+//  for (let i =0; i<boardSquares; i++){
+
+//         for (let j=0; j<boardSquares; j++){
+//         board.push(null)
+//         }
+//     };
+
 var boardSquares = 3; //consider whether to change on user input?
 var counter = 0;
 
@@ -28,6 +39,18 @@ function createBoard(){
 }
 createBoard();
 
+//reset button to appear at end of game
+function createReset(){
+    console.log("YAY BUTTON")
+    if (counter === 9 || youWon === true){
+        var button = document.createElement("button");
+        button.innerText = "RESET";
+        var body = document.querySelector("body");
+        body.appendChild(button);
+    }
+}
+
+
 //check if items match in the grid
 function checkWin() {
     console.log("check checkWin")
@@ -41,24 +64,22 @@ function checkWin() {
             }
             setTimeout(alertRow,150)
             console.log("WOW ROW")
+            youWon = true;
         }
 
         //check if columns match
         for (let j=0; j<boardSquares; j++){
             if (board[i][j] === board[i+1][j] && board[0][j] === board[i+2][j] && board[i+1][j]!==null)
             {
-
-        // || (board[0][1] == board[1][1] && board[0][1] == board[2][1] ))
-             // || board[i][2] == board[i+1][2] && board[i][2] == board[i+2][2])
-
                 function alertColumn(){
                     alert ("OMG, you won through the cunning use of COLUMNS!")
                 }
                 setTimeout(alertColumn,150)
                 console.log("WOW COLUMN")
+                youWon = true;
              }
         }//end inner loops
-debugger;
+
          if (board[0][0] === board[1][1] && board [0][0] === board [2][2] && board[1][1] !== null
             || board[0][2] === board[1][1] && board [0][2] === board [2][0] && board[1][1] !== null){
 
@@ -67,11 +88,13 @@ debugger;
             }
             setTimeout(alertDiagonal,150)
             console.log("WOW DIAGONAL")
+            youWon = true;
 
         }
+    console.log("tryreset")
+    createReset();
+    console.log("read reset")
     }//end outer loop
-
-
 
 }//end of checkWin()
 
@@ -120,7 +143,7 @@ function addItem(){
             }
         }
     }
-
-    checkWin()
+    console.log("checking win")
+    checkWin();
 
 }
