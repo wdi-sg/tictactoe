@@ -115,8 +115,6 @@ boxListen();
 
 // add X or O to board on click
 function addItem(){
-
-    counter = counter+1;
     console.log( counter );
 
     var clickedBox = event.target;
@@ -125,8 +123,10 @@ function addItem(){
     if (clickedBox.innerText !== "X" && clickedBox.innerText !== "O") {
         if (counter === 0 || counter%2 === 0){
             clickedBox.innerText = "X"
+            counter = counter+1;
         } else {
            clickedBox.innerText = "O"
+           counter = counter+1;
         }
     } else {
         alert ("That spot is taken!")
