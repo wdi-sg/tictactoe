@@ -43,7 +43,6 @@ function checkWin() {
             console.log("WOW ROW")
         }
 
-
         //check if columns match
         for (let j=0; j<boardSquares; j++){
             if (board[i][j] === board[i+1][j] && board[0][j] === board[i+2][j] && board[i+1][j]!==null)
@@ -59,6 +58,17 @@ function checkWin() {
                 console.log("WOW COLUMN")
              }
         }//end inner loops
+debugger;
+         if (board[0][0] === board[1][1] && board [0][0] === board [2][2] && board[1][1] !== null
+            || board[0][2] === board[1][1] && board [0][2] === board [2][0] && board[1][1] !== null){
+
+            function alertDiagonal(){
+                alert ("OMG, you won through the cunning use of DIAGONALS!")
+            }
+            setTimeout(alertDiagonal,150)
+            console.log("WOW DIAGONAL")
+
+        }
     }//end outer loop
 
 
