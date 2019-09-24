@@ -42,24 +42,24 @@ function checkWin() {
             setTimeout(alertRow,150)
             console.log("WOW ROW")
         }
-    }//end outer loop
+
 
         //check if columns match
+        for (let j=0; j<boardSquares; j++){
+            if (board[i][j] === board[i+1][j] && board[0][j] === board[i+2][j] && board[i+1][j]!==null)
+            {
 
-        if (board[0][0] === board[1][0] && board[0][0] === board[2][0] && board[1][0]!==null
-            || board[0][1] === board[1][1] && board[0][1] === board[2][1] && board[1][1] !==null
-            || board[0][2] == board[1][2] && board[0][2] == board[2][2] && board[1][2] !==null)
-        {
+        // || (board[0][1] == board[1][1] && board[0][1] == board[2][1] ))
+             // || board[i][2] == board[i+1][2] && board[i][2] == board[i+2][2])
 
-    // || (board[0][1] == board[1][1] && board[0][1] == board[2][1] ))
-         // || board[i][2] == board[i+1][2] && board[i][2] == board[i+2][2])
-
-            function alertColumn(){
-                alert ("OMG, you won through the cunning use of COLUMNS!")
-            }
-            setTimeout(alertColumn,150)
-            console.log("WOW COLUMN")
-         }
+                function alertColumn(){
+                    alert ("OMG, you won through the cunning use of COLUMNS!")
+                }
+                setTimeout(alertColumn,150)
+                console.log("WOW COLUMN")
+             }
+        }//end inner loops
+    }//end outer loop
 
 
 
