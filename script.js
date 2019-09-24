@@ -1,24 +1,53 @@
 // stores X or O
-var playerTurn = null;
-var board = [[null,null,null],
-             [null,null,null],
-             [null,null,null]];
+var marker = null;
 
-// add X or O to the board
+//
+var board = [[1,2,3],
+             [4,5,6],
+             [7,8,9]];
+
+var rows = [];
+var columns = [];
+var diagonals = [[],[]];
+
+var getRows = function() {
+    board.forEach(row => rows.push(row));
+};
+
+var getColumns = function() {
+    // add empty arrays to columns
+    for(var i = 0; i < board.length ; i++) {
+        columns.push([]);
+    }
+
+    console.log(columns);
+
+    // push squares to columns
+    for(var i=0; i< board.length; i++) {
+        var row = board[i];
+        for(var j=0; j<row.length; j++) {
+            var square = row[j];
+            columns[j].push(square);
+        }
+    }
+}
+
+// add marker to board
+// update board with input
 var addMarker = function(event) {
     // debugger;
-    if (playerTurn === null || playerTurn === "O") {
-        playerTurn = "X";
+    if (marker === null || marker === "O") {
+        marker = "X";
     } else {
-        playerTurn = "O";
+        marker = "O";
     }
-    event.target.innerText = playerTurn;
+    event.target.innerText = marker;
 
     var col = parseInt(event.target.id);
     var row = parseInt(event.target.parentElement.id);
 
-    board[row][col] = playerTurn;
-    console.log(board);
+    board[row][col] = marker;
+    // console.log(board);
 
 };
 
