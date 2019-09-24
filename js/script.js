@@ -45,6 +45,7 @@ console.log(location)
 recordPosition(playerId, location);
 changeBox (playerId, location)
 changePlayer (currentPlayer);
+checkForWinner();
 // game over
 if (playCount=== 9){
 	// finalize
@@ -133,20 +134,53 @@ box9.addEventListener('click', boxClicked );
 
 
 
-var winningCombos = {
+var checkForWinner = function (){
 
+for (var i = 0; i <= 1; i++) {
+if (players[i].row1[0] === "X" && players[i].row1[1] === "X" && players[i].row1[2] === "X"){
+	console.log("player " + i + " won")
+} else if (players[i].row2[0] === "X" && players[i].row2[1] === "X" && players[i].row2[2] === "X"){
+	console.log("player " + i + " won")
+} else if (players[i].row3[0] === "X" && players[i].row3[1] === "X" && players[i].row3[2] === "X"){
+	console.log("player " + i + " won")
+}
+// check verticals
+ else if (players[i].row1[0] === "X" && players[i].row2[0] === "X" && players[i].row3[0] === "X"){
+	console.log("player " + i + " won")
+}  else if (players[i].row1[1] === "X" && players[i].row2[1] === "X" && players[i].row3[1] === "X"){
+	console.log("player " + i + " won")
+}  else if (players[i].row1[2] === "X" && players[i].row2[2] === "X" && players[i].row3[2] === "X"){
+	console.log("player " + i + " won")
+} 
+// check diagonals
+else if (players[i].row1[0] === "X" && players[i].row2[1] === "X" && players[i].row3[2] === "X"){
+	console.log("player " + i + " won")
+} else if (players[i].row1[2] === "X" && players[i].row2[1] === "X" && players[i].row3[0] === "X"){
+	console.log("player " + i + " won")
+} else {
+	// game still ongoing
+}
+}
 	// HORIZONTAL
 	//  R0,0 R0,1 R0,2
 	//  R1,0 R1,1 R1,2
 	//  R2,0 R2,1 R2,2
-
+	// 1,2,3
+	// 4,5,6
+	// 7,8,9
 	// VERTICAL
 	//  R0,0 R1,0 R2,0
 	//  R0,1 R1,1 R2,1
 	//  R0,2 R1,2 R2,2
+	// 1,4,7
+	// 2,5,8
+	// 3,6,9
 
 	// DIAGONAL
 	//  R0,0 R1,1 R2,2
 	//  R0,2 R1,1 R2,0
+	// 1,5,9
+	// 7,5,3
+
 
 }
