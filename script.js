@@ -1,6 +1,9 @@
 // stores X or O
 var marker = null;
-
+var markerType = {
+    A: "O",
+    B: "X",
+}
 //
 var board = [[1,2,3],
              [4,5,6],
@@ -85,14 +88,20 @@ console.log("diagonals: ", diagonals);
 sets = rows.concat(columns, diagonals);
 console.log("sets: ", sets);
 
+var checkSetsForWin = function(sets) {
+
+
+};
+
+
 // add marker to board
 // update board with input
 var addMarker = function(event) {
     // debugger;
-    if (marker === null || marker === "O") {
-        marker = "X";
+    if (marker === null || marker === markerType.A) {
+        marker = markerType.B;
     } else {
-        marker = "O";
+        marker = markerType.A;
     }
     event.target.innerText = marker;
 
