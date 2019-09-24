@@ -2,19 +2,26 @@ console.log("start game");
 // log clicks in blocks
 
 
-var currentPlayer = "player1";
+var currentPlayer = "Player 1";
 
+
+var changePlayer = function (currentPlayer) {
+	document.querySelector('h2').innerHTML = "Your turn "+ currentPlayer;
+}
 
 var boxClicked = function (event) {
 		console.log("pressed:" + event);
 
-if (currentPlayer === "player1") {
-	currentPlayer = "player2";
+if (currentPlayer === "Player 1") {
+	currentPlayer = "Player 2";
 } else {
-	currentPlayer = "player1"
+	currentPlayer = "Player 1"
 }
 console.log(currentPlayer)
+changePlayer (currentPlayer);
 }
+
+
 
 
 
