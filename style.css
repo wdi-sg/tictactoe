@@ -1,0 +1,29 @@
+header {
+    text-align: center;
+    font-size: 189%;
+    font-family: arial;
+    padding: 2em;
+}
+.board {
+    display: flex;
+    justify-content: center;
+    background-color: grey;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.box {
+    width: 10em;
+    height: 10em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    font-size: 1em;
+    font-family: arial;
+}
