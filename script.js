@@ -5,9 +5,11 @@ var markerType = {
     B: "X",
 }
 //
-var board = [[1,2,3],
-             [4,5,6],
-             [7,8,9]];
+var board = [[null,null,null],
+             [null,null,null],
+             [null,null,null]];
+
+var boardSize = null;
 
 var rows;
 var columns;
@@ -85,14 +87,40 @@ var getDiagonals = function(board) {
 diagonals = getDiagonals(board);
 console.log("diagonals: ", diagonals);
 
-sets = rows.concat(columns, diagonals);
+
+var getSets = function(board) {
+    var rows = getRows(board);
+    var columns = getColumns(board);
+    var diagonals = getDiagonals(board);
+
+    var sets = rows.concat(columns, diagonals);
+
+    return sets;
+}
+
+
+sets = getSets(rows, columns, diagonals);
 console.log("sets: ", sets);
 
-var checkSetsForWin = function(sets) {
 
+var checkWinner = function(sets, markerType, board) {
+    var markerA = markerType.A;
+    var markerB = markerType.B;
 
+    var setA = sets.map(set => set.filter(square => square === markerA).length);
+    var setB = sets.map(set => set.filter(square => square === markerB).length);
+    // console.log(setA);
+    // console.log(setB);
+    // debugger;
+    if (setA.includes(board.length)) {
+        return markerA;
+    } else if (setB.includes(board.length)) {
+        return markerB;
+    } else { return "no winner"; }
 };
 
+// var winner = checkWinner(sets, markerType, board);
+// console.log(winner);
 
 // add marker to board
 // update board with input
@@ -110,6 +138,13 @@ var addMarker = function(event) {
 
     board[row][col] = marker;
     // console.log(board);
+    var sets = getSets(rows, columns, diagonals);
+
+    var winner = checkWinner(sets, markerType, board);
+    console.log("winner: ", winner);
+    if (winner === markerType.A || winner === markerType.B) {
+        alert(winner + " has won!");
+    }
 
 };
 
