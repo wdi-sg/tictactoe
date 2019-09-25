@@ -25,7 +25,7 @@ var doSomething = function (event) {
     console.log(gameStage);
         if (gameStage%2 === 0) {
             event.target.innerText = "X";
-        } else {
+        } else if (gameStage%2 === 1) {
             event.target.innerText = "O";
     }
     gameStage ++;
