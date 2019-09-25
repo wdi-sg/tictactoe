@@ -29,16 +29,25 @@ for (let i=0; i<3; i++) {
 }
 document.body.append(board);
 
+const resetGame = () => {
+    for (let i=0; i<9; i++) {
+        document.querySelectorAll('.box')[i].innerHTML = "";
+    }
+    document.querySelector('#resetDiv').classList.remove('resetDiv');
+    document.querySelector('#resetDiv').classList.add('reseted');
+}
+
+let gameBoard = document.querySelectorAll('.box');
+
 let newDiv = document.createElement('div');
 newDiv.id = 'resetDiv'
 newDiv.className = 'resetDiv reseted'
 let reset = document.createElement('button');
 reset.innerText = 'Reset';
 reset.id = 'reset';
+reset.addEventListener('click', resetGame)
 document.body.append(newDiv);
 document.querySelector('#resetDiv').append(reset);
-
-let gameBoard = document.querySelectorAll('.box');
 
 const winMes = () => {
     alert(`YOU WON!`)
