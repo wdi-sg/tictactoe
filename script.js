@@ -5,7 +5,12 @@ var timerText = document.querySelector(".timerText");
 //Assign variable to determine who starts first
 var fpTurn = true;
 //Assign variable to check if computer player is playing
-var compOn = true;
+var compOn;
+if(confirm(`Enable AI?\nClick cancel for no.`)){
+    compOn = true;
+} else {
+    compOn = false;
+}
 //Assign a counter to determine how many moves have been played
 var counter = 0;
 //Creation of a board
@@ -16,7 +21,6 @@ var board = [
 ];
 //Create array of empty space for computer player to pick from
 var nullPieces = [];
-// console.log("Hey "+board[0][0]+".")
 //Keep scores
 var scoreP1 = 0;
 var scoreP2 = 0;
@@ -72,7 +76,7 @@ var gameEngine = function(){
 
 var AIEnabled = function() {
     var randomTime = (Math.floor((Math.random()*8)+2))*1000;
-    console.log(randomTime);
+    console.log("Random time for AI to move: " + randomTime/1000);
     //If AI is enabled
     nullPieces = [];
     timerForAI = setTimeout(function(){
@@ -248,11 +252,13 @@ var startGame = function(){
             row.appendChild(button);
         }
     }
-    if(confirm(`${player1} will start first?\nClick cancel for ${Player2} to start first.`)){
+    if(confirm(`${player1} will start first?\nClick cancel for ${player2} to start first.`)){
         fpTurn = true;
     } else {
         fpTurn = false;
-        AIEnabled();
+        if (compOn === true) {
+            AIEnabled();
+        }
     }
 }
 
