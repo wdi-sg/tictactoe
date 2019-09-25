@@ -2,19 +2,22 @@ body{
 	background: #444444;
 	color: #FFFFFF;
 	font-family: 'Raleway', sans-serif;
+	min-width: 500px;
 }
 
 .cover{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	position: absolute;
 	background-color: #EDEFEC;
 	color: #565A5D;
-	float: left;
 	width: 100%;
 	height: 100%;
 	margin: 0;
 	right: 0%;
 	top: 0%;
-	text-align: center;
 
   opacity: 1;
   -webkit-transition: opacity 1000ms linear;
@@ -34,7 +37,7 @@ button{
 	border-radius: 5px;
 	background: #EDEFEC;
 	padding: 20px 80px;
-	margin-top: 10%;
+	transition: 0.5s;
 }
 
 button:hover{
@@ -43,22 +46,51 @@ button:hover{
 	transition: 0.5s;
 }
 
+.playInput1{
+	padding: 10px 40px;
+	font-size: 20px;
+	margin-top: 20px;
+	border: 1px solid #777777;
+	outline-color: #444444;
+}
+
+.playInput2{
+	padding: 10px 40px;
+	font-size: 20px;
+	margin-top: 20px;
+	border: 1px solid #777777;
+	outline-color: #444444;
+}
+
+.appear{
+		display: none;
+}
+
 main{
 	width: 80%;
-	height: 100%;
-	margin: 0 auto;
+	margin: 0 auto 0;
 }
 
 header{
+	display: inline-block;
+	margin-left: auto;
 	text-align: center;
+	width: 100%;
+	height: 10vh;
 }
+
+
 
 .playArea{
 	margin: 5% auto 5%;
+	opacity: 1;
+  -webkit-transition: opacity 1000ms linear;
+  transition: opacity 1000ms linear;
 }
 
 .three-boxes{
 	display: flex;
+	justify-content: center;
   flex-direction: row;
 	width: 100%;
 	height: 180px;
@@ -66,7 +98,6 @@ header{
 }
 
 .boxes{
-	flex: auto;
 	margin: 0;
 	border: 5px solid #777777;
 	border-radius: 5px;
@@ -74,12 +105,21 @@ header{
 	display: inline-block;
 	background: #444444;
 	font-size: 100px;
-	text-align: center;
 	line-height: 190px;
+	text-align: center;
 }
 
 p{
 	margin: 0;
 	font-size: 150px;
-	text-align: center;
+}
+
+.replay-button{
+	width: 70%;
+  margin-left: 15%;
+  min-width: 200px;
+  margin-top: 20%;
+  opacity: 0;
+  -webkit-transition: opacity 1000ms linear;
+  transition: opacity 1000ms linear;
 }
