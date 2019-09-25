@@ -11,6 +11,9 @@ h1 {
     font-size: 5rem;
     text-align: center;
 }
+.game-container {
+    
+}
 
 .grid-container {
     display: grid;
@@ -22,7 +25,7 @@ h1 {
     margin: 0 auto;
     height: 90vh;
     width: 1000px;
-    padding: 40px 0;
+    padding: 80px 0;
 }
 .disappear {
     display: none;
@@ -61,6 +64,6 @@ h1 {
 
 
 p {
-    font-size: 15rem;
+    font-size: 10rem;
     text-align: center;
 }
