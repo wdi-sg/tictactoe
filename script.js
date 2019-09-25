@@ -1,37 +1,32 @@
 
-//Attach click event to game square
-
-
+//retrieve all spans from HTML and assign it variable square; the large game board
 var square = document.querySelectorAll('.game-square');
 console.log(square);
+//tracks no.of player clicks
+var counter = 0;
 
-//function checked(){
-    var i = 0;
-    while (i < square.length) {
-    //if (i / 2 === 0) {
-    //create h1 as X
-    square.textContent = "X";
-//}   else if (i / 2 !== 0) {
-  //create h1 as O
-    //square.textContent = "O";
-    i++;
-console.log(square[i])
-//Triggers click event
-//}
+//Assign click event target to individual spans
+function checked(event){
+    console.log(event.target);
+    var squareIndividual = event.target;
+    //checks counter for even or odd clicks
+    console.log("before conditional" , counter);
+    //if click is even, insert text to span as 'X'
+    if (counter % 2 === 0) {
+        squareIndividual.textContent = "X";
+    //if click is odd insert text to span as 'O'
+    }   else if (counter % 2 !== 0) {
+        squareIndividual.textContent = "O";
+    }
+    counter++;
+    console.log("after conditional" , counter);
 };
 
-//square.addEventListener('click', checked);
-
-//Attach click event to game square
-//When game square is clicked, create a h1 that is either X or O.
-//When player turn is odd(eg. 1, 3, 5, 7, 9) player is X
-//When player turn is even(eg. 2, 4, 6, 8) player is O.
-
-//i is player turn. Eg if i = 1, player turn is odd. So square when clicked should print X.
-
-
-
-/*var playerInput = document.createElement('h1');
-    playerInput.innerText = "X";*/
-    //square.appendChild(playerInput);
-    //document.body.appendChild(playerInput);
+//loops through the whole var square array and assign event lister & 'checked' function to it
+var i = 0;
+while (i<square.length){
+    var board = square[i];
+    console.log(board);
+    board.addEventListener('click', checked);
+    i++;
+}
