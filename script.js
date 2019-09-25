@@ -9,7 +9,8 @@ var board = [
 
 
 var youWon = false //tests if player has won
-
+var jsonStringX = JSON.stringify(["X", "X", "X"])
+var jsonStringO = JSON.stringify(["O", "O", "O"])
 var boardSquares = 3; //consider whether to change on user input
 var counter = 0;
 
@@ -36,12 +37,19 @@ createBoard();
 //reset button to appear at end of game
 function createReset(){
     console.log("YAY BUTTON")
-    if (counter === 9 || youWon === true){
+    if (counter === 9) {
         var button = document.createElement("button");
         button.innerText = "RESET";
         var body = document.querySelector("body");
         body.appendChild(button);
-        }
+        alert ("It's a DRAW!");
+    } else if (youWon === true){
+        var button = document.createElement("button");
+        button.innerText = "RESET";
+        var body = document.querySelector("body");
+        body.appendChild(button);
+
+    }
     button.addEventListener("click", function(){document.location.reload()})
 }
 
@@ -67,7 +75,7 @@ function checkWin() {
     // check if rows match
     for (let i=0; i<boardSquares; i++){
 
-      if (JSON.stringify(board[i]) === JSON.stringify(["X", "X", "X"]) || JSON.stringify(board[i]) === JSON.stringify(["0", "0", "0"]))
+      if (JSON.stringify(board[i]) === jsonStringX || JSON.stringify(board[i]) === jsonStringO)
       {
             function alertRow(){
                 alert ("OMG, you won through the cunning use of ROWS!")
@@ -77,25 +85,11 @@ function checkWin() {
             console.log("WOW ROW")
             youWon = true;
             createReset();
-      }
+        }
+    }//end outer loop
 
-        //check if columns match
-        for (let j=0; j<boardSquares; j++){
-            squareComparison(i,j);
-                // if (board[i][j] === board[i+1][j] && board[0][j] === board[i+2][j] && board[i+1][j]!==null) //WHY IS THERE AN ERROR ON THIS LINE(but everything still works)
-                // {
-                //     function alertColumn(){
-                //         alert ("OMG, you won through the cunning use of COLUMNS!")
-                //     }
-
-                //     setTimeout(alertColumn,150)
-                //     console.log("WOW COLUMN")
-                //     youWon = true;
-                //     createReset();
-
-                // }
-        }//end inner loop
-  }//end outer loop
+    //check column matches
+    checkColumn();
 }//end of checkWin()
 
 function boxListen(){
@@ -140,19 +134,37 @@ function addItem(event){
 }
 
 
-var squareComparison = function(row, column){
+function alertColumn(){
+    alert ("OMG, you won through the cunning use of COLUMNS!")
+}
 
-    if (
-            board[row][column] === board[row+1][column]
-            && board[row][column] === board[row+2][column]
-            && board[row+1][column]!==null
-        )
-                {
-                    // setTimeout(alertColumn,150)
-                    console.log("WOW COLUMN")
-                    youWon = true;
-                    // createReset();
-                }else{
-                    console.log("WOW no...")
-                }
+function checkColumn(){
+
+ //check if columns match
+    var singleArray = board[0].concat(board[1], board[2]);
+    var columnOne = [];
+    var columnTwo = [];
+    var columnThree = [];
+
+    for (let k=0; k<singleArray.length; k++){
+        if (k%3 === 0){
+            columnOne.push(singleArray[k]);
+        }
+        else if (k%3 === 1){
+            columnTwo.push(singleArray[k]);
+        }
+        else if (k%3 === 2){
+            columnThree.push(singleArray[k]);
+        }
+    }
+
+    if (JSON.stringify(columnOne) === jsonStringX || JSON.stringify(columnOne) === jsonStringO
+        ||JSON.stringify(columnTwo) === jsonStringX || JSON.stringify(columnTwo) === jsonStringO
+        || JSON.stringify(columnThree) === jsonStringX || JSON.stringify(columnThree) === jsonStringO)
+    {
+            setTimeout(alertColumn,150)
+            console.log("WOW COLUMN")
+            youWon = true;
+            createReset();
+    }
 }
