@@ -4,7 +4,7 @@ body {
 
 #board {
 	background-color: gray;
-	width: 330px;
+	width: 490px;
 	border: 1px solid black;
 	margin: auto;
 	display: inline-block;
@@ -23,11 +23,11 @@ body {
 .game-square {
 	margin: auto;
 	background-color: white;
-	width: 100px;
-	height: 100px;
+	width: 150px;
+	height: 150px;
 	border: 1px solid black;
 	text-align: center;
-	font-size: 5em;
+	font-size: 7em;
 	float: left;
 	padding: 1%;
 }

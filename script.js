@@ -9,6 +9,10 @@ var stateOfBoard = [
 //.every() retrieved arrays if is true (i.e. all are same)
 //check which player wins
 
+//to alternate entry
+var player = 1;
+var tictac;
+
 //to check if Player1 wins
 function xWin(value) {
   return value === "X";
@@ -34,6 +38,18 @@ function gameWon(check) {
 
 function checkResult() {
 
+//check diagonal wins
+  if (stateOfBoard[0][0] === stateOfBoard[1][1] &&
+        stateOfBoard[1][1] === stateOfBoard[2][2]) {
+        var down = stateOfBoard[0].slice(0,1);
+        gameWon( down );
+  } else if (stateOfBoard[0][2] === stateOfBoard[1][1] &&
+                stateOfBoard[1][1] === stateOfBoard[2][0]) {
+        var up = stateOfBoard[2].slice(0,1);
+        gameWon( up );
+    }
+
+
   for (var i = 0; i < stateOfBoard.length; i++) {
 
     //retrieve results of rows
@@ -56,8 +72,9 @@ function checkResult() {
     //check if gameWon by column
     gameWon(column);
 
-    console.log("Checking results!");
+    console.log("looping!");
   }
+
 }
 
 
@@ -80,12 +97,10 @@ function updateStateOfBoard() {
   console.log(stateOfBoard);
 }
 
-//to alternate entry
-var player = 1;
-var tictac;
-
 //when square is clicked
 //will give content in alternating value
+//update the state of board
+//and check if there is a win
 
 //Alternative:
 // var toFill = function(event) {
@@ -99,8 +114,14 @@ var toFill = function() {
     }
     this.innerHTML = tictac;
     updateStateOfBoard();
-    checkResult();
+
+    //check if gameWon after 3rd turn
+    if (player >= 5) {
+        checkResult();
+    }
+
     player++;
+    console.log("Move: " + player);
 }
 
 
