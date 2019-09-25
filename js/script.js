@@ -7,7 +7,7 @@ var playerId = 0;
 var playCount = 0;
 
 //set number of seconds to countdown
-const timerDefault = 5;
+const timerDefault = 3;
 var timerChange = timerDefault;
 var tt;
 var players = [
@@ -38,6 +38,11 @@ var players = [
 ];
 
 var winArray = [];
+
+var event={
+	target:{}
+};
+
 // computer random selects...
 var autoPlay = function () {
 console.log ("autoplay executed");
@@ -52,9 +57,37 @@ winArray = []
 			} 
 		}
 	}
-console.log (winArray);
-	// var roll1 = Math.floor( Math.random() * 3 );
+var winArrayLength	= winArray.length; 
+var roll1 = Math.floor( Math.random() * winArrayLength);
+// get the array info that matched the roll
+var computerPlay = winArray[roll1];  
+console.log("computer Play: " + computerPlay)
+//convert to a box to simulate an event....
+// computerPlay.join(',');
 
+if (computerPlay === "0,0") {
+	event.target.id = "box1"
+} else if (computerPlay === "0,1") {
+	event.target.id = "box2"
+} else if (computerPlay === "0,2") {
+	event.target.id = "box3"
+} else if (computerPlay === "1,0") {
+	event.target.id = "box4"
+} else if (computerPlay === "1,1") {
+	event.target.id = "box5"
+} else if (computerPlay === "1,2") {
+	event.target.id = "box6"
+} else if (computerPlay === "2,0") {
+	event.target.id = "box7"
+} else if (computerPlay === "2,1") {
+	event.target.id = "box8"
+} else if (computerPlay === "0,2") {
+	event.target.id = "box9"
+} 
+
+console.log("event out " + event.target.id)
+// build the fake event.... event.target.id = box#
+boxClicked(event);
 }
 
 
