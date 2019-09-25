@@ -13,7 +13,7 @@ let length;
 let tilesNum; // per row or per column
 let tileSize;
 let statusHeight;
-let level;
+let level = 1;
 let circle;
 let lastKey;
 let numOfPlays;
@@ -264,7 +264,6 @@ function getKey(x, y) {
 }
 
 function reset() {
-  level = 1;
   circle = true;
   numOfPlays = 0;
   playedKeys = [];
