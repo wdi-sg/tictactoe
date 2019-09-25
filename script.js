@@ -34,22 +34,18 @@ function createBoard(){
 // setTimeout(createBoard, 500);
 createBoard();
 
+function alertDraw(){
+    alert ("It's a DRAW!");
+}
 //reset button to appear at end of game
 function createReset(){
     console.log("YAY BUTTON")
-    if (counter === 9) {
-        var button = document.createElement("button");
-        button.innerText = "RESET";
-        var body = document.querySelector("body");
-        body.appendChild(button);
-        alert ("It's a DRAW!");
-    } else if (youWon === true){
-        var button = document.createElement("button");
-        button.innerText = "RESET";
-        var body = document.querySelector("body");
-        body.appendChild(button);
 
-    }
+    var button = document.createElement("button");
+    button.innerText = "RESET";
+    var body = document.querySelector("body");
+    body.appendChild(button);
+
     button.addEventListener("click", function(){document.location.reload()})
 }
 
@@ -87,9 +83,21 @@ function checkWin() {
             createReset();
         }
     }//end outer loop
-
     //check column matches
     checkColumn();
+
+    if (counter === 9 && youWon === false) {
+
+        function alertDraw(){
+            alert ("It's a DRAW!");
+        }
+        setTimeout(alertDraw, 150);
+        console.log("WOW DRAW")
+        createReset();
+
+    }
+
+
 }//end of checkWin()
 
 function boxListen(){
@@ -134,9 +142,7 @@ function addItem(event){
 }
 
 
-function alertColumn(){
-    alert ("OMG, you won through the cunning use of COLUMNS!")
-}
+
 
 function checkColumn(){
 
@@ -162,6 +168,9 @@ function checkColumn(){
         ||JSON.stringify(columnTwo) === jsonStringX || JSON.stringify(columnTwo) === jsonStringO
         || JSON.stringify(columnThree) === jsonStringX || JSON.stringify(columnThree) === jsonStringO)
     {
+        function alertColumn(){
+            alert ("OMG, you won through the cunning use of COLUMNS!")
+        }
             setTimeout(alertColumn,150)
             console.log("WOW COLUMN")
             youWon = true;
