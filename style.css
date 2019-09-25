@@ -15,17 +15,20 @@ button{
 h2 {
 	display:flex;
 	justify-content: center;
-	margin: 0;
+	margin: 10px;
 }
 
 div {
 	display:flex;
 	justify-content: center;
 	margin: 0;
+
 }
 
 h3{
 	font-family: 'Mansalva', cursive;
+	font-size: 30px;
+
 }
 
 .one {
