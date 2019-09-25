@@ -1,26 +1,36 @@
 //to check result
 var stateOfBoard = [
-    [0, 0, 0],
-    [0, 0, 0],
-    [0, 0, 0]
+    ["00", "01", "02"],
+    ["10", "11", "12"],
+    ["20", "21", "22"]
 ];
 
 //.slice() elements to obtain arrays of results i.e. vertical rows, horizontal rows, diagonals
 //.every() retrieved arrays if is true (i.e. all are same)
-//check which player wins, i.e. are the true valueof "X" or "O"
-//note: player1 is "X".
+//check which player wins
 
-//check if Player1 wins
+//to check if Player1 wins
 function xWin(value) {
   return value === "X";
 }
 
-//check if Player2 wins
+//to check if Player2 wins
 function oWin(value) {
   return value === "O";
 }
 
 //function checkWhoWon(array)
+function gameWon(check) {
+    if (check.every(xWin)) {
+        //player1 wins
+        alert("Player 1 wins!");
+
+    } else if (check.every(oWin)) {
+        //player2 wins
+        alert("Player 2 wins!");
+
+    }
+}
 
 function checkResult() {
 
@@ -28,37 +38,26 @@ function checkResult() {
 
     //retrieve results of rows
     var row = stateOfBoard[i];
-    console.log(row);
+    console.log("row" + [i] + " is: " + row);
+    //check if gameWon by row
+    gameWon(row);
 
-    if (row.every(xWin)) {
-        //player1 wins
-        console.log("Player 1 wins!");
-
-    } else if (row.every(oWin)) {
-        //player2 wins
-        console.log("Player 2 wins!");
-
-    }
+    var column = [];
 
     for (var j = 0; j < stateOfBoard[i].length; j++) {
 
         //retrieve results of columns
-        var column = stateOfBoard[i].slice(j, 1);
-        console.log(column);
+        var k = (stateOfBoard[j].slice(i, i+1)).toString();
+        column.push( k );
 
-        if (column.every(xWin)) {
-            //player1 wins
-            console.log("Player 1 wins!");
-
-        } else if (column.every(oWin)) {
-            //player2 wins
-            console.log("Player 2 wins!");
-
-        }
     }
 
+    console.log("column" + [i] + " is: " + column);
+    //check if gameWon by column
+    gameWon(column);
+
+    console.log("Checking results!");
   }
-  console.log();
 }
 
 
@@ -100,7 +99,7 @@ var toFill = function() {
     }
     this.innerHTML = tictac;
     updateStateOfBoard();
-
+    checkResult();
     player++;
 }
 
