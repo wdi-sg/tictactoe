@@ -5,47 +5,61 @@ var stateOfBoard = [
     [0, 0, 0]
 ];
 
-//note for DOM
-//use iteration over to create 3x3
-//squares will still be id named same sequence
+//.slice() elements to obtain arrays of results i.e. vertical rows, horizontal rows, diagonals
+//.every() retrieved arrays if is true (i.e. all are same)
+//check which player wins, i.e. are the true valueof "X" or "O"
+//note: player1 is "X".
 
-function makeBoard() {
+//check if Player1 wins
+function xWin(value) {
+  return value === "X";
+}
 
-    //make container
-    var board = document.createElement("div");
-    board.id = "board";
+//check if Player2 wins
+function oWin(value) {
+  return value === "O";
+}
 
-    //make squares
-    for (var i = 0; i < stateOfBoard.length; i++) {
+//function checkWhoWon(array)
 
-        for (var j = 0; j < stateOfBoard[i].length; j++) {
+function checkResult() {
 
-            var square = document.createElement("div");
-            square.id = 'square'+[i]+[j];
-            square.classList.add("game-square");
-            board.appendChild(square);
+  for (var i = 0; i < stateOfBoard.length; i++) {
+
+    //retrieve results of rows
+    var row = stateOfBoard[i];
+    console.log(row);
+
+    if (row.every(xWin)) {
+        //player1 wins
+        console.log("Player 1 wins!");
+
+    } else if (row.every(oWin)) {
+        //player2 wins
+        console.log("Player 2 wins!");
+
+    }
+
+    for (var j = 0; j < stateOfBoard[i].length; j++) {
+
+        //retrieve results of columns
+        var column = stateOfBoard[i].slice(j, 1);
+        console.log(column);
+
+        if (column.every(xWin)) {
+            //player1 wins
+            console.log("Player 1 wins!");
+
+        } else if (column.every(oWin)) {
+            //player2 wins
+            console.log("Player 2 wins!");
 
         }
     }
-    document.body.appendChild(board);
+
+  }
+  console.log();
 }
-
-makeBoard();
-
-//eg. #square1 = stateOfBoard[0][0]
-
-//.slice elements to check i.e. vertical rows, horizontal rows, diagonals
-//.every retrieve array if is true (i.e. all are same)
-//check which player wins, i.e. are the true valueof "X" or "O"
-// function checkResult() {
-//   for (var i = 0; i < stateOfBoard.length; i++) {
-
-//     for (var j = 0; j < stateOfBoard[i].length; j++) {
-
-//     }
-//   }
-//   console.log();
-// }
 
 
 //to change corresponding array value accordingly
@@ -90,8 +104,38 @@ var toFill = function() {
     player++;
 }
 
-//add event listener to squares
 
+//use iteration over to create 3x3 squares
+//squares will still be id named same sequence
+//i.e. sqaure[0][0] = stateOfBoard[0][0]
+
+function makeBoard() {
+
+    //make container
+    var board = document.createElement("div");
+    board.id = "board";
+
+    //make squares
+    for (var i = 0; i < stateOfBoard.length; i++) {
+
+        for (var j = 0; j < stateOfBoard[i].length; j++) {
+
+            var square = document.createElement("div");
+            square.id = 'square'+[i]+[j];
+            square.classList.add("game-square");
+            square.addEventListener("click", toFill);
+            board.appendChild(square);
+
+        }
+    }
+    document.body.appendChild(board);
+}
+
+makeBoard();
+
+
+//add event listener to squares
+/*
 function addEvent() {
 
   for (var i = 0; i < stateOfBoard.length; i++) {
@@ -105,3 +149,4 @@ function addEvent() {
   }
 }
 addEvent();
+*/
