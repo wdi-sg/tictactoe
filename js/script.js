@@ -7,7 +7,7 @@ var playerId = 0;
 var playCount = 0;
 
 //set number of seconds to countdown
-const timerDefault = 10;
+const timerDefault = 5;
 var timerChange = timerDefault;
 var tt;
 var players = [
@@ -37,18 +37,24 @@ var players = [
 }
 ];
 
+var winArray = [];
 // computer random selects...
 var autoPlay = function () {
-	for (var i = 0; i <= 8; i++) {
-	// create 2 random numbers and check its been played on the grid
-	var roll1 = Math.floor( Math.random() * 3 +1 );
-	var roll2 = Math.floor( Math.random() * 3 );
-	var key1="row" + roll1.toString();
-		console.log (key1 + roll2)	
-	if (players[2][key1][roll2] != null) {
-console.log ("found empty space at" + key1 + "and " + roll2 )
+console.log ("autoplay executed");
+winArray = []
+	// find the nulls in the computers stored info stick in a new array with nested
+ // eg [[0,0], [2,2]]
+  for (var i = 0; i <= 2; i++) {
+	 for (var j = 0; j <= 2; j++) {
+	 	var key = "row" + (i+1);
+		if (players[2][key][j]===null){
+		winArray.push(i +"," + j);	
+			} 
+		}
 	}
-	}
+console.log (winArray);
+	// var roll1 = Math.floor( Math.random() * 3 );
+
 }
 
 
@@ -82,7 +88,6 @@ if (currentPlayer === "Player 1") {
 }
 
 timerChange =timerDefault;
-autoPlay(playerId);
 countDown();
 console.log(currentPlayer)
 var location = event.target.id;
