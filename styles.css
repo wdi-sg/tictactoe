@@ -1,9 +1,11 @@
 body {
-	margin: 0 auto;
+	margin: auto;
 	max-width: 800px;
+	text-align: center;
 }
 #board {
-	margin: 20px 200px;
+	margin: 50px auto;
+	width: 38%;
 }
 .game-square {
 	border-style: solid;
@@ -14,13 +16,17 @@ body {
 	margin: 0px;
 	font-size: 50px;
 	text-align: center;
+	font-family: sans-serif;
 }
 .game-row {
 	width: 500px;
 	display: flex;
-
 }
-/*.game-square:after {
-    content: '.';
-    visibility: hidden;*/
+h1 {
+	text-align: center;
+	font-family: Helvetica;
+}
+button {
+	padding: 20px;
+	font-size: 18px;
 }
