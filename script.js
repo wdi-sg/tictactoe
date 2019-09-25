@@ -5,7 +5,48 @@ var stateOfBoard = [
     [0, 0, 0]
 ];
 
+//note for DOM
+//use iteration over to create 3x3
+//squares will still be id named same sequence
+
+function makeBoard() {
+
+    //make container
+    var board = document.createElement("div");
+    board.id = "board";
+
+    //make squares
+    for (var i = 0; i < stateOfBoard.length; i++) {
+
+        for (var j = 0; j < stateOfBoard[i].length; j++) {
+
+            var square = document.createElement("div");
+            square.id = 'square'+[i]+[j];
+            square.classList.add("game-square");
+            board.appendChild(square);
+
+        }
+    }
+    document.body.appendChild(board);
+}
+
+makeBoard();
+
 //eg. #square1 = stateOfBoard[0][0]
+
+//.slice elements to check i.e. vertical rows, horizontal rows, diagonals
+//.every retrieve array if is true (i.e. all are same)
+//check which player wins, i.e. are the true valueof "X" or "O"
+// function checkResult() {
+//   for (var i = 0; i < stateOfBoard.length; i++) {
+
+//     for (var j = 0; j < stateOfBoard[i].length; j++) {
+
+//     }
+//   }
+//   console.log();
+// }
+
 
 //to change corresponding array value accordingly
 function updateStateOfBoard() {
@@ -64,9 +105,3 @@ function addEvent() {
   }
 }
 addEvent();
-
-
-
-//note for DOM
-//use iteration over to create 3x3
-//squares will still be id named same sequence
