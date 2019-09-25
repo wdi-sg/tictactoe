@@ -14,8 +14,6 @@ board.classList.add('board');
 
 container.appendChild(board);
 
-var gameSquareLocation = [[],[],[]];
-
 for(var row = 0; row < 3; row++) {
 
     // Create div: game-row
@@ -24,15 +22,12 @@ for(var row = 0; row < 3; row++) {
 
     board.appendChild(gameRow);
 
-    gameSquareLocation[row] = gameRow;
-
     for(var square = 0; square < 3; square++) {
         // Create span: game-square
         var gameSquare = document.createElement('div');
         gameSquare.classList.add('game-square');
 
         gameRow.appendChild(gameSquare);
-        gameSquareLocation[square] = gameSquare;
     }
 }
 
@@ -43,7 +38,8 @@ var userClickCount = 1;
 var displayResult = function(event) {
 
     /*Identify each game squares in the game board array*/
-    gameSquareLocation[0][0] = "Row 1 Column 1";
+    // Check if this is the element that is clicked on
+    /*gameSquareLocation[0][0] = "Row 1 Column 1";
     gameSquareLocation[0][1] = "Row 1 Column 2";
     gameSquareLocation[0][2] = "Row 1 Column 3";
 
@@ -53,17 +49,17 @@ var displayResult = function(event) {
 
     gameSquareLocation[2][0] = "Row 3 Column 1";
     gameSquareLocation[2][1] = "Row 3 Column 2";
-    gameSquareLocation[2][2] = "Row 3 Column 3";
+    gameSquareLocation[2][2] = "Row 3 Column 3";*/
 
     console.log("User click count is " + userClickCount);
 
     // If count is odd number, show X
     // If count is even number, show O
-    if (userClickCount % 2 !== 0) {
-        this.innerHTML = "X";
-    } else {
-        this.innerHTML = "O";
-    }
+        if (userClickCount % 2 !== 0) {
+            this.innerHTML = "X: This box in position " + gameSquareLocation.indexOf(this);
+        } else {
+            this.innerHTML = "O: This box in position " + gameSquareLocation.indexOf(this);
+        }
 
     // Increase user click count after the player clicks a box
     userClickCount = userClickCount + 1;
@@ -72,9 +68,13 @@ var displayResult = function(event) {
 
 // select a set of elements
 var squareBoxes = document.querySelectorAll(".game-square");
+var gameSquareLocation = [];
 
 // set an event listener on each element
 for(var i = 0; i < squareBoxes.length; i++) {
+
+    // For every square box that the loop goes through, push it into an array
+    gameSquareLocation.push(squareBoxes[i]);
 
     squareBoxes[i].addEventListener("click",displayResult);
 }
