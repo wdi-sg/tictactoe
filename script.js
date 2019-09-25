@@ -107,6 +107,11 @@ function updateStateOfBoard() {
 //  event.target.innerHTML = "test";
 
 var toFill = function() {
+    if (this.innerHTML === "X" || this.innerHTML === "O") {
+        alert("Error!");
+        return;
+    }
+
     if (player%2 === 0) {
         tictac = "O";
     } else {
