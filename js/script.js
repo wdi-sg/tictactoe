@@ -7,8 +7,9 @@ var playerId = 0;
 var playCount = 0;
 
 //set number of seconds to countdown
-var timerDefault = 10;
-
+const timerDefault = 10;
+var timerChange = timerDefault;
+var tt;
 var players = [
 {
 	player: "player1",
@@ -25,23 +26,50 @@ var players = [
 	row1: [null,null,null],
 	row2: [null,null,null],
 	row3: [null,null,null]
+},
+{
+	player: "computer",
+	name: "",
+	score: null,
+	row1: [null,null,null],
+	row2: [null,null,null],
+	row3: [null,null,null]
 }
 ];
 
+// computer random selects...
+var autoPlay = function () {
+	for (var i = 0; i <= 8; i++) {
+	// create 2 random numbers and check its been played on the grid
+	var roll1 = Math.floor( Math.random() * 3 +1 );
+	var roll2 = Math.floor( Math.random() * 3 );
+	var key1="row" + roll1.toString();
+		console.log (key1 + roll2)	
+	if (players[2][key1][roll2] != null) {
+console.log ("found empty space at" + key1 + "and " + roll2 )
+	}
+	}
+}
+
+
 
 var countDown = function () {
-	setInterval(countDisplay, 1000); 
+	tt = setInterval(countDisplay, 1000); 
 }
 
 var countDisplay = function () {
-if (timerDefault >= 0 ) {
-	console.log ('counter' + timerDefault)
-	document.getElementById('theTimer').innerHTML = timerDefault;
+if (timerChange >= 0 ) {
+	// console.log ('counter' + timerChange)
+	document.getElementById('theTimer').innerHTML = timerChange;
 }
-	timerDefault--;
+	timerChange--;
+
+	if (timerChange ===0 ){ 
+autoPlay();
+	}
 }
 var boxClicked = function (event) {
-	clearInterval();
+	clearInterval(tt);
 	console.log("pressed:" + event);
 	playCount++;
 
@@ -53,7 +81,8 @@ if (currentPlayer === "Player 1") {
 	currentPlayer = "Player 1"
 }
 
-timerDefault = 10;
+timerChange =timerDefault;
+autoPlay(playerId);
 countDown();
 console.log(currentPlayer)
 var location = event.target.id;
@@ -103,30 +132,48 @@ var recordPosition = function (playerId, location) {
 console.log("PlayerId:" + playerId);
 if (location === 'box1') {
 	players[playerId].row1[0] = 'X'; 
+// add to computer array too
+	players[2].row1[0] = 'X';	
 }
 if (location === 'box2') {
 	players[playerId].row1[1] = 'X'; 
+	// add to computer array too
+	players[2].row1[1] = 'X';
 }
 if (location === 'box3') {
 	players[playerId].row1[2] = 'X'; 
+	// add to computer array too
+	players[2].row1[2] = 'X';
 }
 if (location === 'box4') {
 	players[playerId].row2[0] = 'X'; 
+	// add to computer array too
+	players[2].row2[0] = 'X';
 }
 if (location === 'box5') {
-	players[playerId].row2[1] = 'X'; 
+	players[playerId].row2[1] = 'X';
+	// add to computer array too
+	players[2].row2[1] = 'X'; 
 }
 if (location === 'box6') {
 	players[playerId].row2[2] = 'X'; 
+	// add to computer array too
+	players[2].row2[2] = 'X';
 }
 if (location === 'box7') {
 	players[playerId].row3[0] = 'X'; 
+	// add to computer array too
+	players[2].row3[0] = 'X';
 }
 if (location === 'box8') {
-	players[playerId].row3[1] = 'X'; 
+	players[playerId].row3[1] = 'X';
+	// add to computer array too
+	players[2].row3[1] = 'X'; 
 }
 if (location === 'box9') {
 	players[playerId].row3[2] = 'X'; 
+	// add to computer array too
+	players[2].row3[2] = 'X';
 }
 };
 
