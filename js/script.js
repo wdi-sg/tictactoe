@@ -7,7 +7,7 @@ var playerId = 0;
 var playCount = 0;
 
 //set number of seconds to countdown
-const timerDefault = 3;
+const timerDefault = 5;
 var timerChange = timerDefault;
 var tt;
 var players = [
@@ -81,7 +81,7 @@ if (computerPlay === "0,0") {
 	event.target.id = "box7"
 } else if (computerPlay === "2,1") {
 	event.target.id = "box8"
-} else if (computerPlay === "0,2") {
+} else if (computerPlay === "2,2") {
 	event.target.id = "box9"
 } 
 
@@ -142,7 +142,7 @@ var gameOver = function (winner) {
 		document.querySelector('h2').innerHTML = "WINNER, WINNER, CHICKEN DINNER!\n<br>Player " + winner + " has won";
  /// lock up the board
  	document.getElementsByClassName('board')[0].style.pointerEvents = 'none';
- 	clearInterval(countDown);
+	clearInterval(tt);
  return true;
 }
 
@@ -285,6 +285,7 @@ var checkForWinner = function (){
 		} else if (playCount=== 9){
 	// finalize
 		document.querySelector('h2').innerHTML = "Tied - Game Over<br>\nTry Again!";
+			clearInterval(tt);
 }
 
 	}
