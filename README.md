@@ -4,16 +4,16 @@
 ## My Strategy
 * Use html:5 to draw tic tac toe lines, circles, and crosses.
 * Use x, y coordinates within canvas to set game board in constant time and for scalability.
-  * Game board can be virtually set via using only 2 functions (getCoords, getKey)
-    * Steps taken to do this
-      1. Get or set max width and height of drawing board
+  * Game board can be virtually set via using only 2 functions (getCoords, getKey).
+    * Steps taken to do this.
+      1. Get or set max width and height of drawing board.
           * In this case, use the window.innerWidth and window.innerHeight, and then minus off the desire paddings.
-      2. Get desired tile size
+      2. Get desired tile size.
           * Since 1 game board has 3 tiles, each tile size can be derived by taking the board width or height and dividing it by the number of tiles.
-          * This will give me a properly proportioned tile shape.
+          * This will enable the tile shape to be properly proportioned.
       3. Set the actual game board by using the derived tile size and multiplying it by the number of desired tiles.
           * Default is 3, but can be more by keying the number of times to expand in the input tag.
-      4. Once the actual game board for row (total number of tiles horizontally) and height (total number of tiles vertically) have been derived
+      4. Once the actual game board for row (total number of tiles horizontally) and height (total number of tiles vertically) have been derived.
           * The x1, y1 (0, 0) and x2, y2 (game board width, game board height) coordinates will be avaliable.
           * By referencing to the number of tiles (default 3) for each row, the first tile can be recognized as key 0, and the next as key 1, and so on ...
             * This behavior is similar to the indexes of an array.
@@ -21,16 +21,16 @@
             * This means that the direction starts from the top left position and then move towards the right.
             * Once having reached the last tile for that row, reset the position to the left and move down by 1 tile.
             * Then move right again.
-          * This will give you a virtual grid without having to write any lines of code.
+          * This will give a virtual grid without having to write any lines of code.
             ```
             | 0 | 1 | 2 |
             | 3 | 4 | 5 |
             | 6 | 7 | 8 |
             ```
-          * The value of 0 to 8 will be your keys or id for identifying that tile.
+          * The value of 0 to 8 will be the keys or id for identifying that tile.
       5. With these set of information available, by using the getCoords or getKey function, it will be possible to find the position of each tile.
-        * getCoords will use the key to find the top left x, y coordinates of the tile
-          * Once you know the top left coordinates, by adding the tilesize to the coordinates, you will know the bottown right coordinates, which gives you the area of that tile.
+        * getCoords will use the key to find the top left x, y coordinates of the tile.
+          * With the top left coordinates information, by adding the tilesize to the coordinates, the bottown right coordinates can be calculated, which gives the area of that tile.
           * This will then allow the manipulation of the tile.
             * Such as drawing images (circle, cross, etc), adding  event listeners,  etc.
           * To make this more dynamic, a separate array can be declared to save or reference any data by making use of the array index in accordance with the virtual grid.
