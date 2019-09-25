@@ -27,3 +27,13 @@ button {
     font-size: 1em;
     font-family: arial;
 }
+
+.resetDiv {
+    margin: 2em;
+    display: flex;
+    justify-content: center;
+}
+
+.reseted {
+    display: none;
+}

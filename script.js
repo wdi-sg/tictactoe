@@ -1,15 +1,7 @@
 console.log('linked')
 
-// let input = 0;
-
-// const checkInput = () => {
-//     for (let i=0; i>8; i++) {
-//         if (gameBoard[i].innerText !== undefined) {
-//             input++;
-//         }
-//     }
-//     return input;
-// }
+let key = true;
+let sign = 'O';
 
 let board = document.createElement('div');
 board.id = 'board';
@@ -22,17 +14,14 @@ for (let i=0; i<3; i++) {
         box.className = 'box'
         row.append(box);
         box.addEventListener('click', () => {
-            if (event.target.innerText === 'X') {
-                event.target.innerText = 'O';
-            } else if (event.target.innerText === 'O') {
-                event.target.innerText = 'X';
+
+            if (event.target.innerText === "") {
+                if (key) {sign = 'X'} else {sign = 'O'}
+                event.target.innerText = sign;
+                key = !key;
             } else {
-                event.target.innerText = 'X';
+                alert(`can't do that`);
             }
-            // if (checkInput()>4) {
-                // checkCol(event.target.id);
-                // checkRow(event.target.id);
-            // }
             checkResult(event.target.id);
         })
     }
@@ -40,31 +29,22 @@ for (let i=0; i<3; i++) {
 }
 document.body.append(board);
 
+let newDiv = document.createElement('div');
+newDiv.id = 'resetDiv'
+newDiv.className = 'resetDiv reseted'
+let reset = document.createElement('button');
+reset.innerText = 'Reset';
+reset.id = 'reset';
+document.body.append(newDiv);
+document.querySelector('#resetDiv').append(reset);
+
 let gameBoard = document.querySelectorAll('.box');
 
 const winMes = () => {
-    alert(`YOU WON!`);
+    alert(`YOU WON!`)
+    document.querySelector('#resetDiv').classList.remove('reseted');
+    document.querySelector('#resetDiv').classList.add('resetDiv');
 }
-
-// const checkCol = (x) => {
-//     if (x < 3) {
-//        if (gameBoard[x].innerText === gameBoard[x+3].innerText && gameBoard[x].innerText === gameBoard[x+6].innerText) {winMes()};
-//     } else if (x >= 6) {
-//         if (gameBoard[x].innerText === gameBoard[x-3].innerText && gameBoard[x].innerText === gameBoard[x-6].innerText) {winMes()};
-//     } else {
-//         if (gameBoard[x].innerText === gameBoard[x-3].innerText && gameBoard[x].innerText === gameBoard[x+3].innerText) {winMes()};
-//     }
-// }
-
-// const checkRow = (x) => {
-//     if (x%3 === 0) {
-//         if (gameBoard[x].innerText === gameBoard[x+1].innerText && gameBoard[x].innerText === gameBoard[x+2].innerText) {winMes()}
-//     } else if (x%3 === 1) {
-//         if (gameBoard[x].innerText === gameBoard[x-1].innerText && gameBoard[x].innerText === gameBoard[x+1].innerText) {winMes()};
-//     } else if (x%3 === 2) {
-//         if (gameBoard[x].innerText === gameBoard[x-1].innerText && gameBoard[x].innerText === gameBoard[x-2].innerText) {winMes()};
-//     }
-// }
 
 const checkResult = (y) => {
     let x = parseInt(y);
@@ -72,63 +52,31 @@ const checkResult = (y) => {
     for (let i=0; i<9; i++) {
         arr.push(gameBoard[i].innerText);
     }
-    if (x < 3 && arr[x+3] !== undefined && arr[x+6] !== undefined) {
+    if (x < 3 && arr[x+3] !== "" && arr[x+6] !== "") {
         if (arr[x] === arr[x+3] && arr[x] === arr[x+6]) {
-            winMes()
+            setTimeout(winMes, 1000)
         };
-    } else if (x >= 6 && arr[x-3] !== undefined && arr[x-6] !== undefined) {
-        if (arr[x] === arr[x-3] && arr[x] === arr[x-6]) {winMes()
+    } else if (x >= 6 && arr[x-3] !== "" && arr[x-6] !== "") {
+        if (arr[x] === arr[x-3] && arr[x] === arr[x-6]) {setTimeout(winMes, 1000)
         };
-    } else if (arr[x-3] !== undefined && arr[x+3] !== undefined) {
-        if (arr[x] === arr[x-3] && arr[x] === arr[x+3]) {winMes()
+    } else if (arr[x-3] !== "" && arr[x+3] !== "") {
+        if (arr[x] === arr[x-3] && arr[x] === arr[x+3]) {setTimeout(winMes, 1000)
         };
     }
 
-    if (x%3 === 0 && arr[x+1] !== undefined && arr[x+2] !== undefined) {
+    if (x%3 === 0 && arr[x+1] !== "" && arr[x+2] !== "") {
         if (arr[x] === arr[x+1] && arr[x] === arr[x+2]) {
-            winMes()}
-    } else if (x%3 === 1 && arr[x-1] !== undefined && arr[x+1] !== undefined) {
-        if (arr[x] === arr[x-1] && arr[x] === arr[x+1]) {winMes()};
-    } else if (x%3 === 2 && arr[x-1] !== undefined && arr[x-2] !== undefined) {
-        if (arr[x] === arr[x-1] && arr[x] === arr[x-2]) {winMes()};
+            setTimeout(winMes, 1000)}
+    } else if (x%3 === 1 && arr[x-1] !== "" && arr[x+1] !== "") {
+        if (arr[x] === arr[x-1] && arr[x] === arr[x+1]) {setTimeout(winMes, 1000)};
+    } else if (x%3 === 2 && arr[x-1] !== "" && arr[x-2] !== "") {
+        if (arr[x] === arr[x-1] && arr[x] === arr[x-2]) {setTimeout(winMes, 1000)};
     }
+
+    if (arr[2] === arr[4] && arr[4] === arr[6] && arr[4] !== "") {
+        setTimeout(winMes, 1000)
+    }
+
+    if (arr[0] === arr[4] && arr[4] === arr[8] && arr[4] !== "") {
+        setTimeout(winMes, 1000)}
 }
-
-
-
-
-
-// check row
-// const checkRow = () => {
-//     for (let i=0; i<3; i++) {
-//         if (gameBoard[i][0] === gameBoard[i][1] && gameBoard[i][0] === gameBoard[i][2]) {
-//             return true;
-//         } else {
-//             return false;
-//         };
-//     };
-// };
-
-// const checkCol = () => {
-//     for (let i=0; i<3; i++) {
-//         if (gameBoard[0][i] === gameBoard[1][i] && gameBoard[0][i] === gameBoard[2][i]) {
-//             return true;
-//         } else {
-//             return false;
-//         };
-//     };
-// };
-
-// const winCon = () => {
-//     if (gameBoard[0][2] === gameBoard[1][1] && gameBoard[0][2] === gameBoard[2][0]) {
-//         console.log(winMes);
-//     } else if (gameBoard[0][0] === gameBoard[1][1] && gameBoard[2][2] === gameBoard[0][0]) {
-//         return winMes;
-//     } else if (checkRow()) {
-//         return winMes;
-//     } else if (checkCol()) {
-//         return winMes;
-//     } else {
-
-//     }
-// }
