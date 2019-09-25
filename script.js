@@ -29,7 +29,8 @@ function createBoard(){
         divContainer.appendChild(box);
         }
     }
-}
+};
+// setTimeout(createBoard, 500);
 createBoard();
 
 //reset button to appear at end of game
@@ -80,18 +81,19 @@ function checkWin() {
 
         //check if columns match
         for (let j=0; j<boardSquares; j++){
-            if (board[i][j] === board[i+1][j] && board[0][j] === board[i+2][j] && board[i+1][j]!==null) //WHY IS THERE AN ERROR ON THIS LINE(but everything still works)
-            {
-                function alertColumn(){
-                    alert ("OMG, you won through the cunning use of COLUMNS!")
-                }
+            squareComparison(i,j);
+                // if (board[i][j] === board[i+1][j] && board[0][j] === board[i+2][j] && board[i+1][j]!==null) //WHY IS THERE AN ERROR ON THIS LINE(but everything still works)
+                // {
+                //     function alertColumn(){
+                //         alert ("OMG, you won through the cunning use of COLUMNS!")
+                //     }
 
-                setTimeout(alertColumn,150)
-                console.log("WOW COLUMN")
-                youWon = true;
-                createReset();
+                //     setTimeout(alertColumn,150)
+                //     console.log("WOW COLUMN")
+                //     youWon = true;
+                //     createReset();
 
-             }
+                // }
         }//end inner loop
   }//end outer loop
 }//end of checkWin()
@@ -106,38 +108,51 @@ function boxListen(){
 boxListen();
 
 // add X or O to board on click
-function addItem(){
-    console.log( counter );
+function addItem(event){
+    console.log( event, counter );
 
     var clickedBox = event.target;
     console.log("Click worked");
 
+    var boxID = clickedBox.getAttribute("id");
+    var idArray = boxID.split("");
+    var firstCoord = idArray[0];
+    var secondCoord = idArray[1];
+
+    //Adds X or O to the screen board
+     //puts  X or O into the board array at location which corresponds to clicked box ID numbers
     if (clickedBox.innerText !== "X" && clickedBox.innerText !== "O") {
         if (counter === 0 || counter%2 === 0){
             clickedBox.innerText = "X"
+            board[idArray[0]][idArray[1]] = "X"
             counter = counter+1;
         } else {
            clickedBox.innerText = "O"
+            board[idArray[0]][idArray[1]] = "O"
            counter = counter+1;
         }
     } else {
         alert ("That spot is taken!")
-    }
-
-// box that is clicked has corresponding location filled in board
-    for (let i =0; i<boardSquares; i++){
-        for (let j=0; j<boardSquares; j++){
-            let box = document.getElementById(`${i}${j}`);
-
-            if (box.innerText === "X"){
-                board[i][j] = "X";
-            } else if (box.innerText === "O"){
-                board[i][j] = "0"
-            console.log(board)
-            }
-        }
-    }
+    };
+    console.log(board)
     console.log("checking win")
     checkWin();
+}
 
+
+var squareComparison = function(row, column){
+
+    if (
+            board[row][column] === board[row+1][column]
+            && board[row][column] === board[row+2][column]
+            && board[row+1][column]!==null
+        )
+                {
+                    // setTimeout(alertColumn,150)
+                    console.log("WOW COLUMN")
+                    youWon = true;
+                    // createReset();
+                }else{
+                    console.log("WOW no...")
+                }
 }
