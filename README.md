@@ -22,9 +22,11 @@
             * Once having reached the last tile for that row, reset the position to the left and move down by 1 tile.
             * Then move right again.
           * This will give you a virtual grid without having to write any lines of code.
+            ```
             | 0 | 1 | 2 |
             | 3 | 4 | 5 |
             | 6 | 7 | 8 |
+            ```
           * The value of 0 to 8 will be your keys or id for identifying that tile.
       5. With these set of information available, by using the getCoords or getKey function, it will be possible to find the position of each tile.
         * getCoords will use the key to find the top left x, y coordinates of the tile
