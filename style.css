@@ -17,7 +17,7 @@ body {
     justify-content: center;
     margin: 0 auto;
     height: 100vh;
-    width: 60vw;
+    width: 1000px;
 }
 
 .box1,
@@ -28,7 +28,8 @@ body {
 .box6,
 .box7,
 .box8,
-.box9 {
+.box9,
+.box {
  
     background-color: white;
 }
