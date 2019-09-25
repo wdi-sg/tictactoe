@@ -39,7 +39,7 @@
             * Therefore, if only the bottom right coordinates are available, simply take the value of the each coordinate and have it minus the tile size to get the top left coordinates value.
 * Use regex to set and check winning condiitons.
   * Since this concept is completely virtual, a separate array or object will be required to be declared if some sort of logic is to be applied.
-    * Such as assigning a "X" string to the index of an array with the tile key as the index.
+    * Such as assigning a "X" string as the value of the index of an array with the tile key as the index.
       * In order to achieve such dynamic reassignment of values to the desired index, an empty dynamic array has to be created.
         * This is done via the following.
           > const myArray = new Array(lastKey).fill("-");
