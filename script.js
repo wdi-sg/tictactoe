@@ -70,10 +70,6 @@ var checkWinner = function() {
     declareWinner();
   } else if (boxThree.innerHTML != "0" && boxThree.innerHTML === boxSix.innerHTML && boxThree.innerHTML === boxNine.innerHTML) {
     declareWinner();
-  } else if (boxTwo.innerHTML != "0" && boxTwo.innerHTML === boxFive.innerHTML && boxTwo.innerHTML === boxEight.innerHTML) {
-    declareWinner();
-  } else if (boxThree.innerHTML != "0" && boxThree.innerHTML === boxFive.innerHTML && boxThree.innerHTML === boxSeven.innerHTML) {
-    declareWinner();
   } else {}
 }
 
