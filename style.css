@@ -8,4 +8,15 @@
   width: 100px;
   border: 1px solid black;
   display: inline-block;
+  line-height: 100px;
+  color: transparent;
+  font-size: 50px;
+}
+
+#output {
+  display: block;
+  width: 50%;
+  margin: 0 auto;
+  font-size: 50px;
+  text-align: center;
 }
