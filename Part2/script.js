@@ -11,7 +11,7 @@ var scoreBoard = [
 
 
 
-//attempted game start button. also failed
+// attempted game start button. also failed
 
 // var firstClick = function(event){
 //     console.log("game begins");
@@ -101,7 +101,7 @@ var firstClick = function(){
     row3.appendChild(button);
 };
 
-
+firstClick();
 
 
 var highLight = function(){
