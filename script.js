@@ -5,10 +5,6 @@ var stateOfBoard = [
     ["20", "21", "22"]
 ];
 
-//.slice() elements to obtain arrays of results i.e. vertical rows, horizontal rows, diagonals
-//.every() retrieved arrays if is true (i.e. all are same)
-//check which player wins
-
 //to alternate entry
 var player = 1;
 var tictac;
@@ -35,6 +31,11 @@ function gameWon(check) {
 
     }
 }
+
+//check results of rows
+//.slice() elements to obtain arrays of results of columns
+//.every() retrieved arrays if is true (i.e. all are same)
+//check which player wins
 
 function checkResult() {
 
@@ -107,6 +108,8 @@ function updateStateOfBoard() {
 //  event.target.innerHTML = "test";
 
 var toFill = function() {
+
+    //alert if occupied square is selected
     if (this.innerHTML === "X" || this.innerHTML === "O") {
         alert("Error!");
         return;
