@@ -10,26 +10,28 @@ var columns = [];
 var diagonals = [];
 var sets = [];
 
-
+// create board object
 var createBoardObj = function(boardSize) {
-    var newboard = [];
+    var newBoard = [];
 
     for(var i = 0; i < boardSize; i++) {
         var row = [];
         for(var j = 0; j < boardSize; j++){
             row.push(null);
         }
-        newboard.push(row);
+        newBoard.push(row);
     }
-    return newboard;
+    return newBoard;
 };
 
+// get rows
 var getRows = function(board) {
     var rows = [];
     board.forEach(row => rows.push(row));
     return rows;
 };
 
+// get columns
 var getColumns = function(board) {
     var columns = [];
     // add empty arrays to columns
@@ -49,18 +51,21 @@ var getColumns = function(board) {
     return columns;
 };
 
+// turn board into single array
 var convertBoardToList = function(board) {
     var list = [];
     board.forEach(row => row.forEach(square => list.push(square)));
     return list;
 };
 
+// create a mirrored version of the board
 var getMirroredBoard = function(board) {
     var mirroredBoard = [];
     board.forEach(row => mirroredBoard.push( row.slice().reverse() ));
     return mirroredBoard;
 };
 
+// get a single diagonal
 var getDiagonal = function(list, board) {
     var diagonal = [];
     for (var i = 0; i < list.length; i += boardSize + 1) {
@@ -69,6 +74,7 @@ var getDiagonal = function(list, board) {
     return diagonal;
 };
 
+// get all the 2 diagonals
 var getDiagonals = function(board) {
     var diagonals = [];
 
@@ -86,6 +92,7 @@ var getDiagonals = function(board) {
     return diagonals;
 }
 
+// get all the sets, a set is a row or a column or a diagonal
 var getSets = function(board) {
     var rows = getRows(board);
     var columns = getColumns(board);
@@ -96,13 +103,17 @@ var getSets = function(board) {
     return sets;
 }
 
+// check for winner
 var checkWinner = function(sets, markerType, board) {
     var markerA = markerType.A;
     var markerB = markerType.B;
 
+    // return an array after filtering it for a markerType
+    // this array contains the number of markers in that set
     var setA = sets.map(set => set.filter(square => square === markerA).length);
     var setB = sets.map(set => set.filter(square => square === markerB).length);
 
+    // for a boardSize of 3, setA should contain a number === boardSize in order to win
     if (setA.includes(boardSize)) {
         return markerA;
     } else if (setB.includes(boardSize)) {
@@ -110,6 +121,7 @@ var checkWinner = function(sets, markerType, board) {
     } else { return "no winner"; }
 };
 
+// add marker
 var addMarker = function(event) {
 
     if (marker === null || marker === markerType.A) {
@@ -176,6 +188,7 @@ var createBoard = function() {
     boardSizeLabel.remove();
 };
 
+// get board size from input
 var getBoardSize = function(event) {
     boardSize = parseInt(event.target.value);
     console.log("board size: ", boardSize);
