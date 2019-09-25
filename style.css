@@ -16,7 +16,7 @@ button{
 main{
 	width: 500px;
 	height: 500px;
-	margin: 20vh auto;
+	margin: 10vh auto;
 	padding: 10px;
 	border: 2px solid red;
 	display: none;
@@ -30,13 +30,19 @@ div{
 	display: none;
 }
 
+.timer{
+	display: inline-block;
+	align-items: center;
+	margin: 0;
+}
+
 #start{
 	display: block;
 	text-align: center;
 	vertical-align: middle;
 	border: none;
 	font-size: 30px;
-	margin: 45vh auto 30px;
+	margin: 20vh auto 30px;
 	height: 100px;
 	width: 10%;
 }
