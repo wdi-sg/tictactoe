@@ -44,13 +44,22 @@ var location = event.target.id;
 console.log(location)
 recordPosition(playerId, location);
 changeBox (playerId, location)
-changePlayer (currentPlayer);
+// change the player
+document.querySelector('h2').innerHTML = "Your turn "+ currentPlayer + "\n<br>Good Luck!";
 checkForWinner();
 // game over
-if (playCount=== 9){
-	// finalize
-		document.querySelector('h2').innerHTML = "Game Over";
 }
+
+var gameOver = function (winner) {
+	var score = players[winner].score;
+	score ++;
+	players[winner].score = score;
+	winner++;
+	console.log ("winner player: " +winner  +" score:"+ score)
+		document.querySelector('h2').innerHTML = "WINNER, WINNER, CHICKEN DINNER!\n<br>Player " + winner + " has won";
+ /// lock up the board
+ 	document.getElementsByClassName('board')[0].style.pointerEvents = 'none';
+ return true;
 }
 
 var changeBox = function (playerId, location) {
@@ -68,9 +77,9 @@ var changeBox = function (playerId, location) {
 
 }
 
-var changePlayer = function (currentPlayer) {
-	document.querySelector('h2').innerHTML = "Your turn "+ currentPlayer;
-}
+// var changePlayer = function (currentPlayer) {
+// 	document.querySelector('h2').innerHTML = "Your turn "+ currentPlayer;
+// }
 
 var recordPosition = function (playerId, location) {
 // update object for the player
@@ -134,53 +143,48 @@ box9.addEventListener('click', boxClicked );
 
 
 
+
+
 var checkForWinner = function (){
 
-for (var i = 0; i <= 1; i++) {
-if (players[i].row1[0] === "X" && players[i].row1[1] === "X" && players[i].row1[2] === "X"){
-	console.log("player " + i + " won")
-} else if (players[i].row2[0] === "X" && players[i].row2[1] === "X" && players[i].row2[2] === "X"){
-	console.log("player " + i + " won")
-} else if (players[i].row3[0] === "X" && players[i].row3[1] === "X" && players[i].row3[2] === "X"){
-	console.log("player " + i + " won")
-}
-// check verticals
- else if (players[i].row1[0] === "X" && players[i].row2[0] === "X" && players[i].row3[0] === "X"){
-	console.log("player " + i + " won")
-}  else if (players[i].row1[1] === "X" && players[i].row2[1] === "X" && players[i].row3[1] === "X"){
-	console.log("player " + i + " won")
-}  else if (players[i].row1[2] === "X" && players[i].row2[2] === "X" && players[i].row3[2] === "X"){
-	console.log("player " + i + " won")
-} 
-// check diagonals
-else if (players[i].row1[0] === "X" && players[i].row2[1] === "X" && players[i].row3[2] === "X"){
-	console.log("player " + i + " won")
-} else if (players[i].row1[2] === "X" && players[i].row2[1] === "X" && players[i].row3[0] === "X"){
-	console.log("player " + i + " won")
-} else {
-	// game still ongoing
-}
-}
-	// HORIZONTAL
-	//  R0,0 R0,1 R0,2
-	//  R1,0 R1,1 R1,2
-	//  R2,0 R2,1 R2,2
-	// 1,2,3
-	// 4,5,6
-	// 7,8,9
-	// VERTICAL
-	//  R0,0 R1,0 R2,0
-	//  R0,1 R1,1 R2,1
-	//  R0,2 R1,2 R2,2
-	// 1,4,7
-	// 2,5,8
-	// 3,6,9
+	//loop through the 2 players
+	for (var i = 0; i <= 1; i++) {
+		// check horizontals
+		if (players[i].row1[0] === "X" && players[i].row1[1] === "X" && players[i].row1[2] === "X"){
+			console.log("player " + i + " won horizontal")
+			// add to winner score and end game...
+			return gameOver(i);
 
-	// DIAGONAL
-	//  R0,0 R1,1 R2,2
-	//  R0,2 R1,1 R2,0
-	// 1,5,9
-	// 7,5,3
+		} else if (players[i].row2[0] === "X" && players[i].row2[1] === "X" && players[i].row2[2] === "X"){
+			console.log("player " + i + " won horizontal")
+			return gameOver(i);
+		} else if (players[i].row3[0] === "X" && players[i].row3[1] === "X" && players[i].row3[2] === "X"){
+			console.log("player " + i + " won horizontal")
+			return gameOver(i);
+		}
+		// check verticals
+		 else if (players[i].row1[0] === "X" && players[i].row2[0] === "X" && players[i].row3[0] === "X"){
+			console.log("player " + i + " won vertical")
+			return gameOver(i);
+		}  else if (players[i].row1[1] === "X" && players[i].row2[1] === "X" && players[i].row3[1] === "X"){
+			console.log("player " + i + " won vertical")
+			return gameOver(i);
+		}  else if (players[i].row1[2] === "X" && players[i].row2[2] === "X" && players[i].row3[2] === "X"){
+			console.log("player " + i + " won vertical")
+			return gameOver(i);
+		} 
+		// check diagonals
+		else if (players[i].row1[0] === "X" && players[i].row2[1] === "X" && players[i].row3[2] === "X"){
+			console.log("player " + i + " won vertical")
+			return gameOver(i);
+		} else if (players[i].row1[2] === "X" && players[i].row2[1] === "X" && players[i].row3[0] === "X"){
+			console.log("player " + i + " won vertical")
+			return gameOver(i);
+		} else if (playCount=== 9){
+	// finalize
+		document.querySelector('h2').innerHTML = "Tied - Game Over<br>\nTry Again!";
+}
 
+	}
 
 }
