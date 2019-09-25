@@ -6,6 +6,9 @@ var currentPlayer = "Player 1";
 var playerId = 0;
 var playCount = 0;
 
+//set number of seconds to countdown
+var timerDefault = 10;
+
 var players = [
 {
 	player: "player1",
@@ -26,11 +29,21 @@ var players = [
 ];
 
 
+var countDown = function () {
+	setInterval(countDisplay, 1000); 
+}
 
-
+var countDisplay = function () {
+if (timerDefault >= 0 ) {
+	console.log ('counter' + timerDefault)
+	document.getElementById('theTimer').innerHTML = timerDefault;
+}
+	timerDefault--;
+}
 var boxClicked = function (event) {
-		console.log("pressed:" + event);
-		playCount++;
+	clearInterval();
+	console.log("pressed:" + event);
+	playCount++;
 
 if (currentPlayer === "Player 1") {
 	currentPlayer = "Player 2";
@@ -39,6 +52,9 @@ if (currentPlayer === "Player 1") {
 	playerId = 1;
 	currentPlayer = "Player 1"
 }
+
+timerDefault = 10;
+countDown();
 console.log(currentPlayer)
 var location = event.target.id;
 console.log(location)
@@ -59,6 +75,7 @@ var gameOver = function (winner) {
 		document.querySelector('h2').innerHTML = "WINNER, WINNER, CHICKEN DINNER!\n<br>Player " + winner + " has won";
  /// lock up the board
  	document.getElementsByClassName('board')[0].style.pointerEvents = 'none';
+ 	clearInterval(countDown);
  return true;
 }
 
@@ -175,10 +192,10 @@ var checkForWinner = function (){
 		} 
 		// check diagonals
 		else if (players[i].row1[0] === "X" && players[i].row2[1] === "X" && players[i].row3[2] === "X"){
-			console.log("player " + i + " won vertical")
+			console.log("player " + i + " won diagonal")
 			return gameOver(i);
 		} else if (players[i].row1[2] === "X" && players[i].row2[1] === "X" && players[i].row3[0] === "X"){
-			console.log("player " + i + " won vertical")
+			console.log("player " + i + " won diagonal")
 			return gameOver(i);
 		} else if (playCount=== 9){
 	// finalize
