@@ -13,6 +13,37 @@ var jsonStringX = JSON.stringify(["X", "X", "X"])
 var jsonStringO = JSON.stringify(["O", "O", "O"])
 var boardSquares = 3; //consider whether to change on user input
 var counter = 0;
+var playerOne;
+var playerTwo;
+
+function firstName(){
+      document.querySelector("#pOne").addEventListener
+      ('keypress', function(event) {if (event.key === "Enter"){
+        var playerName = document.createElement("h3");
+        var inputName = event.target.value;
+        playerName.innerText = inputName;
+        var nameDiv = document.querySelector("#firstName");
+        var inputBox = document.querySelector("#pOne");
+        nameDiv.removeChild(inputBox);
+        nameDiv.appendChild(playerName);
+      }
+    })
+}
+
+function secondName(){
+      document.querySelector("#pTwo").addEventListener
+      ('keypress', function(event) {if (event.key === "Enter"){
+        var playerName = document.createElement("h3");
+        var inputName = event.target.value;
+        playerName.innerText = inputName;
+        var nameDiv = document.querySelector("#secondName");
+        var inputBox = document.querySelector("#pTwo");
+        nameDiv.removeChild(inputBox);
+        nameDiv.appendChild(playerName);
+      }
+    })
+
+}
 
 //creates initial grid for board
 function createBoard(){
@@ -30,6 +61,9 @@ function createBoard(){
         divContainer.appendChild(box);
         }
     }
+
+    firstName();
+    secondName()
 };
 // setTimeout(createBoard, 500);
 createBoard();
@@ -140,9 +174,6 @@ function addItem(event){
     console.log("checking win")
     checkWin();
 }
-
-
-
 
 function checkColumn(){
 

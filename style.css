@@ -1,5 +1,6 @@
 h1{
-	text-align: center;
+	display:flex;
+	justify-content: center
 }
 
 button{
@@ -11,8 +12,28 @@ button{
 	background-color: red;
 }
 
-h2{
-	text-align: center;
+h2 {
+	display:flex;
+	justify-content: center;
+	margin: 0;
+}
+
+div {
+	display:flex;
+	justify-content: center;
+	margin: 0;
+}
+
+h3{
+	font-family: 'Mansalva', cursive;
+}
+
+.one {
+	color: red;
+}
+
+.two {
+	color: blue;
 }
 
 #container {
