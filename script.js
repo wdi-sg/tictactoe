@@ -23,9 +23,9 @@ var gameStage = 0;
 
 var doSomething = function (event) {
     console.log(gameStage);
-        if (gameStage%2 === 0) {
+        if (gameStage%2 === 0 && gameStage < 9) {
             event.target.innerText = "X";
-        } else if (gameStage%2 === 1) {
+        } else if (gameStage%2 === 1 && gameStage < 9) {
             event.target.innerText = "O";
     }
     gameStage ++;
@@ -34,18 +34,3 @@ var doSomething = function (event) {
 //ran attach listener function
 
 attachListenersToBoard();
-
-
-// var gameStage = 0
-// var nextGameStage = gameStage ++;
-// var previousGameStage = gameStage --;
-
-
-//create function for running game
-
-// var runningGame = function () {
-//     console.log("game is up");
-//     if(gameStage === 0) {
-//         event.target.innerText = "O";
-//     }
-// };
