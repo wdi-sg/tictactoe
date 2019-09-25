@@ -34,35 +34,29 @@ for(var row = 0; row < 3; row++) {
 /*Event listener for user's click on each box*/
 var userClickCount = 1;
 
-// Function to display X or O to user on the game square
+// Function to display X or O to user on the game square based on which square the user clicked on
 var displayResult = function(event) {
-
-    /*Identify each game squares in the game board array*/
-    // Check if this is the element that is clicked on
-    /*gameSquareLocation[0][0] = "Row 1 Column 1";
-    gameSquareLocation[0][1] = "Row 1 Column 2";
-    gameSquareLocation[0][2] = "Row 1 Column 3";
-
-    gameSquareLocation[1][0] = "Row 2 Column 1";
-    gameSquareLocation[1][1] = "Row 2 Column 2";
-    gameSquareLocation[1][2] = "Row 2 Column 3";
-
-    gameSquareLocation[2][0] = "Row 3 Column 1";
-    gameSquareLocation[2][1] = "Row 3 Column 2";
-    gameSquareLocation[2][2] = "Row 3 Column 3";*/
 
     console.log("User click count is " + userClickCount);
 
     // If count is odd number, show X
     // If count is even number, show O
         if (userClickCount % 2 !== 0) {
-            this.innerHTML = "X: This box in position " + gameSquareLocation.indexOf(this);
+
+            this.innerHTML = "X";
+            winningConditions();
+            console.log("X: This box in position " + gameSquareLocation.indexOf(this));
+
         } else {
-            this.innerHTML = "O: This box in position " + gameSquareLocation.indexOf(this);
+            this.innerHTML = "O";
+            console.log("O: This box in position " + gameSquareLocation.indexOf(this));
         }
 
     // Increase user click count after the player clicks a box
     userClickCount = userClickCount + 1;
+
+    // Call the function to check for winning player
+    winningConditions();
 
 };
 
@@ -78,3 +72,24 @@ for(var i = 0; i < squareBoxes.length; i++) {
 
     squareBoxes[i].addEventListener("click",displayResult);
 }
+
+var result = "";
+
+// Function to determine win/lose
+var winningConditions = function() {
+
+    if(gameSquareLocation[0].innerHTML === gameSquareLocation[1].innerHTML && gameSquareLocation[1].innerHTML === gameSquareLocation[2].innerHTML) {
+
+        result = "First Row: You Win!";
+        console.log(result);
+
+    } else {
+
+        result = "nothing";
+
+    }
+
+
+
+
+};
