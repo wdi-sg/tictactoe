@@ -97,13 +97,18 @@ var countDown = function () {
 }
 
 var countDisplay = function () {
+		timerChange--;
 if (timerChange >= 0 ) {
 	// console.log ('counter' + timerChange)
 	document.getElementById('theTimer').innerHTML = timerChange;
+	if (timerChange <=4) {
+	document.getElementById('theTimer').style.color = "red";
+	}
 }
-	timerChange--;
+
 
 	if (timerChange ===0 ){ 
+			document.getElementById('theTimer').innerHTML = "BOT";
 autoPlay();
 	}
 }
@@ -120,7 +125,8 @@ if (currentPlayer === "Player 1") {
 	currentPlayer = "Player 1"
 }
 
-timerChange =timerDefault;
+timerChange =timerDefault + 1;
+document.getElementById('theTimer').style.color = "black";
 countDown();
 console.log(currentPlayer)
 var location = event.target.id;
