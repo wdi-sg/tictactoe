@@ -1,0 +1,15 @@
+
+
+.game-square{
+	border: solid;
+	border-color: black;
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+}
+
+/*.game-square:after
+{
+    content: '.';
+    visibility: hidden;
+}*/
