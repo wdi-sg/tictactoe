@@ -24,12 +24,13 @@ var title = document.querySelector('.title')
 var startGame = function () {
 
     button.addEventListener('click', function () {
-      
+
         grid.classList.remove('disappear')
         button.classList.add('disappear')
+
         gameRun = true;
     })
-    
+
 
 }
 
@@ -57,7 +58,7 @@ var loopBox = function () {
                     box[i][j] = "X"
                     checkWin()
                     console.log(playerTurn)
-                } 
+                }
             })
         }
 
@@ -111,8 +112,8 @@ var end = function () {
 var restartGame = function () {
     reset.addEventListener('click', function () {
         location.reload()
-     
-})
+
+    })
 }
 
 
