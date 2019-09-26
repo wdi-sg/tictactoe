@@ -20,7 +20,7 @@ function startGame(){
     gameBoard = Array.from(Array(9).keys());
     for (var i = 0; i < square.length; i++){
         square[i].innerText = "";
-        square[i].addEventListener("click", checked, false);
+        square[i].addEventListener("click", checked, {once: true});
     }
 }
 //tracks no.of player clicks
@@ -28,19 +28,19 @@ var counter = 0;
 
 //Assign click event target to individual spans
 function checked(event){
-    var squareIndividual = event.target;
+    var square = event.target;
     //checks counter for even or odd clicks
         //console.log("before conditional" , counter);
     //if click is even, insert text to span as 'X'
     if (counter % 2 === 0) {
-        squareIndividual.textContent = "X";
+        square.textContent = "X";
     //if click is odd insert text to span as 'O'
     }   else if (counter % 2 !== 0) {
-        squareIndividual.textContent = "O";
+        square.textContent = "O";
     }
     // document.getElementById(squareIndividual).removeEventListener("click", checked);
     counter++;
-    console.log(squareIndividual.id);
+    console.log(square.id);
         //console.log("after conditional" , counter);
 };
 //loops through the whole var square array and assign event lister & 'checked' function to it
