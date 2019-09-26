@@ -5,25 +5,6 @@ console.log("Hello js!");
 //   else
 //   player turn is o
 
-
-var gameRow1 = document.createElement("div");
-var gameRow2 = document.createElement("div");
-var gameRow3 = document.createElement("div");
-
-var gameSquare00 = document.createElement("span");
-var gameSquare01 = document.createElement("span");
-var gameSquare02 = document.createElement("span");
-
-var gameSquare10 = document.createElement("span");
-var gameSquare11 = document.createElement("span");
-var gameSquare12 = document.createElement("span");
-
-var gameSquare20 = document.createElement("span");
-var gameSquare21 = document.createElement("span");
-var gameSquare22 = document.createElement("span");
-
-
-
 var playerTurn = "X";
 
 var clickSomething = function(event) {
