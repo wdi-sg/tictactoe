@@ -1,0 +1,53 @@
+body{
+	background-color: black;
+	margin:  15% auto;
+}
+
+.player1{
+	background-color: black;
+	color: white;
+	width: 100px;
+	position: absolute;
+	top: 115px;
+	left: 25%;
+	height: 40px;
+	font-family: impact;
+	font-style: italic;
+}
+.player2{
+	background-color: black;
+	color: white;
+	width: 100px;
+	position: absolute;
+	top: 115px;
+	left: 66%;
+	height: 40px;
+	font-family: impact;
+	font-style: italic;
+}
+
+p1{
+	color: red;
+}
+
+p2{
+	color: red;
+}
+.gamesquare{
+	border: solid;
+	border-color: black;
+	background-color: white;
+	font-size: 30px;
+	color: red;
+	text-align: center;
+	display: block;
+	width: 50px;
+	height: 50px;
+}
+
+.game-row{
+	width: 500px;
+	display: flex;
+	margin: auto;
+	justify-content: center;
+}
