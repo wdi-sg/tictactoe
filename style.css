@@ -122,4 +122,5 @@ p{
   opacity: 0;
   -webkit-transition: opacity 1000ms linear;
   transition: opacity 1000ms linear;
+  transition: 0.8s
 }
