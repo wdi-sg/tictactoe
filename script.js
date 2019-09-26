@@ -33,6 +33,8 @@ for(var row = 0; row < 3; row++) {
 
 /*Event listener for user's click on each box*/
 var userClickCount = 1;
+var xResult = [];
+var oResult = [];
 
 // Function to display X or O to user on the game square based on which square the user clicked on
 var displayResult = function(event) {
@@ -44,21 +46,33 @@ var displayResult = function(event) {
         if (userClickCount % 2 !== 0) {
 
             this.innerHTML = "X";
-            winningConditions();
+
+            xResult.push(gameSquareLocation.indexOf(this));
+            xResult.sort();
+
             console.log("X: This box in position " + gameSquareLocation.indexOf(this));
 
         } else {
             this.innerHTML = "O";
+
+            oResult.push(gameSquareLocation.indexOf(this));
+            oResult.sort();
+
             console.log("O: This box in position " + gameSquareLocation.indexOf(this));
         }
 
     // Increase user click count after the player clicks a box
     userClickCount = userClickCount + 1;
 
-    // Call the function to check for winning player
-    winningConditions();
+    // Call the function to check for winning player only if there is 3 items in result array
+    if(xResult.length === 3 || oResult.length === 3) {
+        winningConditions();
+    }
+
 
 };
+
+
 
 // select a set of elements
 var squareBoxes = document.querySelectorAll(".game-square");
@@ -71,25 +85,14 @@ for(var i = 0; i < squareBoxes.length; i++) {
     gameSquareLocation.push(squareBoxes[i]);
 
     squareBoxes[i].addEventListener("click",displayResult);
-}
 
-var result = "";
+}
 
 // Function to determine win/lose
 var winningConditions = function() {
 
     if(gameSquareLocation[0].innerHTML === gameSquareLocation[1].innerHTML && gameSquareLocation[1].innerHTML === gameSquareLocation[2].innerHTML) {
-
-        result = "First Row: You Win!";
-        console.log(result);
-
-    } else {
-
-        result = "nothing";
-
+        alert("Win");
     }
-
-
-
 
 };
