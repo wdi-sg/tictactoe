@@ -73,27 +73,29 @@ var loopBox = function () {
 var checkWin = function () {
     // Checking Diagonal from right to left
     if (box[0][2] === box[1][1] && box[0][2] === box[2][0]) {
-        title.innerHTML = "You Won"
+        var OorX2 = box[0][2]
+        title.innerHTML = `Player ${OorX2} Has Won`
         setTimeout(end, 500)
     }
 
     for (i = 0; i < box.length; i++) {
         //    Check the rows for a win
+        var OorX = box[i][0]
         if (box[i][0] === box[i][1] && box[i][0] === box[i][2]) {
-            title.innerHTML = "You Won"
+            title.innerHTML = ` Player ${OorX} has Won`
             setTimeout(end, 500)
 
         }
         // Checking Diagonal from left to right for a Win
         if (box[i][i] === box[i + 1][i + 1] && box[i][i] === box[i + 2][i + 2]) {
-            title.innerHTML = "You Won"
+            title.innerHTML = ` Player ${OorX} has Won`
             setTimeout(end, 500)
         }
 
         for (let j = 0; j < 3; j++) {
             // Checking the Columns for a Win
             if (box[i][j] === box[i + 1][j] && box[i][j] === box[i + 2][j]) {
-                title.innerHTML = "You Won"
+                title.innerHTML = ` Player ${OorX} has Won`
                 setTimeout(end, 500)
             }
 
