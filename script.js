@@ -25,10 +25,27 @@ tictactoe = {
     i: 8
 }
 
+var startButton = document.querySelector('button');
+
+function startGame() {
+    startButton.classList.remove('show');
+    startButton.classList.add('hide');
+    ticboard.classList.remove('hide')
+    ticboard.classList.add('show')
+}
+
+startButton.addEventListener('click', startGame)
+
+var resetButton = document.getElementById('restart')
+
+function reset() {
+    location.reload();
+}
+
+resetButton.addEventListener('click', reset)
+
 var playerTurn = 0;
 i = 0;
-
-
 
 var gameSquares = document.getElementsByClassName('game-square');
 //changes colour for the square if clicked
