@@ -9,8 +9,10 @@ var playerTwoTurn = false;
 var gameBoard = document.querySelector('#game-board');
 // gameBoardArray[row][column] = 1 or 2 (player1 or player 2)
 var gameBoardArray = [];
+// Log what the last move is by putting the id in.
+var lastMove = [];
 
-
+// Adding to all the game squares 'click' functionality
 var addBoardSquareEventListeners = function() {
 var boardSquares = document.querySelectorAll('.board-square');
     for (let i = 0; i < boardSquares.length; i++) {
@@ -18,8 +20,11 @@ var boardSquares = document.querySelectorAll('.board-square');
     }
 }
 
+
+// Create a board of certain width or height. If you input only one number it's a square.
+// Each square ('board-square') has an ID that is "x y" - corresponding to the index in the 2D array gameBoardArray.
 var createGameGrid = function(inputWidth, inputHeight=inputWidth) {
-    console.log("Width: " + inputWidth + " Height: " + inputHeight);
+    // console.log("Width: " + inputWidth + " Height: " + inputHeight);
     removeAllChildElements(gameBoard);
     gameBoardArray = [];
     for (let i = 0; i < inputHeight; i++) { // generate a row
@@ -34,7 +39,7 @@ var createGameGrid = function(inputWidth, inputHeight=inputWidth) {
             gameBoardArray[i][j] = null;
         }
         gameBoard.appendChild(gameRow);
-        console.log(gameBoardArray);
+        // console.log(gameBoardArray);
     }
 
     addBoardSquareEventListeners();
@@ -46,6 +51,7 @@ var removeAllChildElements = function(inputElement) {
     }
 }
 
+// This function is called when you click a board square.
 var clickBoardSquare = function(event) {
     if (this.children.length) { // if there's already an image then return.
         return;
@@ -69,6 +75,7 @@ var clickBoardSquare = function(event) {
     playerTwoTurn = !playerTwoTurn
 };
 
+// Extract the array indices from the board square Id and return it.
 var boardSquareUpdate = function(idString) {
     arrayCoords = idString.split(" ");
     gameBoardArray[arrayCoords[0]][arrayCoords[1]] = playerTwoTurn ? "2" : "1";
@@ -76,9 +83,106 @@ var boardSquareUpdate = function(idString) {
     checkWinCondition();
 }
 
-var checkWinCondition = function(length=3) {
-    console.log("checking to see if a player has won");
+// Default length of 3, but you'll want to scan in 4 directions for a win condition.
+var checkWinCondition = function(inputLength=3) {
+    // console.log("checking to see if a player has won");
+    // We only check the player who just played.
+    var playerValueToTest = playerTwoTurn ? "2" : "1";
+    var counter = 0;
+
+    // Check rows. -
+    for (let row = 0; row < gameBoardArray.length; row++) { 
+        const rowElement = gameBoardArray[row];
+        for (let col = 0; col < (rowElement.length - (inputLength - 1)); col++) {
+            // console.log(row, col);
+            var newCol = col;
+            while (gameBoardArray[row][newCol] === playerValueToTest) {   
+                counter++;
+                if (counter === inputLength){
+                    console.log("winner player " + playerValueToTest);
+                    console.log([playerValueToTest, row, col, row, newCol]);
+                    return [playerValueToTest, row, col, row, newCol];
+                    }
+                newCol++;
+                }
+            counter = 0;   
+        } 
+    }
+    // Check Columns |
+    for (let col = 0; col < gameBoardArray[0].length; col++) { 
+        for (let row = 0; row < (gameBoardArray.length - (inputLength - 1)); row++) {
+            var newRow = row;
+            while (gameBoardArray[newRow][col] === playerValueToTest) {   
+                counter++;
+                if (counter === inputLength){
+                    console.log("winner player " + playerValueToTest);
+                    console.log([playerValueToTest, row, col, newRow, col]);
+                    return [playerValueToTest, row, col, newRow, col];
+                    }
+                newRow++;
+                }
+            counter = 0;   
+        }
+    }
+    // Check forward 'n' down diagonals. \
+    for (let row = 0; row < (gameBoardArray.length - (inputLength - 1)); row++) {
+        const rowElement = gameBoardArray[row];
+        for (let col = 0; col < (rowElement.length - (inputLength - 1)); col++) {
+            var newRow = row;
+            var newCol = col;
+            while (gameBoardArray[newRow][newCol] === playerValueToTest) {
+                counter++;
+                if (counter === inputLength) {
+                    console.log("winner player " + playerValueToTest);
+                    console.log([playerValueToTest, row, col, newRow, newCol]);
+                    return [playerValueToTest, row, col, newRow, newCol];
+                }
+                newRow++;
+                newCol++;
+            }
+            counter = 0;            
+        }
+        
+    }
+    // Check forward & up diagonals. /
+    for (let row = (inputLength - 1); row < gameBoardArray.length; row++) {
+        const rowElement = gameBoardArray[row];
+        for (let col = 0; col < rowElement.length; col++) {
+            var newRow = row;
+            var newCol = col;
+            while (gameBoardArray[newRow][newCol] === playerValueToTest) {
+                counter++;
+                if (counter === inputLength) {
+                    console.log("winner player " + playerValueToTest);
+                    console.log([playerValueToTest, row, col, newRow, newCol]);
+                    return [playerValueToTest, row, col, newRow, newCol];
+                }
+                newRow--;
+                newCol++;
+            }
+            counter = 0;
+        }       
+    }
 }
+
+
+
+///////////////////////////////
+// Check match 3 pseudocode. //
+///////////////////////////////
+/*
+If boardsquare is 1 or 2.
+    Check horizontal forward matches first.
+    Checklength = 1
+    while square in front is equal to boardsquare.
+        checklength++
+        if checklength = winning length:
+            return (i,j,k,l)
+        increase to check the square in front of that.
+*/
+
+
+
 // createSquareGrid(3);
 // createSquareGrid(3,4);
 // createSquareGrid(5);
