@@ -5,19 +5,38 @@ playerTwoImage = "images/icons/giraffe.png";
 
 var playerTwoTurn = false;
 
-var boardSquares = document.querySelectorAll('.board-square')
+
 
 var gameBoard = document.querySelector('#game-board');
 
 var setupBoard = function() {
+var boardSquares = document.querySelectorAll('.board-square');
     for (let i = 0; i < boardSquares.length; i++) {
         boardSquares[i].addEventListener('click', clickBoardSquare);        
     }
 }
 
-var createGameGrid = function(inputWidth, height=inputWidth) {
-    console.log("Width: " + inputWidth + " height: " + height);
-    gameBoard.destor
+var createGameGrid = function(inputWidth, inputHeight=inputWidth) {
+    console.log("Width: " + inputWidth + " height: " + inputHeight);
+    removeAllChildElements(gameBoard);
+    for (let i = 0; i < inputHeight; i++) { // generate a row
+        var gameRow = document.createElement('div');
+        gameRow.classList.add('board-row');
+        for (let j = 0; j < inputWidth; j++) { // generate a square
+            var boardSquare = document.createElement('div');
+            boardSquare.classList.add('board-square');
+            gameRow.appendChild(boardSquare);
+        }
+        gameBoard.appendChild(gameRow);
+    }
+
+    setupBoard();
+}
+
+var removeAllChildElements = function(inputElement) {
+    while (inputElement.firstChild) {
+        inputElement.removeChild(inputElement.firstChild);
+    }
 }
 
 var clickBoardSquare = function(event) {
@@ -48,4 +67,4 @@ var clickBoardSquare = function(event) {
 // createSquareGrid(5);
 // createSquareGrid(8,10);
 
-setupBoard();
+// setupBoard();
