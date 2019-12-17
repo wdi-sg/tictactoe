@@ -11,6 +11,11 @@ var gameBoard = document.querySelector('#game-board');
 var gameBoardArray = [];
 // Log what the last move is by putting the id in.
 var lastMove = [];
+// Game start prompt
+var gamePopUpSplashScreen = document.querySelector('.game-popup-background');
+var gamePopUpText = document.querySelector('.game-popup-text');
+var gamePopUpButton = document.querySelector('#game-start-button');
+
 
 // Adding to all the game squares 'click' functionality
 var addBoardSquareEventListeners = function() {
@@ -41,15 +46,17 @@ var createGameGrid = function(inputWidth, inputHeight=inputWidth) {
         gameBoard.appendChild(gameRow);
         // console.log(gameBoardArray);
     }
-
+    playerTwoTurn = false;
     addBoardSquareEventListeners();
 }
+
 
 var removeAllChildElements = function(inputElement) {
     while (inputElement.firstChild) {
         inputElement.removeChild(inputElement.firstChild);
     }
 }
+
 
 // This function is called when you click a board square.
 var clickBoardSquare = function(event) {
@@ -75,13 +82,33 @@ var clickBoardSquare = function(event) {
     playerTwoTurn = !playerTwoTurn
 };
 
+
+var beginGameButtonFunction = function() {
+    // console.log('game begin!');
+    document.body.removeChild(gamePopUpSplashScreen);
+    createGameGrid(3);
+}
+
+
 // Extract the array indices from the board square Id and return it.
 var boardSquareUpdate = function(idString) {
     arrayCoords = idString.split(" ");
     gameBoardArray[arrayCoords[0]][arrayCoords[1]] = playerTwoTurn ? "2" : "1";
     // console.log(gameBoardArray);
-    checkWinCondition();
+    var result = checkWinCondition();
+    if (result) {
+        var playerNo = result[0];
+        var messageToDisplay = "Player " + playerNo + " has won the game!";
+        popUpMessage(messageToDisplay);
+    }
 }
+
+var popUpMessage = function(messageString, confirmationString="ok") {
+    gamePopUpText.textContent = messageString;
+    gamePopUpButton.textContent = confirmationString;
+    document.body.appendChild(gamePopUpSplashScreen);
+}
+
 
 // Default length of 3, but you'll want to scan in 4 directions for a win condition.
 var checkWinCondition = function(inputLength=3) {
@@ -163,6 +190,8 @@ var checkWinCondition = function(inputLength=3) {
             counter = 0;
         }       
     }
+    // No winner this time!
+    return false;
 }
 
 
@@ -190,4 +219,5 @@ If boardsquare is 1 or 2.
 
 // addBoardSquareEventListeners();
 
-createGameGrid(3);
+gamePopUpButton.addEventListener('click', beginGameButtonFunction);
+
