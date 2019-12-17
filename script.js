@@ -3,7 +3,7 @@ console.log("test");
 
 var turn = 0;
 var grid = document.querySelector(".grid")
-
+var box = [];
 
 
 var createRow = function () {
@@ -33,10 +33,12 @@ var createBoard = function() {
 
 var setToX = function() {
     event.target.setAttribute("class", "x box");
+    event.target.innerText = "x";
 }
 
 var setToO = function() {
     event.target.setAttribute("class", "o box");
+    event.target.innerText = "o";
 }
 
 var settingCheck = function() {
@@ -50,5 +52,7 @@ var settingCheck = function() {
 }
 
 createBoard();
-/*addSomething();*/
-/*createColumn();*/
+
+for (i = 0; i < document.querySelectorAll(".box").length; i++){
+    box[i] = document.querySelectorAll(".box")[i];
+}
