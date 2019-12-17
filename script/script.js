@@ -3,14 +3,15 @@
 playerOneImage = "images/icons/elephant.png";
 playerTwoImage = "images/icons/giraffe.png";
 
+
 // Keep track who's turn it is.
 var playerTwoTurn = false;
 // Global variable for the "gameBoard" object.
 var gameBoard = document.querySelector('#game-board');
+
 // gameBoardArray[row][column] = 1 or 2 (player1 or player 2)
 var gameBoardArray = [];
-// Log what the last move is by putting the id in.
-var lastMove = [];
+
 // Game start prompt
 var gamePopUpSplashScreen = document.querySelector('.game-popup-background');
 var gamePopUpText = document.querySelector('.game-popup-text');
@@ -103,6 +104,7 @@ var boardSquareUpdate = function(idString) {
     }
 }
 
+
 var popUpMessage = function(messageString, confirmationString="ok") {
     gamePopUpText.textContent = messageString;
     gamePopUpButton.textContent = confirmationString;
@@ -151,7 +153,7 @@ var checkWinCondition = function(inputLength=3) {
             counter = 0;   
         }
     }
-    // Check forward 'n' down diagonals. \
+    // Check forward & down diagonals. \
     for (let row = 0; row < (gameBoardArray.length - (inputLength - 1)); row++) {
         const rowElement = gameBoardArray[row];
         for (let col = 0; col < (rowElement.length - (inputLength - 1)); col++) {
@@ -174,7 +176,7 @@ var checkWinCondition = function(inputLength=3) {
     // Check forward & up diagonals. /
     for (let row = (inputLength - 1); row < gameBoardArray.length; row++) {
         const rowElement = gameBoardArray[row];
-        for (let col = 0; col < rowElement.length; col++) {
+        for (let col = 0; col < (rowElement.length - (inputLength - 1)); col++) {
             var newRow = row;
             var newCol = col;
             while (gameBoardArray[newRow][newCol] === playerValueToTest) {
@@ -192,6 +194,7 @@ var checkWinCondition = function(inputLength=3) {
     }
     // No winner this time!
     return false;
+    // TODO: Return something if the board is full and the game is a draw.
 }
 
 

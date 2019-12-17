@@ -4,6 +4,8 @@ body {
 
 h1 {
     font-size: 28px;
+    text-align: center;
+    margin: 15px auto;
 }
 
 .game-board {
