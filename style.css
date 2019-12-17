@@ -1,0 +1,28 @@
+.col {
+	height: 100px;
+	width: 100px;
+	border: solid blue 2px;
+	background-color: pink;
+	display: inline-block;/*So that the blocks can line up in a row*/
+	vertical-align: middle;/*This makes sure the squares a lined up neatly*/
+	margin: 0px;
+	position: relative; /* Relative to .move*/
+
+	color: red;
+	font-size: 34px;
+	
+
+}
+
+.row {
+	height: 100px;
+	width: 350px;
+	
+}
+
+#output{
+	height: 75px;
+	width: 65%;
+	border: solid blue 2px;
+	background-color: pink;
+}
