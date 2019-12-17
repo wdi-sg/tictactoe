@@ -2,13 +2,16 @@ body {
 	background-color: pink;
 }
 
-#board{
+h1{
+	text-align: center;
+	margin-right: 68px;
+}
 
+#board{
 	height: 500px;
 	width: 500px;
-	margin: 300px auto;
+	margin: 170px auto;
 	text-align: center;
-
 }
 
 .game-row{
@@ -21,4 +24,5 @@ body {
 	width: 75px;
 	height: 75px;
 	padding: 30px 30px;
+	font-size: 75px;
 }
