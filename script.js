@@ -42,12 +42,14 @@ var setToO = function() {
 }
 
 var settingCheck = function() {
-    if (turn === 0) {
+    if (turn === 0 && this.innerText == "") {
         setToX()
         turn++;
-    } else {
+    } else if (turn === 1 && event.target.innerText == ""){
         setToO();
         turn = 0;
+    } else {
+        alert("Please click on a valid target");
     }
 }
 
@@ -55,4 +57,22 @@ createBoard();
 
 for (i = 0; i < document.querySelectorAll(".box").length; i++){
     box[i] = document.querySelectorAll(".box")[i];
+}
+
+var checkForWin = function () {
+    switch (true) {
+        case (box[0] === box[1] && box[0] === box[2]):
+            if (turn === 0){
+            alert("Circle Wins")
+                } else {
+                    alert("X Wins");
+                }
+            break;
+        case (box[0] === box[3] && box[0] === box[8]):
+            if (turn === 0){
+            alert("Circle Wins")
+                } else {
+                    alert("X Wins");
+                }
+    }
 }
