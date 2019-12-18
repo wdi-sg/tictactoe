@@ -9,14 +9,13 @@ const players = {
     playerTwo: "",
     winner: ""
 }
-
+let turnNumber = 0
 let tries = 0
-
 const clickEvent = function () {
     //user turn is on
     let userTurn = true
     //turn number
-    let turnNumber = 0
+
     //select all squares
     const boxes = document.querySelectorAll(".game-square")
     //apply for all squares
@@ -26,6 +25,7 @@ const clickEvent = function () {
             //check if less than 9 turns, so nothing happens after
             if (turnNumber < 9) {
                 if (userTurn) {
+                    if (item.textContent === ""){
                     userTurn = !userTurn
                     item.textContent = "X"
                     //variable for the squares class id number
@@ -42,8 +42,12 @@ const clickEvent = function () {
                         choices[2][boxNumberID] = "X"
                     }
                     turnNumber++
+                    checkForWin()
+                    }
+                    
                 } else {
-                    userTurn = !userTurn
+                    if (item.textContent === "") {
+                        userTurn = !userTurn
                     item.textContent = "O"
                     //same as above, but for the O player
                     let boxNumber = item.className[item.className.length - 1]
@@ -58,12 +62,16 @@ const clickEvent = function () {
                         choices[2][boxNumberID] = "O"
                     }
                     turnNumber++
+                    checkForWin()
+                    }
+
+                    
                 }
             } else {
 
             }
             //check for win after each input
-            checkForWin()
+
 
         })
     })
@@ -94,6 +102,7 @@ const checkForWin = function () {
 
         players.winner = players.playerTwo
         retryButton(`win for ${players.winner}`)
+        //check for tries, if maximum without winner, draw!
     } else if (tries < 8) {
         tries++
     } else {
@@ -110,6 +119,7 @@ const createBoard = function () {
     //give squares a class id and append to board
     for (let i = 0; i < 9; i++) {
         gameSquare.className = `game-square ${[i]}`
+        gameSquare.textContent = ""
         board.appendChild(gameSquare.cloneNode(true))
     }
     //append board to body
@@ -166,6 +176,10 @@ const retryButton = function (winner) {
         [undefined, undefined, undefined],
         [undefined, undefined, undefined]
     ]
+    //reset turns
+    turnNumber = 0
+    //reset draw counter
+    tries = 0
     //reset body
     document.body.innerHTML = ""
     //create retry button
