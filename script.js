@@ -64,11 +64,18 @@ var userClicked = function(){
          var wonStatus = document.createElement("h1");
             wonStatus.innerText += "YOU WON!"
             wonStatus.style.fontsize = "60px";
+            resetArray();
              container.appendChild(wonStatus);
             createStartButton();
      }
     }
 
+}
+//reset Array
+var resetArray = function(){
+board = [[null,null,null],
+             [null,null,null],
+             [null,null,null]];
 }
 //update Array According to click
 var updateArray = function(char){
@@ -95,6 +102,8 @@ var gameLogic= function(char){
     if(board[row+2][col]===char && board[row+1][col+1]===char && board[row][col+2]===char){
         won = true;
     }
+
+
     for(var i = 0 ; i< 3; i++){
         //check all rows, 3 possible combination
     if(board[i][col]===char && board[i][col+1]===char && board[i][col+2]===char){
