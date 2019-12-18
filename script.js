@@ -4,6 +4,8 @@ console.log("test");
 var turn = 0;
 var grid = document.querySelector(".grid")
 var box = [];
+var boxArray = [[]];
+var gameIsOver = false;
 
 
 var createRow = function () {
@@ -42,37 +44,101 @@ var setToO = function() {
 }
 
 var settingCheck = function() {
-    if (turn === 0 && this.innerText == "") {
+    if (turn === 0 && this.innerText == "" && gameIsOver === false) {
         setToX()
         turn++;
-    } else if (turn === 1 && event.target.innerText == ""){
+        checkForWin();
+    } else if (turn === 1 && this.innerText == "" && gameIsOver === false){
         setToO();
         turn = 0;
-    } else {
+        checkForWin();
+    } else if (gameIsOver === false) {
         alert("Please click on a valid target");
     }
 }
 
 createBoard();
 
-for (i = 0; i < document.querySelectorAll(".box").length; i++){
-    box[i] = document.querySelectorAll(".box")[i];
+var getBoxIds = function () {
+    for (i = 0; i < document.querySelectorAll(".box").length; i++){
+        box[i] = document.querySelectorAll(".box")[i];
+    }
 }
 
+getBoxIds();
+
 var checkForWin = function () {
-    switch (true) {
-        case (box[0] === box[1] && box[0] === box[2]):
-            if (turn === 0){
-            alert("Circle Wins")
-                } else {
-                    alert("X Wins");
-                }
-            break;
-        case (box[0] === box[3] && box[0] === box[8]):
-            if (turn === 0){
-            alert("Circle Wins")
-                } else {
-                    alert("X Wins");
-                }
+    {
+        switch (true) {
+            case (box[0].innerText !== "" && box[0].innerText === box[1].innerText && box[0].innerText === box[2].innerText):
+                if (turn === 0){
+                alert("Circle Wins");
+                gameIsOver = true;
+                    } else {
+                        alert("X Wins");
+                        gameIsOver = true;
+                    }
+                break;
+            case (box[0].innerText !== "" && box[0].innerText === box[3].innerText && box[0].innerText === box[6].innerText):
+                if (turn === 0){
+                alert("Circle Wins");
+                gameIsOver = true;
+                    } else {
+                        alert("X Wins");
+                        gameIsOver = true;
+                    }
+                break;
+            case (box[0].innerText !== "" && box[0].innerText === box[4].innerText && box[0].innerText === box[8].innerText):
+                if (turn === 0){
+                alert("Circle Wins");
+                gameIsOver = true;
+                    } else {
+                        alert("X Wins");
+                        gameIsOver = true;
+                    }
+                break;
+            case (box[1].innerText !== "" && box[1].innerText === box[4].innerText && box[1].innerText === box[7].innerText):
+                if (turn === 0){
+                alert("Circle Wins");
+                gameIsOver = true;
+                    } else {
+                        alert("X Wins");
+                        gameIsOver = true;
+                    }
+                break;
+            case (box[2].innerText !== "" && box[2].innerText === box[5].innerText && box[2].innerText === box[8].innerText):
+                if (turn === 0){
+                alert("Circle Wins");
+                gameIsOver = true;
+                    } else {
+                        alert("X Wins");
+                        gameIsOver = true;
+                    }
+                break;
+            case (box[3].innerText !== "" && box[3].innerText === box[4].innerText && box[3].innerText === box[5].innerText):
+                if (turn === 0){
+                alert("Circle Wins");
+                gameIsOver = true;
+                    } else {
+                        alert("X Wins");
+                        gameIsOver = true;
+                    }
+                break;
+            case (box[6].innerText !== "" && box[6].innerText === box[7].innerText && box[6].innerText === box[8].innerText):
+                if (turn === 0){
+                alert("Circle Wins");
+                gameIsOver = true;
+                    } else {
+                        alert("X Wins");
+                        gameIsOver = true;
+                    }
+                break;
+            default:
+                console.log("nothing");
+        }
     }
+}
+
+var resetGame = function () {
+    turn = 0;
 }
