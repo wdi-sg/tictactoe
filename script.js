@@ -1,15 +1,17 @@
-console.log("test");
-
-
 var turn = 0;
 var xWins = 0;
 var oWins = 0;
+var waitInputs = 0;
+var gameMoves = 0;
 var grid = document.querySelector(".grid")
 var xScoreBoard = document.querySelector(".xScore");
 var oScoreBoard = document.querySelector(".oScore");
-var box = [];
-var boxArray = [[]];
 var gameIsOver = false;
+var player1Name = "";
+var player2Name = "";
+var userInput = document.querySelector("#input1");
+/*var box = [];
+var boxArray = [[]];*/
 
 var createRow = function () {
     for (i = 0; i < 3; i++) {
@@ -47,15 +49,21 @@ var setToO = function() {
 }
 
 var settingCheck = function() {
+    if (gameMoves === 8) {
+        document.querySelector("#reset").classList.remove("invisible");
+        setTimeout(checkState);
+    }
     if (turn === 0 && this.innerText == "" && gameIsOver === false) {
         setToX()
         turn++;
+        gameMoves++;
         checkForWin();
 
     } else if (turn === 1 && this.innerText == "" && gameIsOver === false){
         setToO();
         turn = 0;
         checkForWin();
+        gameMoves++;
     } else if (gameIsOver === false) {
         alert("Please click on a valid target");
     }
@@ -199,6 +207,7 @@ var checkForWin = function () {
 var resetGame = function () {
     document.querySelector(".grid").innerHTML = ""
     turn = 0;
+    gameMoves = 0;
     createBoard();
     getBoxIds();
     gameIsOver = false;
@@ -208,6 +217,18 @@ var resetGame = function () {
 var updateScore = function () {
     xScoreBoard.innerText = "X Wins : " + xWins;
     oScoreBoard.innerText = "O Wins : " + oWins;
+}
+
+var checkState = function () {
+    if (gameIsOver === false) {
+        alert("DRAW!");
+    }
+}
+
+var getPlayerNames = function () {
+    if (waitInputs === 0) {
+
+    }
 }
 
 document.querySelector("#reset").addEventListener("click", resetGame);
