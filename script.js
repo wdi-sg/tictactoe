@@ -7,7 +7,6 @@ var box = [];
 var boxArray = [[]];
 var gameIsOver = false;
 
-
 var createRow = function () {
     for (i = 0; i < 3; i++) {
         var row = document.createElement("div");
@@ -139,6 +138,13 @@ var checkForWin = function () {
     }
 }
 
+
 var resetGame = function () {
+    document.querySelector(".grid").innerHTML = ""
     turn = 0;
+    createBoard();
+    getBoxIds();
+    gameIsOver = false;
 }
+
+document.querySelector("#reset").addEventListener("click", resetGame);
