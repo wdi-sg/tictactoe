@@ -4,11 +4,20 @@ let choices = [
     [undefined, undefined, undefined]
 ]
 
-const players = {
-    playerOne: "",
-    playerTwo: "",
+const game = {
+    players: {
+        playerOne: {
+            name: "X",
+            score: 0
+        },
+        playerTwo: {
+            name: "",
+            score: 0
+        }
+    },
     winner: ""
 }
+
 let turnNumber = 0
 let tries = 0
 const clickEvent = function () {
@@ -87,9 +96,10 @@ const checkForWin = function () {
         choices[0][2] === "X" && choices[1][1] === "X" && choices[2][0] === "X" ||
         choices[0][1] === "X" && choices[1][1] === "X" && choices[2][1] === "X" ||
         choices[1][0] === "X" && choices[1][1] === "X" && choices[1][2] === "X") {
-        // if won, apply retry
-        players.winner = players.playerOne
-        retryButton(`win for ${players.winner}`)
+        // if player 1 won, apply retry, add to score
+        game.players.playerOne.score++
+        game.winner = game.players.playerOne.name
+        retryButton(`win for ${game.winner}`)
 
     } else if (choices[0][0] === "O" && choices[1][0] === "O" && choices[2][0] === "O" ||
         choices[0][0] === "O" && choices[0][1] === "O" && choices[0][2] === "O" ||
@@ -99,9 +109,10 @@ const checkForWin = function () {
         choices[0][2] === "O" && choices[1][1] === "O" && choices[2][0] === "O" ||
         choices[0][1] === "O" && choices[1][1] === "O" && choices[2][1] === "O" ||
         choices[1][0] === "O" && choices[1][1] === "O" && choices[1][2] === "O") {
-
-        players.winner = players.playerTwo
-        retryButton(`win for ${players.winner}`)
+        //if player 2 won, apply retry, add to score
+        game.players.playerTwo.score++
+        game.winner = game.players.playerTwo.name
+        retryButton(`win for ${game.winner}`)
         //check for tries, if maximum without winner, draw!
     } else if (tries < 8) {
         tries++
@@ -124,6 +135,18 @@ const createBoard = function () {
     }
     //append board to body
     document.body.appendChild(board)
+    //create score display
+    let scoreList = document.createElement("ul")
+    scoreList.id = "score"
+    let scoreOne = document.createElement("li")
+    scoreOne.id = "scoreOne"
+    let scoreTwo = document.createElement("li")
+    scoreTwo.id = "scoreTwo"
+    scoreOne.textContent = `${game.players.playerOne.name}: ${game.players.playerOne.score}`
+    scoreTwo.textContent = `${game.players.playerTwo.name}: ${game.players.playerTwo.score}`
+    scoreList.appendChild(scoreOne)
+    scoreList.appendChild(scoreTwo)
+    document.body.appendChild(scoreList)
     //add clickEvent to squares
     clickEvent()
 }
@@ -157,8 +180,8 @@ const startGame = function () {
     button.type = "submit"
     form.addEventListener("submit", function (e) {
         //on click let button disappear and create the board with click event
-        players.playerOne = e.target.elements[0].value
-        players.playerTwo = e.target.elements[1].value
+        game.players.playerOne.name = e.target.elements[0].value
+        game.players.playerTwo.name = e.target.elements[1].value
         e.preventDefault()
         form.classList.add("d-none")
         createBoard()
@@ -184,6 +207,7 @@ const retryButton = function (winner) {
     document.body.innerHTML = ""
     //create retry button
     const button = document.createElement("button")
+    button.id = "retry"
     button.innerHTML = `It is a ${winner}! RETRY?`
     button.addEventListener("click", function () {
         //on click let button disappear and create the board with click event
