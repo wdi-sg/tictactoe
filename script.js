@@ -82,6 +82,7 @@ var restartGame = function (){
 var replayButton = document.querySelector("#restart");
 replayButton.addEventListener("click",restartGame);
 
+
 //winning state
 /*  if (boardArray[0][0] === "X" && boardArray[0][1] === "X" && boardArray[0][2] === "X")
 if (boardArray[1][0] === "X" && boardArray[1][1] === "X" && boardArray[1][2] === "X") */
