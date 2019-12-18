@@ -2,7 +2,11 @@ console.log("test");
 
 
 var turn = 0;
+var xWins = 0;
+var oWins = 0;
 var grid = document.querySelector(".grid")
+var xScoreBoard = document.querySelector(".xScore");
+var oScoreBoard = document.querySelector(".oScore");
 var box = [];
 var boxArray = [[]];
 var gameIsOver = false;
@@ -47,6 +51,7 @@ var settingCheck = function() {
         setToX()
         turn++;
         checkForWin();
+
     } else if (turn === 1 && this.innerText == "" && gameIsOver === false){
         setToO();
         turn = 0;
@@ -68,88 +73,120 @@ var checkForWin = function () {
             case (box[0].innerText !== "" && box[0].innerText === box[1].innerText && box[0].innerText === box[2].innerText):
                 if (turn === 0){
                 alert("Circle Wins");
+                oWins++
                 gameIsOver = true;
+                updateScore();
                 document.querySelector("#reset").classList.remove("invisible");
                     } else {
                         alert("X Wins");
+                        xWins++
                         gameIsOver = true;
+                        updateScore();
                         document.querySelector("#reset").classList.remove("invisible");
                     }
                 break;
             case (box[0].innerText !== "" && box[0].innerText === box[3].innerText && box[0].innerText === box[6].innerText):
                 if (turn === 0){
                 alert("Circle Wins");
+                oWins++
                 gameIsOver = true;
+                updateScore();
                 document.querySelector("#reset").classList.remove("invisible");
                     } else {
                         alert("X Wins");
+                        xWins++
                         gameIsOver = true;
+                        updateScore();
                         document.querySelector("#reset").classList.remove("invisible");
                     }
                 break;
             case (box[0].innerText !== "" && box[0].innerText === box[4].innerText && box[0].innerText === box[8].innerText):
                 if (turn === 0){
                 alert("Circle Wins");
+                oWins++
                 gameIsOver = true;
+                updateScore();
                 document.querySelector("#reset").classList.remove("invisible");
                     } else {
                         alert("X Wins");
+                        xWins++
                         gameIsOver = true;
+                        updateScore();
                         document.querySelector("#reset").classList.remove("invisible");
                     }
                 break;
             case (box[1].innerText !== "" && box[1].innerText === box[4].innerText && box[1].innerText === box[7].innerText):
                 if (turn === 0){
                 alert("Circle Wins");
+                oWins++
                 gameIsOver = true;
+                updateScore();
                 document.querySelector("#reset").classList.remove("invisible");
                     } else {
                         alert("X Wins");
+                        xWins++
                         gameIsOver = true;
+                        updateScore();
                         document.querySelector("#reset").classList.remove("invisible");
                     }
                 break;
             case (box[2].innerText !== "" && box[2].innerText === box[5].innerText && box[2].innerText === box[8].innerText):
                 if (turn === 0){
                 alert("Circle Wins");
+                oWins++
                 gameIsOver = true;
+                updateScore();
                 document.querySelector("#reset").classList.remove("invisible");
                     } else {
                         alert("X Wins");
+                        xWins++
                         gameIsOver = true;
+                        updateScore();
                         document.querySelector("#reset").classList.remove("invisible");
                     }
                 break;
             case (box[3].innerText !== "" && box[3].innerText === box[4].innerText && box[3].innerText === box[5].innerText):
                 if (turn === 0){
                 alert("Circle Wins");
+                oWins++
                 gameIsOver = true;
+                updateScore();
                 document.querySelector("#reset").classList.remove("invisible");
                     } else {
                         alert("X Wins");
+                        xWins++
                         gameIsOver = true;
+                        updateScore();
                         document.querySelector("#reset").classList.remove("invisible");
                     }
                 break;
             case (box[6].innerText !== "" && box[6].innerText === box[7].innerText && box[6].innerText === box[8].innerText):
                 if (turn === 0){
                 alert("Circle Wins");
+                oWins++
                 gameIsOver = true;
+                updateScore();
                 document.querySelector("#reset").classList.remove("invisible");
                     } else {
                         alert("X Wins");
+                        xWins++
                         gameIsOver = true;
+                        updateScore();
                         document.querySelector("#reset").classList.remove("invisible");
                     }
                 break;
             case (box[2].innerText !== "" && box[2].innerText === box[4].innerText && box[2].innerText === box[6].innerText):
                 if (turn === 0){
                 alert("Circle Wins");
+                oWins++
                 gameIsOver = true;
+                updateScore();
                 document.querySelector("#reset").classList.remove("invisible");
                     } else {
                         alert("X Wins");
+                        xWins++
                         gameIsOver = true;
+                        updateScore();
                         document.querySelector("#reset").classList.remove("invisible");
                     }
                 break;
@@ -166,6 +203,11 @@ var resetGame = function () {
     getBoxIds();
     gameIsOver = false;
     event.target.classList.add("invisible");
+}
+
+var updateScore = function () {
+    xScoreBoard.innerText = "X Wins : " + xWins;
+    oScoreBoard.innerText = "O Wins : " + oWins;
 }
 
 document.querySelector("#reset").addEventListener("click", resetGame);
