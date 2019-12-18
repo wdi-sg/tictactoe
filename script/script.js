@@ -12,11 +12,19 @@ var gameBoard = document.querySelector('#game-board');
 // gameBoardArray[row][column] = 1 or 2 (player1 or player 2)
 var gameBoardArray = [];
 
+var playerOneName = "Player 1";
+var playerTwoName = "Player 2";
+
 // Game start prompt
 var gamePopUpSplashScreen = document.querySelector('.game-popup-background');
-var gamePopUpText = document.querySelector('.game-popup-text');
+var gamePopUpText = document.querySelector('#game-popup-text');
 var gamePopUpButton = document.querySelector('#game-start-button');
-
+var gameOptionsSplashScreen = document.querySelector('#game-settings');
+var playerOneNameInput = document.querySelector('#player-1-name');
+var playerTwoNameInput = document.querySelector('#player-2-name');
+var gameOptionsApplyButton = document.querySelector('#game-options-apply');
+var gameOptionsCancelButton = document.querySelector('#game-options-cancel');
+var gameBoardSizeInput = document.querySelector('#game-board-size');
 
 // Adding to all the game squares 'click' functionality
 var addBoardSquareEventListeners = function() {
@@ -111,6 +119,23 @@ var popUpMessage = function(messageString, confirmationString="ok") {
     document.body.appendChild(gamePopUpSplashScreen);
 }
 
+var applyGameSettings = function () {
+    // console.log('Game settings applied!');
+    playerOneName = playerOneNameInput.value;
+    playerTwoName = playerTwoNameInput.value;
+    // console.log(playerOneName, playerTwoName);
+    var gameBoardSize = parseInt(gameBoardSizeInput.value);
+    document.body.removeChild(gameOptionsSplashScreen);
+    if (gameBoardSize) {
+        createGameGrid(gameBoardSize);
+    } else {
+        createGameGrid(3);
+    }
+}
+
+var cancelGameSettings = function() {
+    document.body.removeChild(gameOptionsSplashScreen);
+}
 
 // Default length of 3, but you'll want to scan in 4 directions for a win condition.
 var checkWinCondition = function(inputLength=3) {
@@ -223,4 +248,6 @@ If boardsquare is 1 or 2.
 // addBoardSquareEventListeners();
 
 gamePopUpButton.addEventListener('click', beginGameButtonFunction);
-
+gameOptionsApplyButton.addEventListener('click', applyGameSettings);
+gameOptionsCancelButton.addEventListener('click', cancelGameSettings);
+beginGameButtonFunction();
