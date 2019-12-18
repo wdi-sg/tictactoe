@@ -6,11 +6,11 @@ body {
 
 .board {
     width: 50%;
-    height: 50%;
-    margin: 0 auto;
+    height: 45%;
+    margin: 80px auto;
     display: flex;
     justify-self: center;
-    align-self: center;
+    align-self: flex-start;
     flex-wrap: wrap;
 }
 
@@ -19,6 +19,7 @@ body {
     width: 32.8%;
     height: 50%;
     display: inline-block;
+    font-size: 30px;
 }
 
 .row {
@@ -43,6 +44,18 @@ form {
 #score {
     position: absolute;
     top: 5%;
-    left: 5%;
+    left: 1%;
     font-size: 30px;
+}
+
+#image-container {
+    position: absolute;
+    top: 20%;
+    left: 35%;
+}
+
+h1 {
+    position: absolute;
+    top: 2%;
+    left: 23%;
 }
