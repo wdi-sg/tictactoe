@@ -9,16 +9,12 @@ body {
 h1 {
     font-size: 52px;
     text-align: center;
-    margin: 15px auto;
-    text-shadow: black 2px 2px;
+    margin: 15px auto 0 auto;
+    /* text-shadow: black 2px 2px; */
+    text-shadow: rgb(112, 75, 45);
     color: rgb(99,143,70);
 
 }
-
-/* .hidden {
-    display: none;
-    visibility: hidden;
-} */
 
 .game-board {
     width: 1000px;
@@ -53,6 +49,7 @@ h1 {
 
 .game-popup-text {
     padding: 10px 0px 5px 0px;
+    color: black;
 }
 
 .game-popup-background {
@@ -65,6 +62,7 @@ h1 {
     left: 0px;
     justify-content: center;
     align-items: center;
+    backdrop-filter: blur(5px);
 }
 
 .game-popup-prompt {
@@ -75,7 +73,7 @@ h1 {
     border: rgb(172, 125, 75) 10px solid;
     border-radius: 10px;
     width: 200px;
-    height: 50px;
+    /* height: 50px; */
 }
 
 .game-options-prompt {
@@ -86,7 +84,7 @@ h1 {
     border: rgb(172, 125, 75) 10px solid;
     border-radius: 10px;
     width: 300px;
-    height: 310px;
+    /* height: 310px; */
 }
 
 div.game-options-title {
@@ -112,14 +110,15 @@ input.game-options-input {
     font-family: Bangers;
 }
 
-.some-stuff {
+.game-options-container {
     margin-top: -3rem;
+    color: black;
 }
 
 button {
     /* position: relative; */
     bottom: 15px;
-    margin: 20px;
+    /* margin: 20px; */
     font-family: Bangers;
     font-size: 15px;
     color: white;

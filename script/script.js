@@ -11,20 +11,26 @@ var gameBoard = document.querySelector('#game-board');
 
 // gameBoardArray[row][column] = 1 or 2 (player1 or player 2)
 var gameBoardArray = [];
+var numberInARowToWin = 3;
+var gameBoardSize = 3;
+var maximumAllowableGameBoardSize = 8;
 
 var playerOneName = "Player 1";
 var playerTwoName = "Player 2";
+var turnCounter = 0;
 
 // Game start prompt
-var gamePopUpSplashScreen = document.querySelector('.game-popup-background');
+var gamePopUpSplashScreen = document.querySelector('#game-alert');
 var gamePopUpText = document.querySelector('#game-popup-text');
 var gamePopUpButton = document.querySelector('#game-start-button');
 var gameOptionsSplashScreen = document.querySelector('#game-settings');
 var playerOneNameInput = document.querySelector('#player-1-name');
 var playerTwoNameInput = document.querySelector('#player-2-name');
+var gameOptionsLaunchButton = document.querySelector('#game-options-launch');
 var gameOptionsApplyButton = document.querySelector('#game-options-apply');
 var gameOptionsCancelButton = document.querySelector('#game-options-cancel');
 var gameBoardSizeInput = document.querySelector('#game-board-size');
+var gameBoardMatchLengthInput = document.querySelector('#game-board-match');
 
 // Adding to all the game squares 'click' functionality
 var addBoardSquareEventListeners = function() {
@@ -57,6 +63,7 @@ var createGameGrid = function(inputWidth, inputHeight=inputWidth) {
     }
     playerTwoTurn = false;
     addBoardSquareEventListeners();
+    turnCounter = 0;
 }
 
 
@@ -95,7 +102,7 @@ var clickBoardSquare = function(event) {
 var beginGameButtonFunction = function() {
     // console.log('game begin!');
     document.body.removeChild(gamePopUpSplashScreen);
-    createGameGrid(3);
+    createGameGrid(gameBoardSize);
 }
 
 
@@ -104,10 +111,18 @@ var boardSquareUpdate = function(idString) {
     arrayCoords = idString.split(" ");
     gameBoardArray[arrayCoords[0]][arrayCoords[1]] = playerTwoTurn ? "2" : "1";
     // console.log(gameBoardArray);
-    var result = checkWinCondition();
+    var result = checkWinCondition(numberInARowToWin);
     if (result) {
         var playerNo = result[0];
-        var messageToDisplay = "Player " + playerNo + " has won the game!";
+        var messageToDisplay;
+        console.log(playerNo);
+        if (playerNo === "1") {
+            messageToDisplay = playerOneName + " has won the game!\nClick to play again."
+        } else if (playerNo === "2") {
+            messageToDisplay = playerTwoName + " has won the game!\nClick to play again."
+        } else {
+            messageToDisplay = "It's a draw!\nClick to play again."
+        }
         popUpMessage(messageToDisplay);
     }
 }
@@ -119,21 +134,34 @@ var popUpMessage = function(messageString, confirmationString="ok") {
     document.body.appendChild(gamePopUpSplashScreen);
 }
 
-var applyGameSettings = function () {
+
+var launchGameOptions = function() {
+    document.body.appendChild(gameOptionsSplashScreen);
+}
+
+
+var applyGameOptions = function () {
     // console.log('Game settings applied!');
     playerOneName = playerOneNameInput.value;
     playerTwoName = playerTwoNameInput.value;
     // console.log(playerOneName, playerTwoName);
-    var gameBoardSize = parseInt(gameBoardSizeInput.value);
+    gameBoardSize = parseInt(gameBoardSizeInput.value);
+    gameBoardSize = Math.min(gameBoardSize, maximumAllowableGameBoardSize);
+    gameBoardSizeInput.value = gameBoardSize;
     document.body.removeChild(gameOptionsSplashScreen);
+    // if invalid (like length 5 in a 3x3 grid) - clamp it to the grid size.
+    numberInARowToWin = Math.min(parseInt(gameBoardMatchLengthInput.value), gameBoardSize); 
+    gameBoardMatchLengthInput.value = numberInARowToWin;
     if (gameBoardSize) {
         createGameGrid(gameBoardSize);
     } else {
         createGameGrid(3);
+        numberInARowToWin = 3;
     }
 }
 
-var cancelGameSettings = function() {
+
+var cancelGameOptions = function() {
     document.body.removeChild(gameOptionsSplashScreen);
 }
 
@@ -141,6 +169,7 @@ var cancelGameSettings = function() {
 var checkWinCondition = function(inputLength=3) {
     // console.log("checking to see if a player has won");
     // We only check the player who just played.
+    turnCounter++;
     var playerValueToTest = playerTwoTurn ? "2" : "1";
     var counter = 0;
 
@@ -217,8 +246,14 @@ var checkWinCondition = function(inputLength=3) {
             counter = 0;
         }       
     }
+
     // No winner this time!
-    return false;
+    var maxTurns = (gameBoardArray.length * gameBoardArray[0].length)
+    if (turnCounter >= maxTurns) {
+        return "Draw";
+    }
+    
+    return false
     // TODO: Return something if the board is full and the game is a draw.
 }
 
@@ -248,6 +283,8 @@ If boardsquare is 1 or 2.
 // addBoardSquareEventListeners();
 
 gamePopUpButton.addEventListener('click', beginGameButtonFunction);
-gameOptionsApplyButton.addEventListener('click', applyGameSettings);
-gameOptionsCancelButton.addEventListener('click', cancelGameSettings);
-beginGameButtonFunction();
+gameOptionsApplyButton.addEventListener('click', applyGameOptions);
+gameOptionsCancelButton.addEventListener('click', cancelGameOptions);
+gameOptionsLaunchButton.addEventListener('click', launchGameOptions);
+
+document.body.removeChild(gamePopUpSplashScreen);
