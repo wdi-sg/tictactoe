@@ -1,0 +1,37 @@
+h1{
+    font-weight: bold;
+    font-family: Helvetica, sans-serif;
+}
+.container{
+    width:80%;
+    text-align:center;
+    margin:0 auto;
+}
+.game-board{
+    padding: 10px solid black;
+    background-color: #b0c4de;
+    width:400px;
+    height:450px;
+    margin:0 auto;
+    align-content: center;
+
+}
+
+.game-button {
+    padding:10px;
+    margin:15px;
+    background-color: #ffffe0;
+    border:5px solid #dcdcdc;
+    height: 100px;
+    width: 100px;
+    flex-direction: row;
+    text-align: center;
+    font-size: 70px;
+    cursor: pointer;
+    position: relative;
+}
+
+#restart{
+    padding:5px;
+    height:50px;
+}
