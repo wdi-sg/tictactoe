@@ -1,0 +1,15 @@
+.game-square{
+  width: 150px;
+  height: 150px;
+  font-size: 125px;
+   display: inline-block;
+   border: 2px solid black;
+   vertical-align: top;
+   display: inline-block;
+}
+
+.container{
+ margin: 0 auto;
+ width: 800px;
+text-align: center;
+}
