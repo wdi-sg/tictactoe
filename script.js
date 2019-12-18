@@ -1,30 +1,17 @@
-var createPage = function(){
-  var container = document.createElement("div");
-  var headingDiv = document.createElement("div");
-  container.className = "container";
-  //create heading 1
-  var gameHeading = document.createElement("h1");
-  gameHeading.innerText = "Tic-Tac-Toe";
-  headingDiv.appendChild(gameHeading);
-  container.appendChild(headingDiv);
-//create div for rows and columns
-for(var i = 0; i < 3; i++){
-      var divRow = document.createElement("div");
-  for(var j = 0 ; j< 3; j++){
-      var divCol = document.createElement("div");
-       divCol.className = "game-square";
-        divRow.appendChild(divCol);
-   }
-     container.appendChild(divRow);
-  }
- document.body.appendChild(container);
-}
-createPage();
+//created container to wrap around elements
+ var container = document.querySelector(".container");
+//  var clickEventForGameSquare = function(){
 
+//     for(var i = 0;i < gameSquare.length; i++){
+//         gameSquare[i].addEventListener("click",userClicked);
+//         gameSquare[i].style.cursor = "pointer";
+//     }
+// }
+
+//Global variables to check if it's player one or player two turns and if anyone won
 var won = false;
 var circle = false;
 
-var gameSquare = document.querySelectorAll(".game-square");
 
 var board = [[null,null,null],
              [null,null,null],
@@ -50,8 +37,44 @@ var userClicked = function(){
     }
 
 }
+
+var createPage = function(){
+   //  //clear container
+   // document.body.innerHTML = "";
+    container.innerHTML = "";
+  //create heading 1
+  var headingDiv = document.createElement("div");
+  var gameHeading = document.createElement("h1");
+  gameHeading.innerText = "Tic-Tac-Toe";
+  headingDiv.appendChild(gameHeading);
+  container.appendChild(headingDiv);
+//create div for rows and columns
+for(var i = 0; i < 3; i++){
+      var divRow = document.createElement("div");
+  for(var j = 0 ; j< 3; j++){
+      var divCol = document.createElement("div");
+       divCol.className = "game-square";
+       divCol.addEventListener("click",userClicked);
+       divCol.style.cursor = "pointer";
+        divRow.appendChild(divCol);
+   }
+     container.appendChild(divRow);
+  }
+}
+//start button at start of game
+var createStartButton = function(){
+    var button = document.createElement("button");
+    button.innerText = "Click to Start Game";
+    button.className = "start";
+    button.addEventListener("click", createPage);
+    console.log(container);
+    container.appendChild(button);
+}
+ createStartButton();
+
 //update Array According to click
 var updateArray = function(char){
+    var gameSquare = document.querySelectorAll(".game-square");
     var indexOfGameSquare = 0;
     for(var i = 0; i < board.length; i++){
         for(var j = 0; j < board.length; j++){
@@ -86,13 +109,3 @@ var gameLogic= function(char){
      }
        return false;
 }
-
-var clickEventForGameSquare = function(){
-
-    for(var i = 0;i < gameSquare.length; i++){
-        gameSquare[i].addEventListener("click",userClicked);
-        gameSquare[i].style.cursor = "pointer";
-    }
-}
-
-clickEventForGameSquare();
