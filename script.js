@@ -10,8 +10,8 @@ var gameIsOver = false;
 var player1Name = "";
 var player2Name = "";
 var userInput = document.querySelector("#input1");
-/*var box = [];
-var boxArray = [[]];*/
+var box = [];
+/*var boxArray = [[]];*/
 
 var createRow = function () {
     for (i = 0; i < 3; i++) {
@@ -225,10 +225,10 @@ var checkState = function () {
     }
 }
 
-var getPlayerNames = function () {
+/*var getPlayerNames = function () {
     if (waitInputs === 0) {
 
     }
-}
+}*/
 
 document.querySelector("#reset").addEventListener("click", resetGame);
