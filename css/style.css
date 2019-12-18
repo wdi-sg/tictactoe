@@ -10,8 +10,8 @@ h1 {
     font-size: 52px;
     text-align: center;
     margin: 15px auto 0 auto;
-    /* text-shadow: black 2px 2px; */
-    text-shadow: rgb(112, 75, 45);
+    text-shadow: black 2px 2px;
+    /* text-shadow: rgb(112, 75, 45); */
     color: rgb(99,143,70);
 
 }

@@ -146,18 +146,21 @@ var applyGameOptions = function () {
     playerTwoName = playerTwoNameInput.value;
     // console.log(playerOneName, playerTwoName);
     gameBoardSize = parseInt(gameBoardSizeInput.value);
+    // Make sure the game Board Size is actually a number.
+    if (isNaN(gameBoardSize)) {
+        gameBoardSize = 3;
+    }
     gameBoardSize = Math.min(gameBoardSize, maximumAllowableGameBoardSize);
     gameBoardSizeInput.value = gameBoardSize;
     document.body.removeChild(gameOptionsSplashScreen);
     // if invalid (like length 5 in a 3x3 grid) - clamp it to the grid size.
     numberInARowToWin = Math.min(parseInt(gameBoardMatchLengthInput.value), gameBoardSize); 
-    gameBoardMatchLengthInput.value = numberInARowToWin;
-    if (gameBoardSize) {
-        createGameGrid(gameBoardSize);
-    } else {
-        createGameGrid(3);
-        numberInARowToWin = 3;
+    // Make sure we can actually win the game, invalid number will default to the size of the game board.
+    if (isNaN(numberInARowToWin)) {
+        numberInARowToWin = gameBoardSize;
     }
+    gameBoardMatchLengthInput.value = numberInARowToWin;
+    createGameGrid(gameBoardSize);
 }
 
 
