@@ -1,0 +1,30 @@
+.back_ground {
+	max-width: 1000px;
+	max-height: 1000px;
+	margin: 0 auto;
+}
+
+.game_board {
+	max-width: 500px;
+	height: 500px;
+	margin: 0 auto;
+	border: 3px solid black;
+	padding:8px 5px 0 5px;
+	display: flex;
+	justify-content: space-around;
+}
+
+
+.box{
+	width: 150px;
+	height: 150px;
+	border: 2px solid black;
+	padding: 5px;
+	display: inline-block;
+	text-align: center;
+	line-height: 150px;
+}
+
+.boxWhenClick{
+	background-color: blue;
+}
