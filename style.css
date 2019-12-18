@@ -1,0 +1,61 @@
+body {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+
+.board {
+    width: 50%;
+    height: 45%;
+    margin: 80px auto;
+    display: flex;
+    justify-self: center;
+    align-self: flex-start;
+    flex-wrap: wrap;
+}
+
+.game-square {
+    border: 1px solid black;
+    width: 32.8%;
+    height: 50%;
+    display: inline-block;
+    font-size: 30px;
+}
+
+.row {
+    width: 100%;
+}
+
+form {
+    font-size: 40px;
+    margin: 0 auto;
+    display: flex;
+    align-self: center;
+}
+
+.d-none {
+    display: none;
+}
+
+#retry {
+    margin: 0 auto;
+}
+
+#score {
+    position: absolute;
+    top: 5%;
+    left: 1%;
+    font-size: 30px;
+}
+
+#image-container {
+    position: absolute;
+    top: 20%;
+    left: 35%;
+}
+
+h1 {
+    position: absolute;
+    top: 2%;
+    left: 23%;
+}
