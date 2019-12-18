@@ -1,12 +1,5 @@
 //created container to wrap around elements
  var container = document.querySelector(".container");
-//  var clickEventForGameSquare = function(){
-
-//     for(var i = 0;i < gameSquare.length; i++){
-//         gameSquare[i].addEventListener("click",userClicked);
-//         gameSquare[i].style.cursor = "pointer";
-//     }
-// }
 
 //Global variables to check if it's player one or player two turns and if anyone won
 var won = false;
@@ -17,30 +10,10 @@ var board = [[null,null,null],
              [null,null,null],
              [null,null,null]];
 
-var userClicked = function(){
-    if(!won){
-    //check if it;s second turn and nothing in the box clicked
-    if(circle && (this.innerText!=="O" && this.innerText!=="X")){
-        this.innerText= "O";
-        updateArray("O");
-         gameLogic("O");
-    circle = false;}
-    else if(!circle && (this.innerText!=="O" && this.innerText!=="X")){
-        this.innerText= "X";
-        updateArray("X");
-        gameLogic("X");
-        circle= true;
-    }
-        if(won){
-    alert("Won");
-     }
-    }
 
-}
 
 var createPage = function(){
    //  //clear container
-   // document.body.innerHTML = "";
     container.innerHTML = "";
   //create heading 1
   var headingDiv = document.createElement("div");
@@ -71,7 +44,32 @@ var createStartButton = function(){
     container.appendChild(button);
 }
  createStartButton();
+var userClicked = function(){
+    if(!won){
+    //check if it;s second turn and nothing in the box clicked
+    if(circle && (this.innerText!=="O" && this.innerText!=="X")){
+        this.innerText= "O";
+        updateArray("O");
+         gameLogic("O");
+    circle = false;}
+    else if(!circle && (this.innerText!=="O" && this.innerText!=="X")){
+        this.innerText= "X";
+        updateArray("X");
+        gameLogic("X");
+        circle= true;
+    }
+        if(won){
+            won = false;
+         container.innerHTML = "";
+         var wonStatus = document.createElement("h1");
+            wonStatus.innerText += "YOU WON!"
+            wonStatus.style.fontsize = "60px";
+             container.appendChild(wonStatus);
+            createStartButton();
+     }
+    }
 
+}
 //update Array According to click
 var updateArray = function(char){
     var gameSquare = document.querySelectorAll(".game-square");
