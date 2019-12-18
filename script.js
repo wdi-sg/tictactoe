@@ -56,15 +56,11 @@ var settingCheck = function() {
     }
 }
 
-createBoard();
-
 var getBoxIds = function () {
     for (i = 0; i < document.querySelectorAll(".box").length; i++){
         box[i] = document.querySelectorAll(".box")[i];
     }
 }
-
-getBoxIds();
 
 var checkForWin = function () {
     {
@@ -132,12 +128,20 @@ var checkForWin = function () {
                         gameIsOver = true;
                     }
                 break;
+            case (box[2].innerText !== "" && box[2].innerText === box[4].innerText && box[2].innerText === box[6].innerText):
+                if (turn === 0){
+                alert("Circle Wins");
+                gameIsOver = true;
+                    } else {
+                        alert("X Wins");
+                        gameIsOver = true;
+                    }
+                break;
             default:
                 console.log("nothing");
         }
     }
 }
-
 
 var resetGame = function () {
     document.querySelector(".grid").innerHTML = ""
@@ -148,3 +152,5 @@ var resetGame = function () {
 }
 
 document.querySelector("#reset").addEventListener("click", resetGame);
+createBoard();
+getBoxIds();

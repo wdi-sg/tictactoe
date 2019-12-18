@@ -39,3 +39,7 @@ span.o.box {
     background-size: contain;
     background-repeat: no-repeat;
 }
+
+#reset {
+    margin: 0 auto;
+}
