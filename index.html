@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+   <!-- defer is used to tell the browser to wait for the DOM to be fully processed -->
+    <script defer src="js/script.js"></script>
+
+    <title> Tic Tac Toe </title>
+</head>
+<body>
+    <h1>Tic-Tac-Toe</h1>
+    <h2>X's turn!</h2>
+    <!-- Flex container needs to be defined first before using CSS flex box, flex - column is  -->
+    <div class="flex-container flex-column">
+        <!-- defining the class of squares, this helps in applying event listener to the class, instead of individual buttons -->
+        <!-- Flex wrap is applied so that the squares will spill over multiple lines -->
+        <div class="flex-container flex-wrap " id="board">
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        </div>
+
+</body>
+</html>
