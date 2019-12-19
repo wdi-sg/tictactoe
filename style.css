@@ -1,0 +1,45 @@
+body {
+    font-family: Bangers, sans-serif;
+    text-align: center;
+    background-image: url("https://previews.123rf.com/images/alexmstudio/alexmstudio1510/alexmstudio151000006/46490907-cartoon-game-background.jpg");
+    background-color: lightblue;
+    background-repeat: repeat;
+
+}
+h1 {
+    font-size: 30px;
+    text-align: center;
+    margin: 15px auto 0 auto;
+    text-shadow: black 2px 2px;
+    color: yellow;
+}
+
+
+ #board{
+    width: 516px;
+    margin: 0 auto;
+    display: inline flex;
+    align-items: center;
+
+
+}
+.game-square {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 118px;
+    width: 128px;
+    margin: -3px;
+    padding: 0px;
+    border: 2px solid black;
+    font-size: 100px;
+}
+#reset-button {
+text-align: center;
+font-size: 20px;
+border: 1px solid black;
+height: 45px;
+width: 100px;
+margin: 10px;
+text-transform: uppercase;
+}
