@@ -1,3 +1,13 @@
+/*Own notes: 
+
+
+
+
+*/
+
+//Change your condition win conditional
+
+
 //Track player turn;
 var playerTurn = 0;
 var playerX;
@@ -11,6 +21,8 @@ const state = {
 	game: 2
 
 }
+
+//So that the variable will come out when game is over. 
 
 //Declare
 
@@ -29,28 +41,52 @@ var display = function( data ){
 var inputHappened = function(currentInput){
 	switch(state.current){
 		case state.inputName:
-			var playerX = currentInput;
+			playerX = currentInput;
 			document.querySelector('#input').value = "";
 			state.current = state.inputName1
-			return "Player X is "+playerX+" Please enter name of Player O."
+			return "Player X is "+playerX+". Please enter name of Player O."
 		
 		case state.inputName1:
-			var playerO = currentInput;
+			playerO = currentInput;
 			document.querySelector('#input').value = "";
 			state.current = state.game;
-			destroyStartScreen();
-			return "Player O is "+playerO+"Enter s to start"
 			
+			return "Player O is "+playerO+". Enter s to start"
 			
-
-		case state.game:  
-			makeBoard();
+		case state.game:
+			if(currentInput=='s'){
+				destroyInput();
+				//Display who start in the beginning
+				makeBoard(3);
+				
+				if(playerTurn == 0){
+					return "It is "+playerX+"'s turn!"
+				} else if(playerTurn == 1) {
+					return "It is "+playerO+"'s turn!"
+				}
+			} else {
+				return "Wrong input. Enter s to begin"
+			}
+			
 			
 
 
 
 	};
 }//end input happened
+
+function displayWhoseTurn(){
+	var output = document.querySelector('#output'); 
+	if(playerTurn == 0){
+		output.innerText = "It is "+playerX+"'s turn!"
+	} else if(playerTurn == 1){
+		output.innerText = "It is "+playerO+"'s turn!"
+	}
+
+
+}
+
+
 
 
 
@@ -69,6 +105,10 @@ function makeStartScreen(){
 	document.body.appendChild(output)
 }
 
+function destroyInput() {
+	document.body.removeChild(document.querySelector("#input"));
+}
+
 function destroyStartScreen(){
 	for (let i = 0; i < 2; i++){
 		document.body.removeChild(document.querySelectorAll(".starter")[0])
@@ -84,19 +124,19 @@ function destroyBoard(){
 
 
 //This function makes the board.
-var makeBoard = function(){
+var makeBoard = function(n){
 
 	//This is created so that we can remove the board as one unit.
 	var board = document.createElement('div');
 	board.id = "board";
 
 	//There are 3 rows in the board
-	for(let i = 0; i < 3; i++){
+	for(let i = 0; i < n; i++){
 		var row = document.createElement('div');
 		row.classList.add("row");
 		row.id = "row-"+i;
 		//Within each row, create 3 divs
-		for(let j = 0; j < 3; j++){
+		for(let j = 0; j < n; j++){
 			var col = document.createElement('div');
 			col.classList.add("col");
 			col.id = "col-"+i+j;
@@ -131,6 +171,7 @@ function addListeners() {
 				playerTurn = 0;
 			}
 
+			displayWhoseTurn();
 			//After a move, check if there are any matches
 			checkDiagonalDownMatch();
 			checkVerticalMatch();
@@ -143,25 +184,40 @@ function addListeners() {
 
 	}//close for loop
 }
+
+function checkWhoWins(x) {
+	if(x == "X"){
+		return playerX;
+	} else if(x == "O") {
+		return playerO;
+	} else {
+		return "error"
+	}
+}
 			
 
 	
 function checkDiagonalDownMatch(){
  
 	var count = 0;
+		var obj1;
+		var obj2;
 
 	for (let i = 0; i < 2; i++){
 
-		var obj1 = document.querySelector("#col-"+i+i);
-		var obj2 = document.querySelector("#col-"+(i+1)+(i+1));
+		 obj1 = document.querySelector("#col-"+i+i);
+		 obj2 = document.querySelector("#col-"+(i+1)+(i+1));
 
 		if(obj1.innerText != "" && obj1.innerText == obj2.innerText){
 			count++
+			// if it is false, break//continue.
 		}
 	}// end for 
 
 	if(count == 2){
-		alert(obj1.innerText+" player wins!")
+
+		alert(checkWhoWins(obj1.innerText)+" wins!");
+		//End the game:
 	}
 
 }
@@ -181,7 +237,7 @@ function checkDiagonalUpMatch(){
 	}// end for 
 
 	if(count == 2){
-		alert(obj1.innerText+" player wins!")
+		alert(checkWhoWins(obj1.innerText)+" wins!")
 	}
  
 	
@@ -208,7 +264,7 @@ function checkVerticalMatch(){
 		//Count = 2 means that the boxes down the column are identical 
 		if(count == 2){
 			console.log("x")
-			alert(obj1.innerText+" player wins!");
+			alert(checkWhoWins(obj1.innerText)+" wins!");
 		} 
 		// if they are not, proceed to the next column, count = 0;
 		count = 0;
@@ -238,7 +294,7 @@ function checkHorizontalMatch(){
 		//Count = 2 means that the boxes down the column are identical 
 		if(count == 2){
 			console.log("x")
-			alert(obj1.innerText+" player wins!");
+			alert(checkWhoWins(obj1.innerText)+" wins!")
 		} 
 		// if they are not, proceed to the next column,reset count = 0;
 		count = 0;
@@ -257,7 +313,12 @@ function checkHorizontalMatch(){
 
 
 
+/*for(  ){
+	while(){
+	
+	}
 
+}
 
 
 
