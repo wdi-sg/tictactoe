@@ -95,7 +95,7 @@ var clickBoardSquare = function(event) {
     turnImage.classList.add(playerClassName);
     boardSquareUpdate(this.id);
     this.appendChild(turnImage);
-    playerTwoTurn = !playerTwoTurn
+    playerTwoTurn = !playerTwoTurn;
 };
 
 
@@ -257,7 +257,6 @@ var checkWinCondition = function(inputLength=3) {
     }
     
     return false
-    // TODO: Return something if the board is full and the game is a draw.
 }
 
 
