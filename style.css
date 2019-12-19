@@ -1,0 +1,25 @@
+.container {
+    border: 4px solid black;
+    margin: 40px auto;
+    height: 600px;
+    width: 600px;
+}
+
+#reset {
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
+.box {
+    border: 1px solid black;
+    height: 198px;
+    width: 198px;
+    display: inline-block;
+    color: white;
+    font-size: 80px;
+}
+
+.row-style {
+    position: static;
+
+}
