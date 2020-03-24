@@ -5,15 +5,27 @@ document.body.appendChild(mainDivContainer);
 
 var playerTurn = 'X';
 
+var board = [
+  [ null, null, null ],
+  [ null, null, null ],
+  [ null, null, null ]
+];
+
 var clickHandler = function (event) {
     var elementSelected = document.querySelector('.' + event.target.className);
+    //Split the event.target.className string into an array (e.g. square-0-0 into [square, 0, 0])
+    var gridSelected = (event.target.className).split('-');
 
     if (playerTurn == 'X' && elementSelected.innerText == '') {
         playerTurn = 'O';
         elementSelected.innerText = 'X';
+        //Update the board array
+        board[gridSelected[1]][gridSelected[2]] = 'X'
     } else if (playerTurn == 'O' && elementSelected.innerText == '') {
         playerTurn = 'X';
         elementSelected.innerText = 'O';
+        //Update the board array
+        board[gridSelected[1]][gridSelected[2]] = 'O'
     }
 }
 
@@ -36,13 +48,12 @@ var gridCreator = function (num) {
 
 gridCreator(3);
 
+//Win condition
+var winCondition = function () {
+    for (var k = 0; k < board.length; k++) {
+        for (var l = 0; l < board.length; l++) {
 
-var firstRowLeft = document.querySelector('.square-0-0');
-var firstRowCenter = document.querySelector('.square-0-1');
-var firstRowRight = document.querySelector('.square-0-2');
-var secondRowLeft = document.querySelector('.square-1-0');
-var secondRowCenter = document.querySelector('.square-1-1');
-var secondRowRight = document.querySelector('.square-1-2');
-var thirdRowLeft = document.querySelector('.square-2-0');
-var thirdRowCenter = document.querySelector('.square-2-1');
-var thirdRowRight = document.querySelector('.square-2-2');
+            }
+        }
+    }
+}
