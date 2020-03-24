@@ -52,7 +52,9 @@ const clickHandler = (event) => {
 
         //Add to board score
         markBoard(rowClass, boxClass);
-        console.log(board);
+
+        //Check Win
+        checkWin(board, "X");
 
         playerTurn = !playerTurn;
     }
@@ -65,7 +67,9 @@ const clickHandler = (event) => {
 
         //Add to board score
         markBoard(rowClass, boxClass);
-        console.log(board);
+
+        //Check Win
+        checkWin(board, "O");
 
         playerTurn = !playerTurn;
     }
@@ -95,4 +99,68 @@ while (i < 3) {
         row.appendChild(box);
     }
     i++;
+}
+
+
+const checkWin = (board, input) => {
+    let rowScore = []
+    let columnScore = [];
+    let diagonalScore = [];
+
+    // Loop board and add 1 point respectively to row or column for each box marked
+    for(let h=0; h<3; h++){
+        for (let n=0; n<3; n++){
+            if (board[h][n] === input){
+                //Add score to row
+                if (isNaN(rowScore[h])) {
+                    rowScore[h] = 1
+                }else if(rowScore[h]){
+                    rowScore[h] = rowScore[h] + 1;
+                }
+
+                //Add score to column
+                if (isNaN(columnScore[n])) {
+                    columnScore[n] = 1
+                }else if(columnScore[n]){
+                    columnScore[n] = columnScore[n] + 1;
+                }
+
+                //Add score to diagonal
+                if(h === 0){
+                    diagonalScore[n] = 1;
+                }
+                else if(h > 0){
+                    if ( board[h-1][n-1] === input || board[h-1][n+1] === input ){
+                        if ( board[h-1][n-1] === input ) {
+                            diagonalScore[0] = diagonalScore[0] + 1;
+                        }
+                        else if( board[h-1][n+1] === input ) {
+                            diagonalScore[2] = diagonalScore[2] + 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    console.log(diagonalScore);
+    // check win
+    for (let f=0; f<rowScore.length; f++) {
+        if (rowScore[f] === 3){
+            console.log("win");
+        }
+    }
+
+    for (let z=0; z<columnScore.length; z++) {
+        if (columnScore[z] === 3){
+            console.log("win");
+        }
+    }
+
+    for (let r=0; r<diagonalScore.length; r++) {
+        if (diagonalScore[r] === 3){
+            console.log("win");
+        }
+    }
+
 }
