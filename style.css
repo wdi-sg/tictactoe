@@ -1,0 +1,28 @@
+body {
+	background-color: pink;
+}
+
+h1{
+	text-align: center;
+	margin-right: 68px;
+}
+
+#board{
+	height: 500px;
+	width: 500px;
+	margin: 170px auto;
+	text-align: center;
+}
+
+.game-row{
+	display: flex;
+}
+
+.game-square {
+	background-color: red;
+	border: 5px solid black;
+	width: 75px;
+	height: 75px;
+	padding: 30px 30px;
+	font-size: 75px;
+}
