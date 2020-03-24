@@ -5,7 +5,38 @@ var stateOfBoxes=
 ["n","n","n"],
 ["n","n","n"],
 ["n","n","n"]
-]
+];
+var touchedItems=9;
+//var row;
+//var column;
+
+var computerTurn=function(){
+    //console.log("my turn");
+    var computerRow, computerColumn;
+    var computerRowText, computerColumnText;
+    var boxId=["#box"];
+    var boxIdSearch;
+    for(;;){
+        computerRow=Math.floor(Math.random()*3);
+        computerColumn=Math.floor(Math.random()*3);
+        if(stateOfBoxes[computerRow][computerColumn]==="n")
+        {
+            console.log("inserted");
+            break;
+        }
+    }
+        stateOfBoxes[computerRow][computerColumn]="O"
+        computerRowText=computerRow.toString();
+        computerColumnText=computerColumn.toString();
+        //console.log(typeof computerColumnText);
+        //console.log(typeof computerRowText);
+        boxId.push(computerRowText);
+        boxId.push(computerColumnText);
+        //console.log(boxId);
+        boxIdSearch=boxId.join("");
+        //console.log(boxIdSearch);
+
+}
 
 //To insert the X
 var insertText=function(event){
@@ -20,6 +51,11 @@ var insertText=function(event){
     {
         this.innerText="X";
         stateOfBoxes[row][column]="X";
+        touchedItems--
+        if(touchedItems>0){
+                computerTurn();
+            }
+
     }
 
 }
