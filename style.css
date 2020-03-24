@@ -10,14 +10,14 @@ h1 {
 	margin: 0 auto;
 }
 
-.first-row, .second-row, .third-row {
+.row {
 	background-color: brown;
 	width: 98%;
 	height: 32.3%;
 	margin: 7px 5px;
 }
 
-.first-row-left, .first-row-center, .first-row-right, .second-row-left, .second-row-center, .second-row-right, .third-row-left, .third-row-center, .third-row-right {
+.square-0-0, .square-0-1, .square-0-2, .square-1-0, .square-1-1, .square-1-2, .square-2-0, .square-2-1, .square-2-2 {
 	background-color: white;
 	width: 32%;
 	height: 98%;
