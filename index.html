@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="board">
+        <div class="game-row">
+            <span id="top-left" class="game-square">
+                <h6>//F(inputHappened)</h6>
+            </span>
+            <span id="top-mid" class="game-square">
+                <h6>//F(inputHappened)</h6>
+            </span>
+            <span id="top-right" class="game-square">
+                <h6>//F(inputHappened)</h6>
+            </span>
+        </div>
+        <div class="game-row">
+            <span id="mid-left" class="game-square">
+                <h6>//F(inputHappened)</h6>
+            </span>
+            <span id="center" class="game-square">
+                <h6>//F(inputHappened)</h6>
+            </span>
+            <span id="mid-right" class="game-square">
+                <h6>//F(inputHappened)</h6>
+            </span>
+        </div>
+        <div class="game-row">
+            <span id="bottom-left" class="game-square">
+                <h6>//F(inputHappened)</h6>
+            </span>
+            <span id="bottom-center" class="game-square">
+                <h6>//F(inputHappened)</h6>
+            </span>
+            <span id="bottom-right" class="game-square">
+                <h6>//F(inputHappened)</h6>
+            </span>
+        </div>
+    </div>
+    <script>
+        document.querySelector('game-square').addEventListener('click', function (event) {
+            var currentInput = event.target.value;
+            var output = inputHappened(currentInput);
+            display(output);
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
