@@ -1,0 +1,16 @@
+#board{
+  float:left;
+	max-width: 200px;
+}
+.game-row{
+	display:inline-block;
+	width: 300px;
+}
+.game-square{
+	width: 25px;
+  border: light black;
+	padding: 30px;
+	margin: 0 auto;
+	display:inline-block;
+	text-align: center;
+}
