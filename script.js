@@ -1,3 +1,5 @@
+
+//below are all part 1's script.
 var oddEven = "odd"; // odd is cross and even is circle
 var boxOneGetter = document.getElementById('a-one');
 var boxTwoGetter = document.getElementById('a-two');
