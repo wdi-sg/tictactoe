@@ -92,6 +92,11 @@ var checkForWinWay8 = function(){
         alert("Yay! Even Player Wins!");
     }
 }
+var checkForStale = function(){
+    if (oddPlayerHand.length === 5 && evenPlayHand.length === 4){
+        alert("Nay! Its a stale mate!");
+    }
+}
 
 var checkWin = function(){
     checkForWinWay1();
@@ -102,6 +107,7 @@ var checkWin = function(){
     checkForWinWay6();
     checkForWinWay7();
     checkForWinWay8();
+    checkForStale();
 }
 
 var clickBoxOne = function(){
