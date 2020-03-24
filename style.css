@@ -22,9 +22,6 @@
   font-size: 150px;
 }
 
-/* ⭕ */
-/* ❌ */
-
 .cross {
   font-size: 130px;
 }
@@ -32,4 +29,11 @@
 .circle {
   font-size: 155px;
   font-weight: bold;
+}
+
+h1 {
+  font-size: 30px;
+  margin: 10px auto;
+  text-align: center;
+  color: #0ca204;
 }
