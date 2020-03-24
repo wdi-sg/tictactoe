@@ -1,0 +1,20 @@
+
+.row{
+	background-color: pink;
+	width: 80%;
+	margin: auto;
+	clear: both;
+	height: 100px;
+}
+
+.square{
+	background-color: blue;
+	margin: 10px 2.5%;
+	display: inline-block;
+	height: 60px;
+	width: 28%;
+	text-align: center;
+	padding: 15px;
+	box-sizing: border-box;
+	float: left;
+}
