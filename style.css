@@ -1,0 +1,142 @@
+
+body {
+  background-color: grey;
+}
+
+h1 {
+    font-family: "Arial Black", Helvetica, sans-serif;
+    color: white;
+    text-align: center;
+}
+
+#board {
+/*    display: grid;*/
+      background-color: #9c8d91;
+      margin: auto;
+      width: 150px;
+      height: 150px;
+}
+
+.game{
+    width: 60px;
+    height: 60px;
+    border-color: white;
+    cursor: pointer;
+}
+
+#btn-1{
+    font-size: 45px;
+    font-weight: bold;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    color: red;
+    width: 60px;
+    height: 60px;
+    border-color: grey;
+    cursor: pointer;
+}
+
+#btn-2{
+    font-size: 45px;
+    font-weight: bold;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    color: red;
+    width: 60px;
+    height: 60px;
+    border-color: grey;
+    cursor: pointer;
+}
+
+#btn-3{
+    font-size: 45px;
+    font-weight: bold;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    color: red;
+    width: 60px;
+    height: 60px;
+    border-color: grey;
+    cursor: pointer;
+}
+
+#btn-4{
+    font-size: 45px;
+    font-weight: bold;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    color: red;
+    width: 60px;
+    height: 60px;
+    border-color: grey;
+    cursor: pointer;
+}
+
+#btn-5{
+    font-size: 45px;
+    font-weight: bold;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    color: red;
+    width: 60px;
+    height: 60px;
+    border-color: grey;
+    cursor: pointer;
+}
+
+#btn-6{
+    font-size: 45px;
+    font-weight: bold;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    color: red;
+    width: 60px;
+    height: 60px;
+    border-color: grey;
+    cursor: pointer;
+}
+
+#btn-7{
+    font-size: 45px;
+    font-weight: bold;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    color: red;
+    width: 60px;
+    height: 60px;
+    border-color: grey;
+    cursor: pointer;
+}
+
+#btn-8{
+    font-size: 45px;
+    font-weight: bold;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    color: red;
+    width: 60px;
+    height: 60px;
+    border-color: grey;
+    cursor: pointer;
+}
+
+#btn-9{
+    font-size: 45px;
+    font-weight: bold;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    color: red;
+    width: 60px;
+    height: 60px;
+    border-color: grey;
+    cursor: pointer;
+}
+
+
+
+/*.game-row {
+    width: 100px;
+    height: 100px;
+    display: grid;
+    border: black;
+    grid-template-columns: auto auto auto;
+    background-color: white;
+}*/
+
+/*.game-square {
+    width: 100px;
+    height: 100px;
+    font-size: 10px;
+    text-align: center;
+}*/
