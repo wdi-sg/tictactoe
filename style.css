@@ -21,13 +21,8 @@
   font-size: 150px;
 }
 
-.cross {
-  font-size: 15vh;
-  vertical-align: middle;
-}
-
-.circle {
-  font-size: 18vh;
+.circle, .cross {
+  font-size: vh;
   font-weight: bold;
 }
 

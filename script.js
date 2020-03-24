@@ -29,7 +29,7 @@ var makeMark = function (sym) {
 
   switch (sym) {
   case "cross":
-    mark.innerText = "❌";
+    mark.innerText = "×";
     currentSym = "circle";
     break;
   case "circle":
