@@ -1,12 +1,22 @@
+var currentSym = "cross";
+var gameState = [
+  [null, null, null],
+  [null, null, null],
+  [null, null, null]]
+
 var makeBoard = function () {
   var body = document.querySelector("body");
   var gameBoard = document.createElement("div")
   gameBoard.setAttribute("id", "gameboard");
 
-  for (var i = 0; i < 9; i++) {
-    var gameCell = document.createElement("div");
-    gameCell.setAttribute("class", "gamecell");
-    gameBoard.appendChild(gameCell);
+  for (var row = 0; row < 3; row++) {
+    for (var col = 0; col < 3; col++) {
+      var gameCell = document.createElement("div");
+      gameCell.setAttribute("class", "gamecell");
+      gameCell.setAttribute("data-row", row);
+      gameCell.setAttribute("data-col", col);
+      gameBoard.appendChild(gameCell);
+    }
   }
 
   body.appendChild(gameBoard);
@@ -28,30 +38,6 @@ var makeMark = function (sym) {
     break;
   }
   return mark;
-}
-
-var logGameState = function () {
-  var state = "";
-  var cells = document.querySelectorAll(".gamecell");
-  var gameStateList = [];
-  var gameState = [[],[],[]];
-
-  console.log(cells);
-  for (var i = 0; i < cells.length; i++) {
-    var childEle = cells[i].firstElementChild;
-    if (childEle === null) {
-      gameStateList.push(null);
-    } else {
-      gameStateList.push(childEle.className);
-    }
-  }
-
-  for (var i = 0; i < 3; i++) {
-    for (var j = 0; j < 3; j++) {
-      gameState[i][j] = gameStateList.shift();
-    }
-  }
-  return gameState;
 }
 
 var checkRows = function (game2DArr) {
@@ -130,13 +116,17 @@ var displayWinner = function (winStr) {
   document.querySelector("body").appendChild(announce);
 }
 
-var updateGame = async function () {
+var updateGame = function () {
+  var row = this.getAttribute("data-row");
+  var col = this.getAttribute("data-col");
+  gameState[row][col] = currentSym;
+
   var symbol = makeMark(currentSym);
   this.appendChild(symbol);
-  var currentGame = logGameState();
-  var rowWin = checkRows(currentGame);
-  var colWin = checkCols(currentGame);
-  var diaWin = checkDias(currentGame);
+
+  var rowWin = checkRows(gameState);
+  var colWin = checkCols(gameState);
+  var diaWin = checkDias(gameState);
 
   console.log("row win: ", rowWin);
   console.log("col win: ", colWin);
@@ -162,4 +152,3 @@ var addListeners = function () {
 }
 
 makeBoard();
-var currentSym = "cross";
