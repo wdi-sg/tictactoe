@@ -109,9 +109,25 @@ var arrMatch = function (arr) {
   return arrMatch;
 }
 
-var displayWinner = function (winStr) {
+var fullGame = function (game) {
+  var end = true;
+
+  for (var i = 0; i < game.length; i++) {
+    for (var j = 0; j < game[0].length; j++) {
+      if (game[i][j] === null) {
+        end = false;
+        return end;
+      }
+    }
+  }
+  return end;
+}
+
+var displayText = function (str, color) {
   var announce = document.createElement("h1");
-  announce.innerText = winStr;
+  announce.innerText = str;
+  announce.style.color = color;
+
   var gameBoard = document.querySelector("#gameboard");
   document.querySelector("body").appendChild(announce);
 }
@@ -119,10 +135,18 @@ var displayWinner = function (winStr) {
 var updateGame = function () {
   var row = this.getAttribute("data-row");
   var col = this.getAttribute("data-col");
+  if (gameState[row][col] !== null) {
+    console.log("Already played");
+    return;
+  }
   gameState[row][col] = currentSym;
 
   var symbol = makeMark(currentSym);
   this.appendChild(symbol);
+
+  if (fullGame(gameState)) {
+    displayText("Game over; neither side won.", "purple");
+  }
 
   var rowWin = checkRows(gameState);
   var colWin = checkCols(gameState);
@@ -133,13 +157,11 @@ var updateGame = function () {
   console.log("dia win: ", diaWin);
 
   if (rowWin) {
-    displayWinner(`Row win: ${rowWin}`);
+    displayText(`Row win: ${rowWin}`, "#0ca204");
   } else if (colWin) {
-    displayWinner(`Column win: ${colWin}`);
+    displayText(`Column win: ${colWin}`, "#0ca204");
   } else if (diaWin) {
-    displayWinner(`Diagonal win: ${diaWin}`);
-  } else {
-    return;
+    displayText(`Diagonal win: ${diaWin}`, "#0ca204");
   }
 }
 
