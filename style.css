@@ -1,0 +1,35 @@
+#gameboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+
+  width: 600px;
+  height: 600px;
+  background-color: black;
+  margin: 0 auto;
+}
+
+.gamecell {
+  display: flex;
+  width: 196px;
+  height: 196px;
+  background-color: white;
+  margin: auto;
+
+  align-items: center;
+  justify-content: center;
+  font-size: 150px;
+}
+
+/* ⭕ */
+/* ❌ */
+
+.cross {
+  font-size: 130px;
+}
+
+.circle {
+  font-size: 155px;
+  font-weight: bold;
+}
