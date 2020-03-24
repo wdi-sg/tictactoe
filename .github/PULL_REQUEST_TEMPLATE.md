@@ -1,4 +1,4 @@
-**Deliverable Submission**
+**Deliverable Submission
 
 Please describe your comfort and completeness levels before submitting.
 

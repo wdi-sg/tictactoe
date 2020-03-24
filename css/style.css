@@ -1,0 +1,151 @@
+body {
+    font-family: Bangers, sans-serif;
+    text-align: center;
+    background: url('../images/colored_talltrees.png');
+    background-repeat: repeat-x;
+    background-color: rgb(184,208,166);
+}
+
+h1 {
+    font-size: 52px;
+    text-align: center;
+    margin: 15px auto 0 auto;
+    text-shadow: black 2px 2px;
+    /* text-shadow: rgb(112, 75, 45); */
+    color: rgb(99,143,70);
+
+}
+
+.game-board {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.board-row {
+    display: flex;
+    justify-content: center;
+    height: 128px;
+    /* width: 384px; */
+    font-size: 0px;
+}
+
+.board-square {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 128px;
+    width: 128px;
+    background: url('../images/panel_woodPaper.png');
+    /* background-color: white; */
+    margin: 0px;
+    padding: 0px;
+}
+
+.player-image {
+    width: 112px;
+    height: 112px;
+
+}
+
+.game-popup-text {
+    padding: 10px 0px 5px 0px;
+    color: black;
+}
+
+.game-popup-background {
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    justify-content: center;
+    align-items: center;
+    /* backdrop-filter: blur(5px); */
+    backdrop-filter: blur(10px);
+}
+
+.game-popup-prompt {
+    font-size: 25px;
+    padding: 20px;
+    text-align: center;
+    background: rgb(253, 241, 214);
+    border: rgb(172, 125, 75) 10px solid;
+    border-radius: 10px;
+    width: 200px;
+    /* height: 50px; */
+}
+
+.game-options-prompt {
+    font-size: 25px;
+    padding: 20px;
+    text-align: center;
+    background: rgb(253, 241, 214);
+    border: rgb(172, 125, 75) 10px solid;
+    border-radius: 10px;
+    width: 300px;
+    /* height: 310px; */
+}
+
+div.game-options-title {
+    background: url(../images/bannerHanging.png);
+    color: white;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 60px;
+    width: 250px;
+    line-height: 65px;
+    text-shadow: black 2px 2px;
+    position: relative;
+    top: -50px;
+    left: 25px;
+    display: block;
+}
+
+input.game-options-input {
+    font-size: 25px;
+    padding: 5px;
+    width: 250px;
+    font-family: Bangers;
+}
+
+.game-options-container {
+    margin-top: -3rem;
+    color: black;
+}
+
+button {
+    /* position: relative; */
+    bottom: 15px;
+    /* margin: 20px; */
+    font-family: Bangers;
+    font-size: 15px;
+    color: white;
+    background: url('../images/button_rectangleRed.png');
+    width: 80px;
+    height: 40px;
+    border: none;
+}
+
+.game-options-button {
+    /* position: relative; */
+    bottom: 15px;
+    margin: 20px;
+    font-family: Bangers;
+    font-size: 15px;
+    color: white;
+    background: url('../images/button_rectangleRed.png');
+    width: 80px;
+    height: 40px;
+    border: none;
+}
+
+.game-option-button-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}

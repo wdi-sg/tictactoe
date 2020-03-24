@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Acme|Bangers&display=swap" rel="stylesheet"> 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Tic Tac Toe Game</title>
+</head>
+<body>
+    <h1>Tic Tac Toe game.</h1>
+    
+    <p><button id="game-options-launch" class="game-options-button">Options</button></p>
+
+    <div class="game-board" id="game-board">
+        <div class="board-row">
+            <div class="board-square"></div>
+            <div class="board-square"></div>
+            <div class="board-square"></div>
+        </div>
+        <div class="board-row">
+            <div class="board-square"></div>
+            <div class="board-square"></div>
+            <div class="board-square"></div>
+        </div>
+        <div class="board-row">
+            <div class="board-square"></div>
+            <div class="board-square"></div>
+            <div class="board-square"></div>
+        </div>
+    </div>
+
+    <div class="game-popup-background" id="game-alert">
+        <div class="game-popup-prompt">
+            <h2 class="game-popup-text" id="game-popup-text">Game Popup Text</h2>
+            <button id="game-start-button">OK</button>
+        </div>
+    </div>
+
+    <div class="game-popup-background" id="game-settings">
+        <div class="game-options-prompt">
+            <div class="game-options-title">Options</div>
+            <div class="game-options-container">
+                <h2 class="game-popup-text">Player 1 Name:</h2>
+                <input type="text" id="player-1-name" class="game-options-input" value="Player 1">
+                <h2 class="game-popup-text">Player 2 Name:</h2>
+                <input type="text" id="player-2-name" class="game-options-input" value="Player 2">
+                <h2 class="game-popup-text">Board Size:</h2>
+                <input type="text" id="game-board-size" class="game-options-input" value="3">
+                <h2 class="game-popup-text">Match in a row to win:</h2>
+                <input type="text" id="game-board-match" class="game-options-input" value="3">
+                <div class="game-option-button-container">
+                    <button id="game-options-apply" class="game-options-button">Apply</button>
+                    <button id="game-options-cancel" class="game-options-button">Cancel</button>
+                </div>
+        </div>
+            
+        </div>
+    </div>
+    <script src="script/script.js"></script>
+</body>
+    
+</html>
