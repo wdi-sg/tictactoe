@@ -1,0 +1,30 @@
+h1 {
+	text-align: center;
+	font-family: sans-serif;
+}
+
+.main-container {
+	background-color: black;
+	width: 500px;
+	height: 500px;
+	margin: 0 auto;
+}
+
+.first-row, .second-row, .third-row {
+	background-color: brown;
+	width: 98%;
+	height: 32.3%;
+	margin: 7px 5px;
+}
+
+.first-row-left, .first-row-center, .first-row-right, .second-row-left, .second-row-center, .second-row-right, .third-row-left, .third-row-center, .third-row-right {
+	background-color: white;
+	width: 32%;
+	height: 98%;
+	display: inline-block;
+	margin: 2px 3px;
+	float: left;
+	text-align: center;
+	font-size: 140px;
+	color: black;
+}
