@@ -22,11 +22,12 @@
 }
 
 .cross {
-  font-size: 130px;
+  font-size: 15vh;
+  vertical-align: middle;
 }
 
 .circle {
-  font-size: 155px;
+  font-size: 18vh;
   font-weight: bold;
 }
 
