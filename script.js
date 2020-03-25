@@ -1,11 +1,11 @@
 var winner = "";
 var board = {
-    top: ["", "", ""],
-    middle: ["", "", ""],
-    bottom: ["", "", ""]
+    top: ["1", "2", "3"],
+    middle: ["4", "5", "6"],
+    bottom: ["7", "8", "9"]
 };
 var turnCounter = 1;
-var value = "X";
+var value = "";
 
 
 // function initialize() {
@@ -19,55 +19,71 @@ var value = "X";
 //     //value = turnIndicator();
 // }
 console.log("Tic Tac Toe");
-console.log(value)
 
 function turnIndicator() {
     var XO = "";
-    var turn = turnCounter%2;
-    if ( turn == 1) {
-        XO = "X";
+    var turn = turnCounter % 2;
+    if (turn == 1) {
+        XO = "❌";
     } else if (turn == 0) {
-        XO = "O";
+        XO = "⭕";
     }
     return XO;
 }
 var gameOver = false;
 
 function onClick(clickedId) {
-    gameOver = winCondition();
+    value = turnIndicator();
+    //gameOver = winCondition();
+    updateTile(clickedId);
     mapTileGrid(clickedId);
     updateTurn();
-    updateTile(clickedId);
     console.log(value);
 
 }
-function updateTurn(){
+
+function updateTurn() {
+    gameOver = winCondition();
     var turnText = document.getElementById("turn");
-    if (turnCounter <=9 || gameOver == false){
-        if (value === "X") {
-        turnText.innerText = "Player ⭕ Turn";
-    } else if (value === "O") {
-        turnText.innerText = "Player ❌ Turn"
+    if (!gameOver) {
+        if (value === "❌") {
+            turnText.innerText = "Player ⭕ Turn";
+        } else if (value === "⭕") {
+            turnText.innerText = "Player ❌ Turn"
+        }
+    } else if (gameOver) {
+        disableAll();
+        if (winner != "It's a draw!"){
+        turnText.innerText = `Game Over! ${winner} wins!`;
+        } else {
+            turnText.innerText = `Game Over! ${winner}`;
+        }
     }
-    } else if (gameOver == true){
-        alert (`Game Over!`)
-    }
-    turnCounter ++;
+    turnCounter++;
 }
+
+function disableAll() {
+    var tiles = document.getElementsByClassName("tile")
+    for (id in tiles) {
+        tiles[id].disabled = "disabled";
+    }
+};
+
 function updateTile(clickedId) {
     var tile = document.getElementById(clickedId);
-    console.log(`Turn : ${turnCounter}, Tile ${clickedId} clicked`);
+    console.log(`${value}, Turn : ${turnCounter}, Tile ${clickedId} clicked`);
     tile.disabled = "disabled";
     value = turnIndicator();
-    if (value === "X") {
+    if (value === "⭕") {
         tile.innerText = "⭕";
-         tile.style.backgroundColor = "magenta";
-    } else if (value === "O") {
+        tile.style.backgroundColor = "magenta";
+    } else if (value === "❌") {
         tile.innerText = "❌"
         tile.style.backgroundColor = "cyan";
 
     }
     console.log(board);
+
 }
 
 function mapTileGrid(clickedId) {
@@ -111,35 +127,35 @@ function mapTileGrid(clickedId) {
 function winCondition() {
     var win = false;
     // Horizontal win
-    if (board.top[0] == board.top[1] == board.top[2]) {
+    if (board.top[0] == board.top[1] && board.top[1] == board.top[2]) {
         win = true;
         winner = board.top[0];
-    } else if (board.middle[0] == board.middle[1] == board.middle[2]) {
+    } else if (board.middle[0] == board.middle[1] && board.middle[1] == board.middle[2]) {
         win = true;
         winner = board.middle[0];
-    } else if (board.bottom[0] == board.bottom[1] == board.bottom[2]) {
+    } else if (board.bottom[0] == board.bottom[1] && board.bottom[1] == board.bottom[2]) {
         win = true;
         winner = board.bottom[0];
         // Vertical win
-    } else if (board.top[0] == board.middle[0] == board.bottom[0]) {
+    } else if (board.top[0] == board.middle[0] && board.middle[0] == board.bottom[0]) {
         win = true;
         winner = board.top[0];
-    } else if (board.top[1] == board.middle[1] == board.bottom[1]) {
+    } else if (board.top[1] == board.middle[1] && board.middle[1] == board.bottom[1]) {
         win = true;
         winner = board.top[1];
-    } else if (board.top[2] == board.middle[2] == board.bottom[2]) {
+    } else if (board.top[2] == board.middle[2] && board.middle[2] == board.bottom[2]) {
         win = true;
         winner = board.top[2];
         //Diagonal win
-    } else if (board.top[0] == board.middle[1] == board.bottom[2]) {
+    } else if (board.top[0] == board.middle[1] && board.middle[1] == board.bottom[2]) {
         win = true;
         winner = board.top[0];
-    } else if (board.top[2] == board.middle[1] == board.bottom[0]) {
+    } else if (board.top[2] == board.middle[1] && board.middle[1] == board.bottom[0]) {
         win = true;
         winner = board.top[2];
-    } else {
+    } else if (turnCounter == 9) {
         win = true;
-        winner = "Draw"
+        winner = "It's a draw!"
     }
     return win;
 }
