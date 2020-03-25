@@ -2,6 +2,7 @@ let startBoard;
 let userPlayer = 'X';
 let userPlayer2 = 'O';
 let aiPlayer = 'O';
+let currentPlayer = userPlayer;
 let winStatus = false;
 let winCombinations = [
     [0, 1, 2],
@@ -14,19 +15,33 @@ let winCombinations = [
     [6, 4, 2],
 ]
 
+let boardArrayX = [];
+let boardArrayO = [];
 let boardArray = [];
+
 let boxes = document.querySelectorAll(".board > div");
+
+const switchPlayer = (player1, player2) => {
+    return ((currentPlayer === player1) ? currentPlayer = player2 : currentPlayer = player1);
+}
 
 const clickHandler = (box) => {
     if (winStatus) {
         return;
     } else {
-        boxes[box.target.id].innerText = userPlayer;
+        boxes[box.target.id].innerText = currentPlayer;
+        if (currentPlayer === 'X' && !boardArrayX.includes(parseInt(box.target.id))){
+            boardArrayX.push(parseInt(box.target.id));
+        } else if (currentPlayer === 'O' && !boardArrayX.includes(parseInt(box.target.id))) {
+            boardArrayO.push(parseInt(box.target.id));
+        }
+
         if (!boardArray.includes(parseInt(box.target.id))) {
             boardArray.push(parseInt(box.target.id));
         }
         checkWin();
     }
+    switchPlayer(userPlayer, userPlayer2);
 }
 
 const replayGame = () => {
@@ -39,6 +54,8 @@ const replayGame = () => {
 
 const startGame = () => {
     boardArray.length = 0;
+    boardArrayX.length = 0;
+    boardArrayO.length = 0;
     winStatus = false;
     for (let i = 0; i < boxes.length; i++) {
         boxes[i].innerText = "";
@@ -59,9 +76,12 @@ const checkWin = () => {
         return;
     } else {
         for (i = 0; i < winCombinations.length; i++) {
-            if (checker(boardArray, winCombinations[i])) {
+            if (checker(boardArrayX, winCombinations[i])) {
                 winStatus = true;
-                console.log("You win!");
+                console.log("X wins!");
+            } else if (checker(boardArrayO, winCombinations[i])) {
+                winStatus = true;
+                console.log("O wins!");
             }
         }
     }
