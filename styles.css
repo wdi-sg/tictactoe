@@ -1,0 +1,43 @@
+h2{
+	text-align: center;
+	font-size: 50px;
+}
+
+.name{
+	display: block;
+	margin: 2px;
+}
+
+.score{
+	background-color: green;
+	display: inline-block;
+	margin: 80px 20px;
+	padding: 30px;
+	font-size: 20px;
+}
+
+
+.row{
+	background-color: pink;
+	width: 80%;
+	margin: auto;
+	clear: both;
+	height: 100px;
+}
+
+.box{
+	font-size: 50px;
+	background-color: blue;
+	margin: 10px 2.5%;
+	display: inline-block;
+	height: 60px;
+	width: 28%;
+	text-align: center;
+	padding: 0px;
+	box-sizing: border-box;
+	float: left;
+}
+
+.hide{
+	display: none;
+}
