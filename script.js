@@ -28,6 +28,9 @@ var gameSquares = document.querySelectorAll('.game-square');
 var gameProgress = 0;
 var clickCount = 0;
 var winningArray = [[0, 1 ,2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+var playerOne = [];
+var playerTwo = [];
+var currentStatus = ["", "", "", "", "", "", "", "", ""]
 
 //create event so when clicked, it will show which square.
 //userChoice "X" will be player 1 and "O" will be player 2.
@@ -58,7 +61,16 @@ for (var gameSquaresI = 0; gameSquaresI < gameSquares.length; gameSquaresI++){
 //check match
 console.log(clickCount);
 
-//horizontal and vertical
+//push the index clicked to an array of items for player 1 (X)
+
+//push the index clicked to an array of items for player 2 (O)
+
+
+//When the array is > 3, check the position clicked if it is === to one of the winning Array. if true, win. if false, lose, if both false, tie.
+
+
+
+//horizontal and vertical - not complete and not using
 // var gameSquareI = 0;
 // var i = 0;
 // var j = 0;
