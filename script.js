@@ -16,7 +16,7 @@ var makeBoard = function () {
       gameCell.setAttribute("data-row", row);
       gameCell.setAttribute("data-col", col);
       gameBoard.appendChild(gameCell);
-    }
+   }
   }
 
   body.appendChild(gameBoard);
@@ -139,6 +139,9 @@ var displayText = function (str, color) {
   var gameBoard = document.querySelector("#gameboard");
   document.querySelector("body").appendChild(announce);
 }
+
+// gameCell.setAttribute("data-row", row);
+// gameCell.setAttribute("data-col", col);
 
 var updateGame = function () {
   var row = this.dataset.row;
