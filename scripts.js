@@ -9,6 +9,7 @@ class Utils {
 
 class Player {
   constructor(name, symbol) {
+    this.hasWon = false;
     this.name = name;
     this.symbol = symbol;
     this.score = 0;
@@ -59,8 +60,16 @@ class Game {
     const rowIndex = e.target.dataset.y;
     console.info(`Player clicked on tile: [${colIndex}][${rowIndex}]`);
     this.updateBoard({colIndex, rowIndex} );
-    this.checkWin();
+    const hasWon = this.checkWin();
+    if (hasWon) {
+      console.group("The winner is:");
+      console.info("player: " + this.whosTurn)
+    }
     this._toggleTurn();
+  }
+
+  _setPlayerWin(player) {
+
   }
 
   updateBoard(indicesToUpdate) {
@@ -76,14 +85,19 @@ class Game {
 
   checkWin() {
     const board = this.isPlayer1Turn()? this.player1Board: this.player2Board;
+    return this._hasDiagonalRow(board) || this._hasHorizontalRow(board) || this._hasVerticalRow(board);
   }
 
   _hasHorizontalRow(boardArr) {
     return boardArr.some( row => this._hasInARow(row) )
   }
 
-  _checkVerticalRow(boardArr) {
-    
+  _hasVerticalRow(boardArr) {
+    for(let i = 0; i < boardArr.length; i++ ) {
+      const column = boardArr.map( row => row[i]);
+      if (this._hasInARow(column)) return true;
+    }
+    return false;
   }
 
   _hasDiagonalRow(boardArr) {
