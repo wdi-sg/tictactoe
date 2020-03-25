@@ -1,0 +1,70 @@
+header h1 {
+	text-align: center;
+	text-decoration: underline;
+	padding: 20px;
+}
+
+.gameboard {
+	margin: 60px auto;
+}
+
+.row {
+	display: flex;
+	margin: 0 auto;
+	vertical-align: middle;
+	justify-content: center;
+}
+
+.box {
+	border: solid 1px #000000;
+	height: 100px;
+	width: 100px;
+}
+
+.box p {
+	font-size: 80px;
+	text-align: center;
+	line-height: 100px;
+	margin: 0;
+}
+
+.player-names {
+	display: flex;
+	justify-content: center;
+	font-size: 18px;
+}
+
+.player {
+	margin: 0 20px;
+}
+
+input {
+	font-size: 16px;
+	padding: 5px;
+}
+
+.score {
+	text-align: center;
+	font-size: 30px;
+}
+
+.buttons {
+	text-align: center;
+	margin: 60px auto;
+}
+
+.buttons > button {
+	background: #F6F8FA;
+	font-size: 18px;
+	padding: 20px 40px;
+	margin: 0 20px;
+}
+
+.instructions {
+	text-align: center;
+}
+
+.instructions ol {
+	display: inline-block;
+	text-align: left;
+}
