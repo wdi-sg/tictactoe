@@ -9,7 +9,7 @@ var startClick = 0;
 
 
 
-//Code to create the board
+//Code to create the board & reset the board
 var createBoard = function(){
   if(startClick === 0){
     startClick++;
@@ -18,6 +18,8 @@ var createBoard = function(){
     boardGet.parentNode.removeChild(boardGet);
   }
   startButton.classList.add("hide");
+  player1 = document.getElementById("player1").value;
+  player2 = document.getElementById("player2").value;
   var board = document.createElement("div");
   board.id = "board";
   document.body.appendChild(board);
@@ -33,6 +35,7 @@ var createBoard = function(){
     }
   }
   winnerList.className = "winner-list";
+  winnerList.classList.add("hide");
   document.body.appendChild(winnerList);
   for(var i = 0; i < allSquares.length; i++){
     allSquares[i].addEventListener("click", flipSymbol);
@@ -51,6 +54,7 @@ var flipSymbol = function(event){
     if(calculateWinner(boardElements) === true){
       winnerList.innerHTML = `${player1} is the winner!`
       startButton.classList.remove("hide");
+      winnerList.classList.remove("hide");
     }
     turn++;
   }else if(turn === 2){
@@ -62,6 +66,7 @@ var flipSymbol = function(event){
     if(calculateWinner(boardElements) === true){
       winnerList.innerHTML = `${player2} is the winner!`
       startButton.classList.remove("hide");
+      winnerList.classList.remove("hide");
     }
     turn--;
   }
