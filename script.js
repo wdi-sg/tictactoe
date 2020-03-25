@@ -42,36 +42,36 @@ var checkPlayer = function () {
 
 
 var addToBoardArray = function (input) {
-    // var y = 0;
+    console.log(input)
+    let z = input;
+    console.log(z)
     for (i = 0; i < board.length; i++) {
         for (j = 0; j < board.length; j++) {
-            console.log(j + ' j');
-            if(totalBoxes[j].innerHTML){
+            if(totalBoxes[j].innerHTML === input){
                 console.log('4');
-                board[i][j] = input;
+                board[i][j] = (input);
                 console.log(board[i][j] + 'board');
             }
-            // y++;
         } 
     }
 }
 
 checkWin = function () {
-    if (board[0][0] && board[0][1] && board[0][2] === userInput) {
+    if (board[0][0] === board[0][1] === board[0][2]) {
         alert("You won!");
-    } else if (board[1][0] && board[1][1] && board[1][2] === userInput) {
+    } else if (board[1][0] === board[1][1] === board[1][2]) {
         alert("You won!");
-    } else if (board[2][0] && board[2][1] && board[2][2] === userInput) {
+    } else if (board[2][0] === board[2][1] === board[2][2]) {
         alert("You won!");
-    } else if (board[0][0] && board[1][0] && board[2][0] === userInput) {
+    } else if (board[0][0] === board[1][0] === board[2][0]) {
         alert("You won!");
-    } else if (board[0][1] && board[1][1] && board[2][1] === userInput) {
+    } else if (board[0][1] === board[1][1] === board[2][1]) {
         alert("You won!");
-    } else if (board[0][2] && board[1][2] && board[2][2] === userInput) {
+    } else if (board[0][2] === board[1][2] === board[2][2]) {
         alert("You won!");
-    } else if (board[0][2] && board[1][1] && board[2][0] === userInput) {
+    } else if (board[0][2] === board[1][1] === board[2][0]) {
         alert("You won!");
-    } else if (board[0][0] && board[1][1] && board[2][2] === userInput) {
+    } else if (board[0][0] === board[1][1] === board[2][2]) {
         alert("You won!");
     } else {
         console.log("nothing")
