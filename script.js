@@ -53,8 +53,8 @@ function updateTurn() {
         }
     } else if (gameOver) {
         disableAll();
-        if (winner != "It's a draw!"){
-        turnText.innerText = `Game Over! ${winner} wins!`;
+        if (winner != "It's a draw!") {
+            turnText.innerText = `Game Over! ${winner} wins!`;
         } else {
             turnText.innerText = `Game Over! ${winner}`;
         }
@@ -130,32 +130,50 @@ function winCondition() {
     if (board.top[0] == board.top[1] && board.top[1] == board.top[2]) {
         win = true;
         winner = board.top[0];
+        setWinnerColor(1,2,3);
     } else if (board.middle[0] == board.middle[1] && board.middle[1] == board.middle[2]) {
         win = true;
         winner = board.middle[0];
+        setWinnerColor(4,5,6);
     } else if (board.bottom[0] == board.bottom[1] && board.bottom[1] == board.bottom[2]) {
         win = true;
         winner = board.bottom[0];
+        setWinnerColor(7,8,9);
         // Vertical win
     } else if (board.top[0] == board.middle[0] && board.middle[0] == board.bottom[0]) {
         win = true;
         winner = board.top[0];
+        setWinnerColor(1,4,7);
     } else if (board.top[1] == board.middle[1] && board.middle[1] == board.bottom[1]) {
         win = true;
         winner = board.top[1];
+        setWinnerColor(2,5,8);
     } else if (board.top[2] == board.middle[2] && board.middle[2] == board.bottom[2]) {
         win = true;
         winner = board.top[2];
+        setWinnerColor(3,6,9);
         //Diagonal win
     } else if (board.top[0] == board.middle[1] && board.middle[1] == board.bottom[2]) {
         win = true;
         winner = board.top[0];
+        setWinnerColor(1,5,9);
     } else if (board.top[2] == board.middle[1] && board.middle[1] == board.bottom[0]) {
         win = true;
         winner = board.top[2];
+        setWinnerColor(3,5,7);
     } else if (turnCounter == 9) {
         win = true;
         winner = "It's a draw!"
     }
     return win;
+}
+
+function setWinnerColor(int1, int2, int3) {
+    var tileIds = [int1, int2, int3];
+    var tile1 = document.getElementById(int1);
+    tile1.style.backgroundColor = "yellow";
+    var tile2 = document.getElementById(int2);
+    tile2.style.backgroundColor = "yellow";
+    var tile3 = document.getElementById(int3);
+    tile3.style.backgroundColor = "yellow";
 }
