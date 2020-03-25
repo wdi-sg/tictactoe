@@ -5,12 +5,17 @@ var gridSize = 5;
 var winLength = 3;
 
 var currentPlayer = player1;
-var gameState = [];
-for (var row = 0; row < gridSize; row++) {
-  gameState.push([]);
-  for (var col = 0; col < gridSize; col++) {
-    gameState[row][col] = null;
+
+var emptyGame = function () {
+  var game = [];
+  for (var row = 0; row < gridSize; row++) {
+    game.push([]);
+    for (var col = 0; col < gridSize; col++) {
+      game[row][col] = null;
+    }
   }
+
+  return game;
 }
 
 
@@ -119,15 +124,13 @@ var clickStart = function () {
   player2.sym = document.querySelector("#p2-sym").value;
 
   currentPlayer = player1;
-  gameState = [
-    [null, null, null],
-    [null, null, null],
-    [null, null, null]];
   var board = document.querySelector("#gameboard");
   document.body.innerHTML = "";
+
   makeBoard();
   startButton("create");
   buildPrompts();
+  gameState = emptyGame();
 }
 
 
@@ -298,3 +301,4 @@ var updateGame = function () {
 makeBoard();
 startButton("create");
 buildPrompts();
+var gameState = emptyGame();
