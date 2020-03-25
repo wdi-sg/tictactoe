@@ -32,6 +32,27 @@ var playerOne = [];
 var playerTwo = [];
 var currentStatus = ["", "", "", "", "", "", "", "", ""]
 
+var checkStatus;
+
+//check function for playerOne and playerTwo, use i to try out code. will think of better index name when it works. (not working yet)
+var checkWinner = function(playerArray){
+    var i = 0;
+    var j = 0;
+    while(j<winningArray.length){
+        while(i<playerOne.length){
+            if(playerArray[i] === winningArray[j][i]){
+                checkStatus = playerArray[i] === playerArray[j];
+                console.log(playerArray[i]);
+                console.log(playerArray[j]);
+                console.log(checkStatus);
+            }
+            i++;
+        }
+        j++;
+    };
+};
+
+
 //create event so when clicked, it will show which square.
 //userChoice "X" will be player 1 and "O" will be player 2.
 //there will be 9 clicks to end game so player 1 is even number and 2 odd.
@@ -43,13 +64,16 @@ var gameSquaresClick = function(event){
         gameProgress++;
         console.log("game Progress: " + gameProgress);
         playerOne.push(gameProgress);
+        console.log("playerOne: " +playerOne);
+        // checkWinner(playerOne);
     } else {
         //player 2
         event.target.innerText = userChoice[1];
         gameProgress++;
         playerTwo.push(gameProgress);
+        console.log("game Progress: " + gameProgress);
+        console.log("playerTwo: "+playerTwo);
     };
-
 };
 
 //when click, gameSquaresClick run and the X or O will appear
