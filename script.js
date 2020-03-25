@@ -141,6 +141,7 @@ var computerTurn=function(){
         //console.log(boxId);
         boxIdSearch=boxId.join("");
         var boxComputerSearched=document.querySelector(boxIdSearch);
+        boxComputerSearched.style.backgroundColor="red";
         boxComputerSearched.innerText="O";
         touchedItems--;
         //console.log(boxIdSearch);
@@ -149,8 +150,10 @@ var computerTurn=function(){
 
 //To insert the X
 var insertText=function(event){
+    console.log(endGame);
     if(!endGame)
     {
+
         var idArray=this.id.split("");
     console.log(idArray);
     var row=parseInt(idArray[idArray.length-2]);
@@ -229,7 +232,7 @@ var insertText=function(event){
                         ["n","n","n"],
                         ["n","n","n"]
                         ];
-                         endGame=!endGame;
+                         endGame=false;
                          outcomeTrigger="#";
                          touchedItems=9;
             restart=setTimeout(initialScreen,1000);
@@ -284,7 +287,12 @@ box22Clicked.addEventListener("click",insertText);
 */
 var initialScreen=function(event){
     console.log("test");
-
+stateOfBoxes=
+                        [
+                        ["n","n","n"],
+                        ["n","n","n"],
+                        ["n","n","n"]
+                        ];
 if(!gameStart){
     console.log("loop");
         var boxId="box";
