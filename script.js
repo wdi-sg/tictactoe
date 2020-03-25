@@ -1,12 +1,18 @@
 var player1 = {name: "Player 1", sym: "×"};
 var player2 = {name: "Player 2", sym: "⭕"};
 
-var currentPlayer = player1;
+var gridSize = 4;
+var winLength = 3;
 
-var gameState = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null]];
+var currentPlayer = player1;
+var gameState = [];
+for (var row = 0; row < gridSize; row++) {
+  gameState.push([]);
+  for (var col = 0; col < gridSize; col++) {
+    gameState[row][col] = null;
+  }
+}
+
 
 var buildPrompts = function() {
   var body = document.querySelector("body");
@@ -41,18 +47,51 @@ var makeBoard = function () {
   var gameBoard = document.createElement("div")
   gameBoard.setAttribute("id", "gameboard");
 
-  for (var row = 0; row < 3; row++) {
-    for (var col = 0; col < 3; col++) {
+  for (var row = 0; row < gridSize; row++) {
+    for (var col = 0; col < gridSize; col++) {
       var gameCell = document.createElement("div");
-      gameCell.setAttribute("class", "gamecell");
+      gameCell.classList.add("gamecell");
       gameCell.setAttribute("data-row", row);
       gameCell.setAttribute("data-col", col);
+      gameCell.style.width = `${600/gridSize - 5}px`;
+      gameCell.style.height = `${600/gridSize - 5}px`;
       gameBoard.appendChild(gameCell);
    }
   }
 
   body.appendChild(gameBoard);
+
+  var lCells = document.querySelectorAll("[data-col='0']");
+  for (var i = 0; i < lCells.length; i++) {
+    lCells[i].style.marginLeft = "-5px";
+  }
+  var rCells = document.querySelectorAll(`[data-col='${gridSize-1}']`);
+  for (var i = 0; i < rCells.length; i++) {
+    rCells[i].style.marginRight = "-5px";
+  }
+  var tCells = document.querySelectorAll("[data-row='0']");
+  for (var i = 0; i < tCells.length; i++) {
+    tCells[i].style.marginTop = "-5px";
+  }
+  var bCells = document.querySelectorAll(`[data-row='${gridSize-1}']`);
+  for (var i = 0; i < bCells.length; i++) {
+    bCells[i].style.marginBottom = "-5px";
+  }
+
   addCellListeners();
+}
+
+var addCellListeners = function () {
+  var cells = document.querySelectorAll(".gamecell");
+
+  for (var i = 0; i < cells.length; i++) {
+    cells[i].addEventListener('click', updateGame);
+  }
+}
+
+var styleCells = function () {
+  var cells = document.querySelectorAll(".gamecell");
+
 }
 
 var startButton = function (action) {
@@ -90,13 +129,6 @@ var clickStart = function () {
   startButton("create");
 }
 
-var addCellListeners = function () {
-  var cells = document.querySelectorAll(".gamecell");
-
-  for (var i = 0; i < cells.length; i++) {
-    cells[i].addEventListener('click', updateGame);
-  }
-}
 
 var makeMark = function (sym) {
   var mark = document.createElement("div");
