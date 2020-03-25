@@ -14,13 +14,12 @@ var emptyGame = function () {
       game[row][col] = null;
     }
   }
-
   return game;
 }
 
 
 var buildPrompts = function() {
-  var body = document.querySelector("body");
+  var displayColumn = document.querySelector("#control-col");
   var form = document.createElement("div");
   form.id = "player-form";
 
@@ -36,7 +35,7 @@ var buildPrompts = function() {
     form.appendChild(inputLabel);
     form.appendChild(inputField);
   }
-  body.insertBefore(form, document.querySelector("#gameboard"));
+  displayColumn.appendChild(form);
 
   document.querySelector("[for='p1-name']").innerText = "Player 1 name";
   document.querySelector("[for='p1-sym']").innerText = "Player 1 symbol";
@@ -51,18 +50,32 @@ var buildPrompts = function() {
   gridLabel.classList.add("label");
   gridLabel.setAttribute("for", "grid-input");
   gridLabel.id = "grid-label";
-  gridLabel.innerText = "Grid size";
+  gridLabel.innerText = "Grid size (more than 6 looks silly)";
   document.querySelector("#player-form").appendChild(gridLabel);
   var gridInput = document.createElement("input");
   gridInput.classList.add("input");
   gridInput.id = "grid-input";
   gridInput.placeholder = gridSize;
   document.querySelector("#player-form").appendChild(gridInput);
-
 }
 
-var makeBoard = function () {
+var makeColummns = function () {
+  var gameColumn = document.createElement("div");
+  gameColumn.classList.add("column");
+  gameColumn.id = "game-col";
+
+  var controlsColumn = document.createElement("div");
+  controlsColumn.classList.add("column");
+  controlsColumn.id = "control-col";
+
   var body = document.querySelector("body");
+  body.append(gameColumn);
+  body.append(controlsColumn);
+}
+
+
+var makeBoard = function () {
+  var column = document.querySelector("#game-col");
   var gameBoard = document.createElement("div")
   gameBoard.setAttribute("id", "gameboard");
 
@@ -72,13 +85,13 @@ var makeBoard = function () {
       gameCell.classList.add("gamecell");
       gameCell.setAttribute("data-row", row);
       gameCell.setAttribute("data-col", col);
-      gameCell.style.width = `${600/gridSize - 5}px`;
-      gameCell.style.height = `${600/gridSize - 5}px`;
+      gameCell.style.width = `${750/gridSize - 2}px`;
+      gameCell.style.height = `${750/gridSize - 2}px`;
       gameBoard.appendChild(gameCell);
    }
   }
 
-  body.appendChild(gameBoard);
+  column.appendChild(gameBoard);
 
   var lCells = document.querySelectorAll("[data-col='0']");
   for (var i = 0; i < lCells.length; i++) {
@@ -108,10 +121,14 @@ var addCellListeners = function () {
   }
 }
 
-var styleCells = function () {
+var removeCellListeners = function () {
   var cells = document.querySelectorAll(".gamecell");
 
+  for (var i = 0; i < cells.length; i++) {
+    cells[i].removeEventListener('click', updateGame);
+  }
 }
+
 
 var startButton = function (action) {
   if (action === "create") {
@@ -119,8 +136,8 @@ var startButton = function (action) {
     startButton.id = "start-button";
     startButton.innerText = "Start Game";
     startButton.addEventListener("click", clickStart);
-    var body = document.querySelector("body");
-    body.insertBefore(startButton, document.querySelector("#gameboard"));
+    var column = document.querySelector("#control-col");
+    column.insertBefore(startButton, document.querySelector("#player-form"));
   } else if (action === "show") {
     var startButton = document.querySelector("#start-button");
     startButton.innerText = "Restart Game";
@@ -148,6 +165,7 @@ var clickStart = function () {
   var board = document.querySelector("#gameboard");
   document.body.innerHTML = "";
 
+  makeColummns();
   makeBoard();
   startButton("create");
   buildPrompts();
@@ -264,8 +282,8 @@ var displayText = function (str, color) {
     announce.innerText = str;
     announce.style.color = color;
 
-    var gameBoard = document.querySelector("#gameboard");
-    document.querySelector("body").appendChild(announce);
+    var displayColumn = document.querySelector("#control-col");
+    displayColumn.appendChild(announce);
   } else {
     var announce = document.querySelector("#announce");
     announce.innerText = str;
@@ -275,6 +293,7 @@ var displayText = function (str, color) {
 
 // gameCell.setAttribute("data-row", row);
 // gameCell.setAttribute("data-col", col);
+
 
 var updateGame = function () {
 
@@ -293,7 +312,7 @@ var updateGame = function () {
 
   if (fullGame(gameState)) {
     displayText("Game over; neither side won.", "purple");
-    addStartButton();
+    startButton("show");
   }
 
   var rowWin = checkRows(gameState);
@@ -302,12 +321,15 @@ var updateGame = function () {
 
   if (rowWin) {
     displayText(`Row win: ${currentPlayer.name}'s ${currentPlayer.sym}s`, "#0ca204");
+    removeCellListeners();
     startButton("show");
   } else if (colWin) {
     displayText(`Column win: ${currentPlayer.name}'s ${currentPlayer.sym}s`, "#0ca204");
+    removeCellListeners();
     startButton("show");
   } else if (diaWin) {
     displayText(`Diagonal win: ${currentPlayer.name}'s ${currentPlayer.sym}s`, "#0ca204");
+    removeCellListeners();
     startButton("show");
   }
 
@@ -318,6 +340,7 @@ var updateGame = function () {
   }
 }
 
+makeColummns();
 makeBoard();
 startButton("create");
 buildPrompts();
