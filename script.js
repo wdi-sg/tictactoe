@@ -10,8 +10,30 @@
 
 
 
-//toggle true and false for player turn
+//toggle player turn
 let playerTurn = true;
+
+const body = document.querySelector('body');
+playerOneTurn = document.createElement('h2');
+playerOneTurn.className = "player"
+playerOneTurn.textContent = "Player One";
+body.appendChild(playerOneTurn);
+
+const showPlayerTurn = () => {
+    if (playerTurn === true) {
+        const changePlayerOne = document.getElementsByClassName('player')[0];
+        changePlayerOne.textContent = "Player Two";
+    }
+    else if(playerTurn === false){
+        const changePlayerTwo = document.getElementsByClassName('player')[0];
+        changePlayerTwo.textContent = "Player One";
+    }
+}
+// body.insertAdjacentHTML('afterbegin', playerOneTurn);
+
+
+
+// playerTwoTurn =
 
 //Array board for score count
 let board = [
@@ -56,6 +78,7 @@ const clickHandler = (event) => {
         //Check Win
         checkWin(board, "X");
 
+        showPlayerTurn();
         playerTurn = !playerTurn;
     }
     else if(playerTurn === false){
@@ -71,6 +94,7 @@ const clickHandler = (event) => {
         //Check Win
         checkWin(board, "O");
 
+        showPlayerTurn();
         playerTurn = !playerTurn;
     }
 };
@@ -81,7 +105,6 @@ const clickHandler = (event) => {
 let a = 0;
 let i = 0;
 while (i < 3) {
-    const body = document.querySelector('body');
 
     //create row
     const row = document.createElement('div');
@@ -143,7 +166,6 @@ const checkWin = (board, input) => {
         }
     }
 
-    console.log(diagonalScore);
     // check win
     for (let f=0; f<rowScore.length; f++) {
         if (rowScore[f] === 3){
