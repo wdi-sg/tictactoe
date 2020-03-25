@@ -1,5 +1,9 @@
-const PLAYER1_TURN = 0;
-const PLAYER2_TURN = 1;
+const PLAYER1_TURN = 1;
+const PLAYER2_TURN = 2;
+
+class Utils {
+
+}
 
 class Player {
   constructor(name, symbol) {
@@ -16,10 +20,10 @@ class Player {
 class Game {
   constructor(boardSize) {
     this.boardSize = boardSize;
-    this.gameBoard = this._initBoard();
     this.player1Board = this._initBoard();
     this.player2Board = this._initBoard();
-    this.turn = 0;
+    this.whosTurn = 0;
+    this.gameRound = 0; // once game completed, game round++
   }
 
   _initBoard() {
@@ -30,32 +34,39 @@ class Game {
     return tempBoard;
   }
 
-  toggleTurn() {
-    if (this.turn === PLAYER1_TURN) {
-      this.turn = PLAYER2_TURN
-    } else if (this.turn === PLAYER2_TURN) {
-      this.turn = PLAYER1_TURN;
+  _toggleTurn() {
+    if (this.whosTurn === PLAYER1_TURN) {
+      this.whosTurn = PLAYER2_TURN;
+    }else if (this.whosTurn === PLAYER2_TURN) {
+      this.whosTurn = PLAYER1_TURN;
     }
   }
 
   isPlayer1Turn() {
-    return this.turn === PLAYER1_TURN;
+    return this.whosTurn === PLAYER1_TURN;
   }
 
   isPlayer2Turn() {
-    return this.turn === PLAYER2_TURN;
+    return this.whosTurn === PLAYER2_TURN;
   }
 
   _gameSquareLogicHandler(e) {
     const colIndex = e.target.dataset.x;
     const rowIndex = e.target.dataset.y;
-    console.log(`Player clicked on tile: [${colIndex}][${rowIndex}]`)
-    this.toggleTurn();
-    // if player one turn, place player 1 symbol, otherwise place player 2 symbol
+    console.info(`Player clicked on tile: [${colIndex}][${rowIndex}]`);
+    this.updateBoard({colIndex, rowIndex} );
+    this._toggleTurn();
   }
 
-
-  updateBoard() {
+  updateBoard(indicesToUpdate) {
+    const {colIndex, rowIndex} = indicesToUpdate;
+    this.isPlayer1Turn()?
+      this.player1Board[colIndex][rowIndex] = 1
+      : this.player2Board[colIndex][rowIndex] = 1;
+    console.group("updating board.");
+    console.table(this.player1Board);
+    console.table(this.player2Board);
+    console.groupEnd();
   }
 
   checkWin() {
@@ -101,7 +112,6 @@ class UI {
   enableClick(element) {
     element.classList.remove('is_click_disabled');
   }
-
 
   clear() {
     this.allGameSquares.forEach(square => {
