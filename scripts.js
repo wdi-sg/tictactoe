@@ -1,5 +1,7 @@
-const PLAYER1_TURN = 1;
-const PLAYER2_TURN = 2;
+const PLAYER1 = 1;
+const PLAYER2 = 2;
+const IS_OCCUPIED = "X";
+const IS_EMPTY = null;
 
 class Utils {
 
@@ -17,37 +19,39 @@ class Player {
   }
 }
 
+
 class Game {
-  constructor(boardSize) {
+  constructor(boardSize, howManyInArowToWin = 3) {
     this.boardSize = boardSize;
     this.player1Board = this._initBoard();
     this.player2Board = this._initBoard();
     this.whosTurn = 0;
     this.gameRound = 0; // once game completed, game round++
+    this.howManyInARowToWin = howManyInArowToWin;
   }
 
   _initBoard() {
     const tempBoard = [];
     for (let i = 0; i < this.boardSize; i++) {
-      tempBoard.push(Array(this.boardSize).fill(null))
+      tempBoard.push(Array(this.boardSize).fill(IS_EMPTY))
     }
     return tempBoard;
   }
 
   _toggleTurn() {
-    if (this.whosTurn === PLAYER1_TURN) {
-      this.whosTurn = PLAYER2_TURN;
-    }else if (this.whosTurn === PLAYER2_TURN) {
-      this.whosTurn = PLAYER1_TURN;
+    if (this.whosTurn === PLAYER1) {
+      this.whosTurn = PLAYER2;
+    }else if (this.whosTurn === PLAYER2) {
+      this.whosTurn = PLAYER1;
     }
   }
 
   isPlayer1Turn() {
-    return this.whosTurn === PLAYER1_TURN;
+    return this.whosTurn === PLAYER1;
   }
 
   isPlayer2Turn() {
-    return this.whosTurn === PLAYER2_TURN;
+    return this.whosTurn === PLAYER2;
   }
 
   _gameSquareLogicHandler(e) {
@@ -55,14 +59,15 @@ class Game {
     const rowIndex = e.target.dataset.y;
     console.info(`Player clicked on tile: [${colIndex}][${rowIndex}]`);
     this.updateBoard({colIndex, rowIndex} );
+    this.checkWin();
     this._toggleTurn();
   }
 
   updateBoard(indicesToUpdate) {
     const {colIndex, rowIndex} = indicesToUpdate;
     this.isPlayer1Turn()?
-      this.player1Board[colIndex][rowIndex] = 1
-      : this.player2Board[colIndex][rowIndex] = 1;
+      this.player1Board[colIndex][rowIndex] = IS_OCCUPIED
+      : this.player2Board[colIndex][rowIndex] = IS_OCCUPIED;
     console.group("updating board.");
     console.table(this.player1Board);
     console.table(this.player2Board);
@@ -70,7 +75,40 @@ class Game {
   }
 
   checkWin() {
+    const board = this.isPlayer1Turn()? this.player1Board: this.player2Board;
   }
+
+  _hasHorizontalRow(boardArr) {
+    return boardArr.some( row => this._hasInARow(row) )
+  }
+
+  _checkVerticalRow(boardArr) {
+    
+  }
+
+  _hasDiagonalRow(boardArr) {
+    let topRightToBtmLeft = [];
+    let topLeftToBtmRight = [];
+    for (let i = 0; i < this.boardSize; i++) {
+      topLeftToBtmRight.push(boardArr[i][i]);
+      topRightToBtmLeft.push(boardArr[i][this.boardSize-1]);
+    }
+    return this._hasInARow(topLeftToBtmRight) || this._hasInARow(topRightToBtmLeft);
+  }
+
+  _hasInARow(boardArr)  {
+    let inARowCounter = 0;
+    for (let i = 0 ; i < this.boardSize; i++) {
+      if (boardArr[i] === IS_EMPTY ) {
+        inARowCounter = 0;
+      }
+      if (boardArr[i] === IS_OCCUPIED ) {
+        inARowCounter++;
+      }
+    }
+    return inARowCounter >= this.howManyInARowToWin;
+  }
+
 }
 
 class UI {
