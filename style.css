@@ -1,0 +1,122 @@
+.container {
+	border: 5px solid blue;
+	height: 1500px;
+	width: 900px;
+}
+
+#startButton {
+	width: 100px;
+	height: 50px;
+	background-color: blue;
+	text-decoration-color: white;
+
+}
+
+#board {
+	border: 5px solid red;
+	height: 330px;
+	width: 330px;
+	margin: 0 auto;
+	margin-top: 150px;
+}
+
+.box {
+	border: 5px solid green;
+	height: 100px;
+	width: 100px;
+	display: inline-block;
+	text-align: center;
+	font-size: 30px;
+}
+
+.layer0 {
+border: 5px solid red;
+width: 330px;
+margin: 150px auto;
+}
+
+
+.row1 {
+border: 5px solid green;
+height: 100px;
+padding-bottom: 7px;
+}
+
+.r1c1 {
+border: 1px solid black;
+height: 100px;
+width: 100px;
+display: inline-block;
+}
+
+.r1c2 {
+border: 1px solid black;
+height: 100px;
+width: 100px;
+display: inline-block;
+}
+
+.r1c3 {
+border: 1px solid black;
+height: 100px;
+width: 100px;
+display: inline-block;
+}
+
+.row2 {
+border: 5px solid green;
+height: 100px;
+padding-bottom: 7px;
+}
+
+.r2c1 {
+border: 1px solid black;
+height: 100px;
+width: 100px;
+display: inline-block;
+}
+
+.r2c2 {
+border: 1px solid black;
+height: 100px;
+width: 100px;
+display: inline-block;
+}
+
+.r2c3 {
+border: 1px solid black;
+height: 100px;
+width: 100px;
+display: inline-block;
+}
+.row3 {
+border: 5px solid green;
+height: 100px;
+padding-bottom: 7px;
+}
+
+.r3c1 {
+border: 1px solid black;
+height: 100px;
+width: 100px;
+display: inline-block;
+}
+
+.r3c2 {
+border: 1px solid black;
+height: 100px;
+width: 100px;
+display: inline-block;
+}
+
+.r3c3 {
+border: 1px solid black;
+height: 100px;
+width: 100px;
+display: inline-block;
+}
+
+p {
+	text-align: center;
+	font-size: 30px;
+}
