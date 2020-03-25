@@ -65,16 +65,19 @@ function onClick(event) {
 }
 
 function startGameButtonErase() {
+  // console.log(playerOName);
+  // console.log(playerXName);
   buttonDiv.addEventListener("click", function(event) {
-    buttonDiv.className = "hidden";
-    playerXName = document.getElementById("playerxname").value;
-    playerOName = document.getElementById("playeroname").value;
-    // document.getElementById("playerxname").value = "";
-    // document.getElementById("playeroname").value = "";
-    playerTurnDiv.textContent = playerXName + "'s turn: X";
-    // console.log(playerOName);
-    // console.log(playerXName);
-    
+    let xNameValue = document.getElementById("playerxname").value;
+    let oNameValue = document.getElementById("playeroname").value;
+    if (xNameValue !== "" && oNameValue !== "") {
+      playerXName = xNameValue;
+      playerOName = oNameValue;
+      // console.log(playerOName);
+      // console.log(playerXName);
+      buttonDiv.className = "hidden";
+      playerTurnDiv.textContent = playerXName + "'s turn: X";
+    }
   });
 }
 
@@ -146,7 +149,16 @@ function displayWinAlert(winAlert) {
   }
   newP.textContent = winAlert;
   winDiv.appendChild(newP);
-  scoreDiv.textContent = "SCORE: [" + playerXName + " : " + playerOName + "   |   " + xScore + " : " + oScore + "]";
+  scoreDiv.textContent =
+    "SCORE: [" +
+    playerXName +
+    " : " +
+    playerOName +
+    "   |   " +
+    xScore +
+    " : " +
+    oScore +
+    "]";
   if (winAlert) {
     restartGame();
   }
