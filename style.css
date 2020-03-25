@@ -1,16 +1,20 @@
-#board{
-  float:left;
-	max-width: 200px;
+#gameboard {
+	  height: 300px;
+    width: 300px;
+    display: inline-block;
+    text-align: center;
+    margin: 0 auto;
 }
-.game-row{
-	display:inline-block;
-	width: 300px;
-}
-.game-square{
-	width: 25px;
-  border: light black;
-	padding: 30px;
-	margin: 0 auto;
-	display:inline-block;
-	text-align: center;
+
+.square {
+    height: 100px;
+    width: 100px;
+    font-size: 100px;
+    border: solid black 0.5px;
+    box-sizing: border-box;
+    display:inline-block;
+    align-items: center;
+    margin: 0 auto;
+
+
 }
