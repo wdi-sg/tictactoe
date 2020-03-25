@@ -162,6 +162,7 @@ var insertText=function(event){
     if(stateOfBoxes[row][column]==="n")
     {
         this.innerText="X";
+        this.style.backgroundColor="blue";
         stateOfBoxes[row][column]="X";
         touchedItems--
         if(touchedItems>0){
@@ -320,10 +321,12 @@ if(!gameStart){
         console.log("Start game");
         var winText=document.createElement("p");
         winText.setAttribute("id","winText");
+        winText.style.fontSize="35px";
         winText.innerText="Win:"+win;
         playarea.appendChild(winText);
         var loseText=document.createElement("p");
         loseText.setAttribute("id","loseText");
+        loseText.style.fontSize="35px";
         loseText.innerText="Lose:" +lose;
         playarea.appendChild(loseText);
         gameStart=true;
