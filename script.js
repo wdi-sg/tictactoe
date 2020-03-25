@@ -6,18 +6,22 @@ console.log("Javascript is runnning!");
 // a variable that tracks the starting turn
 // an eventlistener on click
 // a function that updates the turn value
+// a gameover function
+// a reset button
 // create a new div for the rows on click
 // create a new div for where the Xs and Os are going to be
-// store X and O inputs into an array
-
-
-
+// create a grid
 
 
 
 var gameStart = " ";
 var xTurn = "x";
 var oTurn = "o";
+
+
+// var grid = [0, 0, 0],
+//            [0, 0, 0],
+//            [0, 0, 0];
 
 // a variable for the function that runs during a click event
 var userMove = function(event){
@@ -27,7 +31,7 @@ console.log("           ------------------------");
 console.log("           ~ A move has been made ~");
 console.log("           ------------------------");
 
-
+    //checks if game has been reset
     if(gameStart === " "){
         //similarly to an index in an array, 0 is the first entry therefore o starts first
         gameStart = oTurn;
