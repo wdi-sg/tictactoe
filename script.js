@@ -28,6 +28,7 @@ var buildPrompts = function() {
   for (var i = 0; i< info.length; i++) {
     var inputField = document.createElement("input");
     inputField.classList.add("input");
+    inputField.setAttribute("type", "text");
     inputField.id = info[i];
     var inputLabel = document.createElement("label");
     inputLabel.classList.add("label");
@@ -41,10 +42,10 @@ var buildPrompts = function() {
   document.querySelector("[for='p1-sym']").innerText = "Player 1 symbol";
   document.querySelector("[for='p2-name']").innerText = "Player 2 name";
   document.querySelector("[for='p2-sym']").innerText = "Player 2 symbol";
-  document.querySelector("#p1-name").value = player1.name;
-  document.querySelector("#p1-sym").value = player1.sym;
-  document.querySelector("#p2-name").value = player2.name;
-  document.querySelector("#p2-sym").value = player2.sym;
+  document.querySelector("#p1-name").placeholder = player1.name;
+  document.querySelector("#p1-sym").placeholder = player1.sym;
+  document.querySelector("#p2-name").placeholder = player2.name;
+  document.querySelector("#p2-sym").placeholder = player2.sym;
 
   var gridLabel = document.createElement("label");
   gridLabel.classList.add("label");
@@ -55,7 +56,7 @@ var buildPrompts = function() {
   var gridInput = document.createElement("input");
   gridInput.classList.add("input");
   gridInput.id = "grid-input";
-  gridInput.value = gridSize;
+  gridInput.placeholder = gridSize;
   document.querySelector("#player-form").appendChild(gridInput);
 
 }
@@ -131,12 +132,17 @@ var startButton = function (action) {
 }
 
 var clickStart = function () {
-  player1.name = document.querySelector("#p1-name").value;
-  player1.sym = document.querySelector("#p1-sym").value;
-  player2.name = document.querySelector("#p2-name").value;
-  player2.sym = document.querySelector("#p2-sym").value;
-  var gridInput = document.querySelector("#grid-input");
-  gridSize = isNaN(gridInput.value) ? 3 : gridInput.value;
+  var p1NameIn = document.querySelector("#p1-name");
+  var p1SymIn = document.querySelector("#p1-sym");
+  var p2NameIn = document.querySelector("#p2-name");
+  var p2SymIn = document.querySelector("#p2-sym");
+  var gridIn = document.querySelector("#grid-input");
+
+  player1.name = p1NameIn.value === "" ? player1.name : p1NameIn.value;
+  player1.sym = p1SymIn.value === "" ? player1.sym : p1SymIn.value;
+  player2.name = p2NameIn.value === "" ? player2.name : p2NameIn.value;
+  player2.sym = p2SymIn.value === "" ? player2.sym : p2SymIn.value;
+  gridSize = gridIn.value === "" ? gridSize : gridIn.value;
 
   currentPlayer = player1;
   var board = document.querySelector("#gameboard");
@@ -152,7 +158,6 @@ var clickStart = function () {
 var makeMark = function (sym) {
   var divHeight = document.querySelector(".gamecell").style.height;
   divHeight = Number(divHeight.slice(0, -2));
-  console.log(divHeight, typeof divHeight);
 
   var mark = document.createElement("div");
   mark.classList.add("mark");
@@ -272,15 +277,15 @@ var displayText = function (str, color) {
 // gameCell.setAttribute("data-col", col);
 
 var updateGame = function () {
-  displayText(`${currentPlayer.name} just played`);
 
   startButton("hide");
   var row = this.dataset.row;
   var col = this.dataset.col;
   if (gameState[row][col] !== null) {
-    console.log("Already played");
+    displayText("Cell already played!");
     return;
   }
+  displayText(`${currentPlayer.name} just played`);
   gameState[row][col] = currentPlayer.sym;
 
   var symbol = makeMark(currentPlayer.sym);
