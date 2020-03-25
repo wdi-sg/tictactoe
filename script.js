@@ -32,7 +32,9 @@ var createBoard = function () {
         for (x = 0; x < totalBoxes.length; x++) {
             totalBoxes[x].addEventListener('click', onClick);
         }
-    } start = false;
+    } 
+    title.removeChild(start)
+    start = false;
 }
 
 var clearGame = function () {}
