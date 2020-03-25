@@ -1,7 +1,7 @@
 var player1 = {name: "Player 1", sym: "×"};
 var player2 = {name: "Player 2", sym: "⭕"};
 
-var gridSize = 4;
+var gridSize = 5;
 var winLength = 3;
 
 var currentPlayer = player1;
@@ -127,14 +127,22 @@ var clickStart = function () {
   document.body.innerHTML = "";
   makeBoard();
   startButton("create");
+  buildPrompts();
 }
 
 
 var makeMark = function (sym) {
+  var divHeight = document.querySelector(".gamecell").style.height;
+  divHeight = Number(divHeight.slice(0, -2));
+  console.log(divHeight, typeof divHeight);
+
   var mark = document.createElement("div");
   mark.classList.add("mark");
+  mark.style.height = `${divHeight}px`;
+  mark.style.width = `${divHeight}px`;
+  mark.style.fontSize = `${divHeight}px`;
+  mark.style.lineHeight = `${divHeight}px`;
 
-  console.log("making: ", sym);
   switch (sym) {
   case player1.sym:
     mark.innerText = player1.sym;
