@@ -8,6 +8,14 @@ h2{
 	margin: 2px;
 }
 
+.score{
+	background-color: yellow;
+	display: inline-block;
+	margin: 80px 20px;
+	padding: 30px;
+	font-size: 20px;
+}
+
 
 .row{
 	background-color: pink;

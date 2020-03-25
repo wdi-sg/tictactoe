@@ -9,14 +9,54 @@
 // }
 
 
-//Start Game
+//Game initialize
 let gameStart = false;
 
 let playerTurn = true;
 
-const body = document.querySelector('body');
+let gameCount = 0;
+
+let playerOneScore = 0;
+let playerTwoScore = 0;
+
+const playerOne = {
+    score: 0,
+    name: ""
+}
+
+const playerTwo = {
+    score: 0,
+    name: ""
+}
+
+const initGame = () =>{
+    gameStart = false;
+    playerTurn = true;
+
+    button.classList.remove('hide');
+
+    board = [
+        ["", "", ""],
+        ["", "", ""],
+        ["", "", ""]
+    ];
+
+    const box = document.getElementsByClassName('box');
+    for (let r=0; r<box.length; r++){
+        box[r].textContent = "";
+    }
+
+    win = false;
+
+    gameCount++;
+
+}
+
+
 
 // Create H2 element for where player name will be
+const body = document.querySelector('body');
+
 playerOneTurn = document.createElement('h2');
 playerOneTurn.className = "player"
 body.appendChild(playerOneTurn);
@@ -36,11 +76,28 @@ const startGame = (event) =>{
     playerName[1].classList.add('hide');
 
     // retrieve player name
-    playerOneName = playerName[0].value;
-    playerTwoName = playerName[1].value;
+    playerOne.name = playerName[0].value;
+    playerTwo.name = playerName[1].value;
 
     // Show first player name
-    playerOneTurn.textContent = playerOneName + " turn" ;
+    playerOneTurn.textContent = playerOne.name + " turn" ;
+
+    if(gameCount === 0){
+        // Show score count
+        // Player One Score
+        const scoreOne = document.createElement('div');
+        scoreOne.className = "score " + playerOne.name;
+        scoreOne.textContent = playerOne.name + " score: " + playerOne.score;
+
+        // Player Two Score
+        const scoreTwo = document.createElement('div');
+        scoreTwo.className = "score " + playerTwo.name;
+        scoreTwo.textContent = playerTwo.name + " score: " + playerTwo.score;
+
+        body.appendChild(scoreOne);
+        body.appendChild(scoreTwo);
+    }
+
 }
 
 button.addEventListener('click', startGame);
@@ -58,11 +115,11 @@ button.addEventListener('click', startGame);
 const showPlayerTurn = () => {
     if (playerTurn === true) {
         const changePlayerOne = document.getElementsByClassName('player')[0];
-        changePlayerOne.textContent = playerTwoName + " turn";
+        changePlayerOne.textContent = playerTwo.name + " turn";
     }
     else if(playerTurn === false){
         const changePlayerTwo = document.getElementsByClassName('player')[0];
-        changePlayerTwo.textContent = playerOneName + " turn" ;
+        changePlayerTwo.textContent = playerOne.name + " turn" ;
     }
 }
 // body.insertAdjacentHTML('afterbegin', playerOneTurn);
@@ -116,6 +173,8 @@ const clickHandler = (event) => {
             //Check Win
             checkWin(board, "X");
             if (win) {
+                addScore(playerOne.name);
+                initGame();
                 return;
             }
 
@@ -135,6 +194,8 @@ const clickHandler = (event) => {
             //Check Win
             checkWin(board, "O");
             if(win){
+                addScore(playerTwo.name);
+                initGame();
                 return;
             }
 
@@ -218,13 +279,13 @@ const checkWin = (board, input) => {
             console.log(playerTurn);
             if(playerTurn){
                 const winPlayerOne = document.getElementsByClassName('player')[0];
-                winPlayerOne.textContent = playerOneName + " WINS";
+                winPlayerOne.textContent = playerOne.name + " WINS";
                 win = true;
 
             }
             else if(!playerTurn){
                 const winPlayerTwo = document.getElementsByClassName('player')[0];
-                winPlayerTwo.textContent = playerTwoName + " WINS";
+                winPlayerTwo.textContent = playerTwo.name + " WINS";
 
                 win = true;
             }
@@ -236,12 +297,12 @@ const checkWin = (board, input) => {
         if (columnScore[z] === 3){
             if(playerTurn){
                 const winPlayerOne = document.getElementsByClassName('player')[0];
-                winPlayerOne.textContent = playerOneName + " WINS";
+                winPlayerOne.textContent = playerOne.name + " WINS";
                 win = true;
             }
             else if(!playerTurn){
                 const winPlayerTwo = document.getElementsByClassName('player')[0];
-                winPlayerTwo.textContent = playerTwoName + " WINS";
+                winPlayerTwo.textContent = playerTwo.name + " WINS";
                 win = true;
             }
         }
@@ -251,15 +312,29 @@ const checkWin = (board, input) => {
         if (diagonalScore[r] === 3){
             if(playerTurn){
                 const winPlayerOne = document.getElementsByClassName('player')[0];
-                winPlayerOne.textContent = playerOneName + " WINS";
+                winPlayerOne.textContent = playerOne.name + " WINS";
                 win = true;
             }
             else if(!playerTurn){
                 const winPlayerTwo = document.getElementsByClassName('player')[0];
-                winPlayerTwo.textContent = playerTwoName + " WINS";
+                winPlayerTwo.textContent = playerTwo.name + " WINS";
                 win = true;
             }
         }
     }
 
+}
+
+
+const addScore = (player) => {
+    if(player === playerOne.name){
+        playerOne.score++;
+        const playerAddScore = document.getElementsByClassName(playerOne.name)[0];
+        playerAddScore.textContent = playerOne.name + " score: " + playerOne.score;
+    }
+    else if(player === playerTwo.name){
+        playerTwo.score++;
+        const playerAddScore = document.getElementsByClassName(playerTwo.name)[0];
+        playerAddScore.textContent = playerTwo.name + " score: " + playerTwo.score;
+    }
 }
