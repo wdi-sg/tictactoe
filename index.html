@@ -10,19 +10,19 @@
 <body>
     <div class="container">
         <h1>Tic-Tac-Toe</h1>
-        <h2 id="turn">Player ❌ Turn</h2>
+        <button id="turn" onClick = reloadFn()>Player ❌ Turn</button>
         <div class="game-board">
-            <div class="row">
+            <div class="row" id="row1">
                 <button class="tile" id="1" onClick=onClick(this.id)>&nbsp</button>
                 <button class="tile" id="2" onClick=onClick(this.id)>&nbsp</button>
                 <button class="tile" id="3" onClick=onClick(this.id)>&nbsp</button>
             </div>
-            <div class="row">
+            <div class="row" id="row2">
                 <button class="tile" id="4" onClick=onClick(this.id)>&nbsp</button>
                 <button class="tile" id="5" onClick=onClick(this.id)>&nbsp</button>
                 <button class="tile" id="6" onClick=onClick(this.id)>&nbsp</button>
             </div>
-            <div class="row">
+            <div class="row" id="row3">
                 <button class="tile" id="7" onClick=onClick(this.id)>&nbsp</button>
                 <button class="tile" id="8" onClick=onClick(this.id)>&nbsp</button>
                 <button class="tile" id="9" onClick=onClick(this.id)>&nbsp</button>

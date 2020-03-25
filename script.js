@@ -20,6 +20,7 @@ var value = "";
 // }
 console.log("Tic Tac Toe");
 
+// Switches turns betweex X and O
 function turnIndicator() {
     var XO = "";
     var turn = turnCounter % 2;
@@ -30,18 +31,21 @@ function turnIndicator() {
     }
     return XO;
 }
+// Indicates winner / draw
 var gameOver = false;
 
+//Functions occurring on click of a tile
 function onClick(clickedId) {
     value = turnIndicator();
     //gameOver = winCondition();
     updateTile(clickedId);
     mapTileGrid(clickedId);
     updateTurn();
-    console.log(value);
+    //console.log(value);
 
 }
 
+//Function that updates the turn indicator text
 function updateTurn() {
     gameOver = winCondition();
     var turnText = document.getElementById("turn");
@@ -62,6 +66,7 @@ function updateTurn() {
     turnCounter++;
 }
 
+// Disables buttons from being clicked once game over
 function disableAll() {
     var tiles = document.getElementsByClassName("tile")
     for (id in tiles) {
@@ -69,6 +74,7 @@ function disableAll() {
     }
 };
 
+// Changes tile content depending on player turn
 function updateTile(clickedId) {
     var tile = document.getElementById(clickedId);
     console.log(`${value}, Turn : ${turnCounter}, Tile ${clickedId} clicked`);
@@ -86,6 +92,7 @@ function updateTile(clickedId) {
 
 }
 
+// Stores value of clicked tile into array
 function mapTileGrid(clickedId) {
     var id = clickedId;
     switch (id) {
@@ -123,7 +130,12 @@ function mapTileGrid(clickedId) {
             break;
     }
 }
+// Reload page
+function reloadFn(){
+location.reload()
+}
 
+// Checks for winning condition and sets winner
 function winCondition() {
     var win = false;
     // Horizontal win
@@ -168,6 +180,7 @@ function winCondition() {
     return win;
 }
 
+// Highlights winning tiles
 function setWinnerColor(int1, int2, int3) {
     var tileIds = [int1, int2, int3];
     var tile1 = document.getElementById(int1);
