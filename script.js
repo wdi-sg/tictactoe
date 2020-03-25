@@ -10,9 +10,9 @@ var gameState = [
 
 var promptNamesSyms = function() {
   player1.name = prompt("Please enter player 1's name:", "Player 1");
-  player1.sym = prompt("Please enter a symbol to use");
+  player1.sym = prompt("Please enter a symbol to use", "×");
   player2.name = prompt("Please enter player 2's name:", "Player 2");
-  player2.sym = prompt("Please enter a symbol to use");
+  player2.sym = prompt("Please enter a symbol to use", "⭕");
 }
 
 var makeBoard = function () {
@@ -62,6 +62,7 @@ var clickStart = function () {
   document.body.innerHTML = "";
   makeBoard();
   startButton("create");
+  promptNamesSyms();
 }
 
 var addCellListeners = function () {
