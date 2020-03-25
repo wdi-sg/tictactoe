@@ -1,3 +1,7 @@
+body {
+  text-align: center;
+}
+
 #gameboard {
   display: flex;
   flex-wrap: wrap;
@@ -8,6 +12,22 @@
   height: 600px;
   background-color: black;
   margin: 0 auto;
+}
+
+[data-col='0'] {
+  margin-left: -5px;
+}
+
+[data-col='2'] {
+  margin-right: -5px;
+}
+
+[data-row='0'] {
+  margin-top: -5px;
+}
+
+[data-row='2'] {
+  margin-bottom: -5px;
 }
 
 .gamecell {
@@ -32,18 +52,15 @@ h1 {
   text-align: center;
 }
 
-[data-col='0'] {
-  margin-left: -5px;
-}
+#start-button {
+  width: 600px;
+  height: 60px;
+  border: none;
 
-[data-col='2'] {
-  margin-right: -5px;
-}
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
 
-[data-row='0'] {
-  margin-top: -5px;
-}
-
-[data-row='2'] {
-  margin-bottom: -5px;
+  background-color: black;
+  color: white;
 }

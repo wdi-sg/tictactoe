@@ -2,7 +2,7 @@ var currentSym = "cross";
 var gameState = [
   [null, null, null],
   [null, null, null],
-  [null, null, null]]
+  [null, null, null]];
 
 var makeBoard = function () {
   var body = document.querySelector("body");
@@ -20,10 +20,40 @@ var makeBoard = function () {
   }
 
   body.appendChild(gameBoard);
-  addListeners();
+  addCellListeners();
 }
 
-var addListeners = function () {
+var startButton = function (action) {
+  if (action === "create") {
+    var startButton = document.createElement("button");
+    startButton.id = "start-button";
+    startButton.innerText = "Start Game";
+    startButton.addEventListener("click", clickStart);
+    var body = document.querySelector("body");
+    body.insertBefore(startButton, document.querySelector("#gameboard"));
+  } else if (action === "show") {
+    var startButton = document.querySelector("#start-button");
+    startButton.innerText = "Restart Game";
+    startButton.style.visibility = "visible";
+  } else {
+    var startButton = document.querySelector("#start-button");
+    startButton.style.visibility = "hidden";
+  }
+}
+
+var clickStart = function () {
+  currentSym = "cross";
+  gameState = [
+    [null, null, null],
+    [null, null, null],
+    [null, null, null]];
+  var board = document.querySelector("#gameboard");
+  document.body.innerHTML = "";
+  makeBoard();
+  startButton("create");
+}
+
+var addCellListeners = function () {
   var cells = document.querySelectorAll(".gamecell");
 
   for (var i = 0; i < cells.length; i++) {
@@ -113,7 +143,6 @@ var arrMatch = function (arr) {
       break;
     }
   }
-
   return arrMatch;
 }
 
@@ -144,6 +173,7 @@ var displayText = function (str, color) {
 // gameCell.setAttribute("data-col", col);
 
 var updateGame = function () {
+  startButton("hide");
   var row = this.dataset.row;
   var col = this.dataset.col;
   if (gameState[row][col] !== null) {
@@ -157,6 +187,7 @@ var updateGame = function () {
 
   if (fullGame(gameState)) {
     displayText("Game over; neither side won.", "purple");
+    addStartButton();
   }
 
   var rowWin = checkRows(gameState);
@@ -169,11 +200,15 @@ var updateGame = function () {
 
   if (rowWin) {
     displayText(`Row win: ${rowWin}`, "#0ca204");
+    startButton("show");
   } else if (colWin) {
     displayText(`Column win: ${colWin}`, "#0ca204");
+    startButton("show");
   } else if (diaWin) {
     displayText(`Diagonal win: ${diaWin}`, "#0ca204");
+    startButton("show");
   }
 }
 
 makeBoard();
+startButton("create");
