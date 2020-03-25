@@ -1,0 +1,30 @@
+
+.tile{
+	height: 100px;
+	width: 100px;
+	padding: 0px 0px 0px 0px;
+	font-size: 80px;
+}
+.tile:disabled {
+
+}
+.container{
+	height: 400px;
+	width: 400px;
+}
+.row{
+	width: 310px;
+	height: 100px;
+}
+.game-board{
+	height: 300px;
+	width: 310px;
+}
+h1{
+	text-align: center;
+	width: 310px;
+}
+h2{
+	text-align: center;
+	width: 310px;
+}
