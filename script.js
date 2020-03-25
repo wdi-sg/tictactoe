@@ -22,23 +22,23 @@ function startStateSwitcher () {
     }
 }
 
-//Prompt player name
+//Prompt for player name at the start
 var playerX;
 var playerO;
 
 function promptPlayerName () {
     playerX = prompt("Player X name: ");
     playerO = prompt("Player O name: ");
-    console.log('X before: ' + playerX)
-    console.log('Y before: ' + playerO)
 }
+
+setTimeout(promptPlayerName, 500);
 
 //Start button appear or disappear
 var button = document.querySelector('.start');
 
 var buttonClicked = function () {
     button.style.display = 'none';
-    promptPlayerName();
+    resetGame();
     startStateSwitcher();
 }
 
@@ -93,11 +93,11 @@ gridCreator(3);
 //Win condition
 var winCondition = function () {
     var alertX = function () {
-        alert(playerX + ' wins!');
+        alert(`${playerX} wins! Click start to replay.`);
     }
 
     var alertO = function () {
-        alert(playerO + ' wins!');
+        alert(`${playerO} wins! Click start to replay.`);
     }
 
     for (var k = 0; k < board.length; k++) {
@@ -165,4 +165,36 @@ var winCondition = function () {
             }
         }
     }
+}
+
+//Reset game board
+function resetGame () {
+    playerTurn = 'X'
+    var square00 = document.querySelector('.square-0-0');
+    square00.innerText = null;
+    board[0][0] = null;
+    var square01 = document.querySelector('.square-0-1');
+    square01.innerText = null;
+    board[0][1] = null;
+    var square02 = document.querySelector('.square-0-2');
+    square02.innerText = null;
+    board[0][2] = null;
+    var square10 = document.querySelector('.square-1-0');
+    square10.innerText = null;
+    board[1][0] = null;
+    var square11 = document.querySelector('.square-1-1');
+    square11.innerText = null;
+    board[1][1] = null;
+    var square12 = document.querySelector('.square-1-2');
+    square12.innerText = null;
+    board[1][2] = null;
+    var square20 = document.querySelector('.square-2-0');
+    square20.innerText = null;
+    board[2][0] = null;
+    var square21 = document.querySelector('.square-2-1');
+    square21.innerText = null;
+    board[2][1] = null;
+    var square22 = document.querySelector('.square-2-2');
+    square22.innerText = null;
+    board[2][2] = null;
 }
