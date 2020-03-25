@@ -1,8 +1,19 @@
-var currentSym = "cross";
+var player1 = {name: "p1", sym: "x"};
+var player2 = {name: "p2", sym: "o"};
+
+var currentPlayer = player1;
+
 var gameState = [
   [null, null, null],
   [null, null, null],
   [null, null, null]];
+
+var promptNamesSyms = function() {
+  player1.name = prompt("Please enter player 1's name:", "Player 1");
+  player1.sym = prompt("Please enter a symbol to use");
+  player2.name = prompt("Please enter player 2's name:", "Player 2");
+  player2.sym = prompt("Please enter a symbol to use");
+}
 
 var makeBoard = function () {
   var body = document.querySelector("body");
@@ -42,7 +53,7 @@ var startButton = function (action) {
 }
 
 var clickStart = function () {
-  currentSym = "cross";
+  currentPlayer = player1;
   gameState = [
     [null, null, null],
     [null, null, null],
@@ -65,14 +76,13 @@ var makeMark = function (sym) {
   var mark = document.createElement("div");
   mark.setAttribute("class", sym);
 
+  console.log("making: ", sym);
   switch (sym) {
-  case "cross":
-    mark.innerText = "×";
-    currentSym = "circle";
+  case player1.sym:
+    mark.innerText = player1.sym;
     break;
-  case "circle":
-    mark.innerText = "⭕";
-    currentSym = "cross";
+  case player2.sym:
+    mark.innerText = player2.sym;
     break;
   }
   return mark;
@@ -84,11 +94,10 @@ var checkRows = function (game2DArr) {
 
   for (var i = 0; i < game.length; i++) {
     if (game[i][0] !== null && arrMatch(game[i])) {
-      rowWin = game[i][0];
+      rowWin = currentPlayer.name;
       break;
     }
   }
-
   return rowWin;
 }
 
@@ -103,11 +112,10 @@ var checkCols = function (game2DArr) {
       col.push(game[j][i]);
     }
     if (col[0] !== null && arrMatch(col)) {
-      colWin = col[0];
+      colWin = currentPlayer.name;
       break;
     }
   }
-
   return colWin;
 }
 
@@ -126,7 +134,7 @@ var checkDias = function (game2DArr) {
 
   for (var i = 0; i < dia.length; i++) {
     if (dia[i][0] !== null && arrMatch(dia[i])) {
-      diaWin = dia[i][0];
+      diaWin = currentPlayer.name;
       break;
     }
   }
@@ -161,18 +169,27 @@ var fullGame = function (game) {
 }
 
 var displayText = function (str, color) {
-  var announce = document.createElement("h1");
-  announce.innerText = str;
-  announce.style.color = color;
+  if (document.querySelector("#announce") === null) {
+    var announce = document.createElement("h1");
+    announce.id = "announce";
+    announce.innerText = str;
+    announce.style.color = color;
 
-  var gameBoard = document.querySelector("#gameboard");
-  document.querySelector("body").appendChild(announce);
+    var gameBoard = document.querySelector("#gameboard");
+    document.querySelector("body").appendChild(announce);
+  } else {
+    var announce = document.querySelector("#announce");
+    announce.innerText = str;
+    announce.style.color = color;
+  }
 }
 
 // gameCell.setAttribute("data-row", row);
 // gameCell.setAttribute("data-col", col);
 
 var updateGame = function () {
+  displayText(`${currentPlayer.name} just played`);
+
   startButton("hide");
   var row = this.dataset.row;
   var col = this.dataset.col;
@@ -180,9 +197,9 @@ var updateGame = function () {
     console.log("Already played");
     return;
   }
-  gameState[row][col] = currentSym;
+  gameState[row][col] = currentPlayer.sym;
 
-  var symbol = makeMark(currentSym);
+  var symbol = makeMark(currentPlayer.sym);
   this.appendChild(symbol);
 
   if (fullGame(gameState)) {
@@ -194,10 +211,6 @@ var updateGame = function () {
   var colWin = checkCols(gameState);
   var diaWin = checkDias(gameState);
 
-  console.log("row win: ", rowWin);
-  console.log("col win: ", colWin);
-  console.log("dia win: ", diaWin);
-
   if (rowWin) {
     displayText(`Row win: ${rowWin}`, "#0ca204");
     startButton("show");
@@ -208,7 +221,14 @@ var updateGame = function () {
     displayText(`Diagonal win: ${diaWin}`, "#0ca204");
     startButton("show");
   }
+
+  if (currentPlayer === player1) {
+    currentPlayer = player2;
+  } else {
+    currentPlayer = player1;
+  }
 }
 
 makeBoard();
 startButton("create");
+promptNamesSyms();
