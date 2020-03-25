@@ -1,7 +1,7 @@
 var player1 = {name: "Player 1", sym: "×"};
 var player2 = {name: "Player 2", sym: "⭕"};
 
-var gridSize = 5;
+var gridSize = 3;
 var winLength = 3;
 
 var currentPlayer = player1;
@@ -36,6 +36,7 @@ var buildPrompts = function() {
     form.appendChild(inputField);
   }
   body.insertBefore(form, document.querySelector("#gameboard"));
+
   document.querySelector("[for='p1-name']").innerText = "Player 1 name";
   document.querySelector("[for='p1-sym']").innerText = "Player 1 symbol";
   document.querySelector("[for='p2-name']").innerText = "Player 2 name";
@@ -44,6 +45,18 @@ var buildPrompts = function() {
   document.querySelector("#p1-sym").value = player1.sym;
   document.querySelector("#p2-name").value = player2.name;
   document.querySelector("#p2-sym").value = player2.sym;
+
+  var gridLabel = document.createElement("label");
+  gridLabel.classList.add("label");
+  gridLabel.setAttribute("for", "grid-input");
+  gridLabel.id = "grid-label";
+  gridLabel.innerText = "Grid size";
+  document.querySelector("#player-form").appendChild(gridLabel);
+  var gridInput = document.createElement("input");
+  gridInput.classList.add("input");
+  gridInput.id = "grid-input";
+  gridInput.value = gridSize;
+  document.querySelector("#player-form").appendChild(gridInput);
 
 }
 
@@ -122,6 +135,8 @@ var clickStart = function () {
   player1.sym = document.querySelector("#p1-sym").value;
   player2.name = document.querySelector("#p2-name").value;
   player2.sym = document.querySelector("#p2-sym").value;
+  var gridInput = document.querySelector("#grid-input");
+  gridSize = isNaN(gridInput.value) ? 3 : gridInput.value;
 
   currentPlayer = player1;
   var board = document.querySelector("#gameboard");

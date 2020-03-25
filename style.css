@@ -40,7 +40,7 @@ h1 {
 
   font-size: 30px;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 
   background-color: black;
   color: white;
@@ -57,13 +57,16 @@ h1 {
 }
 
 .input {
-  width: 150px;
+  width: 25%;
   justify-content: center;
   font-size: 16px;
-  margin: 5px;
+  margin: 0 5px;
+  padding-left: 3px;
 }
 
 .label {
+  text-align: right;
+  width: 45%;
   font-size: 16px;
-  margin: 5px;
+  margin: 2px 5px 0 5px;
 }
