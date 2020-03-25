@@ -12,6 +12,8 @@ var touchedItems=9;
 var endGame=false;
 var outcomeTrigger="n";
 var gameStart=false;
+var win=0;
+var lose=0;
 //var mainScreen=document.querySelector("body");
 
 
@@ -168,14 +170,21 @@ var insertText=function(event){
             winLose();}
             //n for continue X for win O for lose through variable outcome trigger
         var textEntry=document.getElementById("declare-winner-loser");
+        var winText=document.getElementById("winText");
+        var loseText=document.getElementById("loseText");
         if(outcomeTrigger==="n"&&touchedItems>=0)
         {
             textEntry.innerText="Continue Playing";
+            winText.innerText="Wins:"+win;
+            loseText.innerText="Lose:"+lose;
 
         }else
         if(outcomeTrigger==="X"&&touchedItems>=0)
         {
             textEntry.innerText="You Win!";
+            win++;
+             winText.innerText="Wins:"+win;
+            loseText.innerText="Lose:"+lose;
             gameStart=false;
             stateOfBoxes=
                         [
@@ -192,6 +201,9 @@ var insertText=function(event){
         if(outcomeTrigger==="O"&&touchedItems>=0)
         {
             textEntry.innerText="You Lose!";
+            lose++;
+             winText.innerText="Wins:"+win;
+            loseText.innerText="Lose:"+lose;
             gameStart=false;
               stateOfBoxes=
                         [
@@ -207,6 +219,8 @@ var insertText=function(event){
         }else if(outcomeTrigger==="D")
         {
             textEntry.innerText="Draw";
+             winText.innerText="Wins:"+win;
+            loseText.innerText="Lose:"+lose;
             gameStart=false;
               stateOfBoxes=
                         [
@@ -302,8 +316,16 @@ if(!gameStart){
         }
         var text=document.createElement("h2");
         text.setAttribute("id","declare-winner-loser");
-        playarea.appendChild(text)
-        console.log("Start game")
+        playarea.appendChild(text);
+        console.log("Start game");
+        var winText=document.createElement("p");
+        winText.setAttribute("id","winText");
+        winText.innerText="Win:"+win;
+        playarea.appendChild(winText);
+        var loseText=document.createElement("p");
+        loseText.setAttribute("id","loseText");
+        loseText.innerText="Lose:" +lose;
+        playarea.appendChild(loseText);
         gameStart=true;
         //
         var gameToStart=setTimeout(gameStartScreen,500);
