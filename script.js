@@ -6,6 +6,8 @@ var player2;
 var startButton = document.getElementById("start");
 var winnerList = document.createElement("div");
 var startClick = 0;
+var player1TotalWin = 0;
+var player2TotalWin = 0;
 
 
 
@@ -17,6 +19,10 @@ var createBoard = function(){
     var boardGet = document.getElementById("board");
     boardGet.parentNode.removeChild(boardGet);
   }
+  document.getElementById("player1-tag").classList.add("hide");
+  document.getElementById("player2-tag").classList.add("hide");
+  document.getElementById("player1").classList.add("hide");
+  document.getElementById("player2").classList.add("hide");
   startButton.classList.add("hide");
   player1 = document.getElementById("player1").value;
   player2 = document.getElementById("player2").value;
@@ -52,7 +58,8 @@ var flipSymbol = function(event){
       boardElements[i] = allSquares[i].value;
     }
     if(calculateWinner(boardElements) === true){
-      winnerList.innerHTML = `${player1} is the winner!`
+      player1TotalWin++;
+      winnerList.innerHTML = `${player1} is the winner! Current Score: ${player1TotalWin}-${player2TotalWin}`
       startButton.classList.remove("hide");
       winnerList.classList.remove("hide");
     }
@@ -64,7 +71,8 @@ var flipSymbol = function(event){
       boardElements[i] = allSquares[i].value;
     }
     if(calculateWinner(boardElements) === true){
-      winnerList.innerHTML = `${player2} is the winner!`
+      player2TotalWin++;
+      winnerList.innerHTML = `${player2} is the winner! Current Score: ${player1TotalWin}-${player2TotalWin}`
       startButton.classList.remove("hide");
       winnerList.classList.remove("hide");
     }
