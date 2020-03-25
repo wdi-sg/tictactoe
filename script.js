@@ -1,5 +1,5 @@
-var player1 = {name: "p1", sym: "x"};
-var player2 = {name: "p2", sym: "o"};
+var player1 = {name: "Player 1", sym: "×"};
+var player2 = {name: "Player 2", sym: "⭕"};
 
 var currentPlayer = player1;
 
@@ -8,11 +8,32 @@ var gameState = [
   [null, null, null],
   [null, null, null]];
 
-var promptNamesSyms = function() {
-  player1.name = prompt("Please enter player 1's name:", "Player 1");
-  player1.sym = prompt("Please enter a symbol to use", "×");
-  player2.name = prompt("Please enter player 2's name:", "Player 2");
-  player2.sym = prompt("Please enter a symbol to use", "⭕");
+var buildPrompts = function() {
+  var body = document.querySelector("body");
+  var form = document.createElement("div");
+  form.id = "player-form";
+
+  var info = ["p1-name", "p1-sym", "p2-name", "p2-sym"];
+  for (var i = 0; i< info.length; i++) {
+    var inputField = document.createElement("input");
+    inputField.classList.add("input");
+    inputField.id = info[i];
+    var inputLabel = document.createElement("label");
+    inputLabel.classList.add("label");
+    inputLabel.setAttribute("for", info[i]);
+    form.appendChild(inputLabel);
+    form.appendChild(inputField);
+  }
+  body.insertBefore(form, document.querySelector("#gameboard"));
+  document.querySelector("[for='p1-name']").innerText = "Player 1 name";
+  document.querySelector("[for='p1-sym']").innerText = "Player 1 symbol";
+  document.querySelector("[for='p2-name']").innerText = "Player 2 name";
+  document.querySelector("[for='p2-sym']").innerText = "Player 2 symbol";
+  document.querySelector("#p1-name").value = player1.name;
+  document.querySelector("#p1-sym").value = player1.sym;
+  document.querySelector("#p2-name").value = player2.name;
+  document.querySelector("#p2-sym").value = player2.sym;
+
 }
 
 var makeBoard = function () {
@@ -53,6 +74,11 @@ var startButton = function (action) {
 }
 
 var clickStart = function () {
+  player1.name = document.querySelector("#p1-name").value;
+  player1.sym = document.querySelector("#p1-sym").value;
+  player2.name = document.querySelector("#p2-name").value;
+  player2.sym = document.querySelector("#p2-sym").value;
+
   currentPlayer = player1;
   gameState = [
     [null, null, null],
@@ -62,7 +88,6 @@ var clickStart = function () {
   document.body.innerHTML = "";
   makeBoard();
   startButton("create");
-  promptNamesSyms();
 }
 
 var addCellListeners = function () {
@@ -75,7 +100,7 @@ var addCellListeners = function () {
 
 var makeMark = function (sym) {
   var mark = document.createElement("div");
-  mark.setAttribute("class", sym);
+  mark.classList.add("mark");
 
   console.log("making: ", sym);
   switch (sym) {
@@ -213,13 +238,13 @@ var updateGame = function () {
   var diaWin = checkDias(gameState);
 
   if (rowWin) {
-    displayText(`Row win: ${rowWin}`, "#0ca204");
+    displayText(`Row win: ${currentPlayer.name}'s ${currentPlayer.sym}s`, "#0ca204");
     startButton("show");
   } else if (colWin) {
-    displayText(`Column win: ${colWin}`, "#0ca204");
+    displayText(`Column win: ${currentPlayer.name}'s ${currentPlayer.sym}s`, "#0ca204");
     startButton("show");
   } else if (diaWin) {
-    displayText(`Diagonal win: ${diaWin}`, "#0ca204");
+    displayText(`Diagonal win: ${currentPlayer.name}'s ${currentPlayer.sym}s`, "#0ca204");
     startButton("show");
   }
 
@@ -232,4 +257,4 @@ var updateGame = function () {
 
 makeBoard();
 startButton("create");
-promptNamesSyms();
+buildPrompts();
