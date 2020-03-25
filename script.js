@@ -4,7 +4,7 @@ var playerIcon = '';
 var player1Icon = 'images/pikachu.png';
 var player2Icon = 'images/psyduck.png';
 var player = true;
-var start = true;
+var begin = true;
 var end = false;
 var turnCount = 0;
 var currentPlayer = '';
@@ -15,7 +15,7 @@ var board = [
 ];
 
 var createBoard = function () {
-    if (start) {
+    if (begin) {
         for (var j = 0; j < 3; j++) {
             var createRows = document.createElement("div");
             createRows.classList = "boardrow";
@@ -32,49 +32,65 @@ var createBoard = function () {
         for (x = 0; x < totalBoxes.length; x++) {
             totalBoxes[x].addEventListener('click', onClick);
         }
-    } 
+    }
     title.removeChild(start)
-    start = false;
+    begin = false;
 }
 
-var clearGame = function () {}
+var clearGame = function () {
+    if (!begin) {
+        // for (i = 0; i < 3; i++) {
+        //     for (j = 0; j < 3; j++) {
+        //         board[i][j] = '';
+        //     }
+        // }
+        // var images = document.querySelectorAll('.img')
+        // var allBoxes = document.querySelectorAll('.box')
+        // allBoxes.removeChild(images);
+        // var title = document.querySelector('.h1')
+        // var reset = document.querySelector(reset)
+        // title.removeChild(reset)
+        //end = false;
+        begin = true;
+    }
+}
 
 var checkWin = function () {
     if (board[0][0] === currentPlayer && board[0][1] === currentPlayer && board[0][2] === currentPlayer) {
         alert(currentPlayer + " has won!");
-        end = true;
-        return;
+        begin = true;
+        return ;
     } else if (board[1][0] === currentPlayer && board[1][1] === currentPlayer && board[1][2] === currentPlayer) {
         alert(currentPlayer + " has won!");
-        end = true;
+        begin = true;
         return;
     } else if (board[2][0] === currentPlayer && board[2][1] === currentPlayer && board[2][2] === currentPlayer) {
         alert(currentPlayer + " has won!");
-        end = true;
+        begin = true;
         return;
     } else if (board[0][0] === currentPlayer && board[1][0] === currentPlayer && board[2][0] === currentPlayer) {
         alert(currentPlayer + " has won!");
-        end = true;
+        begin = true;
         return;
     } else if (board[0][1] === currentPlayer && board[1][1] === currentPlayer && board[2][1] === currentPlayer) {
         alert(currentPlayer + " has won!");
-        end = true;
+        begin = true;
         return;
     } else if (board[0][2] === currentPlayer && board[1][2] === currentPlayer && board[2][2] === currentPlayer) {
         alert(currentPlayer + " has won!");
-        end = true;
+        begin = true;
         return;
     } else if (board[0][2] === currentPlayer && board[1][1] === currentPlayer && board[2][0] === currentPlayer) {
         alert(currentPlayer + " has won!");
-        end = true;
-        return;
+        begin = true;
+        return ;
     } else if (board[0][0] === currentPlayer && board[1][1] === currentPlayer && board[2][2] === currentPlayer) {
         alert(currentPlayer + " has won!");
-        end = true;
+        begin = true;
         return;
     } else if (turnCount === 9) {
-        alert(currentPlayer + " has won!");
-        end = true;
+        alert("It is a draw!");
+        begin = true;
         return;
     }
 }
@@ -113,7 +129,7 @@ var onClick = function (event) {
     }
 };
 
-if (start) {
+if (begin) {
     var start = document.createElement('button');
     start.innerText = 'Start Game';
     var title = document.querySelector('.h1')
@@ -122,11 +138,14 @@ if (start) {
     title.appendChild(start)
 }
 
-
-
-// var reset = document.createElement('button');
-// reset.innerText = 'Reset';
-// var title = document.querySelector('.h1')
-// reset.style = 'background-color: yellow; display:block; text-align:center; align-items:center; position:relative; margin-left:auto; margin-right:auto;'
-// reset.addEventListener('click', clearGame)
-// title.appendChild(reset)
+// var checkEnd = function () {
+//     if (end) {
+        // var reset = document.createElement('button');
+        // reset.innerText = 'Reset';
+        // var title = document.querySelector('.h1')
+        // reset.style = 'background-color: yellow; display:block; text-align:center; align-items:center; position:relative; margin-left:auto; margin-right:auto;'
+        // reset.addEventListener('click', clearGame)
+        // title.appendChild(reset)
+//         return begin = true;
+//     }
+// }

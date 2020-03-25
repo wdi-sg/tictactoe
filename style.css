@@ -19,7 +19,9 @@
 	display: inline-block;
     border: 1px solid black;
     cursor: pointer;
-    background-color: maroon;
+    /* background-color: maroon; */
+    background-image: url(images/rowlet.png);
+    background-size: 150px;
     position: relative;
 }
 
