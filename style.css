@@ -15,6 +15,11 @@
     display:inline-block;
     align-items: center;
     margin: 0 auto;
-
-
+}
+#btn{
+	width: 75px;
+	border: solid black 1px;
+	margin: 0 auto;
+	text-align: center;
+	padding: 10px;
 }

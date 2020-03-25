@@ -19,6 +19,12 @@ for(item = 0;item<userInput.length;item++){
     userInput[item].addEventListener("click",toPerform);
 }
 */
+
+/* START BUTTON ADDED
+
+var i;
+var j;
+var gameSquare;
 var playerOneTurn = true;
 onClick = function(event){
     if (event.target.textContent !== "") {
@@ -33,9 +39,13 @@ onClick = function(event){
         playerOneTurn = true;
     }
 }
-var i;
-var j;
-var gameSquare;
+var button = document.createElement('button');
+button.innerHTML = "START";
+button.id = "btn";
+button.className = "Button";
+document.body.appendChild(button);
+button.addEventListener('click',function(){console.log("Game started"); button.hidden = true;});
+
 var gameBoard = document.querySelector('#gameboard');
 for(i=0;i<3;i++){
     for(j=0;j<3;j++){
@@ -46,5 +56,5 @@ for(i=0;i<3;i++){
      gameBoard.appendChild(gameSquare);
      gameSquare.addEventListener('click',onClick);
     }
-
 }
+*/
