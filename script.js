@@ -27,6 +27,7 @@ var clickHandler = function (event) {
         //Update the board array
         board[gridSelected[1]][gridSelected[2]] = 'O'
     }
+    winCondition();
 }
 
 //Creating the grid
@@ -50,9 +51,60 @@ gridCreator(3);
 
 //Win condition
 var winCondition = function () {
-    for (var k = 0; k < board.length; k++) {
-        for (var l = 0; l < board.length; l++) {
+    var alertX = function () {
+        alert('Player X wins!');
+    }
 
+    var alertO = function () {
+        alert('Player O wins!');
+    }
+
+    for (var k = 0; k < board.length; k++) {
+        if (k === 0) {
+            //First row check
+            if (board[0][0] === 'X' && board[0][1] === 'X' && board[0][2] === 'X') {
+                setTimeout(alertX, 200);
+            } else if (board[0][0] === 'O' && board[0][1] === 'O' && board[0][2] === 'O') {
+                setTimeout(alertO, 200);
+            //First column check
+            } else if (board[0][0] === 'X' && board[1][0] === 'X' && board[2][0] === 'X') {
+                setTimeout(alertX, 200);
+            } else if (board[0][0] === 'O' && board[1][0] === 'O' && board[2][0] === 'O') {
+                setTimeout(alert0, 200);
+            //Left diagonal check
+            } else if (board[0][0] === 'X' && board[1][1] === 'X' && board[2][2] === 'X') {
+                setTimeout(alertX, 200);
+            } else if (board[0][0] === 'O' && board[1][1] === 'O' && board[2][2] === 'O') {
+                setTimeout(alertO, 200);
+            }
+        } else if (k === 1) {
+            //Second row check
+            if (board[1][0] === 'X' && board[1][1] === 'X' && board[1][2] === 'X') {
+                setTimeout(alertX, 200);
+            } else if (board[1][0] === 'O' && board[1][1] === 'O' && board[1][2] === 'O') {
+                setTimeout(alertO, 200);
+            //Second column check
+            } else if (board[0][1] === 'X' && board[1][1] === 'X' && board[2][1] === 'X') {
+                setTimeout(alertX, 200);
+            } else if (board[0][1] === 'O' && board[1][1] === 'O' && board[2][1] === 'O') {
+                setTimeout(alertO, 200);
+            }
+        } else if (k === 2) {
+            //Third row check
+            if (board[2][0] === 'X' && board[2][1] === 'X' && board[2][2] === 'X') {
+                setTimeout(alertX, 200);
+            } else if (board[2][0] === 'O' && board[2][1] === 'O' && board[2][2] === 'O') {
+                setTimeout(alertO, 200);
+            //Third column check
+            } else if (board[0][2] === 'X' && board[1][2] === 'X' && board[2][2] === 'X') {
+                setTimeout(alertX, 200);
+            } else if (board[0][2] === 'O' && board[1][2] === 'O' && board[2][2] === 'O') {
+                setTimeout(alertO, 200);
+            //Right diagonal check
+            } else if (board[0][2] === 'X' && board[1][1] === 'X' && board[2][0] === 'X') {
+                setTimeout(alertX, 200);
+            } else if (board[0][2] === 'O' && board[1][1] === 'O' && board[2][0] === 'O') {
+                setTimeout(alertO, 200);
             }
         }
     }
