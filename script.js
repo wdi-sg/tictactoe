@@ -108,23 +108,27 @@ var clicked = function (event) {
     winCheck ();
 
     winliao();
-
-
 }
 
 //create the board and add click event
-for(var i=0 ; i<3 ; i++) {
-    for(var j=0 ; j<3 ; j++){
-        console.log(i+"+"+j)
-        var newDiv = document.createElement("div");
-        newDiv.className = "box";
-        newDiv.textContent = "";
-        newDiv.id = i + "," + j;
-        boardSelect.appendChild(newDiv);
-        newDiv.addEventListener('click',clicked);
+var createBoard = function () {
+    //hide the button
+    button.classList.add('hide');
+    for(var i=0 ; i<3 ; i++) {
+        for(var j=0 ; j<3 ; j++){
+            console.log(i+"+"+j)
+            var newDiv = document.createElement("div");
+            newDiv.className = "box";
+            newDiv.textContent = "";
+            newDiv.id = i + "," + j;
+            boardSelect.appendChild(newDiv);
+            newDiv.addEventListener('click',clicked);
+        }
     }
 }
 
+var button = document.querySelector("#start");
+button.addEventListener('click',createBoard);
 
 var winCheck = function () {
     //sort rows
@@ -145,8 +149,16 @@ var winCheck = function () {
     }
 }
 
+var reloadPage = function () {
+    window.location.reload();
+}
+
 var winliao = function () {
     if(win==1) {
+        var button = document.querySelector("#start");
+        button.classList.remove('hide');
+        button.innerText = "Game Ended!";
+        button.addEventListener('click',reloadPage);
         console.log(winner+" won!")
         document.querySelector("#msg").innerText = winner+" won!";
 

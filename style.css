@@ -15,3 +15,12 @@
     justify-content: center;
     align-items: center;
 }
+#start{
+	border: 1px solid black;
+  background: white;
+  padding: 5px 30px;
+  font-size: 11px;
+}
+.hide{
+	display: none;
+}
