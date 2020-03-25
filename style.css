@@ -1,0 +1,29 @@
+.game-square{
+  width: 150px;
+  height: 150px;
+  font-size: 125px;
+   display: inline-block;
+   border: 2px solid black;
+   vertical-align: top;
+   display: inline-block;
+}
+
+.container{
+ margin: 0 auto;
+ width: 800px;
+text-align: center;
+}
+
+.start{
+	background-color: #00A9FFFF;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 50px 2px 250px 2px;
+  cursor: pointer;
+}
