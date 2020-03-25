@@ -23,6 +23,14 @@ var makeBoard = function () {
   addListeners();
 }
 
+var addListeners = function () {
+  var cells = document.querySelectorAll(".gamecell");
+
+  for (var i = 0; i < cells.length; i++) {
+    cells[i].addEventListener('click', updateGame);
+  }
+}
+
 var makeMark = function (sym) {
   var mark = document.createElement("div");
   mark.setAttribute("class", sym);
@@ -133,8 +141,8 @@ var displayText = function (str, color) {
 }
 
 var updateGame = function () {
-  var row = this.getAttribute("data-row");
-  var col = this.getAttribute("data-col");
+  var row = this.dataset.row;
+  var col = this.dataset.col;
   if (gameState[row][col] !== null) {
     console.log("Already played");
     return;
@@ -162,14 +170,6 @@ var updateGame = function () {
     displayText(`Column win: ${colWin}`, "#0ca204");
   } else if (diaWin) {
     displayText(`Diagonal win: ${diaWin}`, "#0ca204");
-  }
-}
-
-var addListeners = function () {
-  var cells = document.querySelectorAll(".gamecell");
-
-  for (var i = 0; i < cells.length; i++) {
-    cells[i].addEventListener('click', updateGame);
   }
 }
 
