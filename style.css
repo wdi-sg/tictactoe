@@ -1,0 +1,39 @@
+#main-board{
+	background-color: grey;
+	width:500px;
+	height: 471px;
+}
+img {
+	display: inline-block;
+	width: 33.333%;
+	margin:0px;
+	padding:0px;
+}
+#main-board {
+	margin: auto;
+}
+.initial-button{
+	text-align: center;
+}
+#reset {
+	text-align: center;
+	margin-top: 30px;
+}
+h1 {
+	text-align: center;
+}
+
+h2 {
+	text-align: center;
+}
+.names {
+		text-align: center;
+		display: block;
+}
+button {
+	margin-top: 30px;
+}
+
+p {
+	text-align: center;
+}
