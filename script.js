@@ -37,17 +37,17 @@ var currentStatus = ["", "", "", "", "", "", "", "", ""]
 //there will be 9 clicks to end game so player 1 is even number and 2 odd.
 var gameSquaresClick = function(event){
     console.log('clicked');
-    clickCount++;
-    console.log(clickCount);
-
     if (gameProgress % 2 === 0) {
         //player 1
         event.target.innerText = userChoice[0];
         gameProgress++;
+        console.log("game Progress: " + gameProgress);
+        playerOne.push(gameProgress);
     } else {
         //player 2
         event.target.innerText = userChoice[1];
         gameProgress++;
+        playerTwo.push(gameProgress);
     };
 
 };
