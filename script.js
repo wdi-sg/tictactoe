@@ -45,6 +45,8 @@ let selectItem = function(){
         if (someoneHasWon()){
             winStatement.innerText = `Player ${player} has won!`
             body.appendChild(winStatement);
+            startButton.innerText = `Play again?`
+            startButton.classList.toggle('button-disappear')
         }
         //Change Turn
         player = "O";
@@ -59,6 +61,8 @@ let selectItem = function(){
         if (someoneHasWon()){
             winStatement.innerText = `Player ${player} has won!`
             body.appendChild(winStatement);
+            startButton.innerText = `Play again?`
+            startButton.classList.toggle('button-disappear')
         }
         //Change Turn
         player = "X";
@@ -88,12 +92,20 @@ body.appendChild(gameContainer);
 let startButton = document.createElement('button');
 body.appendChild(startButton);
 
-//Game button disappear and reappear
-let buttonAppear = () => {
-    startButton.classList.toggle('button-disappear', true)
+//Game Start and Reset
+let startGame = () => {
+    startButton.classList.toggle('button-disappear', true);
+    winStatement.innerText = "";
+    for (let i = 0; i < boardSize; i++){
+        for (let k = 0; k < boardSize; k++){
+            gameState[i][k] = null;
+            document.getElementById(i + "," + k).innerText = "";
+        }
+    }
 }
+
 
 //Game button. Declaration and DOM manipulation
 startButton.id = "start-button";
 startButton.innerText = "Start Game?";
-startButton.addEventListener('click', buttonAppear)
+startButton.addEventListener('click', startGame)
