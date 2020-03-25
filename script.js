@@ -2,14 +2,14 @@
 var createBoard = function(){
     //create main div for grids with board id
     var mainDiv = document.createElement('div');
-        mainDiv.setAttribute('id', 'board');
-        document.body.appendChild(mainDiv);
+    mainDiv.setAttribute('id', 'board');
+    document.body.appendChild(mainDiv);
     var board = document.querySelector('#board');
 
     //create row (currently only one row because subsequent one still go to this row.)
     var childDiv = document.createElement('div');
-        childDiv.setAttribute('class','game-row');
-        board.appendChild(childDiv);
+    childDiv.setAttribute('class','game-row');
+    board.appendChild(childDiv);
 
     //create column (all goes to the same row with id game-row)
     //trying to get it to get to different row (maybe need to rename class)
@@ -30,60 +30,73 @@ var clickCount = 0;
 var winningArray = [[0, 1 ,2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
 var playerOne = [];
 var playerTwo = [];
-var currentStatus = ["", "", "", "", "", "", "", "", ""]
-
+var currentStatus = ["", "", "", "", "", "", "", "", ""];
 var checkStatus;
 
 //check function for playerOne and playerTwo, use i to try out code. will think of better index name when it works. (not working yet)
-var checkWinner = function(playerArray){
-    var i = 0;
-    var j = 0;
-    while(j<winningArray.length){
-        while(i<playerOne.length){
-            if(playerArray[i] === winningArray[j][i]){
-                checkStatus = playerArray[i] === playerArray[j];
-                console.log(playerArray[i]);
-                console.log(playerArray[j]);
-                console.log(checkStatus);
-            }
-            i++;
+// var checkWinner = function(playerArray){
+//     var i = 0;
+//     var j = 0;
+//     while(j<winningArray.length){
+//         while(i<playerOne.length){
+//             if(playerArray[i] === winningArray[j][i]){
+//                 checkStatus = playerArray[i] === playerArray[j];
+//                 console.log(playerArray[i]);
+//                 console.log(playerArray[j]);
+//                 console.log(checkStatus);
+//             }
+//             i++;
+//         };
+//         j++;
+//     };
+// };
+
+
+var checkPosition = false;
+var checkMatch = function(){
+    for(var i = 0; i < gameSquares.length; i++) {
+        if(gameSquares[i].innerText === userChoice[0]){
+            playerOne.push(i);
+            // return true;
+        }else if(gameSquares[i].innerText === userChoice[1]){
+            playerTwo.push(i);
+            // return true;
         }
-        j++;
     };
+    console.log("playerOne array: "+playerOne)
+    console.log("playerOne array: "+playerTwo)
+
 };
 
-
+var win = false;
 //create event so when clicked, it will show which square.
 //userChoice "X" will be player 1 and "O" will be player 2.
 //there will be 9 clicks to end game so player 1 is even number and 2 odd.
 var gameSquaresClick = function(event){
     console.log('clicked');
-    if (gameProgress % 2 === 0) {
+    if(gameProgress % 2 === 0){
         //player 1
         event.target.innerText = userChoice[0];
         gameProgress++;
-        console.log("game Progress: " + gameProgress);
-        playerOne.push(gameProgress);
-        console.log("playerOne: " +playerOne);
-        // checkWinner(playerOne);
-    } else {
+        if(gameProgress >= 5){
+            checkMatch();
+        }
+    }else{
         //player 2
         event.target.innerText = userChoice[1];
         gameProgress++;
-        playerTwo.push(gameProgress);
-        console.log("game Progress: " + gameProgress);
-        console.log("playerTwo: "+playerTwo);
     };
 };
 
 //when click, gameSquaresClick run and the X or O will appear
 for (var gameSquaresI = 0; gameSquaresI < gameSquares.length; gameSquaresI++){
     playerClick = gameSquares[gameSquaresI].addEventListener('click', gameSquaresClick);
-
 };
 
 //check match
-console.log(clickCount);
+
+
+
 
 //push the index clicked to an array of items for player 1 (X)
 
