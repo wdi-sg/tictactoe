@@ -21,12 +21,14 @@ let playerTwoScore = 0;
 
 const playerOne = {
     score: 0,
-    name: ""
+    name: "",
+    character: ""
 }
 
 const playerTwo = {
     score: 0,
-    name: ""
+    name: "",
+    character: ""
 }
 
 const initGame = () =>{
@@ -63,8 +65,7 @@ body.appendChild(playerOneTurn);
 
 const playerName = document.getElementsByClassName('name');
 
-let playerOneName = "";
-let playerTwoName = "";
+const characterInput = document.getElementsByClassName('character');
 
 const button = document.getElementsByClassName('button')[0];
 
@@ -74,6 +75,8 @@ const startGame = (event) =>{
     button.classList.add('hide');
     playerName[0].classList.add('hide');
     playerName[1].classList.add('hide');
+    characterInput[0].classList.add('hide');
+    characterInput[1].classList.add('hide');
 
     // retrieve player name
     playerOne.name = playerName[0].value;
@@ -81,6 +84,10 @@ const startGame = (event) =>{
 
     // Show first player name
     playerOneTurn.textContent = playerOne.name + " turn" ;
+
+    //retrieve player character
+    playerOne.character = characterInput[0].value;
+    playerTwo.character = characterInput[1].value;
 
     if(gameCount === 0){
         // Show score count
@@ -146,10 +153,10 @@ const markBoard = (rowClass, boxClass) => {
 
     //Add to board
     if(playerTurn === true){
-        board[rowNum][boxNum] = "X"
+        board[rowNum][boxNum] = playerOne.character;
     }
     else if(playerTurn ===false){
-        board[rowNum][boxNum] = "O"
+        board[rowNum][boxNum] = playerTwo.character;
     }
 }
 
@@ -163,7 +170,7 @@ const clickHandler = (event) => {
         if (playerTurn === true){
             // Add to Display
             const boxClass = event.path[0];
-            boxClass.textContent = "X"
+            boxClass.textContent = playerOne.character;
 
             const rowClass = event.path[1]
 
@@ -171,7 +178,7 @@ const clickHandler = (event) => {
             markBoard(rowClass, boxClass);
 
             //Check Win
-            checkWin(board, "X");
+            checkWin(board, playerOne.character);
             if (win) {
                 addScore(playerOne.name);
                 initGame();
@@ -184,7 +191,7 @@ const clickHandler = (event) => {
         else if(playerTurn === false){
             // Add to Display
             const boxClass = event.path[0];
-            boxClass.textContent = "O"
+            boxClass.textContent = playerTwo.character;
 
             const rowClass = event.path[1]
 
@@ -192,7 +199,7 @@ const clickHandler = (event) => {
             markBoard(rowClass, boxClass);
 
             //Check Win
-            checkWin(board, "O");
+            checkWin(board, playerTwo.character);
             if(win){
                 addScore(playerTwo.name);
                 initGame();
