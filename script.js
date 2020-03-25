@@ -3,7 +3,7 @@ console.log('ToeTacTic');
 var clickCount = 0;
 var lastClick = 9;
 
-var currentPlayer = "";
+var currentPlayer = "X";
 var selectedButton;
 var buttonText = "";
 
@@ -17,19 +17,14 @@ var outputDisplay = document.getElementById("output-display");
 
 var playerTurn = function (clickCount) {
   if (clickCount % 2 == 0) {
-    outputDisplay.textContent = "Player O's turn";
+    outputDisplay.textContent = "Player X's turn";
     console.log(outputDisplay.textContent);
     return 'O';
   } else {
-    outputDisplay.textContent = "Player X's turn";
+    outputDisplay.textContent = "Player O's turn";
     console.log(outputDisplay.textContent);
     return 'X';
   };
-};
-
-var buttonChange = function (buttonID, pLayer) {
-  buttonText = pLayer;
-  document.querySelector(buttonID).innerHTML = buttonText;
 };
 
 function onClick(buttonId) {
@@ -37,7 +32,7 @@ function onClick(buttonId) {
     console.log(clickCount);
     currentPlayer = playerTurn(clickCount);
     console.log(currentPlayer.toString());
-    selectedButton = buttonId.toString();
+    selectedButton = document.querySelector("#" + buttonId);
     console.log(selectedButton + " was clicked");
     // gameOver(clickCount);
     selectedButton.textContent = currentPlayer;
