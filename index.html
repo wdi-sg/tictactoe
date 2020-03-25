@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        Tic Tac Toe
+        <div class='stats' id="p1-stats">
+            Player 1: <span class="counter" id="p1-name"></span>
+            <br /><span class="counter" id="p1wins">0</span> wins
+            <br /><span class="counter" id="p1losses">0</span> losses
+        </div>
+
+        <div class='stats' id="p2-stats">
+            Player 2: <span class="counter" id="p2-name"></span>
+            <br /><span class="counter" id="p2wins">0</span> wins
+            <br /><span class="counter" id="p2losses">0</span> losses
+        </div>
+    </header>
+
+    <div id="instructions">
+        <span id="current-instructions">Tell me the names of both players, then press the start button!</span>
+
+        <p>
+            <input type="text" class="name-input" id="player1-nameinput" value="" placeholder="Player 1 Name">
+            <input type="text" class="icon-input" id="player1-iconinput" value="" placeholder="Icon">
+        </p>
+        <p>
+            <input type="text" class="name-input" id="player2-nameinput" value="" placeholder="Player 2 Name">
+            <input type="text" class="icon-input" id="player2-iconinput" value="" placeholder="Icon">
+
+        </p>
+
+    </div>
+
+
+    <div id="game-status" class="hide turn">
+        Current Player: <span id="show-turn"></span>
+    </div>
+    <div id="timer" class ="turn hide">
+      <span id="time-left">5</span> seconds left to make a move...
+    </div>
+
+    <div class="controls">
+        <button type="button" id="start-btn">Start</button>
+    </div>
+
+    <div id="gameboard" class="hide">
+        <div class="row" id="row1">
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+        </div>
+        <div class="row" id="row2">
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+        </div>
+        <div class="row" id="row3">
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+        </div>
+    </div>
+
+    <div id="congrats" class='hide'>
+      <img src="https://thumbs.gfycat.com/AssuredUnkemptAtlanticblackgoby-size_restricted.gif" />
+      <h1><span id="winner-name">Player 1</span> wins! Restarting in 3 seconds...</h1>
+    </div>
+
+
+    <script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>
