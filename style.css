@@ -1,0 +1,40 @@
+.box{
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	height: 128px;
+	margin: 0 auto;
+	padding: 0px;
+	background-color: pink;
+	width:33%;
+	border: 0.8px solid black;
+	font-size: 18px;
+}
+
+
+.board{
+	width: 500px;
+	margin 0 auto;
+}
+
+
+.row{
+	display: flex;
+	justify-content: center;
+	height: 128px;
+
+	font-size: 0px;
+}
+
+.aboveBoard {
+	display: flex;
+	align-content: center;
+	padding-left: 30%;
+	padding-top: 15%;
+}
+
+body {
+    font-family: Bangers, sans-serif;
+    text-align: center;
+    background-color: rgb(184,208,166);
+  }
