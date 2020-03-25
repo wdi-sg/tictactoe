@@ -176,7 +176,7 @@ var insertText=function(event){
         var textEntry=document.getElementById("declare-winner-loser");
         var winText=document.getElementById("winText");
         var loseText=document.getElementById("loseText");
-        if(outcomeTrigger==="n"&&touchedItems>=0)
+        if((outcomeTrigger==="n"||outcomeTrigger==="#")&&touchedItems>=0)
         {
             textEntry.innerText="Continue Playing";
             winText.innerText="Wins:"+win;
