@@ -2,17 +2,18 @@
 let gameboardDiv = document.getElementById("gameboard");
 let buttonDiv = document.getElementById("gamebutton");
 let winDiv = document.getElementById("winoutput");
+let playerTurnDiv = document.getElementById("playerturn");
+let scoreDiv = document.getElementById("scoreboard");
 let gamePlayArr = [];
 let outputCount = 0;
 let boardSize = 3;
 let winStringX = "XXX";
 let winStringO = "OOO";
 let winAlert;
-
-//text variables
-let XWin = "Player X has won the game!"
-let OWin = "Player O has won the game!"
-let draw = "It is a draw!";
+let playerXName;
+let playerOName;
+let xScore = 0;
+let oScore = 0;
 
 //initialise game board
 //1. initialise game play array that contains empty string
@@ -45,7 +46,6 @@ function onClick(event) {
     return;
   }
   let clickedIndex = event.target.id.split("-");
-  console.log(clickedIndex);
   // console.log(clickedIndex[1]);
   let xCoor = clickedIndex[0];
   let yCoor = clickedIndex[1];
@@ -55,9 +55,11 @@ function onClick(event) {
   if (outputCount % 2 !== 0) {
     gamePlayArr[xCoor][yCoor] = "X";
     event.target.textContent = "X";
+    playerTurnDiv.textContent = playerOName + "'s turn: O";
   } else {
     gamePlayArr[xCoor][yCoor] = "O";
     event.target.textContent = "O";
+    playerTurnDiv.textContent = playerXName + "'s turn: X";
   }
   checkWin();
 }
@@ -65,18 +67,30 @@ function onClick(event) {
 function startGameButtonErase() {
   buttonDiv.addEventListener("click", function(event) {
     buttonDiv.className = "hidden";
+    playerXName = document.getElementById("playerxname").value;
+    playerOName = document.getElementById("playeroname").value;
+    // document.getElementById("playerxname").value = "";
+    // document.getElementById("playeroname").value = "";
+    playerTurnDiv.textContent = playerXName + "'s turn: X";
+    // console.log(playerOName);
+    // console.log(playerXName);
+    
   });
 }
 
 function checkWin() {
+  let XWin = playerXName + " has won the game!";
+  let OWin = playerOName + " has won the game!";
   //check rows
   for (let i = 0; i < boardSize; i++) {
     let stringRow = gamePlayArr[i].join("");
     // console.log(stringRow);
     if (outputCount % 2 !== 0 && stringRow.includes(winStringX)) {
       winAlert = XWin;
+      xScore++;
     } else if (outputCount % 2 === 0 && stringRow.includes(winStringO)) {
       winAlert = OWin;
+      oScore++;
     }
   }
   //check columns
@@ -87,8 +101,10 @@ function checkWin() {
       // console.log(stringCol);
       if (outputCount % 2 !== 0 && stringCol.includes(winStringX)) {
         winAlert = XWin;
+        xScore++;
       } else if (outputCount % 2 === 0 && stringCol.includes(winStringO)) {
         winAlert = OWin;
+        oScore++;
       }
     }
   }
@@ -109,11 +125,13 @@ function checkWin() {
       (stringDiagUp.includes(winStringX) || stringDiagDown.includes(winStringX))
     ) {
       winAlert = XWin;
+      xScore++;
     } else if (
       outputCount % 2 === 0 &&
       (stringDiagUp.includes(winStringO) || stringDiagDown.includes(winStringO))
     ) {
       winAlert = OWin;
+      oScore++;
     }
   }
   // console.log(winAlert);
@@ -121,12 +139,14 @@ function checkWin() {
 }
 
 function displayWinAlert(winAlert) {
+  let draw = "It is a draw!";
   let newP = document.createElement("p");
   if (winAlert === undefined && outputCount === boardSize * boardSize) {
     winAlert = draw;
   }
   newP.textContent = winAlert;
   winDiv.appendChild(newP);
+  scoreDiv.textContent = "SCORE: [" + playerXName + " : " + playerOName + "   |   " + xScore + " : " + oScore + "]";
   if (winAlert) {
     restartGame();
   }
@@ -139,7 +159,7 @@ function restartGame() {
     winDiv.innerHTML = "";
     gamePlayArr = [];
     outputCount = 0;
-    winAlert = "";
+    winAlert = undefined;
     initGameBoard();
   });
 }

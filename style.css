@@ -17,8 +17,9 @@ button {
     text-align: center;
     font-size: 18px;
     display: inline-block;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     padding: 5px;
+    box-sizing: border-box;
 }
 
 #gameboard {
@@ -46,5 +47,29 @@ button {
 
 #winoutput {
     color: red;
+    font-size: 25px;
+}
+
+#scoreboard {
+    background-color: sandybrown;
+    width: 450px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    font-size: 25px;
+}   
+
+#playerturn {
+    background-color: salmon;
+    width: 450px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-bottom: 20px;
     font-size: 25px;
 }
