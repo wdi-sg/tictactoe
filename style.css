@@ -1,0 +1,79 @@
+body {
+	background-color: grey;
+	max-width: 600px;
+}
+
+#board {
+	background-color: black;
+	color: white;
+	border: 5px solid green;
+	max-width: 600px;
+
+}
+
+.game-row {
+	border: 1px solid orange;
+	display: flex;
+	justify-content: space-between;
+	height:30%;
+}
+
+.game-square {
+	border: 5px solid pink;
+	box-sizing: border-box;
+	width: 33%;
+	height: 100%;
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	font-family: "arial", sans-serif;
+	font-size: 150px;
+
+}
+
+#button {
+	text-align: center;
+	margin: 10px;
+}
+
+button {
+	text-align: center;
+	padding: 5px 15px;
+	border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*.starter{
+  font-size:30px;
+  padding:10px;
+  display:block;
+  margin:40px;
+  border:3px solid blue;
+}
+
+#output{
+  background-color:pink;
+}*/
