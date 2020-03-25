@@ -9,15 +9,47 @@
 </head>
 
 <body>
-  <header>
-    Tic Tac Toe
+    <header>
+        Tic Tac Toe
+        <div class='stats' id="p1-stats">
+            Player 1: <span class="counter" id="p1-name"></span>
+            <br /><span class="counter" id="p1wins">0</span> wins
+            <br /><span class="counter" id="p1losses">0</span> losses
+        </div>
+
+        <div class='stats' id="p2-stats">
+            Player 2: <span class="counter" id="p2-name"></span>
+            <br /><span class="counter" id="p2wins">0</span> wins
+            <br /><span class="counter" id="p2losses">0</span> losses
+        </div>
     </header>
 
-<div class="turn">
-  Current Turn: <span id="show-turn"></span>
-  </div>
-  <button type="button" id="restart">Restart</button>
+    <div id="instructions">
+        <span id="current-instructions">Tell me the names of both players, then press the start button!</span>
 
+        <p>
+            <input type="text" class="name-input" id="player1-nameinput" value="" placeholder="Player 1 Name">
+            <input type="text" class="icon-input" id="player1-iconinput" value="" placeholder="Icon">
+        </p>
+        <p>
+            <input type="text" class="name-input" id="player2-nameinput" value="" placeholder="Player 2 Name">
+            <input type="text" class="icon-input" id="player2-iconinput" value="" placeholder="Icon">
+
+        </p>
+
+    </div>
+
+
+    <div id="game-status" class="hide turn">
+        Current Player: <span id="show-turn"></span>
+    </div>
+
+    <div class="controls">
+        <button type="button" class="hide" id="restart-btn">Restart</button>
+        <button type="button" id="start-btn">Start</button>
+    </div>
+
+    <div id="gameboard" class="hide">
         <div class="row" id="row1">
             <div class="grid"></div>
             <div class="grid"></div>
@@ -33,6 +65,13 @@
             <div class="grid"></div>
             <div class="grid"></div>
         </div>
+    </div>
+
+    <div id="congrats" class='hide'>
+      <img src="https://thumbs.gfycat.com/AssuredUnkemptAtlanticblackgoby-size_restricted.gif" />
+      <h1><span id="winner-name">Player 1</span> wins! Restarting in 3 seconds...</h1>
+    </div>
+
 
     <script type="text/javascript" src="script.js"></script>
 </body>

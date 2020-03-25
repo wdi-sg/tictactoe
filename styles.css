@@ -4,15 +4,94 @@ body {
 	color: white;
 }
 
+.white {
+	color: white;
+}
+
 header {
-	height: 150px;
-	line-height: 150px;
+	height: 120px;
+	line-height: 120px;
 	width: 100%;
 	text-align: center;
 	color: #cae8d5;
 	font-size: 3rem;
 	letter-spacing: 5px;
 }
+
+.stats {
+	font-size: 1.3rem;
+	line-height: normal;
+	padding: 20px;
+}
+
+.counter {
+	color: white;
+}
+
+#p1-stats {
+	float: left;
+	text-align: right;
+	margin-left: 40px;
+}
+
+#p2-stats {
+	float:right;
+	text-align: left;
+	margin-right: 40px;
+
+}
+
+#instructions{
+	margin: 30px auto;
+	width: 80%;
+	text-align: center;
+	font-weight: lighter;
+	letter-spacing: 3px;
+	font-size: 1.3rem;
+	text-transform: uppercase;
+}
+
+input {
+	border-style: none none solid none;
+	background-color: rgba(0,0,0,0);
+	border-color: white;
+	width: 200px;
+	font-size: 1rem;
+	letter-spacing: 3px;
+	padding: 10px;
+	transition-duration: 0.5s;
+	color: white;
+	text-align: center;
+}
+
+.icon-input{
+	width: 50px;
+	margin-left: 30px;
+	border: 1px solid white;
+	border-radius: 12px;
+}
+
+.name-input:focus {
+	width: 300px;
+	outline: none;
+}
+
+input:enabled{
+	text-transform: none;
+}
+
+input::placeholder {
+	color: #84a9ac;
+	text-transform: lowercase;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+	outline: none;
+}
+
 
 .turn {
 	margin: 0 auto;
@@ -54,23 +133,52 @@ header {
 	font-weight: lighter;
 }
 
-#restart {
-	margin: 0 auto 30px auto;
-	display: block;
-	border: 1px solid white;
-	padding: 5px 30px;
-	color: white;
-	font-size: 1.3rem;
-	background-color: #204051;
-	text-transform: lowercase;
-	letter-spacing: 3px;
-	font-weight: lighter;
-	box-shadow: 5px 10px rgba(0,0,0,0.4);
-	transition-duration: 0.2s;
-
+.controls {
+	width: 50%;
+	margin: 50px auto 40px auto;
+	text-align: center;
 }
 
-#restart:hover{
+button {
+	margin: 0 auto 30px auto;
+	display: inline-block;
+	border: 1px solid white;
+	padding: 10px 30px;
+	color: white;
+	font-size: 1.3rem;
+	background-color: rgba(0,0,0,0);
+	text-transform: uppercase;
+	letter-spacing: 5px;
+	font-weight: lighter;
+	box-shadow: 5px 10px rgba(0,0,0,0.2);
+	border-radius: 10px;
+	transition-duration: 0.2s;
+	width: 200px;
+	line-height: 40px;
+}
+
+button:hover{
 	background-color: rgba(255,255,255,0.3);
-	box-shadow: none;
+	letter-spacing: 6px;
+}
+
+#congrats {
+	position: fixed;
+	text-align: center;
+	top:0;
+	left:0;
+	height: 100%;
+	width: 100%;
+	z-index: 2;
+	background-color: rgba(0,0,0,0.5);
+	padding: 4%;
+}
+
+#congrats h1 {
+	font-size: 3rem;
+	letter-spacing: 5px;
+}
+
+.hide {
+	display: none;
 }
