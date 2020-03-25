@@ -3,50 +3,37 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
+    <title>ToeTacTic</title>
 </head>
 
 <body>
-    <div id="board">
-        <div class="game-row">
-            <span id="top-left" class="game-square">
-                <h6>//F(inputHappened)</h6>
-            </span>
-            <span id="top-mid" class="game-square">
-                <h6>//F(inputHappened)</h6>
-            </span>
-            <span id="top-right" class="game-square">
-                <h6>//F(inputHappened)</h6>
-            </span>
+    <header>
+        <h1>ToeTacTic</h1>
+    </header>
+    <h2 id="output-display">Player X's turn</h2>
+    <div class="game-board">
+        <div class="row" id="top-row">
+            <button class="box" id="top-left" onClick=onClick(this.id)>&nbsp</button>
+            <button class="box" id="top-mid" onClick=onClick(this.id)>&nbsp</button>
+            <button class="box" id="top-right" onClick=onClick(this.id)>&nbsp</button>
         </div>
-        <div class="game-row">
-            <span id="mid-left" class="game-square">
-                <h6>//F(inputHappened)</h6>
-            </span>
-            <span id="center" class="game-square">
-                <h6>//F(inputHappened)</h6>
-            </span>
-            <span id="mid-right" class="game-square">
-                <h6>//F(inputHappened)</h6>
-            </span>
+        <div class="row" id="mid-row">
+            <button class="box" id="mid-left" onClick=onClick(this.id)>&nbsp</button>
+            <button class="box" id="center" onClick=onClick(this.id)>&nbsp</button>
+            <button class="box" id="mid-right" onClick=onClick(this.id)>&nbsp</button>
         </div>
-        <div class="game-row">
-            <span id="bottom-left" class="game-square">
-                <h6>//F(inputHappened)</h6>
-            </span>
-            <span id="bottom-center" class="game-square">
-                <h6>//F(inputHappened)</h6>
-            </span>
-            <span id="bottom-right" class="game-square">
-                <h6>//F(inputHappened)</h6>
-            </span>
+        <div class="row" id="bottom-row">
+            <button class="box" id="bottom-left" onClick=onClick(this.id)>&nbsp</button>
+            <button class="box" id="bottom-mid" onClick=onClick(this.id)>&nbsp</button>
+            <button class="box" id="bottom-right" onClick=onClick(this.id)>&nbsp</button>
         </div>
     </div>
     <script>
-        document.querySelector('game-square').addEventListener('click', function (event) {
-            var currentInput = event.target.value;
-            var output = inputHappened(currentInput);
-            display(output);
-        });
+        // document.querySelector('box').addEventListener('click', function (event) {
+        //     var currentInput = event.target.value;
+        //     var output = inputHappened(currentInput);
+        //     display(output);
+        // });
     </script>
     <script src="script.js"></script>
 </body>

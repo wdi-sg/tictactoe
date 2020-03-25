@@ -1,18 +1,49 @@
-console.log("hello script js");
+console.log('ToeTacTic');
 
-var inputHappened = function (currentInput) {
-  console.log(currentInput);
-  // var output = "WOW SOMETHING HAPPENED";
-  display(currentInput);
-  // return output;
-};
+var clickCount = 0;
+var lastClick = 9;
 
-var display = function (data) {
-  // var hOne = document.getElementByTagName("h1");
-  // hOne.innerText = data;
-  // hOne.addEventListener('mouseover', saySomething);
-};
+var currentPlayer = "";
+var selectedButton;
+var buttonText = "";
 
-// var saySomething = function () {
-//   console.log("YES!");
+var outputDisplay = document.getElementById("output-display");
+
+// function gameOver(clickCount) {
+//   if (clickCount == lastClick) {
+//     outputDisplay.textContent = "Game Over!";
+//   };
 // };
+
+var playerTurn = function (clickCount) {
+  if (clickCount % 2 == 0) {
+    outputDisplay.textContent = "Player O's turn";
+    console.log(outputDisplay.textContent);
+    return 'O';
+  } else {
+    outputDisplay.textContent = "Player X's turn";
+    console.log(outputDisplay.textContent);
+    return 'X';
+  };
+};
+
+var buttonChange = function (buttonID, pLayer) {
+  buttonText = pLayer;
+  document.querySelector(buttonID).innerHTML = buttonText;
+};
+
+function onClick(buttonId) {
+  if (clickCount < lastClick) {
+    console.log(clickCount);
+    currentPlayer = playerTurn(clickCount);
+    console.log(currentPlayer.toString());
+    selectedButton = buttonId.toString();
+    console.log(selectedButton + " was clicked");
+    // gameOver(clickCount);
+    selectedButton.textContent = currentPlayer;
+    console.log(selectedButton.textContent);
+    clickCount++;
+  } else {
+    outputDisplay.textContent = "Game Over!";
+  };
+};
