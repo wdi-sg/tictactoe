@@ -16,3 +16,7 @@ body{
 .grid-item{
 	border: 2px solid black;
 }
+
+.button-disappear{
+	display: none;
+}

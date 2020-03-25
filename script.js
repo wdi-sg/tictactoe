@@ -3,25 +3,34 @@ let winStatement = document.createElement("p");
 winStatement.id = "win-statement"
 
 let player = "X";
-
+let boardSize = 3;
+let winLength = 3;
 
 //Check Win Function
 var someoneHasWon = () => {
-    //Check for rows
-    for (let i = 0; i < 3; i++){
-        let matchCounter = 0;
-        for (let k = 0; k < 3; k++){
+    //Check for rows and columns and diagonals
+    let matchCounterDiagonal = 0; //Diagonal counter must be outside loop to accumulate
+    for (let i = 0; i < boardSize; i++){
+        let matchCounterRow = 0;
+        let matchCounterColumn = 0;
+        //Diagonals
+        if (gameState[i][i] === player){
+            matchCounterDiagonal++
+        }
+        //Rows and Columns
+        for (let k = 0; k < boardSize; k++){
             if (gameState[i][k] === player){
-                matchCounter++
+                matchCounterRow++
+            }
+            if (gameState[k][i] === player){
+                matchCounterColumn++
             }
         }
-        if (matchCounter === 3){
+        //Check for matches
+        if (matchCounterRow === winLength || matchCounterColumn === winLength ||matchCounterDiagonal === winLength){
             return true
         }
     }
-
-
-
 }
 
 //Function to select grid item and change it to "X" or "O"
@@ -29,34 +38,28 @@ let selectItem = function(){
     if (player === "X"){
         //Update DOM
         this.innerText = "X"
-
         //Update Game State
         let idArray = this.id.split(",").map(x => parseInt(x));
         gameState[idArray[0]][idArray[1]] = "X";
-
         //Check win condition
         if (someoneHasWon()){
             winStatement.innerText = `Player ${player} has won!`
             body.appendChild(winStatement);
         }
-
         //Change Turn
         player = "O";
 
     } else{
         //Update DOM
         this.innerText = "O"
-
         //Update Game State
         let idArray = this.id.split(",").map(x => parseInt(x));
         gameState[idArray[0]][idArray[1]] = "O";
-
         //Check win condition
         if (someoneHasWon()){
             winStatement.innerText = `Player ${player} has won!`
             body.appendChild(winStatement);
         }
-
         //Change Turn
         player = "X";
     }
@@ -67,10 +70,10 @@ let gameContainer = document.createElement('div');
 let gameState = [];
 gameContainer.className = "container";
 
-for (let i = 0; i < 3; i++){
+for (let i = 0; i < boardSize; i++){
     let gameStateRow = [];
     gameState.push(gameStateRow);
-    for (let k = 0; k < 3; k++){
+    for (let k = 0; k < boardSize; k++){
         let gridItem = document.createElement('div');
         gridItem.className = "grid-item";
         gridItem.id = i + "," + k;
@@ -80,3 +83,17 @@ for (let i = 0; i < 3; i++){
     }
 }
 body.appendChild(gameContainer);
+
+//Game button.
+let startButton = document.createElement('button');
+body.appendChild(startButton);
+
+//Game button disappear and reappear
+let buttonAppear = () => {
+    startButton.classList.toggle('button-disappear', true)
+}
+
+//Game button. Declaration and DOM manipulation
+startButton.id = "start-button";
+startButton.innerText = "Start Game?";
+startButton.addEventListener('click', buttonAppear)
