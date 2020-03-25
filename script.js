@@ -149,9 +149,142 @@ var computerTurn=function(){
 
 }
 
+var forcedComputerTurn=function(){
+    //console.log("my turn");
+    var computerRow, computerColumn;
+    var computerRowText, computerColumnText;
+    var boxId=["#box"];
+    var boxIdSearch;
+    for(;;){
+        computerRow=Math.floor(Math.random()*3);
+        computerColumn=Math.floor(Math.random()*3);
+        if(stateOfBoxes[computerRow][computerColumn]==="n")
+        {
+            console.log("inserted");
+            break;
+        }
+    }
+        stateOfBoxes[computerRow][computerColumn]="X"
+        computerRowText=computerRow.toString();
+        computerColumnText=computerColumn.toString();
+        //console.log(typeof computerColumnText);
+        //console.log(typeof computerRowText);
+        boxId.push(computerRowText);
+        boxId.push(computerColumnText);
+        //console.log(boxId);
+        boxIdSearch=boxId.join("");
+        var boxComputerSearched=document.querySelector(boxIdSearch);
+        boxComputerSearched.style.backgroundColor="Yellow";
+        boxComputerSearched.innerText="X";
+        touchedItems--;
+        //console.log(boxIdSearch);
+
+}
+
 //To insert the X
 var insertText=function(event){
 //    console.log(endGame);
+userKeyed=true;
+clearTimeout(timerLose);
+clearTimeout(forceUser);
+var forceUser=setTimeout(function(){
+            forcedComputerTurn();
+           if(touchedItems>0){
+                var computerlag=setTimeout(computerTurn,5);
+            }
+            winLose();
+                    var textEntry=document.getElementById("declare-winner-loser");
+        var winText=document.getElementById("winText");
+        var loseText=document.getElementById("loseText");
+        if((outcomeTrigger==="n"||outcomeTrigger==="#")&&touchedItems>=0)
+        {
+            textEntry.innerText="Continue Playing";
+            winText.innerText="Wins:"+win;
+            loseText.innerText="Lose:"+lose;
+
+        }else
+        if(outcomeTrigger==="X"&&touchedItems>=0)
+        {
+            //debugger;
+            textEntry.innerText="You Win!";
+            messageToDisplay=textEntry.innerText;
+            //console.log(messageToDisplay);
+            win++;
+             winText.innerText="Wins:"+win;
+            loseText.innerText="Lose:"+lose;
+            gameStart=false;
+            stateOfBoxes=
+                        [
+                        ["n","n","n"],
+                        ["n","n","n"],
+                        ["n","n","n"]
+                        ];
+                        endGame=!endGame;
+                        outcomeTrigger="#";
+                        touchedItems=9;
+            restart=setTimeout(restartScreen,1000);
+
+        }else
+        if((outcomeTrigger==="O"&&touchedItems>=0)||userKeyed)
+        {
+
+            textEntry.innerText="You Lose!";
+            messageToDisplay=textEntry.innerText;
+            lose++;
+             winText.innerText="Wins:"+win;
+            loseText.innerText="Lose:"+lose;
+            gameStart=false;
+              stateOfBoxes=
+                        [
+                        ["n","n","n"],
+                        ["n","n","n"],
+                        ["n","n","n"]
+                        ];
+                         endGame=!endGame;
+                         outcomeTrigger="#";
+                         touchedItems=9;
+            restart=setTimeout(restartScreen,1000);
+
+        }else if(outcomeTrigger==="D")
+        {
+            textEntry.innerText="Draw";
+            messageToDisplay=textEntry.innerText;
+             winText.innerText="Wins:"+win;
+            loseText.innerText="Lose:"+lose;
+            gameStart=false;
+              stateOfBoxes=
+                        [
+                        ["n","n","n"],
+                        ["n","n","n"],
+                        ["n","n","n"]
+                        ];
+                         endGame=false;
+                         outcomeTrigger="#";
+                         touchedItems=9;
+            restart=setTimeout(restartScreen,1000);
+        }
+},60000);
+var timerLose=setTimeout(function(){
+userKeyed=false;
+console.log("do something naughty");
+            textEntry.innerText="You Lose!";
+            messageToDisplay=textEntry.innerText;
+            lose++;
+             winText.innerText="Wins:"+win;
+            loseText.innerText="Lose:"+lose;
+            gameStart=false;
+              stateOfBoxes=
+                        [
+                        ["n","n","n"],
+                        ["n","n","n"],
+                        ["n","n","n"]
+                        ];
+                         endGame=!endGame;
+                         outcomeTrigger="#";
+                         touchedItems=9;
+            restart=setTimeout(restartScreen,1000);
+},10000);
+//
     if(!endGame)
     {
 
@@ -206,7 +339,7 @@ var insertText=function(event){
             restart=setTimeout(restartScreen,1000);
 
         }else
-        if(outcomeTrigger==="O"&&touchedItems>=0)
+        if((outcomeTrigger==="O"&&touchedItems>=0)||userKeyed)
         {
 
             textEntry.innerText="You Lose!";
