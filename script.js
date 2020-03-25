@@ -105,6 +105,8 @@ const startGame = (event) =>{
         body.appendChild(scoreTwo);
     }
 
+    setInterval(changePlayer, 5000);
+
 }
 
 button.addEventListener('click', startGame);
@@ -119,16 +121,6 @@ button.addEventListener('click', startGame);
 // playerOneTurn.textContent = playerOneName;
 // body.appendChild(playerOneTurn);
 
-const showPlayerTurn = () => {
-    if (playerTurn === true) {
-        const changePlayerOne = document.getElementsByClassName('player')[0];
-        changePlayerOne.textContent = playerTwo.name + " turn";
-    }
-    else if(playerTurn === false){
-        const changePlayerTwo = document.getElementsByClassName('player')[0];
-        changePlayerTwo.textContent = playerOne.name + " turn" ;
-    }
-}
 // body.insertAdjacentHTML('afterbegin', playerOneTurn);
 
 
@@ -168,6 +160,7 @@ let win;
 const clickHandler = (event) => {
     if (gameStart) {
         if (playerTurn === true){
+            clearInterval();
             // Add to Display
             const boxClass = event.path[0];
             boxClass.textContent = playerOne.character;
@@ -185,10 +178,13 @@ const clickHandler = (event) => {
                 return;
             }
 
-            showPlayerTurn();
-            playerTurn = !playerTurn;
+            changePlayer();
+
+            //Set time for turn
+            setInterval(changePlayer, 5000);
         }
         else if(playerTurn === false){
+            clearInterval()
             // Add to Display
             const boxClass = event.path[0];
             boxClass.textContent = playerTwo.character;
@@ -206,8 +202,9 @@ const clickHandler = (event) => {
                 return;
             }
 
-            showPlayerTurn();
-            playerTurn = !playerTurn;
+            changePlayer();
+
+            setInterval(changePlayer, 5000);
         }
     }
 
@@ -344,4 +341,23 @@ const addScore = (player) => {
         const playerAddScore = document.getElementsByClassName(playerTwo.name)[0];
         playerAddScore.textContent = playerTwo.name + " score: " + playerTwo.score;
     }
+}
+
+
+
+const showPlayerTurn = () => {
+    if (playerTurn === true) {
+        const changePlayerOne = document.getElementsByClassName('player')[0];
+        changePlayerOne.textContent = playerOne.name + " turn";
+    }
+    else if(playerTurn === false){
+        const changePlayerTwo = document.getElementsByClassName('player')[0];
+        changePlayerTwo.textContent = playerTwo.name + " turn" ;
+    }
+}
+
+const changePlayer = () => {
+    console.log('hello');
+    playerTurn = !playerTurn;
+    showPlayerTurn();
 }
