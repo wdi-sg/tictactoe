@@ -133,7 +133,7 @@ if (begin) {
     var start = document.createElement('button');
     start.innerText = 'Start Game';
     var title = document.querySelector('.h1')
-    start.style = 'background-color: yellow; display:block; text-align:center; align-items:center; position:relative; margin-left:auto; margin-right:auto;'
+    start.style = 'background-color: #00ff2ba6; display:block; text-align:center; align-items:center; position:relative; margin-left:auto; margin-right:auto;'
     start.addEventListener('click', createBoard)
     title.appendChild(start)
 }

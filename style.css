@@ -2,7 +2,8 @@
 	color: lightseagreen;
 	font-size: 50px;
 	margin: 20px;
-	text-align: center;
+    text-align: center;
+    text-decoration: underline;
 }
 
 .boardrow {
@@ -19,7 +20,6 @@
 	display: inline-block;
     border: 1px solid black;
     cursor: pointer;
-    /* background-color: maroon; */
     background-image: url(images/rowlet.png);
     background-size: 150px;
     position: relative;
@@ -37,7 +37,7 @@
 
 body {
 	width: 100%;
-	background-color: burlywood;
+	background-color: mediumblue;
 }
 
 img {
