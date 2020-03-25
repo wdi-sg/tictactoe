@@ -26,11 +26,9 @@ var player = {
         wins: 0,
         losses: 0
     },
-    updateName: function(value, playerNo) {
-        this[playerNo].name = value;
-    },
-    updateIcon: function(value, playerNo) {
-        this[playerNo].icon = value;
+    updateData: function(no, nameInput, iconInput) {
+        this[no].name = nameInput;
+        this[no].icon = iconInput;
     },
     addWin: function(playerNo) {
         this[playerNo].wins++;
@@ -63,10 +61,10 @@ var winCheck = function() {
         }
         var colCombi = colArray.join("")
         if (colCombi === p1Win) {
-          playerWin(1);
+            playerWin(1);
             return player[1].name
         } else if (colCombi === p2Win) {
-          playerWin(2);
+            playerWin(2);
             return player[2].name
         }
     }
@@ -78,10 +76,10 @@ var winCheck = function() {
         }
         var rowCombi = rowArray.join("")
         if (rowCombi === p1Win) {
-          playerWin(1);
+            playerWin(1);
             return player[1].name
         } else if (rowCombi === p2Win) {
-          playerWin(2);
+            playerWin(2);
             return player[2].name
         }
     }
@@ -139,6 +137,7 @@ function playerTwoMove(element) {
 //What to do whenever a grid is clicked.
 function handleClick() {
     //Only run the function if the div is empty & doesn't already have text, eg X or O, and if gameStarted is true;
+    clearInterval(countdown);
     console.log(`current player is ${currentPlayer}`)
     if (this.innerText === "" && gameStarted) {
         if (currentPlayer === player[1].name) {
@@ -151,7 +150,13 @@ function handleClick() {
         updateBoard();
         moves++;
         displayTurn(currentPlayer)
+        var countdown = setInterval(updateTimer, 1000);
+        if (countdown === 0) {
+            clearInterval(countdown);
+        }
     }
+
+    //TO HANDLE WIN/LOSS
     var winner = winCheck();
     if (winner === player[1].name || winner === player[2].name) {
         displayTurn(`${winner} wins! Resetting game in 3 seconds...`);
@@ -203,8 +208,10 @@ var playerTwoLossesDisplay = document.getElementById('p2losses')
 var gameStatus = document.getElementById('game-status')
 var currentInstructions = document.getElementById('current-instructions')
 
-function startGame() {
+//START GAME FUNCTION
+startBtn.addEventListener('click', startGame)
 
+function startGame() {
     //If any of the inputs are empty, do not start game, display error message.
     if (playerOneIconInput.value === "" || playerOneNameInput.value === "" || playerTwoIconInput.value === "" || playerTwoNameInput.value === "") {
         return currentInstructions.innerText = "Please ensure all inputs are filled up."
@@ -224,13 +231,11 @@ function startGame() {
         instructions.classList.add('hide')
         //Display gameboard, game status & restart button.
         gameBoard.classList.remove('hide')
-        // restartBtn.classList.remove('hide')
         gameStatus.classList.remove('hide')
+        document.getElementById('timer').classList.remove('hide');
         //Get the values of player 1 and player 2 from their inputs, then clear the inputs.
-        player.updateName(playerOneNameInput.value, 1);
-        player.updateName(playerTwoNameInput.value, 2);
-        player.updateIcon(playerOneIconInput.value, 1)
-        player.updateIcon(playerTwoIconInput.value, 2)
+        player.updateData(1, playerOneNameInput.value, playerOneIconInput.value);
+        player.updateData(2, playerTwoNameInput.value, playerTwoIconInput.value);
         clearInput(playerOneNameInput);
         clearInput(playerTwoNameInput);
         clearInput(playerOneIconInput);
@@ -240,9 +245,9 @@ function startGame() {
         currentPlayer = player[1].name;
         updateGameStats();
         displayTurn(currentPlayer);
+        randomMove();
     }
 }
-
 
 //Function to show the congrats div.
 function congratulations(winner) {
@@ -250,14 +255,15 @@ function congratulations(winner) {
     document.getElementById('winner-name').innerText = winner;
 }
 
+//Function to add wins/losses according to which player has won.
 function playerWin(no) {
-  if (no===1) {
-    player.addWin(1);
-    player.addLoss(2)
-  } else if (no===2) {
-    player.addWin(2);
-    player.addLoss(1)
-  }
+    if (no === 1) {
+        player.addWin(1);
+        player.addLoss(2)
+    } else if (no === 2) {
+        player.addWin(2);
+        player.addLoss(1)
+    }
 }
 
 //Function to update the players wins/losses display.
@@ -268,4 +274,62 @@ function updateGameStats() {
     playerTwoLossesDisplay.innerText = player[2].losses
 }
 
-startBtn.addEventListener('click', startGame)
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+}
+
+function getEmptyGrids() {
+    var emptyGrids = [];
+    for (var i = 0; i < grids.length; i++) {
+        if (grids[i].innerText === "") {
+            emptyGrids.push(i);
+        }
+    }
+    return emptyGrids;
+}
+
+var timeLimit = 10;
+
+function updateTimer() {
+    if (timeLimit > 0) {
+        document.getElementById('time-left').innerText = timeLimit;
+        console.log(`${timeLimit} seconds left.`)
+        timeLimit--;
+    } else if (timeLimit === 0) {
+        return;
+    }
+}
+
+//Function to make random move for current player.
+function randomMove() {
+
+    var emptyGrids = getEmptyGrids();
+    //Get indexes of empty grids.
+    var randomIndex = emptyGrids[getRandomInt(emptyGrids.length)];
+    var randomGrid = grids[randomIndex]
+
+    if (currentPlayer === player[1].name) {
+        currentPlayer = player[2].name;
+        moves++;
+        displayTurn(currentPlayer)
+        randomGrid.innerText = player[1].icon
+        updateBoard();
+    } else if (currentPlayer === player[2].name) {
+        currentPlayer = player[1].name;
+        displayTurn(currentPlayer);
+        randomGrid.innerText = player[2].icon
+        moves++;
+        updateBoard();
+    }
+    var winner = winCheck();
+    if (winner === player[1].name || winner === player[2].name) {
+        displayTurn(`${winner} wins! Resetting game in 3 seconds...`);
+        congratulations(winner);
+        return setTimeout(restart, 3000);
+        //If there's no winner but 9 moves have been made, change 'turn' div to show gameover.
+    } else if (moves === 9) {
+        displayTurn(`Game is over! Press restart to start over.`)
+        return setTimeout(restart, 3000);
+    }
+  }
