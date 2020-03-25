@@ -7,6 +7,12 @@ h1 {
     margin: 20px 0;
 }
 
+input {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
 button {
     text-align: center;
     font-size: 18px;
@@ -33,3 +39,12 @@ button {
     justify-content: center;
     align-items: center;
 }    
+
+.hidden {
+    display: none;
+}
+
+#winoutput {
+    color: red;
+    font-size: 25px;
+}
