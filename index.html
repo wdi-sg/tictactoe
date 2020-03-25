@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Tic-Tac-Toe</h1>
+        <button id="turn" onClick = reloadFn()>Player ❌ Turn</button>
+        <div class="game-board">
+            <div class="row" id="row1">
+                <button class="tile" id="1" onClick=onClick(this.id)>&nbsp</button>
+                <button class="tile" id="2" onClick=onClick(this.id)>&nbsp</button>
+                <button class="tile" id="3" onClick=onClick(this.id)>&nbsp</button>
+            </div>
+            <div class="row" id="row2">
+                <button class="tile" id="4" onClick=onClick(this.id)>&nbsp</button>
+                <button class="tile" id="5" onClick=onClick(this.id)>&nbsp</button>
+                <button class="tile" id="6" onClick=onClick(this.id)>&nbsp</button>
+            </div>
+            <div class="row" id="row3">
+                <button class="tile" id="7" onClick=onClick(this.id)>&nbsp</button>
+                <button class="tile" id="8" onClick=onClick(this.id)>&nbsp</button>
+                <button class="tile" id="9" onClick=onClick(this.id)>&nbsp</button>
+            </div>
+        </div>
+        <script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>
