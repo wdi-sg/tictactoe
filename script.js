@@ -11,33 +11,58 @@
 
 //Start Game
 let gameStart = false;
+
+let playerTurn = true;
+
+const body = document.querySelector('body');
+
+// Create H2 element for where player name will be
+playerOneTurn = document.createElement('h2');
+playerOneTurn.className = "player"
+body.appendChild(playerOneTurn);
+
+const playerName = document.getElementsByClassName('name');
+
+let playerOneName = "";
+let playerTwoName = "";
+
 const button = document.getElementsByClassName('button')[0];
 
 const startGame = (event) =>{
+    // enable game start
     gameStart = true;
     button.classList.add('hide');
+    playerName[0].classList.add('hide');
+    playerName[1].classList.add('hide');
+
+    // retrieve player name
+    playerOneName = playerName[0].value;
+    playerTwoName = playerName[1].value;
+
+    // Show first player name
+    playerOneTurn.textContent = playerOneName + " turn" ;
 }
 
 button.addEventListener('click', startGame);
 
 
 //toggle player turn
-let playerTurn = true;
+// let playerTurn = true;
 
-const body = document.querySelector('body');
-playerOneTurn = document.createElement('h2');
-playerOneTurn.className = "player"
-playerOneTurn.textContent = "Player One";
-body.appendChild(playerOneTurn);
+// const body = document.querySelector('body');
+// playerOneTurn = document.createElement('h2');
+// playerOneTurn.className = "player"
+// playerOneTurn.textContent = playerOneName;
+// body.appendChild(playerOneTurn);
 
 const showPlayerTurn = () => {
     if (playerTurn === true) {
         const changePlayerOne = document.getElementsByClassName('player')[0];
-        changePlayerOne.textContent = "Player Two";
+        changePlayerOne.textContent = playerTwoName + " turn";
     }
     else if(playerTurn === false){
         const changePlayerTwo = document.getElementsByClassName('player')[0];
-        changePlayerTwo.textContent = "Player One";
+        changePlayerTwo.textContent = playerOneName + " turn" ;
     }
 }
 // body.insertAdjacentHTML('afterbegin', playerOneTurn);
@@ -193,13 +218,13 @@ const checkWin = (board, input) => {
             console.log(playerTurn);
             if(playerTurn){
                 const winPlayerOne = document.getElementsByClassName('player')[0];
-                winPlayerOne.textContent = "Player One WINS";
+                winPlayerOne.textContent = playerOneName + " WINS";
                 win = true;
 
             }
             else if(!playerTurn){
                 const winPlayerTwo = document.getElementsByClassName('player')[0];
-                winPlayerTwo.textContent = "Player Two WINS";
+                winPlayerTwo.textContent = playerTwoName + " WINS";
 
                 win = true;
             }
@@ -211,12 +236,12 @@ const checkWin = (board, input) => {
         if (columnScore[z] === 3){
             if(playerTurn){
                 const winPlayerOne = document.getElementsByClassName('player')[0];
-                winPlayerOne.textContent = "Player One WINS";
+                winPlayerOne.textContent = playerOneName + " WINS";
                 win = true;
             }
             else if(!playerTurn){
                 const winPlayerTwo = document.getElementsByClassName('player')[0];
-                winPlayerTwo.textContent = "Player Two WINS";
+                winPlayerTwo.textContent = playerTwoName + " WINS";
                 win = true;
             }
         }
@@ -226,12 +251,12 @@ const checkWin = (board, input) => {
         if (diagonalScore[r] === 3){
             if(playerTurn){
                 const winPlayerOne = document.getElementsByClassName('player')[0];
-                winPlayerOne.textContent = "Player One WINS";
+                winPlayerOne.textContent = playerOneName + " WINS";
                 win = true;
             }
             else if(!playerTurn){
                 const winPlayerTwo = document.getElementsByClassName('player')[0];
-                winPlayerTwo.textContent = "Player Two WINS";
+                winPlayerTwo.textContent = playerTwoName + " WINS";
                 win = true;
             }
         }
