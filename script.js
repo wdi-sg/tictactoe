@@ -11,6 +11,11 @@ var touchedItems=9;
 //var column;
 var endGame=false;
 var outcomeTrigger="n";
+var gameStart=false;
+//var mainScreen=document.querySelector("body");
+
+
+
 
 
 var winLose=function(){
@@ -99,7 +104,9 @@ console.log(newArray);
 
 
                 }
-
+            if(outcomeTrigger!=="O"&&outcomeTrigger!=="X"&&touchedItems===0){
+                outcomeTrigger="D";
+            }
 
 
 }
@@ -146,6 +153,7 @@ var insertText=function(event){
     console.log(idArray);
     var row=parseInt(idArray[idArray.length-2]);
     var column=parseInt(idArray[idArray.length-1]);
+    var restart;
     //console.log(typeof row);
     //console.log(typeof column);
 //    console.log(stateOfBoxes[row][column]);
@@ -163,25 +171,60 @@ var insertText=function(event){
         if(outcomeTrigger==="n"&&touchedItems>=0)
         {
             textEntry.innerText="Continue Playing";
+
         }else
         if(outcomeTrigger==="X"&&touchedItems>=0)
         {
             textEntry.innerText="You Win!";
+            gameStart=false;
+            stateOfBoxes=
+                        [
+                        ["n","n","n"],
+                        ["n","n","n"],
+                        ["n","n","n"]
+                        ];
+                        endGame=!endGame;
+                        outcomeTrigger="#";
+                        touchedItems=9;
+            restart=setTimeout(initialScreen,1000);
+
         }else
         if(outcomeTrigger==="O"&&touchedItems>=0)
         {
             textEntry.innerText="You Lose!";
-        }else if(touchedItems==0&&outcomeTrigger==="n")
+            gameStart=false;
+              stateOfBoxes=
+                        [
+                        ["n","n","n"],
+                        ["n","n","n"],
+                        ["n","n","n"]
+                        ];
+                         endGame=!endGame;
+                         outcomeTrigger="#";
+                         touchedItems=9;
+            restart=setTimeout(initialScreen,1000);
+
+        }else if(outcomeTrigger==="D")
         {
             textEntry.innerText="Draw";
+            gameStart=false;
+              stateOfBoxes=
+                        [
+                        ["n","n","n"],
+                        ["n","n","n"],
+                        ["n","n","n"]
+                        ];
+                         endGame=!endGame;
+                         outcomeTrigger="#";
+                         touchedItems=9;
+            restart=setTimeout(initialScreen,1000);
         }
 
     }
 
 }
 
-//Collect of all the clicking events
-window.onload=function(){
+var gameStartScreen=function(){
 var box00Clicked=document.querySelector("#box00");
 var box01Clicked=document.querySelector("#box01");
 var box02Clicked=document.querySelector("#box02");
@@ -201,4 +244,107 @@ box12Clicked.addEventListener("click",insertText);
 box20Clicked.addEventListener("click",insertText);
 box21Clicked.addEventListener("click",insertText);
 box22Clicked.addEventListener("click",insertText);
+}
+/*    <div class="container">
+    <h1>Tic Tac Toe</h1>
+    <div class="playarea">
+
+            <div id="box00" class="box"></div>
+            <div id="box01" class="box"></div>
+            <div id="box02" class="box"></div>
+
+            <div id="box10" class="box"></div>
+            <div id="box11" class="box"></div>
+            <div id="box12" class="box"></div>
+
+        <div id="box20" class="box"></div>
+        <div id="box21" class="box"></div>
+        <div id="box22" class="box"></div>
+        <h2 id="declare-winner-loser"></h2>
+        <button onClick="#">Reset Board</button>
+
+    </div>
+
+    </div>
+*/
+var initialScreen=function(event){
+    console.log("test");
+
+if(!gameStart){
+    console.log("loop");
+        var boxId="box";
+        var iText,jText,boxIdText;
+        document.body.innerHTML="";
+        var container=document.createElement("div");
+        container.classList.add("container");
+        document.body.appendChild(container);
+        var title=document.createElement("h1");
+        title.innerText="Tic Tac Toe";
+        container.appendChild(title);
+        var playarea=document.createElement("div");
+        playarea.classList.add("playarea");
+        container.appendChild(playarea)
+
+
+        for(var i=0;i<3;i++){
+            for(var j=0;j<3;j++){
+                var box=document.createElement("div");
+                iText=i.toString();
+                jText=j.toString();
+                boxIdText=boxId+iText+jText;
+                console.log(boxIdText);
+                box.classList.add("box");
+                box.setAttribute("id",boxIdText);
+                playarea.appendChild(box);
+
+            }
+
+        }
+        var text=document.createElement("h2");
+        text.setAttribute("id","declare-winner-loser");
+        playarea.appendChild(text)
+        console.log("Start game")
+        gameStart=true;
+        //
+        var gameToStart=setTimeout(gameStartScreen,500);
+    }
+
+}
+
+
+
+//Collect of all the clicking events
+window.onload=function(){
+    //for start screen
+
+    var mainScreen=document.querySelector("p");
+    //for game function
+    /*
+
+*/
+//for start screen
+
+mainScreen.addEventListener("click",initialScreen);
+//document.addEventListener("onclick",initialScreen);
+//for game function
+/*
+var box00Clicked=document.querySelector("#box00");
+var box01Clicked=document.querySelector("#box01");
+var box02Clicked=document.querySelector("#box02");
+var box10Clicked=document.querySelector("#box10");
+var box11Clicked=document.querySelector("#box11");
+var box12Clicked=document.querySelector("#box12");
+var box20Clicked=document.querySelector("#box20");
+var box21Clicked=document.querySelector("#box21");
+var box22Clicked=document.querySelector("#box22");
+
+box00Clicked.addEventListener("click",insertText);
+box01Clicked.addEventListener("click",insertText);
+box02Clicked.addEventListener("click",insertText);
+box10Clicked.addEventListener("click",insertText);
+box11Clicked.addEventListener("click",insertText);
+box12Clicked.addEventListener("click",insertText);
+box20Clicked.addEventListener("click",insertText);
+box21Clicked.addEventListener("click",insertText);
+box22Clicked.addEventListener("click",insertText);*/
 }
