@@ -5,18 +5,23 @@ body{
 .container{
 	display: grid;
 	grid-gap: 10px;
-	grid-template-columns: repeat(3, 100px);
-	grid-template-rows: repeat(3, 100px);
 	margin: 0 auto;
-	width: 300px;
-	height: 300px;
 	box-sizing: border-box;
+	justify-content: center;
 }
 
 .grid-item{
 	border: 2px solid black;
 }
 
-.button-disappear{
+.disappear{
 	display: none;
+}
+
+.settings{
+	display: inline-block;
+}
+
+#input{
+	margin: 0 0 20px 0;
 }

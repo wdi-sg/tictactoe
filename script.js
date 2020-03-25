@@ -1,10 +1,47 @@
+//Getting board size and win length
+let state = "getting board size"
+let boardSize;
+let winLength;
+
+document.querySelector('#input').addEventListener('change', function(event){
+    let currentInput = event.target.value;
+    inputHappened(currentInput)
+});
+
+let clearInput = () => {
+    document.querySelector('#input').value = ""
+}
+
+let inputHappened = (currentInput) => {
+  if (state === "getting board size"){
+        boardSize = parseInt(currentInput);
+        display("What win condition would you like? Default is 3");
+        state = "getting win length";
+        document.querySelector('#board-size').innerText = `${boardSize} x ${boardSize}`
+        clearInput();
+  } else {
+        document.querySelector('#output').classList.toggle('disappear', true)
+        winLength = parseInt(currentInput);
+        document.querySelector('#input').classList.toggle('disappear', true)
+        document.querySelector('#win-condition').innerText = winLength;
+        startButton.classList.toggle('disappear');
+        state = "first game"
+  }
+};
+
+let display = (stuffToDisplay) => {
+    document.querySelector('#output').innerText = stuffToDisplay;
+};
+
+display("How large a board do you want? Default is 3")
+
+//Game Start Code
 let body = document.querySelector('body');
 let winStatement = document.createElement("p");
 winStatement.id = "win-statement"
 
 let player = "X";
-let boardSize = 3;
-let winLength = 3;
+
 
 //Check Win Function
 var someoneHasWon = () => {
@@ -28,6 +65,7 @@ var someoneHasWon = () => {
         }
         //Check for matches
         if (matchCounterRow === winLength || matchCounterColumn === winLength ||matchCounterDiagonal === winLength){
+            state = "subsequent games"
             return true
         }
     }
@@ -43,10 +81,11 @@ let selectItem = function(){
         gameState[idArray[0]][idArray[1]] = "X";
         //Check win condition
         if (someoneHasWon()){
+            console.log("win")
             winStatement.innerText = `Player ${player} has won!`
             body.appendChild(winStatement);
             startButton.innerText = `Play again?`
-            startButton.classList.toggle('button-disappear')
+            startButton.classList.toggle('disappear')
         }
         //Change Turn
         player = "O";
@@ -62,7 +101,7 @@ let selectItem = function(){
             winStatement.innerText = `Player ${player} has won!`
             body.appendChild(winStatement);
             startButton.innerText = `Play again?`
-            startButton.classList.toggle('button-disappear')
+            startButton.classList.toggle('disappear')
         }
         //Change Turn
         player = "X";
@@ -74,32 +113,38 @@ let gameContainer = document.createElement('div');
 let gameState = [];
 gameContainer.className = "container";
 
-for (let i = 0; i < boardSize; i++){
-    let gameStateRow = [];
-    gameState.push(gameStateRow);
-    for (let k = 0; k < boardSize; k++){
-        let gridItem = document.createElement('div');
-        gridItem.className = "grid-item";
-        gridItem.id = i + "," + k;
-        gridItem.addEventListener("click", selectItem);
-        gameContainer.appendChild(gridItem);
-        gameStateRow.push(null);
-    }
-}
-body.appendChild(gameContainer);
-
 //Game button.
 let startButton = document.createElement('button');
 body.appendChild(startButton);
+startButton.classList.toggle('disappear', true);
 
 //Game Start and Reset
 let startGame = () => {
-    startButton.classList.toggle('button-disappear', true);
+    startButton.classList.toggle('disappear', true);
     winStatement.innerText = "";
-    for (let i = 0; i < boardSize; i++){
-        for (let k = 0; k < boardSize; k++){
-            gameState[i][k] = null;
-            document.getElementById(i + "," + k).innerText = "";
+    gameContainer.style.gridTemplateColumns = `repeat(${boardSize}, 100px)`;
+    gameContainer.style.gridTemplateRows = `repeat(${boardSize}, 100px)`;
+
+    if (state === "first game"){
+        for (let i = 0; i < boardSize; i++){
+            let gameStateRow = [];
+            gameState.push(gameStateRow);
+            for (let k = 0; k < boardSize; k++){
+                let gridItem = document.createElement('div');
+                gridItem.className = "grid-item";
+                gridItem.id = i + "," + k;
+                gridItem.addEventListener("click", selectItem);
+                gameContainer.appendChild(gridItem);
+                gameStateRow.push(null);
+            }
+        }
+        body.appendChild(gameContainer);
+    } else {
+        for (let i = 0; i < boardSize; i++){
+            for (let k = 0; k < boardSize; k++){
+                document.getElementById(i + "," + k).innerText = "";
+                gameState[i][k] = null;
+            }
         }
     }
 }
