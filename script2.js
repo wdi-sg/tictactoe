@@ -1,24 +1,35 @@
 var buttonGetter = document.querySelector(".initial-button");
+var playerOneNameX, playerTwoNameX;
 
 var magicAddBoard = function(){
+    var pOneName = document.getElementById("p-one-name");
+    playerOneNameX = pOneName.value;
+    var pTwoName = document.getElementById("p-two-name");
+    playerTwoNameX = pTwoName.value;
     document.body.innerHTML = "";
     var headCreator = document.createElement("h1");
-    headCreator.innerText = "Hwee Meng's Tic Tac Toe~"
+    headCreator.innerText = "Hwee Meng's Tic Tac Toe~";
     document.body.appendChild(headCreator);
+    var counterCreator = document.createElement("h2");
+    counterCreator.innerText = playerOneNameX + "'s turn!";
+    document.body.appendChild(counterCreator);
     var mainBoardCreator = document.createElement("div");
     mainBoardCreator.id = "main-board";
     document.body.appendChild(mainBoardCreator);
-    var newBoardGetter = document.getElementById("main-board")
-    var rowOneCreator = document.createElement("div")
+    var counterRowCreator = document.createElement("div");
+    counterRowCreator.id = "counters";
+    document.body.appendChild(counterRowCreator);
+    var newBoardGetter = document.getElementById("main-board");
+    var rowOneCreator = document.createElement("div");
     rowOneCreator.id = "first-row";
     newBoardGetter.appendChild(rowOneCreator);
-    var rowTwoCreator = document.createElement("div")
+    var rowTwoCreator = document.createElement("div");
     rowTwoCreator.id = "second-row";
     newBoardGetter.appendChild(rowTwoCreator);
-    var rowThreeCreator = document.createElement("div")
+    var rowThreeCreator = document.createElement("div");
     rowThreeCreator.id = "third-row";
     newBoardGetter.appendChild(rowThreeCreator);
-    var boardOneGetter = document.getElementById("first-row")
+    var boardOneGetter = document.getElementById("first-row");
     var imgOne = document.createElement("img");
     imgOne.src = "img/white-box.jpeg";
     imgOne.id = "a-one";
@@ -31,7 +42,7 @@ var magicAddBoard = function(){
     imgThree.src = "img/white-box.jpeg";
     imgThree.id = "a-three";
     boardOneGetter.appendChild(imgThree);
-    var boardTwoGetter = document.getElementById("second-row")
+    var boardTwoGetter = document.getElementById("second-row");
     var imgfour = document.createElement("img");
     imgfour.src = "img/white-box.jpeg";
     imgfour.id = "b-one";
@@ -44,7 +55,7 @@ var magicAddBoard = function(){
     imgSix.src = "img/white-box.jpeg";
     imgSix.id = "b-three";
     boardTwoGetter.appendChild(imgSix);
-    var boardThreeGetter = document.getElementById("third-row")
+    var boardThreeGetter = document.getElementById("third-row");
     var imgSev = document.createElement("img");
     imgSev.src = "img/white-box.jpeg";
     imgSev.id = "c-one";
@@ -57,9 +68,37 @@ var magicAddBoard = function(){
     imgNine.src = "img/white-box.jpeg";
     imgNine.id = "c-three";
     boardThreeGetter.appendChild(imgNine);
+    var counterGetter = document.getElementById("counters");
+    var resetButtonAdder = document.createElement("div");
+    resetButtonAdder.id = "reset";
+    counterGetter.appendChild(resetButtonAdder);
+    var resetDivGetter =  document.getElementById("reset");
+    var rubbishNameAddButton = document.createElement("button");
+    rubbishNameAddButton.id = "reset-button";
+    rubbishNameAddButton.innerText = "Reset";
+    resetDivGetter.appendChild(rubbishNameAddButton);
+    var createPOneCounter = document.createElement("p");
+    createPOneCounter.id = "p-one-counter";
+    counterGetter.appendChild(createPOneCounter);
+    var createPTwoCounter = document.createElement("p");
+    createPTwoCounter.id = "p-two-counter";
+    counterGetter.appendChild(createPTwoCounter);
+    var createDrawCounter = document.createElement("p");
+    createDrawCounter.id = "draw-counter";
+    counterGetter.appendChild(createDrawCounter);
     var addScript = document.createElement("script");
     addScript.src = "script.js";
     document.body.appendChild(addScript);
+    playerOneName = playerOneNameX;
+    playerTwoName = playerTwoNameX;
+    var addInPOText = document.getElementById("p-one-counter");
+    addInPOText.innerText = playerOneName + "'s wins: 0";
+    var addInPTText = document.getElementById("p-two-counter");
+    addInPTText.innerText = playerTwoName + "'s wins: 0";
+    var addInDrawText = document.getElementById("draw-counter");
+    addInDrawText.innerText = "Draws: 0";
+    //getelement for p1 update name = playerOneName + "'s wins: " + playerOneWins;
 }
+
 
 buttonGetter.addEventListener('click', magicAddBoard);

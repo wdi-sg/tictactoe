@@ -11,8 +11,18 @@ var boxSevGetter = document.getElementById('c-one');
 var boxEightGetter = document.getElementById('c-two');
 var boxNineGetter = document.getElementById('c-three');
 var allGetter = document.querySelectorAll('img');
+var pOneWGetter = document.getElementById('p-one-counter');
+var pTwoWGetter = document.getElementById('p-two-counter');
+var drawGetter = document.getElementById('draw-counter');
+var resetButtonGetter = document.getElementById('reset-button');
 var oddPlayerHand = [];
 var evenPlayHand = [];
+var playerOneWins = 0;
+var playerTwoWins = 0;
+var draws = 0;
+
+var playerOneName, playerTwoName;
+
 // ways to win:
 //a1,a2,a3
 //b1,b2,b3
@@ -25,77 +35,112 @@ var evenPlayHand = [];
 
 var checkForWinWay1 = function (){
     if (oddPlayerHand.includes("a1") && oddPlayerHand.includes("a2") && oddPlayerHand.includes("a3")){
-        alert("Yay! Odd Player Wins!");
+        playerOneWins++;
+        pOneWGetter.innerText = playerOneName + "'s wins: " + playerOneWins;
+        alert("Yay! " + playerOneName +" Wins!");
     }
     if (evenPlayHand.includes("a1") && evenPlayHand.includes("a2") && evenPlayHand.includes("a3")){
-        alert("Yay! Even Player Wins!");
+        playerTwoWins++;
+        pTwoWGetter.innerText = playerTwoName + "'s wins: " + playerTwoWins;
+        alert("Yay! " + playerTwoName +" Wins!");
     }
 };
 
 var checkForWinWay2 = function(){
     if (oddPlayerHand.includes("b1") && oddPlayerHand.includes("b2") && oddPlayerHand.includes("b3")){
-        alert("Yay! Odd Player Wins!");
+        playerOneWins++;
+        pOneWGetter.innerText = playerOneName + "'s wins: " + playerOneWins;
+        alert("Yay! " + playerOneName +" Wins!");
     }
     if (evenPlayHand.includes("b1") && evenPlayHand.includes("b2") && evenPlayHand.includes("b3")){
-        alert("Yay! Even Player Wins!");
+        playerTwoWins++;
+        pTwoWGetter.innerText = playerTwoName + "'s wins: " + playerTwoWins;
+        alert("Yay! " + playerTwoName +" Wins!");
     }
 }
 
 var checkForWinWay3 = function(){
     if (oddPlayerHand.includes("c1") && oddPlayerHand.includes("c2") && oddPlayerHand.includes("c3")){
-        alert("Yay! Odd Player Wins!");
+        playerOneWins++;
+        pOneWGetter.innerText = playerOneName + "'s wins: " + playerOneWins;
+        alert("Yay! " + playerOneName +" Wins!");
     }
     if (evenPlayHand.includes("c1") && evenPlayHand.includes("c2") && evenPlayHand.includes("c3")){
-        alert("Yay! Even Player Wins!");
+        playerTwoWins++;
+        pTwoWGetter.innerText = playerTwoName + "'s wins: " + playerTwoWins;
+        alert("Yay! " + playerTwoName +" Wins!");
     }
 }
 
 var checkForWinWay4 = function(){
     if (oddPlayerHand.includes("a1") && oddPlayerHand.includes("b1") && oddPlayerHand.includes("c1")){
-        alert("Yay! Odd Player Wins!");
+        playerOneWins++;
+        pOneWGetter.innerText = playerOneName + "'s wins: " + playerOneWins;
+        alert("Yay! " + playerOneName +" Wins!");
     }
     if (evenPlayHand.includes("a1") && evenPlayHand.includes("b1") && evenPlayHand.includes("c1")){
-        alert("Yay! Even Player Wins!");
+        playerTwoWins++;
+        pTwoWGetter.innerText = playerTwoName + "'s wins: " + playerTwoWins;
+        alert("Yay! " + playerTwoName +" Wins!");
     }
 }
 
 var checkForWinWay5 = function(){
     if (oddPlayerHand.includes("a2") && oddPlayerHand.includes("b2") && oddPlayerHand.includes("c2")){
-        alert("Yay! Odd Player Wins!");
+        playerOneWins++;
+        pOneWGetter.innerText = playerOneName + "'s wins: " + playerOneWins;
+        alert("Yay! " + playerOneName +" Wins!");
     }
     if (evenPlayHand.includes("a2") && evenPlayHand.includes("b2") && evenPlayHand.includes("c2")){
-        alert("Yay! Even Player Wins!");
+        playerTwoWins++;
+        pTwoWGetter.innerText = playerTwoName + "'s wins: " + playerTwoWins;
+        alert("Yay! " + playerTwoName +" Wins!");
     }
 }
 
 var checkForWinWay6 = function(){
     if (oddPlayerHand.includes("a3") && oddPlayerHand.includes("b3") && oddPlayerHand.includes("c3")){
-        alert("Yay! Odd Player Wins!");
+        playerOneWins++;
+        pOneWGetter.innerText = playerOneName + "'s wins: " + playerOneWins;
+        alert("Yay! " + playerOneName +" Wins!");
     }
     if (evenPlayHand.includes("a3") && evenPlayHand.includes("b3") && evenPlayHand.includes("c3")){
-        alert("Yay! Even Player Wins!");
+        playerTwoWins++;
+        pTwoWGetter.innerText = playerTwoName + "'s wins: " + playerTwoWins;
+        alert("Yay! " + playerTwoName +" Wins!");
     }
 }
 
 var checkForWinWay7 = function(){
     if (oddPlayerHand.includes("a1") && oddPlayerHand.includes("b2") && oddPlayerHand.includes("c3")){
-        alert("Yay! Odd Player Wins!");
+        playerOneWins++;
+        pOneWGetter.innerText = playerOneName + "'s wins: " + playerOneWins;
+        alert("Yay! " + playerOneName +" Wins!");
     }
     if (evenPlayHand.includes("a1") && evenPlayHand.includes("b2") && evenPlayHand.includes("c3")){
-        alert("Yay! Even Player Wins!");
+        playerTwoWins++;
+        pTwoWGetter.innerText = playerTwoName + "'s wins: " + playerTwoWins;
+        alert("Yay! " + playerTwoName +" Wins!");
     }
 }
 
 var checkForWinWay8 = function(){
     if (oddPlayerHand.includes("a3") && oddPlayerHand.includes("b2") && oddPlayerHand.includes("c1")){
-        alert("Yay! Odd Player Wins!");
+        playerOneWins++;
+        pOneWGetter.innerText = playerOneName + "'s wins: " + playerOneWins;
+        alert("Yay! " + playerOneName +" Wins!");
     }
     if (evenPlayHand.includes("a3") && evenPlayHand.includes("b2") && evenPlayHand.includes("c1")){
-        alert("Yay! Even Player Wins!");
+        playerTwoWins++;
+        pTwoWGetter.innerText = playerTwoName + "'s wins: " + playerTwoWins;
+        alert("Yay! " + playerTwoName +" Wins!");
     }
 }
+//stalestate not working if last step wins.
 var checkForStale = function(){
-    if (oddPlayerHand.length === 5 && evenPlayHand.length === 4){
+    if (oddPlayerHand.length === 5 && evenPlayHand.length === 4 && ){
+        draws++;
+        drawGetter.innerText = "'Draws: " + draws;
         alert("Nay! Its a stale mate!");
     }
 }
@@ -117,6 +162,8 @@ var clickBoxOne = function(){
         boxOneGetter.setAttribute("src", "img/white-box-cross.jpeg");
         oddEven = "even";
         oddPlayerHand.push("a1");
+        var hTwoGetter = document.querySelector("h2");
+        hTwoGetter.innerText = playerTwoName + "'s turn!"
         console.log ("Odd Player now has: " + oddPlayerHand);
         console.log ("Even Player now has: " + evenPlayHand);
         checkWin();
@@ -125,6 +172,8 @@ var clickBoxOne = function(){
         boxOneGetter.setAttribute("src", "img/white-box-circle.jpeg");
         oddEven = "odd";
         evenPlayHand.push("a1");
+        var hTwoGetter = document.querySelector("h2");
+        hTwoGetter.innerText = playerOneName + "'s turn!"
         console.log ("Odd Player now has: " + oddPlayerHand);
         console.log ("Even Player now has: " + evenPlayHand);
         checkWin();
@@ -136,6 +185,8 @@ var clickBoxTwo = function(){
         boxTwoGetter.setAttribute("src", "img/white-box-cross.jpeg");
         oddEven = "even";
         oddPlayerHand.push("a2");
+        var hTwoGetter = document.querySelector("h2");
+        hTwoGetter.innerText = playerTwoName + "'s turn!"
         console.log ("Odd Player now has: " + oddPlayerHand);
         console.log ("Even Player now has: " + evenPlayHand);
         checkWin();
@@ -144,6 +195,8 @@ var clickBoxTwo = function(){
         boxTwoGetter.setAttribute("src", "img/white-box-circle.jpeg");
         oddEven = "odd";
         evenPlayHand.push("a2");
+        var hTwoGetter = document.querySelector("h2");
+        hTwoGetter.innerText = playerOneName + "'s turn!"
         console.log ("Odd Player now has: " + oddPlayerHand);
         console.log ("Even Player now has: " + evenPlayHand);
         checkWin();
@@ -155,6 +208,8 @@ var clickBoxThree = function(){
         boxThreeGetter.setAttribute("src", "img/white-box-cross.jpeg");
         oddEven = "even";
         oddPlayerHand.push("a3");
+        var hTwoGetter = document.querySelector("h2");
+        hTwoGetter.innerText = playerTwoName + "'s turn!"
         console.log ("Odd Player now has: " + oddPlayerHand);
         console.log ("Even Player now has: " + evenPlayHand);
         checkWin();
@@ -163,6 +218,8 @@ var clickBoxThree = function(){
         boxThreeGetter.setAttribute("src", "img/white-box-circle.jpeg");
         oddEven = "odd";
         evenPlayHand.push("a3");
+        var hTwoGetter = document.querySelector("h2");
+        hTwoGetter.innerText = playerOneName + "'s turn!"
         console.log ("Odd Player now has: " + oddPlayerHand);
         console.log ("Even Player now has: " + evenPlayHand);
         checkWin();
@@ -174,6 +231,8 @@ var clickBoxFour = function(){
         boxFourGetter.setAttribute("src", "img/white-box-cross.jpeg");
         oddEven = "even";
         oddPlayerHand.push("b1");
+        var hTwoGetter = document.querySelector("h2");
+        hTwoGetter.innerText = playerTwoName + "'s turn!"
         console.log ("Odd Player now has: " + oddPlayerHand);
         console.log ("Even Player now has: " + evenPlayHand);
         checkWin();
@@ -182,6 +241,8 @@ var clickBoxFour = function(){
         boxFourGetter.setAttribute("src", "img/white-box-circle.jpeg");
         oddEven = "odd";
         evenPlayHand.push("b1");
+        var hTwoGetter = document.querySelector("h2");
+        hTwoGetter.innerText = playerOneName + "'s turn!"
         console.log ("Odd Player now has: " + oddPlayerHand);
         console.log ("Even Player now has: " + evenPlayHand);
         checkWin();
@@ -193,6 +254,8 @@ var clickBoxFive = function(){
         boxFiveGetter.setAttribute("src", "img/white-box-cross.jpeg");
         oddEven = "even";
         oddPlayerHand.push("b2");
+        var hTwoGetter = document.querySelector("h2");
+        hTwoGetter.innerText = playerTwoName + "'s turn!"
         console.log ("Odd Player now has: " + oddPlayerHand);
         console.log ("Even Player now has: " + evenPlayHand);
         checkWin();
@@ -201,6 +264,8 @@ var clickBoxFive = function(){
         boxFiveGetter.setAttribute("src", "img/white-box-circle.jpeg");
         oddEven = "odd";
         evenPlayHand.push("b2");
+        var hTwoGetter = document.querySelector("h2");
+        hTwoGetter.innerText = playerOneName + "'s turn!"
         console.log ("Odd Player now has: " + oddPlayerHand);
         console.log ("Even Player now has: " + evenPlayHand);
         checkWin();
@@ -212,6 +277,8 @@ var clickBoxSix = function(){
         boxSixGetter.setAttribute("src", "img/white-box-cross.jpeg");
         oddEven = "even";
         oddPlayerHand.push("b3");
+        var hTwoGetter = document.querySelector("h2");
+        hTwoGetter.innerText = playerTwoName + "'s turn!"
         console.log ("Odd Player now has: " + oddPlayerHand);
         console.log ("Even Player now has: " + evenPlayHand);
         checkWin();
@@ -220,6 +287,8 @@ var clickBoxSix = function(){
         boxSixGetter.setAttribute("src", "img/white-box-circle.jpeg");
         oddEven = "odd";
         evenPlayHand.push("b3");
+        var hTwoGetter = document.querySelector("h2");
+        hTwoGetter.innerText = playerOneName + "'s turn!"
         console.log ("Odd Player now has: " + oddPlayerHand);
         console.log ("Even Player now has: " + evenPlayHand);
         checkWin();
@@ -232,6 +301,8 @@ var clickBoxSev = function(){
         boxSevGetter.setAttribute("src", "img/white-box-cross.jpeg");
         oddEven = "even";
         oddPlayerHand.push("c1");
+        var hTwoGetter = document.querySelector("h2");
+        hTwoGetter.innerText = playerTwoName + "'s turn!"
         console.log ("Odd Player now has: " + oddPlayerHand);
         console.log ("Even Player now has: " + evenPlayHand);
         checkWin();
@@ -240,6 +311,8 @@ var clickBoxSev = function(){
         boxSevGetter.setAttribute("src", "img/white-box-circle.jpeg");
         oddEven = "odd";
         evenPlayHand.push("c1");
+        var hTwoGetter = document.querySelector("h2");
+        hTwoGetter.innerText = playerOneName + "'s turn!"
         console.log ("Odd Player now has: " + oddPlayerHand);
         console.log ("Even Player now has: " + evenPlayHand);
         checkWin();
@@ -251,6 +324,8 @@ var clickBoxEight = function(){
         boxEightGetter.setAttribute("src", "img/white-box-cross.jpeg");
         oddEven = "even";
         oddPlayerHand.push("c2");
+        var hTwoGetter = document.querySelector("h2");
+        hTwoGetter.innerText = playerTwoName + "'s turn!"
         console.log ("Odd Player now has: " + oddPlayerHand);
         console.log ("Even Player now has: " + evenPlayHand);
         checkWin();
@@ -259,6 +334,8 @@ var clickBoxEight = function(){
         boxEightGetter.setAttribute("src", "img/white-box-circle.jpeg");
         oddEven = "odd";
         evenPlayHand.push("c2");
+        var hTwoGetter = document.querySelector("h2");
+        hTwoGetter.innerText = playerOneName + "'s turn!"
         console.log ("Odd Player now has: " + oddPlayerHand);
         console.log ("Even Player now has: " + evenPlayHand);
         checkWin();
@@ -270,6 +347,8 @@ var clickBoxNine = function(){
         boxNineGetter.setAttribute("src", "img/white-box-cross.jpeg");
         oddEven = "even";
         oddPlayerHand.push("c3");
+        var hTwoGetter = document.querySelector("h2");
+        hTwoGetter.innerText = playerTwoName + "'s turn!"
         console.log ("Odd Player now has: " + oddPlayerHand);
         console.log ("Even Player now has: " + evenPlayHand);
         checkWin();
@@ -278,12 +357,36 @@ var clickBoxNine = function(){
         boxNineGetter.setAttribute("src", "img/white-box-circle.jpeg");
         oddEven = "odd";
         evenPlayHand.push("c3");
+        var hTwoGetter = document.querySelector("h2");
+        hTwoGetter.innerText = playerOneName + "'s turn!"
         console.log ("Odd Player now has: " + oddPlayerHand);
         console.log ("Even Player now has: " + evenPlayHand);
         checkWin();
         return
     }
 }
+
+var resetButtonClicked = function(){
+    var hTwoGetter = document.querySelector("h2");
+    hTwoGetter.innerText = playerOneName + "'s turn!";
+    boxOneGetter.setAttribute("src", "img/white-box.jpeg");
+    boxOneGetter.setAttribute("src", "img/white-box.jpeg");
+    boxTwoGetter.setAttribute("src", "img/white-box.jpeg");
+    boxThreeGetter.setAttribute("src", "img/white-box.jpeg");
+    boxFourGetter.setAttribute("src", "img/white-box.jpeg");
+    boxFiveGetter.setAttribute("src", "img/white-box.jpeg");
+    boxSixGetter.setAttribute("src", "img/white-box.jpeg");
+    boxSevGetter.setAttribute("src", "img/white-box.jpeg");
+    boxEightGetter.setAttribute("src", "img/white-box.jpeg");
+    boxNineGetter.setAttribute("src", "img/white-box.jpeg");
+    oddPlayerHand = [];
+    evenPlayHand = [];
+    oddEven = "odd";
+}
+
+
+//resetButtonGetter
+resetButtonGetter.addEventListener('click',resetButtonClicked);
 boxOneGetter.addEventListener('click', clickBoxOne);
 boxTwoGetter.addEventListener('click', clickBoxTwo);
 boxThreeGetter.addEventListener('click', clickBoxThree);
