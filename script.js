@@ -1,7 +1,9 @@
 console.log('script is running');
 
+//name input creation
+
 //board creation
-const boardCreate = function(){
+const boardInit = function(){
 	let divBoard = document.createElement('div');
 	document.body.appendChild(divBoard);
 	divBoard.className = "board";
@@ -25,19 +27,36 @@ const boardCreate = function(){
 	rowThree.appendChild(document.createElement('button'));	
 	rowThree.appendChild(document.createElement('button'));	
 
+
+
 	//number the buttons using id: 1 to 9
 	for (i = 0; i < 9; i++){
 		document.getElementsByTagName('button')[i].id = i+1;
-	}
-}
+	};
+};
+
+const startInit = function(){
+	let start = document.createElement('div');
+	document.querySelector('.board').appendChild(start);
+	start.className = 'start';
+	start.innerHTML = "START";
+	start.addEventListener('click', gamestart)
+};
+
+const gamestart = function(event){
+	document.querySelector('.start').classList.add('hide');
+};
+
+const gameEnd = function(event){
+	document.querySelector('.start').classList.remove('hide');
+};
 
 // keeps track of player 1 or 2
 let player_turn = 1;
 
 //list of possible winning combinations, for each player
-let player1_combinations = []
-let player2_combinations = []
-
+let player1_combinations = [];
+let player2_combinations = [];
 
 
 // change turns
@@ -94,9 +113,11 @@ const checkThreeRepeat = function(array){
 
 const checkWin = function(){
 	if (checkThreeRepeat(player1_combinations)){
+		gameEnd();
 		console.log('Player 1 Wins!');
 	} else if (checkThreeRepeat(player2_combinations)){
 		console.log('Player 2 Wins!');
+		gameEnd();
 	};
 };
 
@@ -151,7 +172,10 @@ const display_input = function(event){
 	};
 };
 
+//Initialization
+boardInit();
+startInit();
 
-document.body.addEventListener('click', display_input);
+document.querySelectorAll('button')
+	.forEach(element => element.addEventListener('click', display_input));
 
-boardCreate();
