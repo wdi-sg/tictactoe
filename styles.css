@@ -85,15 +85,30 @@ body {
 
 .is_player_1 {
     color: #5071CE;
+    animation: fade-in 0.5s ease;
 }
 
 .is_player_2 {
     color: #b15eb1;
+    animation: fade-in 0.5s ease;
 }
 
 .is_clicked {
     background-color: #d8e5e9;
     box-shadow: 0 5px 6px -6px black;
+}
+
+.is_click_disabled {
+    pointer-events: none;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 

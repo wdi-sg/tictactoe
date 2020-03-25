@@ -85,11 +85,21 @@ class UI {
   setPlayer1Square(element) {
     element.innerText = this.player1Symbol;
     element.classList.add('is_clicked', 'is_player_1');
+    this.disableClick(element)
   }
 
   setPlayer2Square(element) {
     element.innerText = this.player2Symbol;
     element.classList.add('is_clicked', 'is_player_2');
+    this.disableClick(element);
+  }
+
+  disableClick(element) {
+    element.classList.add('is_click_disabled')
+  }
+
+  enableClick(element) {
+    element.classList.remove('is_click_disabled');
   }
 
 
@@ -97,6 +107,7 @@ class UI {
     this.allGameSquares.forEach(square => {
       square.textContent = "";
       square.classList.remove('is_player1', "is_player2", "is_clicked");
+      this.enableClick(square);
     });
   }
 }
