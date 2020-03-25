@@ -11,6 +11,7 @@ var board = [
   [ null, null, null ]
 ];
 
+//Start state
 var startState = 0;
 
 function startStateSwitcher () {
@@ -21,11 +22,23 @@ function startStateSwitcher () {
     }
 }
 
+//Prompt player name
+var playerX;
+var playerO;
+
+function promptPlayerName () {
+    playerX = prompt("Player X name: ");
+    playerO = prompt("Player O name: ");
+    console.log('X before: ' + playerX)
+    console.log('Y before: ' + playerO)
+}
+
 //Start button appear or disappear
 var button = document.querySelector('.start');
 
 var buttonClicked = function () {
     button.style.display = 'none';
+    promptPlayerName();
     startStateSwitcher();
 }
 
@@ -36,6 +49,7 @@ var buttonReappear = function () {
 
 button.addEventListener('click', buttonClicked);
 
+//Game functionality
 var clickHandler = function (event) {
     if (startState === 1) {
         var elementSelected = document.querySelector('.' + event.target.className);
@@ -79,11 +93,11 @@ gridCreator(3);
 //Win condition
 var winCondition = function () {
     var alertX = function () {
-        alert('Player X wins!');
+        alert(playerX + ' wins!');
     }
 
     var alertO = function () {
-        alert('Player O wins!');
+        alert(playerO + ' wins!');
     }
 
     for (var k = 0; k < board.length; k++) {
