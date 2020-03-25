@@ -3,6 +3,15 @@ h1 {
 	font-family: sans-serif;
 }
 
+.start {
+	background-color: maroon;
+	color: white;
+	font-size: 20px;
+	padding: 10px 20px;
+	margin: 0 45%;
+	display: block;
+}
+
 .main-container {
 	background-color: black;
 	width: 500px;
