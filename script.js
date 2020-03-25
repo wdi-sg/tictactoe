@@ -9,6 +9,17 @@
 // }
 
 
+//Start Game
+let gameStart = false;
+const button = document.getElementsByClassName('button')[0];
+
+const startGame = (event) =>{
+    gameStart = true;
+    button.classList.add('hide');
+}
+
+button.addEventListener('click', startGame);
+
 
 //toggle player turn
 let playerTurn = true;
@@ -63,40 +74,50 @@ const markBoard = (rowClass, boxClass) => {
 
 
 //click Handle
+let win;
 
 const clickHandler = (event) => {
-    if (playerTurn === true){
-        // Add to Display
-        const boxClass = event.path[0];
-        boxClass.textContent = "X"
+    if (gameStart) {
+        if (playerTurn === true){
+            // Add to Display
+            const boxClass = event.path[0];
+            boxClass.textContent = "X"
 
-        const rowClass = event.path[1]
+            const rowClass = event.path[1]
 
-        //Add to board score
-        markBoard(rowClass, boxClass);
+            //Add to board score
+            markBoard(rowClass, boxClass);
 
-        //Check Win
-        checkWin(board, "X");
+            //Check Win
+            checkWin(board, "X");
+            if (win) {
+                return;
+            }
 
-        showPlayerTurn();
-        playerTurn = !playerTurn;
+            showPlayerTurn();
+            playerTurn = !playerTurn;
+        }
+        else if(playerTurn === false){
+            // Add to Display
+            const boxClass = event.path[0];
+            boxClass.textContent = "O"
+
+            const rowClass = event.path[1]
+
+            //Add to board score
+            markBoard(rowClass, boxClass);
+
+            //Check Win
+            checkWin(board, "O");
+            if(win){
+                return;
+            }
+
+            showPlayerTurn();
+            playerTurn = !playerTurn;
+        }
     }
-    else if(playerTurn === false){
-        // Add to Display
-        const boxClass = event.path[0];
-        boxClass.textContent = "O"
 
-        const rowClass = event.path[1]
-
-        //Add to board score
-        markBoard(rowClass, boxClass);
-
-        //Check Win
-        checkWin(board, "O");
-
-        showPlayerTurn();
-        playerTurn = !playerTurn;
-    }
 };
 
 
@@ -169,19 +190,50 @@ const checkWin = (board, input) => {
     // check win
     for (let f=0; f<rowScore.length; f++) {
         if (rowScore[f] === 3){
-            console.log("win");
+            console.log(playerTurn);
+            if(playerTurn){
+                const winPlayerOne = document.getElementsByClassName('player')[0];
+                winPlayerOne.textContent = "Player One WINS";
+                win = true;
+
+            }
+            else if(!playerTurn){
+                const winPlayerTwo = document.getElementsByClassName('player')[0];
+                winPlayerTwo.textContent = "Player Two WINS";
+
+                win = true;
+            }
+
         }
     }
 
     for (let z=0; z<columnScore.length; z++) {
         if (columnScore[z] === 3){
-            console.log("win");
+            if(playerTurn){
+                const winPlayerOne = document.getElementsByClassName('player')[0];
+                winPlayerOne.textContent = "Player One WINS";
+                win = true;
+            }
+            else if(!playerTurn){
+                const winPlayerTwo = document.getElementsByClassName('player')[0];
+                winPlayerTwo.textContent = "Player Two WINS";
+                win = true;
+            }
         }
     }
 
     for (let r=0; r<diagonalScore.length; r++) {
         if (diagonalScore[r] === 3){
-            console.log("win");
+            if(playerTurn){
+                const winPlayerOne = document.getElementsByClassName('player')[0];
+                winPlayerOne.textContent = "Player One WINS";
+                win = true;
+            }
+            else if(!playerTurn){
+                const winPlayerTwo = document.getElementsByClassName('player')[0];
+                winPlayerTwo.textContent = "Player Two WINS";
+                win = true;
+            }
         }
     }
 

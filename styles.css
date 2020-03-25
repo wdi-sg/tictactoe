@@ -13,13 +13,18 @@ h2{
 }
 
 .box{
+	font-size: 50px;
 	background-color: blue;
 	margin: 10px 2.5%;
 	display: inline-block;
 	height: 60px;
 	width: 28%;
 	text-align: center;
-	padding: 15px;
+	padding: 0px;
 	box-sizing: border-box;
 	float: left;
+}
+
+.hide{
+	display: none;
 }
