@@ -15,6 +15,26 @@
     justify-content: center;
     align-items: center;
 }
+.box2{
+		height: 110px;
+    width: 110px;
+    font-size: 90px;
+		border: solid black 1px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box3{
+	  height: 90px;
+	  width: 90px;
+ 		font-size: 80px;
+		border: solid black 1px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 #start{
 	border: 1px solid black;
   background: white;
