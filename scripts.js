@@ -20,11 +20,11 @@ class Player {
   }
 }
 
-
 class Game {
   constructor(boardSize, howManyInArowToWin = 3) {
     this.boardSize = boardSize;
     this.howManyInARowToWin = howManyInArowToWin;
+    this.gameRound = 0; // once game completed, game round++
     this._init();
   }
 
@@ -32,7 +32,6 @@ class Game {
     this.player1Board = this._initBoard();
     this.player2Board = this._initBoard();
     this.whosTurn = PLAYER1;
-    this.gameRound = 0; // once game completed, game round++
     this.winner = null;
   }
 
@@ -96,7 +95,6 @@ class Game {
     e.target.dispatchEvent(hasWinnerEvent);
   };
 
-
   _setPlayerWin(player) {
 
   }
@@ -143,46 +141,72 @@ class Game {
     return this._hasInARow(topLeftToBtmRight) || this._hasInARow(topRightToBtmLeft);
   }
 
-  _hasInARow(boardArr)  {
+  _hasInARow(arr)  {
     let inARowCounter = 0;
     for (let i = 0 ; i < this.boardSize; i++) {
-      if (boardArr[i] === IS_EMPTY ) {
+      if (arr[i] === IS_EMPTY ) {
         inARowCounter = 0;
       }
-      if (boardArr[i] === IS_OCCUPIED ) {
+      if (arr[i] === IS_OCCUPIED ) {
         inARowCounter++;
       }
     }
     return inARowCounter >= this.howManyInARowToWin;
   }
-
 }
 
 class UI {
   constructor(game, player1Symbol = 'X', player2Symbol = 'O') {
-    this.gameBoardElem = document.getElementById("game_board");
-    this.gameRows = this.gameBoardElem.children;
-    this.allGameSquares = document.querySelectorAll('.game_square');
-    this.startBtn = document.getElementById("start_btn");
     this.player1Symbol = player1Symbol;
     this.player2Symbol = player2Symbol;
     this.game = game;
+    this.init();
   }
 
-  // listen for click events
+// listen for click events
   init() {
+    this.getUIElements();
     this.allGameSquares.forEach(square => square.addEventListener("click", this._squareClickedUIHandler));
-    this.startBtn.addEventListener('click', e =>  {
-      this.clear();
-      this.game.reset();
-    });
-    this.gameBoardElem.addEventListener('has_winner',  (e) => {
-      this._disAbleEmptySquare();
-      console.group("has_winner event received by gameboard");
-      console.info(e);
-      console.groupEnd();
-    })
+    this.startBtn.addEventListener('click', this._startBtnEventListener);
+    this.gameBoardElem.addEventListener('has_winner',  this._hasWinnerEventHandler);
   }
+
+  getUIElements() {
+    this.gameBoardElem = this._getGameBoardElem();
+    this.allGameSquares = this._getAllGameSquares();
+    this.startBtn = this._getStartBtn();
+  }
+
+  _getElements() {
+    const allGameSquares = document.querySelectorAll('.game_square');
+    const startBtn = document.getElementById("start_btn");
+    return { gameBoardElem, allGameSquares, startBtn }
+  }
+
+  _getGameBoardElem() {
+    return document.getElementById("game_board");
+  }
+
+  _getAllGameSquares() {
+    return document.querySelectorAll('.game_square');
+  }
+
+  _getStartBtn() {
+    return document.getElementById('start_btn');
+  }
+
+  _startBtnEventListener = e => {
+    this.game.reset();
+    this.clear();
+  };
+
+
+  _hasWinnerEventHandler = e => {
+    this._disAbleEmptySquare();
+    console.group("has_winner event received by gameboard");
+    console.info(e);
+    console.groupEnd();
+  };
 
   _squareClickedUIHandler = e => {
     this.game.isPlayer1Turn() ? this.setPlayer1Square(e.target) : this.setPlayer2Square(e.target);
@@ -215,12 +239,29 @@ class UI {
     element.classList.remove('is_click_disabled');
   }
 
+  _removeSquareEventListeners () {
+    this.allGameSquares.forEach(square =>
+      square.removeEventListener('click', this._squareClickedUIHandler));
+  }
+
+  _removeGameBoardElemEventListeners() {
+    this.gameBoardElem.removeEventListener('has_winner', this._hasWinnerEventHandler);
+  }
+
   clear() {
-    this.allGameSquares.forEach(square => {
-      square.textContent = "";
-      square.classList.remove('is_player1', "is_player2", "is_clicked");
-      this.enableClick(square);
-    });
+    console.log("Clear fired");
+    const classesToRemove = ["is_player1", "is_player2", "is_clicked", "is_click_disabled"];
+    document.querySelectorAll("span.game_square").forEach(
+      square => {
+        square.innerHTML = "";
+        square.classList.remove(...classesToRemove);
+        square.removeEventListener('click', this._squareClickedUIHandler);
+      }
+    );
+
+    //this.startBtn.removeEventListener('click', this._startBtnEventListener);
+    //this._removeGameBoardElemEventListeners();
+    //this.init();
   }
 }
 
