@@ -26,7 +26,7 @@ class Game {
     this.boardSize = boardSize;
     this.player1Board = this._initBoard();
     this.player2Board = this._initBoard();
-    this.whosTurn = 0;
+    this.whosTurn = PLAYER1;
     this.gameRound = 0; // once game completed, game round++
     this.howManyInARowToWin = howManyInArowToWin;
   }
@@ -40,6 +40,9 @@ class Game {
   }
 
   _toggleTurn() {
+    console.group("inside toggle turn");
+    console.info("toggle turn fired: " + this.whosTurn);
+    console.groupEnd();
     if (this.whosTurn === PLAYER1) {
       this.whosTurn = PLAYER2;
     }else if (this.whosTurn === PLAYER2) {
@@ -58,14 +61,15 @@ class Game {
   _gameSquareLogicHandler(e) {
     const colIndex = e.target.dataset.x;
     const rowIndex = e.target.dataset.y;
-    console.info(`Player clicked on tile: [${colIndex}][${rowIndex}]`);
+    console.info(`Player ${this.whosTurn} clicked on tile: [${colIndex}][${rowIndex}]`);
     this.updateBoard({colIndex, rowIndex} );
     const hasWon = this.checkWin();
     if (hasWon) {
       console.group("The winner is:");
       console.info("player: " + this.whosTurn)
+    }else {
+      this._toggleTurn();
     }
-    this._toggleTurn();
   }
 
   _setPlayerWin(player) {
