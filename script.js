@@ -9,9 +9,9 @@ var end = false;
 var turnCount = 0;
 var currentPlayer = '';
 var board = [
-    ['', '', ''],
-    ['', '', ''],
-    ['', '', '']
+    ['n', 'n', 'n'],
+    ['n', 'n', 'n'],
+    ['n', 'n', 'n']
 ];
 
 var createBoard = function () {
@@ -58,39 +58,39 @@ var clearGame = function () {
 var checkWin = function () {
     if (board[0][0] === currentPlayer && board[0][1] === currentPlayer && board[0][2] === currentPlayer) {
         alert(currentPlayer + " has won!");
-        begin = true;
-        return ;
+        end = true;
+        return;
     } else if (board[1][0] === currentPlayer && board[1][1] === currentPlayer && board[1][2] === currentPlayer) {
         alert(currentPlayer + " has won!");
-        begin = true;
+        end = true;
         return;
     } else if (board[2][0] === currentPlayer && board[2][1] === currentPlayer && board[2][2] === currentPlayer) {
         alert(currentPlayer + " has won!");
-        begin = true;
+        end = true;
         return;
     } else if (board[0][0] === currentPlayer && board[1][0] === currentPlayer && board[2][0] === currentPlayer) {
         alert(currentPlayer + " has won!");
-        begin = true;
+        end = true;
         return;
     } else if (board[0][1] === currentPlayer && board[1][1] === currentPlayer && board[2][1] === currentPlayer) {
         alert(currentPlayer + " has won!");
-        begin = true;
+        end = true;
         return;
     } else if (board[0][2] === currentPlayer && board[1][2] === currentPlayer && board[2][2] === currentPlayer) {
         alert(currentPlayer + " has won!");
-        begin = true;
+        end = true;
         return;
     } else if (board[0][2] === currentPlayer && board[1][1] === currentPlayer && board[2][0] === currentPlayer) {
         alert(currentPlayer + " has won!");
-        begin = true;
-        return ;
+        end = true;
+        return;
     } else if (board[0][0] === currentPlayer && board[1][1] === currentPlayer && board[2][2] === currentPlayer) {
         alert(currentPlayer + " has won!");
-        begin = true;
+        end = true;
         return;
     } else if (turnCount === 9) {
         alert("It is a draw!");
-        begin = true;
+        end = true;
         return;
     }
 }
@@ -102,6 +102,7 @@ var checkPlayer = function (target) {
     var input1 = parseInt(input[0])
     var input2 = parseInt(input[1])
     if (player) {
+        if(board[input1][input2] === 'n')
         player = false;
         playerIcon = player1Icon;
         currentPlayer = 'Player 1';
@@ -109,6 +110,7 @@ var checkPlayer = function (target) {
         turnCount++;
         checkWin(currentPlayer)
     } else {
+        if(board[input1][input2] === 'n')
         player = true;
         playerIcon = player2Icon;
         currentPlayer = 'Player 2';
@@ -140,12 +142,12 @@ if (begin) {
 
 // var checkEnd = function () {
 //     if (end) {
-        // var reset = document.createElement('button');
-        // reset.innerText = 'Reset';
-        // var title = document.querySelector('.h1')
-        // reset.style = 'background-color: yellow; display:block; text-align:center; align-items:center; position:relative; margin-left:auto; margin-right:auto;'
-        // reset.addEventListener('click', clearGame)
-        // title.appendChild(reset)
+// var reset = document.createElement('button');
+// reset.innerText = 'Reset';
+// var title = document.querySelector('.h1')
+// reset.style = 'background-color: yellow; display:block; text-align:center; align-items:center; position:relative; margin-left:auto; margin-right:auto;'
+// reset.addEventListener('click', clearGame)
+// title.appendChild(reset)
 //         return begin = true;
 //     }
 // }
