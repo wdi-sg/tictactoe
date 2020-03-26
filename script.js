@@ -23,12 +23,17 @@ function startStateSwitcher () {
 }
 
 //Prompt for player name at the start
-var playerX;
-var playerO;
+var promptPlayerX;
+var promptPlayerO;
+var replacePlayerXName = document.querySelector('.player-X');
+var replacePlayerOName = document.querySelector('.player-O');
+
 
 function promptPlayerName () {
     playerX = prompt("Player X name: ");
     playerO = prompt("Player O name: ");
+    replacePlayerXName.innerText = playerX;
+    replacePlayerOName.innerText = playerO;
 }
 
 setTimeout(promptPlayerName, 500);
@@ -48,6 +53,17 @@ var buttonReappear = function () {
 }
 
 button.addEventListener('click', buttonClicked);
+
+//Score counter
+var playerXScore = 0;
+var playerOScore = 0;
+
+var scoreCounter = function () {
+    var selectScoreX = document.querySelector('.scoreX');
+    var selectScoreO = document.querySelector('.scoreO');
+    selectScoreX.innerText = playerXScore;
+    selectScoreO.innerText = playerOScore;
+}
 
 //Game functionality
 var clickHandler = function (event) {
@@ -106,62 +122,94 @@ var winCondition = function () {
             if (board[0][0] === 'X' && board[0][1] === 'X' && board[0][2] === 'X') {
                 setTimeout(alertX, 200);
                 buttonReappear();
+                playerXScore++;
+                scoreCounter();
             } else if (board[0][0] === 'O' && board[0][1] === 'O' && board[0][2] === 'O') {
                 setTimeout(alertO, 200);
                 buttonReappear();
+                playerOScore++;
+                scoreCounter();
             //First column check
             } else if (board[0][0] === 'X' && board[1][0] === 'X' && board[2][0] === 'X') {
                 setTimeout(alertX, 200);
                 buttonReappear();
+                playerXScore++;
+                scoreCounter();
             } else if (board[0][0] === 'O' && board[1][0] === 'O' && board[2][0] === 'O') {
-                setTimeout(alert0, 200);
+                setTimeout(alertO, 200);
                 buttonReappear();
+                playerOScore++;
+                scoreCounter();
             //Left diagonal check
             } else if (board[0][0] === 'X' && board[1][1] === 'X' && board[2][2] === 'X') {
                 setTimeout(alertX, 200);
                 buttonReappear();
+                playerXScore++;
+                scoreCounter();
             } else if (board[0][0] === 'O' && board[1][1] === 'O' && board[2][2] === 'O') {
                 setTimeout(alertO, 200);
                 buttonReappear();
+                playerOScore++;
+                scoreCounter();
             }
         } else if (k === 1) {
             //Second row check
             if (board[1][0] === 'X' && board[1][1] === 'X' && board[1][2] === 'X') {
                 setTimeout(alertX, 200);
                 buttonReappear();
+                playerXScore++;
+                scoreCounter();
             } else if (board[1][0] === 'O' && board[1][1] === 'O' && board[1][2] === 'O') {
                 setTimeout(alertO, 200);
                 buttonReappear();
+                playerOScore++;
+                scoreCounter();
             //Second column check
             } else if (board[0][1] === 'X' && board[1][1] === 'X' && board[2][1] === 'X') {
                 setTimeout(alertX, 200);
                 buttonReappear();
+                playerXScore++;
+                scoreCounter();
             } else if (board[0][1] === 'O' && board[1][1] === 'O' && board[2][1] === 'O') {
                 setTimeout(alertO, 200);
                 buttonReappear();
+                playerOScore++;
+                scoreCounter();
             }
         } else if (k === 2) {
             //Third row check
             if (board[2][0] === 'X' && board[2][1] === 'X' && board[2][2] === 'X') {
                 setTimeout(alertX, 200);
                 buttonReappear();
+                playerXScore++;
+                scoreCounter();
             } else if (board[2][0] === 'O' && board[2][1] === 'O' && board[2][2] === 'O') {
                 setTimeout(alertO, 200);
                 buttonReappear();
+                playerOScore++;
+                scoreCounter();
             //Third column check
             } else if (board[0][2] === 'X' && board[1][2] === 'X' && board[2][2] === 'X') {
                 setTimeout(alertX, 200);
                 buttonReappear();
+                playerXScore++;
+                scoreCounter();
             } else if (board[0][2] === 'O' && board[1][2] === 'O' && board[2][2] === 'O') {
                 setTimeout(alertO, 200);
                 buttonReappear();
+                playerOScore++;
+                scoreCounter();
             //Right diagonal check
             } else if (board[0][2] === 'X' && board[1][1] === 'X' && board[2][0] === 'X') {
                 setTimeout(alertX, 200);
                 buttonReappear();
+                playerXScore++;
+                scoreCounter();
             } else if (board[0][2] === 'O' && board[1][1] === 'O' && board[2][0] === 'O') {
                 setTimeout(alertO, 200);
                 buttonReappear();
+                playerOScore++;
+                scoreCounter();
             }
         }
     }

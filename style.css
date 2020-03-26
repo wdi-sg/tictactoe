@@ -1,4 +1,4 @@
-h1 {
+body {
 	text-align: center;
 	font-family: sans-serif;
 }
@@ -10,6 +10,17 @@ h1 {
 	padding: 10px 20px;
 	margin: 0 45%;
 	display: block;
+}
+
+.score {
+	background-color: black;
+	width: 100px;
+	height: 50px;
+	padding: 0 70px;
+	border: 2px solid black;
+	display: inline-block;
+	font-weight: bold;
+	color: white;
 }
 
 .main-container {
