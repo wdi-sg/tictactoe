@@ -161,7 +161,8 @@ class UI {
   // listen for click events
   init() {
     this.allGameSquares.forEach(square => square.addEventListener("click", this._squareClickedUIHandler));
-    this.gameBoardElem.addEventListener('has_winner', function (e) {
+    this.gameBoardElem.addEventListener('has_winner',  (e) => {
+      this._disAbleEmptySquare();
       console.group("has_winner event received by gameboard");
       console.info(e);
       console.groupEnd();
@@ -187,6 +188,12 @@ class UI {
 
   disableClick(element) {
     element.classList.add('is_click_disabled')
+  }
+
+  _disAbleEmptySquare() {
+    this.allGameSquares.forEach(square => {
+      if (square.textContent === "") {this.disableClick(square)}
+    });
   }
 
   enableClick(element) {
