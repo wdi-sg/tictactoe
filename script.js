@@ -47,12 +47,16 @@ let player = "X";
 var someoneHasWon = () => {
     //Check for rows and columns and diagonals
     let matchCounterDiagonal = 0; //Diagonal counter must be outside loop to accumulate
+    let matchCounterReverseDiagonal = 0;
     for (let i = 0; i < boardSize; i++){
         let matchCounterRow = 0;
         let matchCounterColumn = 0;
         //Diagonals
         if (gameState[i][i] === player){
             matchCounterDiagonal++
+        }
+        if (gameState[boardSize - i - 1][i] === player){
+            matchCounterReverseDiagonal++
         }
         //Rows and Columns
         for (let k = 0; k < boardSize; k++){
@@ -64,7 +68,7 @@ var someoneHasWon = () => {
             }
         }
         //Check for matches
-        if (matchCounterRow === winLength || matchCounterColumn === winLength ||matchCounterDiagonal === winLength){
+        if (matchCounterRow === winLength || matchCounterColumn === winLength ||matchCounterDiagonal === winLength ||matchCounterReverseDiagonal === winLength){
             state = "subsequent games"
             return true
         }
