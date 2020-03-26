@@ -178,18 +178,7 @@ var forcedComputerTurn=function(){
         boxComputerSearched.innerText="X";
         touchedItems--;
         //console.log(boxIdSearch);
-
-}
-
-//To insert the X
-var insertText=function(event){
-//    console.log(endGame);
-userKeyed=true;
-clearTimeout(timerLose);
-clearTimeout(forceUser);
-var forceUser=setTimeout(function(){
-            forcedComputerTurn();
-           if(touchedItems>0){
+                   if(touchedItems>0){
                 var computerlag=setTimeout(computerTurn,5);
             }
             winLose();
@@ -263,6 +252,20 @@ var forceUser=setTimeout(function(){
                          touchedItems=9;
             restart=setTimeout(restartScreen,1000);
         }
+
+}
+
+//To insert the X
+var insertText=function(event){
+//    console.log(endGame);
+userKeyed=true;
+clearTimeout(timerLose);
+clearTimeout(forceUser);
+//if(!userKeyed)
+if(true)
+{var forceUser=setTimeout(function(){
+            forcedComputerTurn();
+
 },60000);
 var timerLose=setTimeout(function(){
 userKeyed=false;
@@ -279,11 +282,12 @@ console.log("do something naughty");
                         ["n","n","n"],
                         ["n","n","n"]
                         ];
-                         endGame=!endGame;
+                         endGame=false;
                          outcomeTrigger="#";
                          touchedItems=9;
             restart=setTimeout(restartScreen,1000);
-},10000);
+            clearTimeout(timerLose);
+},10000);}
 //
     if(!endGame)
     {
@@ -486,6 +490,7 @@ if(!gameStart){
         loseText.innerText="Lose:" +lose;
         playarea.appendChild(loseText);
         gameStart=true;
+        userKeyed=false;
         //
         gameToStart=setTimeout(gameStartScreen,500);
     }
