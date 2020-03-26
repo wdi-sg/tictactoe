@@ -24,12 +24,20 @@ class Player {
 class Game {
   constructor(boardSize, howManyInArowToWin = 3) {
     this.boardSize = boardSize;
+    this.howManyInARowToWin = howManyInArowToWin;
+    this._init();
+  }
+
+  _init() {
     this.player1Board = this._initBoard();
     this.player2Board = this._initBoard();
     this.whosTurn = PLAYER1;
     this.gameRound = 0; // once game completed, game round++
-    this.howManyInARowToWin = howManyInArowToWin;
     this.winner = null;
+  }
+
+  reset() {
+    this._init();
   }
 
   _initBoard() {
@@ -78,7 +86,9 @@ class Game {
   _fireHasWonEvent = e => {
     const hasWinnerEvent = new CustomEvent('has_winner', {
       bubbles:true,
-      'detail' : {'winner': this.winner }
+      'detail' : {
+        'winner': this.winner,
+      }
     });
     console.group("inside fire has won event");
     console.log(hasWinnerEvent);
@@ -153,6 +163,7 @@ class UI {
     this.gameBoardElem = document.getElementById("game_board");
     this.gameRows = this.gameBoardElem.children;
     this.allGameSquares = document.querySelectorAll('.game_square');
+    this.startBtn = document.getElementById("start_btn");
     this.player1Symbol = player1Symbol;
     this.player2Symbol = player2Symbol;
     this.game = game;
@@ -161,6 +172,10 @@ class UI {
   // listen for click events
   init() {
     this.allGameSquares.forEach(square => square.addEventListener("click", this._squareClickedUIHandler));
+    this.startBtn.addEventListener('click', e =>  {
+      this.clear();
+      this.game.reset();
+    });
     this.gameBoardElem.addEventListener('has_winner',  (e) => {
       this._disAbleEmptySquare();
       console.group("has_winner event received by gameboard");
