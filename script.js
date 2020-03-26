@@ -20,7 +20,8 @@ var gameToStart
 var messageToDisplay;
 var userInputTimer;
 var userKeyed;
-
+var timerLose;
+var forceUser;
 var winLose=function(){
 var outcome;
 //var continueSearch=true;
@@ -151,6 +152,7 @@ var computerTurn=function(){
 
 var forcedComputerTurn=function(){
     //console.log("my turn");
+    clearTimeout(forceUser);
     var computerRow, computerColumn;
     var computerRowText, computerColumnText;
     var boxId=["#box"];
@@ -179,7 +181,7 @@ var forcedComputerTurn=function(){
         touchedItems--;
         //console.log(boxIdSearch);
                    if(touchedItems>0){
-                var computerlag=setTimeout(computerTurn,5);
+                var computerlag=setTimeout(computerTurn,0);
             }
             winLose();
                     var textEntry=document.getElementById("declare-winner-loser");
@@ -211,7 +213,7 @@ var forcedComputerTurn=function(){
                         endGame=!endGame;
                         outcomeTrigger="#";
                         touchedItems=9;
-            restart=setTimeout(restartScreen,1000);
+            restart=setTimeout(restartScreen,100);
 
         }else
         if((outcomeTrigger==="O"&&touchedItems>=0)||userKeyed)
@@ -232,7 +234,7 @@ var forcedComputerTurn=function(){
                          endGame=!endGame;
                          outcomeTrigger="#";
                          touchedItems=9;
-            restart=setTimeout(restartScreen,1000);
+            restart=setTimeout(restartScreen,100);
 
         }else if(outcomeTrigger==="D")
         {
@@ -250,7 +252,7 @@ var forcedComputerTurn=function(){
                          endGame=false;
                          outcomeTrigger="#";
                          touchedItems=9;
-            restart=setTimeout(restartScreen,1000);
+            restart=setTimeout(restartScreen,100);
         }
 
 }
@@ -263,11 +265,13 @@ clearTimeout(timerLose);
 clearTimeout(forceUser);
 //if(!userKeyed)
 if(true)
-{var forceUser=setTimeout(function(){
+{forceUser=setTimeout(function(){
             forcedComputerTurn();
-
-},60000);
-var timerLose=setTimeout(function(){
+var closeThisForceFunction=setTimeout(function(){
+                            clearTimeout(forceUser);
+                         },5001);
+},5000);
+timerLose=setTimeout(function(){
 userKeyed=false;
 console.log("do something naughty");
             textEntry.innerText="You Lose!";
@@ -285,6 +289,9 @@ console.log("do something naughty");
                          endGame=false;
                          outcomeTrigger="#";
                          touchedItems=9;
+                         var closeThisLoseFunction=setTimeout(function(){
+                            clearTimeout(timerLose);
+                         },10001);
             restart=setTimeout(restartScreen,1000);
             clearTimeout(timerLose);
 },10000);}
@@ -307,7 +314,7 @@ console.log("do something naughty");
         stateOfBoxes[row][column]="X";
         touchedItems--
         if(touchedItems>0){
-                var computerlag=setTimeout(computerTurn,5);
+                var computerlag=setTimeout(computerTurn,0);
             }
             winLose();}
             //n for continue X for win O for lose through variable outcome trigger
@@ -340,7 +347,7 @@ console.log("do something naughty");
                         endGame=!endGame;
                         outcomeTrigger="#";
                         touchedItems=9;
-            restart=setTimeout(restartScreen,1000);
+            restart=setTimeout(restartScreen,100);
 
         }else
         if((outcomeTrigger==="O"&&touchedItems>=0)||userKeyed)
@@ -361,7 +368,7 @@ console.log("do something naughty");
                          endGame=!endGame;
                          outcomeTrigger="#";
                          touchedItems=9;
-            restart=setTimeout(restartScreen,1000);
+            restart=setTimeout(restartScreen,100);
 
         }else if(outcomeTrigger==="D")
         {
@@ -379,13 +386,15 @@ console.log("do something naughty");
                          endGame=false;
                          outcomeTrigger="#";
                          touchedItems=9;
-            restart=setTimeout(restartScreen,1000);
+            restart=setTimeout(restartScreen,100);
         }
 
     }
 
 }
 var restartScreen=function(){
+    clearTimeout(timerLose);
+clearTimeout(forceUser);
     console.log("Restart");
     document.body.innerHTML="";
     var message=document.createElement("h1");
@@ -415,28 +424,7 @@ box20Clicked.addEventListener("click",insertText);
 box21Clicked.addEventListener("click",insertText);
 box22Clicked.addEventListener("click",insertText);
 }
-/*    <div class="container">
-    <h1>Tic Tac Toe</h1>
-    <div class="playarea">
 
-            <div id="box00" class="box"></div>
-            <div id="box01" class="box"></div>
-            <div id="box02" class="box"></div>
-
-            <div id="box10" class="box"></div>
-            <div id="box11" class="box"></div>
-            <div id="box12" class="box"></div>
-
-        <div id="box20" class="box"></div>
-        <div id="box21" class="box"></div>
-        <div id="box22" class="box"></div>
-        <h2 id="declare-winner-loser"></h2>
-        <button onClick="#">Reset Board</button>
-
-    </div>
-
-    </div>
-*/
 var initialScreen=function(event){
     console.log("initial screen");
 /*stateOfBoxes=
