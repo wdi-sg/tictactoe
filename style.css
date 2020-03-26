@@ -1,0 +1,16 @@
+#start{
+	height: 50px;
+	width: 100px;
+}
+
+.name-container{
+	padding-bottom: 10px;
+}
+
+.hide{
+	display: none;
+}
+
+body{
+	text-align: center;
+}
