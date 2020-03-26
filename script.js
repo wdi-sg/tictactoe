@@ -107,6 +107,7 @@ var gameSquaresClick = function(event){
             };
             console.log("playerOne array: "+playerOne)
             console.log("playerOne array: "+playerTwo)
+            //part above is correct (no issue) I can get playerOne and playerTwo array
             var winCheckArr = [];
             for(var i = 0; i < winningArray.length; i++){
                 if(win === false){
@@ -150,6 +151,9 @@ for (var gameSquaresI = 0; gameSquaresI < gameSquares.length; gameSquaresI++){
 };
 
 //check match
+
+
+
 
 
 
