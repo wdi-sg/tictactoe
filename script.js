@@ -7,6 +7,7 @@ let scoreDiv = document.getElementById("scoreboard");
 let gamePlayArr = [];
 let outputCount = 0;
 let boardSize = 3;
+const maxOutputCount = boardSize * boardSize;
 let winStringX = "XXX";
 let winStringO = "OOO";
 let winAlert;
@@ -14,6 +15,7 @@ let playerXName;
 let playerOName;
 let xScore = 0;
 let oScore = 0;
+let randomMoveTimeout = 0;
 
 //initialise game board
 //1. initialise game play array that contains empty string
@@ -29,7 +31,7 @@ function initGameBoard() {
       newDiv.textContent = " ";
       newDiv.id = i + "-" + x;
       gameboardDiv.appendChild(newDiv);
-      console.log(newDiv.id);
+      console.log("init game board");
       newDiv.addEventListener("click", onClick);
     }
   }
@@ -50,7 +52,7 @@ function onClick(event) {
   let xCoor = clickedIndex[0];
   let yCoor = clickedIndex[1];
   outputCount++;
-  // console.log(outputCount);
+  console.log(outputCount);
   //depending on number of turns, display X or O
   if (outputCount % 2 !== 0) {
     gamePlayArr[xCoor][yCoor] = "X";
@@ -62,6 +64,12 @@ function onClick(event) {
     playerTurnDiv.textContent = playerXName + "'s turn: X";
   }
   checkWin();
+  if (randomMoveTimeout !== 0) {
+    clearTimeout(randomMoveTimeout);
+  }
+  if (winAlert === undefined) {
+    randomMoveTimeout = setTimeout(randomMove, 3000);
+  }
 }
 
 function startGameButtonErase() {
@@ -77,6 +85,10 @@ function startGameButtonErase() {
       // console.log(playerXName);
       buttonDiv.className = "hidden";
       playerTurnDiv.textContent = playerXName + "'s turn: X";
+      if (randomMoveTimeout !== 0) {
+        clearTimeout(randomMoveTimeout);
+      }
+      randomMoveTimeout = setTimeout(randomMove, 3000);
     }
   });
 }
@@ -138,13 +150,13 @@ function checkWin() {
     }
   }
   // console.log(winAlert);
-  displayWinAlert(winAlert);
+  displayWinAlert();
 }
 
-function displayWinAlert(winAlert) {
+function displayWinAlert() {
   let draw = "It is a draw!";
   let newP = document.createElement("p");
-  if (winAlert === undefined && outputCount === boardSize * boardSize) {
+  if (winAlert === undefined && (outputCount === maxOutputCount)) {
     winAlert = draw;
   }
   newP.textContent = winAlert;
@@ -174,6 +186,50 @@ function restartGame() {
     winAlert = undefined;
     initGameBoard();
   });
+}
+
+function randomMove() {
+  let emptyIdArr = [];
+  let emptyIds = [];
+  let squareArr = gameboardDiv.getElementsByClassName("square");
+  for (let i = 0; i < squareArr.length; i++) {
+    if ((squareArr[i].textContent === " ")) {
+      emptyIdArr.push(squareArr[i].id.split("-"));
+      emptyIds.push(squareArr[i].id);
+    }
+  }
+  console.log(emptyIdArr);
+  console.log(emptyIds);
+  let randomNum = Math.floor(Math.random() * emptyIdArr.length);
+  console.log("random number: " + randomNum);
+  outputCount++;
+  console.log(outputCount);
+  if (outputCount % 2 !== 0) {
+    gamePlayArr[emptyIdArr[randomNum][0]][emptyIdArr[randomNum][1]] = "X";
+    //document.getElementById(emptyIds[randomNum]).textContent = "X";
+    playerTurnDiv.textContent = playerOName + "'s turn: O";
+  } else {
+    gamePlayArr[emptyIdArr[randomNum][0]][emptyIdArr[randomNum][1]] = "O";
+    //document.getElementById(emptyIds[randomNum]).textContent = "O";
+    playerTurnDiv.textContent = playerXName + "'s turn: X";
+  }
+  console.log(gamePlayArr);
+  //print game in DOM again
+  for (let x = 0; x < boardSize; x++) {
+    for (let y = 0; y < boardSize; y++) {
+      let squareId = x + "-" + y;
+      console.log(squareId);
+      // console.log(document.getElementById(squareId));
+      document.getElementById(squareId).textContent = gamePlayArr[x][y];
+    }
+  }
+  checkWin();
+  if (randomMoveTimeout !== 0) {
+    clearTimeout(randomMoveTimeout);
+  }
+  if (winAlert === undefined) {
+    randomMoveTimeout = setTimeout(randomMove, 3000);
+  }
 }
 
 initGameBoard();
