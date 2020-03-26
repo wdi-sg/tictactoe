@@ -17,48 +17,6 @@ var emptyGame = function () {
   return game;
 }
 
-
-var buildPrompts = function() {
-  var displayColumn = document.querySelector("#control-col");
-  var form = document.createElement("div");
-  form.id = "player-form";
-
-  var info = ["p1-name", "p1-sym", "p2-name", "p2-sym"];
-  for (var i = 0; i< info.length; i++) {
-    var inputField = document.createElement("input");
-    inputField.classList.add("input");
-    inputField.setAttribute("type", "text");
-    inputField.id = info[i];
-    var inputLabel = document.createElement("label");
-    inputLabel.classList.add("label");
-    inputLabel.setAttribute("for", info[i]);
-    form.appendChild(inputLabel);
-    form.appendChild(inputField);
-  }
-  displayColumn.appendChild(form);
-
-  document.querySelector("[for='p1-name']").innerText = "Player 1 name";
-  document.querySelector("[for='p1-sym']").innerText = "Player 1 symbol";
-  document.querySelector("[for='p2-name']").innerText = "Player 2 name";
-  document.querySelector("[for='p2-sym']").innerText = "Player 2 symbol";
-  document.querySelector("#p1-name").placeholder = player1.name;
-  document.querySelector("#p1-sym").placeholder = player1.sym;
-  document.querySelector("#p2-name").placeholder = player2.name;
-  document.querySelector("#p2-sym").placeholder = player2.sym;
-
-  var gridLabel = document.createElement("label");
-  gridLabel.classList.add("label");
-  gridLabel.setAttribute("for", "grid-input");
-  gridLabel.id = "grid-label";
-  gridLabel.innerText = "Grid size (more than 6 looks silly)";
-  document.querySelector("#player-form").appendChild(gridLabel);
-  var gridInput = document.createElement("input");
-  gridInput.classList.add("input");
-  gridInput.id = "grid-input";
-  gridInput.placeholder = gridSize;
-  document.querySelector("#player-form").appendChild(gridInput);
-}
-
 var makeColummns = function () {
   var gameColumn = document.createElement("div");
   gameColumn.classList.add("column");
@@ -73,7 +31,6 @@ var makeColummns = function () {
   body.append(controlsColumn);
 }
 
-
 var makeBoard = function () {
   var column = document.querySelector("#game-col");
   var gameBoard = document.createElement("div")
@@ -85,8 +42,8 @@ var makeBoard = function () {
       gameCell.classList.add("gamecell");
       gameCell.setAttribute("data-row", row);
       gameCell.setAttribute("data-col", col);
-      gameCell.style.width = `${750/gridSize - 2}px`;
-      gameCell.style.height = `${750/gridSize - 2}px`;
+      gameCell.style.width = `${650/gridSize - 2}px`;
+      gameCell.style.height = `${650/gridSize - 2}px`;
       gameBoard.appendChild(gameCell);
    }
   }
@@ -129,6 +86,46 @@ var removeCellListeners = function () {
   }
 }
 
+var buildPrompts = function() {
+  var displayColumn = document.querySelector("#control-col");
+  var form = document.createElement("div");
+  form.id = "player-form";
+
+  var info = ["p1-name", "p1-sym", "p2-name", "p2-sym"];
+  for (var i = 0; i< info.length; i++) {
+    var inputField = document.createElement("input");
+    inputField.classList.add("input");
+    inputField.setAttribute("type", "text");
+    inputField.id = info[i];
+    var inputLabel = document.createElement("label");
+    inputLabel.classList.add("label");
+    inputLabel.setAttribute("for", info[i]);
+    form.appendChild(inputLabel);
+    form.appendChild(inputField);
+  }
+  displayColumn.appendChild(form);
+
+  document.querySelector("[for='p1-name']").innerText = "Player 1 name";
+  document.querySelector("[for='p1-sym']").innerText = "Player 1 symbol";
+  document.querySelector("[for='p2-name']").innerText = "Player 2 name";
+  document.querySelector("[for='p2-sym']").innerText = "Player 2 symbol";
+  document.querySelector("#p1-name").placeholder = player1.name;
+  document.querySelector("#p1-sym").placeholder = player1.sym;
+  document.querySelector("#p2-name").placeholder = player2.name;
+  document.querySelector("#p2-sym").placeholder = player2.sym;
+
+  var gridLabel = document.createElement("label");
+  gridLabel.classList.add("label");
+  gridLabel.setAttribute("for", "grid-input");
+  gridLabel.id = "grid-label";
+  gridLabel.innerText = "Grid size (more than 6 looks silly)";
+  document.querySelector("#player-form").appendChild(gridLabel);
+  var gridInput = document.createElement("input");
+  gridInput.classList.add("input");
+  gridInput.id = "grid-input";
+  gridInput.placeholder = gridSize;
+  document.querySelector("#player-form").appendChild(gridInput);
+}
 
 var startButton = function (action) {
   if (action === "create") {
@@ -171,7 +168,6 @@ var clickStart = function () {
   buildPrompts();
   gameState = emptyGame();
 }
-
 
 var makeMark = function (sym) {
   var divHeight = document.querySelector(".gamecell").style.height;
@@ -290,10 +286,6 @@ var displayText = function (str, color) {
     announce.style.color = color;
   }
 }
-
-// gameCell.setAttribute("data-row", row);
-// gameCell.setAttribute("data-col", col);
-
 
 var updateGame = function () {
 

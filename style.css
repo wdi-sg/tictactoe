@@ -5,12 +5,23 @@ body {
 }
 
 #game-col {
-  min-width: 750px;
+  min-width: 650px;
   margin: 0 10px;
 }
 
 #control-col {
   min-width: 45%;
+}
+
+@media (max-width: 800px) {
+  body {
+    display: unset;
+    justify-content: space-between;
+  }
+
+  #game-col {
+    margin: 0 10px 10px 10px;
+  }
 }
 
 #gameboard {
@@ -19,8 +30,8 @@ body {
   justify-content: space-around;
   align-items: center;
 
-  width: 750px;
-  height: 750px;
+  width: 650px;
+  height: 650px;
   background-color: black;
   margin: 0 auto;
 }
