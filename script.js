@@ -51,9 +51,21 @@ const closeBtnHandler = () => {
     overlay.classList.remove("overlay");
 }
 
+const XOBtnHandler = (symbol1, symbol2) => {
+    userPlayer = symbol1;
+    userPlayer = symbol2;
+    optionsModal.style.visibility = "hidden";
+    overlay.classList.remove("overlay");
+}
+
 const displayWinModal = () => {
     overlay.classList.add("overlay");
     winModal.style.visibility = "visible";
+}
+
+const displayOptionsModal = () => {
+    overlay.classList.add("overlay");
+    optionsModal.style.visibility = "visible";
 }
 
 
@@ -63,6 +75,7 @@ const startGame = () => {
     boardArrayX.length = 0;
     boardArrayO.length = 0;
     gameOver = false;
+    currentPlayer = userPlayer;
     for (let i = 0; i < boxes.length; i++) {
         boxes[i].innerText = "";
         boxes[i].setAttribute("id", i);
@@ -78,6 +91,7 @@ const startGame = () => {
             event.target.classList.add("text-orange");
         })
     }
+    displayOptionsModal();
 }
 
 const switchPlayer = (player1, player2) => {
@@ -159,6 +173,12 @@ startBtn2.addEventListener("click", () => {
 
 let closeBtn = document.querySelector(".close-btn");
 closeBtn.addEventListener("click", closeBtnHandler);
+
+let xBtn = document.querySelector(".x-btn");
+xBtn.addEventListener("click", XOBtnHandler.bind(this, "X", "O"));
+
+let oBtn = document.querySelector(".o-btn");
+oBtn.addEventListener("click", XOBtnHandler.bind(this, "O", "X"));
 
 //
 startGame();

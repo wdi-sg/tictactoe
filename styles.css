@@ -90,7 +90,7 @@ nav {
 	cursor: pointer;
 }
 
-.start-btn:hover {
+.start-btn:hover, .x-btn:hover, .o-btn:hover {
 	transition: all 0.3s ease-out;
 	background-color: blue;
 	color: white;
@@ -127,13 +127,48 @@ nav {
 }
 
 .modal-content-header {
+	height: 25%;
 	color: darkblue;
 	font-size: 1.2rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .modal-content-text {
 	color: darkblue;
 	font-size: 1rem;
+}
+
+.modal-xo-btn {
+	width: 80%;
+	display: flex;
+	justify-content: space-around;
+}
+
+.x-btn {
+	width: 4rem;
+	line-height: 2rem;
+	border-radius: 4px;
+	background-color: #b9563fe8;
+	border: 2px solid darkblue;
+	color: darkblue;
+	padding: 0.3rem;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
+.o-btn {
+	width: 4rem;
+	line-height: 2rem;
+	border-radius: 4px;
+	background-color: #b9563fe8;
+	border: 2px solid darkblue;
+	color: darkblue;
+	padding: 0.3rem;
+	font-size: 1rem;
+	cursor: pointer;
 }
 
 .close-btn {

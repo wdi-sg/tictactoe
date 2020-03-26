@@ -1,6 +1,7 @@
 let winModal = document.createElement("div");
 
-winModal.setAttribute("class", "modal");
+winModal.classList.add("options");
+winModal.classList.add("modal");
 
 winModal.innerHTML = `<div class="modal-content">
         <span class="close-btn">&times;</span>
