@@ -102,21 +102,23 @@ var checkPlayer = function (target) {
     var input1 = parseInt(input[0])
     var input2 = parseInt(input[1])
     if (player) {
-        if(board[input1][input2] === 'n')
-        player = false;
-        playerIcon = player1Icon;
-        currentPlayer = 'Player 1';
-        board[input1][input2] = currentPlayer;
-        turnCount++;
-        checkWin(currentPlayer)
+        if (board[input1][input2] === 'n') {
+            player = false;
+            playerIcon = player1Icon;
+            currentPlayer = 'Player 1';
+            board[input1][input2] = currentPlayer;
+            turnCount++;
+            checkWin(currentPlayer)
+        }
     } else {
-        if(board[input1][input2] === 'n')
-        player = true;
-        playerIcon = player2Icon;
-        currentPlayer = 'Player 2';
-        board[input1][input2] = currentPlayer;
-        turnCount++;
-        checkWin(currentPlayer)
+        if (board[input1][input2] === 'n') {
+            player = true;
+            playerIcon = player2Icon;
+            currentPlayer = 'Player 2';
+            board[input1][input2] = currentPlayer;
+            turnCount++;
+            checkWin(currentPlayer)
+        }
     }
 }
 
