@@ -33,26 +33,7 @@ var playerTwo = [];
 var currentStatus = ["", "", "", "", "", "", "", "", ""];
 var checkStatus;
 
-//check function for playerOne and playerTwo, use i to try out code. will think of better index name when it works. (not working yet)
-// var checkWinner = function(playerArray){
-//     var i = 0;
-//     var j = 0;
-//     while(j<winningArray.length){
-//         while(i<playerOne.length){
-//             if(playerArray[i] === winningArray[j][i]){
-//                 checkStatus = playerArray[i] === playerArray[j];
-//                 console.log(playerArray[i]);
-//                 console.log(playerArray[j]);
-//                 console.log(checkStatus);
-//             }
-//             i++;
-//         };
-//         j++;
-//     };
-// };
 
-
-var checkPosition = false;
 var checkMatch = function(){
     for(var i = 0; i < gameSquares.length; i++) {
         if(gameSquares[i].innerText === userChoice[0]){
@@ -69,6 +50,43 @@ var checkMatch = function(){
 };
 
 var win = false;
+var verifyWinCheckArr = function(){
+    if (winCheckArr === 3){
+        win = true;
+
+    } else if (winCheckArr < 3){
+        winCheckArr = [];
+        playerOne = [];
+        playerTwo = [];
+        win = false;
+    };
+};
+
+//check function for playerOne and playerTwo, use i to try out code. will think of better index name when it works. (not working yet)
+//playerOne = [0,3,6]
+var winCheckArr = [];
+var checkWinner = function(){
+    for(var i = 0; i < winningArray.length; i++){
+        if(win === false){
+            playerOne.forEach((squareI) => winningArray[i].forEach((winI) => {
+                if(squareI === winI){
+                    winCheckArr.push(squareI);
+                };
+            }
+            ));
+        } else {
+            return document.querySelector('p').innerText = "Winner!";
+            winCheckArr = [];
+            playerOne = [];
+            playerTwo = [];
+        };
+        console.log(winCheckArr);
+    };
+    return winCheckArr;
+};
+
+
+var win = false;
 //create event so when clicked, it will show which square.
 //userChoice "X" will be player 1 and "O" will be player 2.
 //there will be 9 clicks to end game so player 1 is even number and 2 odd.
@@ -80,6 +98,8 @@ var gameSquaresClick = function(event){
         gameProgress++;
         if(gameProgress >= 5){
             checkMatch();
+            checkWinner();
+            verifyWinCheckArr();
         }
     }else{
         //player 2
@@ -133,4 +153,22 @@ for (var gameSquaresI = 0; gameSquaresI < gameSquares.length; gameSquaresI++){
 //     winningStrikeV = winningStrikeV.map(x => x + 1);
 //     winningArray.push(winningStrikeV);
 //     i++;
+// };
+
+
+// var checkWinner = function(playerArray){
+//     var i = 0;
+//     var j = 0;
+//     while(j<winningArray.length){
+//         while(i<playerOne.length){
+//             if(playerArray[i] === winningArray[j][i]){
+//                 checkStatus = playerArray[i] === playerArray[j];
+//                 console.log(playerArray[i]);
+//                 console.log(playerArray[j]);
+//                 console.log(checkStatus);
+//             }
+//             i++;
+//         };
+//         j++;
+//     };
 // };
