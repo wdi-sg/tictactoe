@@ -1,0 +1,50 @@
+body {
+	text-align: center;
+	font-family: sans-serif;
+}
+
+.start {
+	background-color: maroon;
+	color: white;
+	font-size: 20px;
+	padding: 10px 20px;
+	margin: 0 45%;
+	display: block;
+}
+
+.score {
+	background-color: black;
+	width: 100px;
+	height: 50px;
+	padding: 0 70px;
+	border: 2px solid black;
+	display: inline-block;
+	font-weight: bold;
+	color: white;
+}
+
+.main-container {
+	background-color: black;
+	width: 500px;
+	height: 500px;
+	margin: 0 auto;
+}
+
+.row {
+	background-color: brown;
+	width: 98%;
+	height: 32.3%;
+	margin: 7px 5px;
+}
+
+.square-0-0, .square-0-1, .square-0-2, .square-1-0, .square-1-1, .square-1-2, .square-2-0, .square-2-1, .square-2-2 {
+	background-color: white;
+	width: 32%;
+	height: 98%;
+	display: inline-block;
+	margin: 2px 3px;
+	float: left;
+	text-align: center;
+	font-size: 140px;
+	color: black;
+}
