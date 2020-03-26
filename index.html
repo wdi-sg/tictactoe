@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <title>ToeTacTic</title>
+</head>
+
+<body>
+    <header>
+        <h1>ToeTacTic</h1>
+    </header>
+    <h2 id="output-display">Player O's turn</h2>
+    <div class="game-board">
+        <div class="row" id="top-row">
+            <button class="box" id="top-left" onClick=onClick(this.id)>&nbsp</button>
+            <button class="box" id="top-mid" onClick=onClick(this.id)>&nbsp</button>
+            <button class="box" id="top-right" onClick=onClick(this.id)>&nbsp</button>
+        </div>
+        <div class="row" id="mid-row">
+            <button class="box" id="mid-left" onClick=onClick(this.id)>&nbsp</button>
+            <button class="box" id="center" onClick=onClick(this.id)>&nbsp</button>
+            <button class="box" id="mid-right" onClick=onClick(this.id)>&nbsp</button>
+        </div>
+        <div class="row" id="bottom-row">
+            <button class="box" id="bottom-left" onClick=onClick(this.id)>&nbsp</button>
+            <button class="box" id="bottom-mid" onClick=onClick(this.id)>&nbsp</button>
+            <button class="box" id="bottom-right" onClick=onClick(this.id)>&nbsp</button>
+        </div>
+    </div>
+    <script>
+        // document.querySelector('box').addEventListener('click', function (event) {
+        //     var currentInput = event.target.value;
+        //     var output = inputHappened(currentInput);
+        //     display(output);
+        // });
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
