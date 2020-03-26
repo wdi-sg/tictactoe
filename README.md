@@ -32,18 +32,7 @@ else
 
 One version of the game board could be:
 
-```html
-<div id="board">
-  <div class="game-row">
-    <span class="game-square"></span><span class="game-square"></span><span class="game-square"></span>
-  </div>
-  <div class="game-row">
-    <span class="game-square"></span><span class="game-square"></span><span class="game-square"></span>
-  </div>
-  <div class="game-row">
-    <span class="game-square"></span><span class="game-square"></span><span class="game-square"></span>
-  </div>
-</div>
+```
 ```
 
 ##### Second Version
