@@ -177,12 +177,6 @@ class UI {
     this.startBtn = this._getStartBtn();
   }
 
-  _getElements() {
-    const allGameSquares = document.querySelectorAll('.game_square');
-    const startBtn = document.getElementById("start_btn");
-    return { gameBoardElem, allGameSquares, startBtn }
-  }
-
   _getGameBoardElem() {
     return document.getElementById("game_board");
   }
@@ -202,18 +196,18 @@ class UI {
 
 
   _hasWinnerEventHandler = e => {
-    this._disAbleEmptySquare();
+    e.stopPropagation();
+    this._disableEmptySquare();
     console.group("has_winner event received by gameboard");
     console.info(e);
     console.groupEnd();
   };
 
   _squareClickedUIHandler = e => {
-    e.once = true;
     if (this.game.isPlayer1Turn()) {
-      this.setPlayer1Square(e.target)
+      this.setPlayer1Square(e.target);
     }else {
-      this.setPlayer2Square(e.target)
+      this.setPlayer2Square(e.target);
     }
     this.game._gameSquareLogicHandler(e);
   };
@@ -236,35 +230,27 @@ class UI {
     element.classList.add('is_click_disabled')
   }
 
-  _disAbleEmptySquare() {
+  _disableEmptySquare() {
     this.allGameSquares.forEach(square => {
       if (square.textContent === "") {this.disableClick(square)}
     });
-  }
-
-  enableClick(element) {
-    element.classList.remove('is_click_disabled');
-  }
-
-  _removeSquareEventListeners () {
-    this.allGameSquares.forEach(square =>
-      square.removeEventListener('click', this._squareClickedUIHandler));
   }
 
   _removeGameBoardElemEventListeners() {
     this.gameBoardElem.removeEventListener('has_winner', this._hasWinnerEventHandler);
   }
 
+
   clear() {
-    const classesToRemove = ["is_player1", "is_player2", "is_clicked", "is_click_disabled"];
-    let squares = document.querySelectorAll('.game_square');
-    for (let i = 0; i < squares.length; i++ ) {
-      let square = squares[i];
-      square.classList.remove(...classesToRemove);
+    this._removeGameBoardElemEventListeners();
+    const squares = document.getElementsByClassName('game_square');
+    Array.from(squares).forEach(square => {
+      square.classList.value = "game_square";
       square.innerHTML = "";
       square.removeEventListener('click', this._squareClickedUIHandler);
-    }
-    this._removeGameBoardElemEventListeners();
+    });
+    this._getAllGameSquares().forEach( square => {
+    });
     this.init();
   }
 }
