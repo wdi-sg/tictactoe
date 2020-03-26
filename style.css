@@ -1,0 +1,25 @@
+#gameboard {
+	  height: 300px;
+    width: 300px;
+    display: inline-block;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.square {
+    height: 100px;
+    width: 100px;
+    font-size: 100px;
+    border: solid black 0.5px;
+    box-sizing: border-box;
+    display:inline-block;
+    align-items: center;
+    margin: 0 auto;
+}
+#btn{
+	width: 75px;
+	border: solid black 1px;
+	margin: 0 auto;
+	text-align: center;
+	padding: 10px;
+}
