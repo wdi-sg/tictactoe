@@ -1,0 +1,50 @@
+.h1 {
+	color: lightseagreen;
+	font-size: 50px;
+	margin: 20px;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.boardrow {
+	display: inline-block;
+	width: 100%;
+}
+
+.box {
+	height: 150px;
+	width: 150px;
+    padding: 10px;
+    margin:1px;
+	box-sizing: border-box;
+	display: inline-block;
+    border: 1px solid black;
+    cursor: pointer;
+    background-image: url(images/rowlet.png);
+    background-size: 150px;
+    position: relative;
+}
+
+.board {
+	text-align: center;
+}
+
+.board:after {
+	display: table;
+	clear: both;
+	content: '';
+}
+
+body {
+	width: 100%;
+	background-color: lightcyan;
+}
+
+img {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height:150px ;
+    width: 150px;
+}
+
