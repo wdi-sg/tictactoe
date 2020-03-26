@@ -1,16 +1,67 @@
 console.log('script is running');
 
+//////////game data//////////
+let p1_name = '';
+let p2_name = '';
+let p1_sym = '';
+let p2_sym = '';
+let p1_wins = 0;
+let p2_wins = 0;
+
+// keeps track of player 1 or 2
+let player_turn = 1;
+
+//list of possible winning combinations, for each player
+let player1_combinations = [];
+let player2_combinations = [];
+
+//new elements
+const board = document.createElement('div');
+const input_ele = document.createElement('input');
+const start = document.createElement('div');
+
+//initialization function
+const init = function(){
+	boardInit();
+	startInit();
+	inputInit();
+};
+
 //name input creation
+const inputInit = function(){
+	
+	document.querySelector('.board').insertBefore(input_ele, document.querySelector('.row'));
+	input_ele.className = 'input';
+	input_ele.placeholder = 'Enter Player 1 Name';
+	input_ele.addEventListener('change', function(event){
+		if (input_ele.placeholder === 'Enter Player 1 Name'){
+			p1_name = event.target.value;
+			input_ele.value = "";
+			input_ele.placeholder = 'Enter Player 1 Symbol';
+		} else if (input_ele.placeholder === 'Enter Player 1 Symbol'){
+			p1_sym = event.target.value;
+			input_ele.value = "";
+			input_ele.placeholder = 'Enter Player 2 Name';
+		} else if (input_ele.placeholder === 'Enter Player 2 Name'){
+			p2_name = event.target.value;
+			input_ele.value = "";
+			input_ele.placeholder = 'Enter Player 2 Symbol';
+		} else if (input_ele.placeholder === 'Enter Player 2 Symbol'){
+			p2_sym = event.target.value;
+			input_ele.value = "";
+			input_ele.placeholder = 'Press Start!!';
+		};
+	});
+};
 
 //board creation
 const boardInit = function(){
-	let divBoard = document.createElement('div');
-	document.body.appendChild(divBoard);
-	divBoard.className = "board";
+	document.body.appendChild(board);
+	board.className = "board";
 
-	let rowOne = divBoard.appendChild(document.createElement('div'));
-	let rowTwo = divBoard.appendChild(document.createElement('div'));
-	let rowThree = divBoard.appendChild(document.createElement('div'));
+	let rowOne = board.appendChild(document.createElement('div'));
+	let rowTwo = board.appendChild(document.createElement('div'));
+	let rowThree = board.appendChild(document.createElement('div'));
 	rowOne.className = "row";
 	rowTwo.className = "row";
 	rowThree.className = "row";
@@ -28,7 +79,6 @@ const boardInit = function(){
 	rowThree.appendChild(document.createElement('button'));	
 
 
-
 	//number the buttons using id: 1 to 9
 	for (i = 0; i < 9; i++){
 		document.getElementsByTagName('button')[i].id = i+1;
@@ -36,30 +86,44 @@ const boardInit = function(){
 };
 
 const startInit = function(){
-	let start = document.createElement('div');
 	document.querySelector('.board').appendChild(start);
 	start.className = 'start';
-	start.innerHTML = "START";
-	start.addEventListener('click', gamestart)
+	start.innerHTML = 'START';
+	start.addEventListener('click', gameStart);
 };
 
-const gamestart = function(event){
+const gameStart = function(event){
 	document.querySelector('.start').classList.add('hide');
+	input_ele.placeholder = `${p1_name}'s turn`;
+	document.querySelectorAll('button')
+		.forEach(element => element.addEventListener('click', display_input));
 };
 
 const gameEnd = function(event){
+	let end_message = document.createElement('p');
+	end_message.id = 'end';
 	document.querySelector('.start').classList.remove('hide');
+	document.querySelector('.board').appendChild(end_message);
+	input_ele.placeholder = 'Game Ended!';
+	if (player_turn === 1){
+		end_message.innerHTML = `${p1_name} won!`;
+		start.innerHTML = 'Restart';
+		p1_wins++;
+		start.addEventListener('click', gameRestart);
+	} else {
+		end_message.innerHTML = `${p2_name} won!`;
+		start.innerHTML = 'Restart';
+		p2_wins++;
+		start.addEventListener('click', gameRestart);
+	};
 };
 
-// keeps track of player 1 or 2
-let player_turn = 1;
+const gameRestart = function(event){
+	document.querySelector('.board').innerHTML = '';
+	init();
+};
 
-//list of possible winning combinations, for each player
-let player1_combinations = [];
-let player2_combinations = [];
-
-
-// change turns
+// keep track of player turns
 const takeTurn = function(){
 	if (player_turn === 1){
 		player_turn += 1;
@@ -68,7 +132,7 @@ const takeTurn = function(){
 	};
 };
 
-//button_nums as keys with winning combinations as values
+//object containing button_nums as keys, winning combinations as values
 const win_combinations = {
 	'1' : [[1, 2, 3], [1, 4, 7], [1, 5, 9]],
 	'2' : [[1, 2, 3], [2, 5, 8]],
@@ -93,7 +157,8 @@ const updateCombinations = function(){
 };
 
 
-//returns true if there are 3 repeats a nested array
+//returns true if there are 3 repeated nested arrays
+//i.e. [Array1, Array1, Array4, Array1]
 const checkThreeRepeat = function(array){
 	for (i = 0; i < array.length; i++){
 		count = 1;
@@ -111,15 +176,39 @@ const checkThreeRepeat = function(array){
 	return false;
 };
 
+//check if any player has reached winning combination
 const checkWin = function(){
 	if (checkThreeRepeat(player1_combinations)){
 		gameEnd();
-		console.log('Player 1 Wins!');
 	} else if (checkThreeRepeat(player2_combinations)){
-		console.log('Player 2 Wins!');
 		gameEnd();
 	};
 };
+
+//player turns
+const display_input = function(event){
+	if (player_turn === 1){
+		event.target.textContent = p1_sym;
+		input_ele.placeholder = `${p2_name}'s turn`;
+		updateCombinations();
+		checkWin();
+		takeTurn();
+	} else {
+		event.target.textContent = p2_sym;
+		input_ele.placeholder = `${p1_name}'s turn`;
+		updateCombinations();
+		checkWin();
+		takeTurn();
+	};
+};
+
+init();
+
+
+
+
+
+
 
 
 
@@ -158,24 +247,3 @@ const checkWin = function(){
 // };
 
 //input function
-const display_input = function(event){
-	if (player_turn === 1){
-		event.target.textContent = "X";
-		updateCombinations();
-		checkWin();
-		takeTurn();
-	} else {
-		event.target.textContent = "O";
-		updateCombinations();
-		checkWin();
-		takeTurn();
-	};
-};
-
-//Initialization
-boardInit();
-startInit();
-
-document.querySelectorAll('button')
-	.forEach(element => element.addEventListener('click', display_input));
-
