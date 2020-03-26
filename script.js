@@ -3,7 +3,7 @@ let turn = 0;
 let boardSize = 3;
 let newArr = [];
 let xPlayer = [];
-let arrDatai =[];
+let arrDatai = [];
 let arrDataj = [];
 let yPlayer = [];
 let currentInput;
@@ -12,29 +12,64 @@ let currentInput;
 
 const inputHandler = function(event) {
   //console.log(event);
-  const currentInput = event.target.id;
-  inputHappened(currentInput);
-
-  //gettin the id when is clicked
+  // const currentInput = event.target.id;
+  //inputHappened(currentInput);
   const datai = this.getAttribute("data-i");
 
-
   const dataj = this.getAttribute("data-j");
+  if (turn < 9) {
+    if (turn % 2 === 0) {
+      this.innerHTML = "X";
+      xPlayer.push(datai);
+    } else {
+      this.innerHTML = "O";
+      yPlayer.push(datai);
+    }
+  } else {
+    yPlayer.push(currentInput);
+    console.log("game over");
+  }
+  console.log(xPlayer);
+  turn += 1;
+  checkHorizontal();
+    //gettin the id when is clicked
+
   console.log(datai, dataj);
   arrDatai.push(datai);
-    arrDataj.push(dataj);
+  arrDataj.push(dataj);
   //this.addEventListener("click", onclick);
 
-  
-  for (let i = 0; i < 3; i++) {
-    if (arrData[i])
-    console.log("Xwin");
-    //}
-  }
-  for (let j = 0; j < 3; j++) {
-    if (currentInput == "O") {
-      console.log("Ywin");
+  //   for (let i = 0; i < 3; i++) {
+  //     if (arrData[i])
+  //     console.log("Xwin");
+  //     //}
+  //   }
+  //   for (let j = 0; j < 3; j++) {
+  //     if (currentInput == "O") {
+  //       console.log("Ywin");
+  //     }
+  //   }
+};
+
+
+
+const checkHorizontal = function() {
+  let xCount0 = 0;
+  let xCount1 = 0;
+  let xCount2 = 0;
+
+  for (let i = 0; i < xPlayer.length; i++) {
+    if (xPlayer[i] === "0") {
+      xCount0 += 1;
+    } else if (xPlayer[i] === "1") {
+      xCount1 += 1;
+    } else if (xPlayer[i] === "2") {
+      xCount2 += 1;
     }
+  }
+
+  if (xCount0 > 2 || xCount1 > 2 || xCount2 > 2) {
+    console.log("player 1 wins");
   }
 };
 
@@ -97,5 +132,5 @@ const inputHappened = function(currentInput) {
   currentInput.display = currentInput;
   //   onclick = function() {
   //     document.getElementsByClassName('inside').innerHTML.display = currentInput;
-  //   };
+  //   };`
 };
