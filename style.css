@@ -1,0 +1,46 @@
+#board{
+	height: 450px;
+  width: 450px;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.box{
+    height: 150px;
+    width: 150px;
+    font-size: 100px;
+    border: solid black 1px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box2{
+		height: 110px;
+    width: 110px;
+    font-size: 90px;
+		border: solid black 1px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box3{
+	  height: 90px;
+	  width: 90px;
+ 		font-size: 80px;
+		border: solid black 1px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#start{
+	border: 1px solid black;
+  background: white;
+  padding: 5px 30px;
+  font-size: 11px;
+}
+.hide{
+	display: none;
+}
