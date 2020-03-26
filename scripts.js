@@ -29,6 +29,7 @@ class Game {
     this.whosTurn = PLAYER1;
     this.gameRound = 0; // once game completed, game round++
     this.howManyInARowToWin = howManyInArowToWin;
+    this.winner = null;
   }
 
   _initBoard() {
@@ -66,11 +67,25 @@ class Game {
     const hasWon = this.checkWin();
     if (hasWon) {
       console.group("The winner is:");
-      console.info("player: " + this.whosTurn)
+      console.info("player: " + this.whosTurn);
+      this.winner = this.whosTurn;
+      this._fireHasWonEvent(e);
     }else {
       this._toggleTurn();
     }
   }
+
+  _fireHasWonEvent = e => {
+    const hasWinnerEvent = new CustomEvent('has_winner', {
+      bubbles:true,
+      'detail' : {'winner': this.winner }
+    });
+    console.group("inside fire has won event");
+    console.log(hasWinnerEvent);
+    console.groupEnd();
+    e.target.dispatchEvent(hasWinnerEvent);
+  };
+
 
   _setPlayerWin(player) {
 
@@ -109,8 +124,12 @@ class Game {
     let topLeftToBtmRight = [];
     for (let i = 0; i < this.boardSize; i++) {
       topLeftToBtmRight.push(boardArr[i][i]);
-      topRightToBtmLeft.push(boardArr[i][this.boardSize-1]);
+      topRightToBtmLeft.push(boardArr[i][this.boardSize-i-1]);
     }
+    console.group("inside diagonal row check");
+    console.table(topRightToBtmLeft);
+    console.table(topLeftToBtmRight);
+    console.groupEnd();
     return this._hasInARow(topLeftToBtmRight) || this._hasInARow(topRightToBtmLeft);
   }
 
@@ -142,6 +161,11 @@ class UI {
   // listen for click events
   init() {
     this.allGameSquares.forEach(square => square.addEventListener("click", this._squareClickedUIHandler));
+    this.gameBoardElem.addEventListener('has_winner', function (e) {
+      console.group("has_winner event received by gameboard");
+      console.info(e);
+      console.groupEnd();
+    })
   }
 
   _squareClickedUIHandler = e => {
