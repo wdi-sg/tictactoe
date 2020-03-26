@@ -209,17 +209,24 @@ class UI {
   };
 
   _squareClickedUIHandler = e => {
-    this.game.isPlayer1Turn() ? this.setPlayer1Square(e.target) : this.setPlayer2Square(e.target);
+    e.once = true;
+    if (this.game.isPlayer1Turn()) {
+      this.setPlayer1Square(e.target)
+    }else {
+      this.setPlayer2Square(e.target)
+    }
     this.game._gameSquareLogicHandler(e);
   };
 
   setPlayer1Square(element) {
+    element.classList.remove('is_player_2');
     element.innerText = this.player1Symbol;
     element.classList.add('is_clicked', 'is_player_1');
     this.disableClick(element)
   }
 
   setPlayer2Square(element) {
+    element.classList.remove('is_player1');
     element.innerText = this.player2Symbol;
     element.classList.add('is_clicked', 'is_player_2');
     this.disableClick(element);
@@ -249,19 +256,16 @@ class UI {
   }
 
   clear() {
-    console.log("Clear fired");
     const classesToRemove = ["is_player1", "is_player2", "is_clicked", "is_click_disabled"];
-    document.querySelectorAll("span.game_square").forEach(
-      square => {
-        square.innerHTML = "";
-        square.classList.remove(...classesToRemove);
-        square.removeEventListener('click', this._squareClickedUIHandler);
-      }
-    );
-
-    //this.startBtn.removeEventListener('click', this._startBtnEventListener);
-    //this._removeGameBoardElemEventListeners();
-    //this.init();
+    let squares = document.querySelectorAll('.game_square');
+    for (let i = 0; i < squares.length; i++ ) {
+      let square = squares[i];
+      square.classList.remove(...classesToRemove);
+      square.innerHTML = "";
+      square.removeEventListener('click', this._squareClickedUIHandler);
+    }
+    this._removeGameBoardElemEventListeners();
+    this.init();
   }
 }
 
