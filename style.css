@@ -1,0 +1,33 @@
+body {
+	text-align: center
+}
+
+#board {
+	background-color: gray;
+	width: 490px;
+	border: 1px solid black;
+	margin: auto;
+	display: inline-block;
+	padding: 5%;
+}
+
+/*
+.game-row {
+	margin-top: 2%;
+	margin-bottom: 2%;
+	display: flex;
+	height: 120px;
+}
+*/
+
+.game-square {
+	margin: auto;
+	background-color: white;
+	width: 150px;
+	height: 150px;
+	border: 1px solid black;
+	text-align: center;
+	font-size: 7em;
+	float: left;
+	padding: 1%;
+}
