@@ -1,0 +1,27 @@
+header {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+.box{
+	height: 100px;
+	width: 100px;
+	padding: 0px 0px 0px 0px;
+  font-size: 80px;
+  background-color: whitesmoke;
+}
+
+.row{
+	width: 310px;
+  height: 100px;
+  margin : 4px;
+}
+.game-board{
+	height: 300px;
+  margin: auto;
+  width: 40%;
+  padding: 10px;
+}
