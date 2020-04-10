@@ -1,0 +1,46 @@
+body {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    }
+
+
+h2 {
+    margin: 0 auto;
+    font-size: 35px;
+    margin: 10px;
+}
+
+
+.flex-container {
+    /* set display property */
+    display: flex;
+    /* center the container horizontally */
+    justify-content: center;
+    /* center content vertically */
+    align-items: center;
+    /* tells the container to align the children in columns rather than rows */
+}
+
+.flex-column {
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    /* tells the container to drop down once it reaches max-width */
+}
+/* To make sure that three squares show up across each row, the total height and width is set to be just big enough for 3 squares of 140px, not 4 squares */
+.flex-wrap {
+    flex-wrap: wrap;
+    height: 432px;
+    width: 432px;
+}
+
+
+.square {
+    border: 2px solid black;
+    height: 140px;
+    width: 140px;
+    font-size: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
