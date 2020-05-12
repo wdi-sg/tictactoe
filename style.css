@@ -1,0 +1,11 @@
+.board{
+	display: flex;
+	flex-wrap:wrap;
+	flex-direction:row;
+}
+
+.box{
+	border:1px solid black;
+	width:30%;
+	height:150px;
+}
