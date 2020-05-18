@@ -1,0 +1,27 @@
+h1{
+text-align:center;
+}
+
+.board{
+	margin:0 auto;
+}
+
+.game-rows{
+	cursor:pointer;
+	display:flex;
+	justify-content: center;
+}
+
+.box {
+	width:200px;
+	height:200px;
+	border:2px solid black;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 80px;
+}
+
+button{
+	text-align:center;
+}
