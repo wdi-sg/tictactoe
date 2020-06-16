@@ -1,25 +1,5 @@
 console.log("hello script js");
 
-// var box = [
-//     [".box1", ".box2", ".box3"],
-//     [".box4", ".box5", ".box6"],
-//     [".box7", ".box8", ".box9"]
-// ];
-
-// //Create var for DOM elements
-// var button = document.querySelector('.start');
-// //var grid = document.querySelector('.grid-container')
-// var restart = document.querySelector('.restart');
-// //var title = document.querySelector('.title')
-
-// //To start the game
-// var startGame = function() {
-//     button.addEventListener("click", function);
-//     button.classList.remove("disappear");
-//     button.classList.add("disappear");
-//     runGame = true;
-// }
-
 //Create var for game
 var playerTurn = 0;
 
