@@ -13,7 +13,8 @@ const winningStates = [
   [2, 4, 6]];
 
 // ---------------  PAGE LOADS --------------->
-createBoard();
+getUserNames();
+// createBoard();
 
 // ---------------- START GAME FUNCTIONS ------------>
 function startGame() {
@@ -165,4 +166,24 @@ function displayParaMessage(code) {
             para.innerHTML = players[1].name + "'s turn!";
         }
     }
+}
+
+// ---------FORM------------>
+
+function getUserNames() {
+    let emojis1 = [0x1F970, 0x1F60D, 0x1F63B];
+    let emojis2 = [0x1F496, 0x1F498, 0x1F629];
+    const dropDown1 = document.getElementById("player1-dropdown");
+    const dropDown2 = document.getElementById("player2-dropdown");
+
+    emojis1.forEach( emoji=> {
+        let option = document.createElement("option");
+        option.innerHTML = String.fromCodePoint(emoji);
+        dropDown1.appendChild(option);
+    });
+    emojis2.forEach( emoji=> {
+        let option = document.createElement("option");
+        option.innerHTML = String.fromCodePoint(emoji);
+        dropDown2.appendChild(option);
+    });
 }
