@@ -8,7 +8,7 @@ var initialBoard = [
     ['a', 'b', 'c'],
     ['a', 'b', 'c']
 ];
-var currentBoard = $.extend(true, [], initialBoard);
+var currentBoard = JSON.parse(JSON.stringify(initialBoard));
 
 
 
@@ -58,7 +58,7 @@ startButton.addEventListener('click', function() {
       x.innerHTML = '&nbsp&nbsp&nbsp';
       x.disabled = false;
     });
-    currentBoard = $.extend(true, [], initialBoard);
+    currentBoard = JSON.parse(JSON.stringify(initialBoard));
     if (board.childNodes.length > 3) {
        board.removeChild(board.childNodes[board.childNodes.length-1]);
     }
@@ -94,6 +94,7 @@ function checkWin() {
     startButton.innerText = 'RESTART';
   }
 
+  //checking for wins by running through board array
   for (let i = 0 ; i < currentBoard.length ; i++) {
 
     //checks for horizontal and vertical wins
