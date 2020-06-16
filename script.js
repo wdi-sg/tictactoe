@@ -1,48 +1,38 @@
-document.querySelector("#input").addEventListener("change", function (event) {
-	//from input box, listen for change
-	var currentInput = event.target.value;
-	inputHappened(currentInput); //run input function
-});
-//--------------------------------------------------------- input Function
+//---------------------------------PART ONE-------------------------------------
 
-function inputHappened(currentInput) {
-	var xxx = currentInput.toLowerCase(); // change input to lowercase
-	if (xxx == "remove") {
-		return clear();
-	} else {
-		display(inputChecker(currentInput));
-	}
-}
-//---------------------------------------------------------------clear Function
-function clear() {
-	document.querySelector("#output").innerHTML = "";
-}
-// ---------------------------------------------------------------// clear specific line - but not working
-function clearspe(num) {
-	var hihi = document.querySelectorAll("#output p");
-	hihi[num - 1].remove();
-}
-//----------------------------------------------------------------------DDOM
-function display(stuffToDisplay) {
-	// your DOM manipulation code here
-	//   for(var i=0 ; i<xx; i++ ){}
-	var pee = document.createElement("p"); //create single row <p></p>
-	pee.innerHTML = pineapplePen(stuffToDisplay); // show number of pineapples between <p></p>
-	document.querySelector("#output").appendChild(pee);
-}
-//---------------------------------------------------------show input using display Function
+var box1 = document.querySelector(".box1").addEventListener("click", clicked);
+var box2 = document.querySelector(".box2").addEventListener("click", clicked);
+var box3 = document.querySelector(".box3").addEventListener("click", clicked);
+var box4 = document.querySelector(".box4").addEventListener("click", clicked);
+var box5 = document.querySelector(".box5").addEventListener("click", clicked);
+var box6 = document.querySelector(".box6").addEventListener("click", clicked);
+var box7 = document.querySelector(".box7").addEventListener("click", clicked);
+var box8 = document.querySelector(".box8").addEventListener("click", clicked);
+var box9 = document.querySelector(".box9").addEventListener("click", clicked);
 
-function inputChecker(input) {
-	if (isNaN(input)) {
-		//show error if not a number.
-		return "Please input a number";
-	} else {
-		var tempNumber = parseInt(input); //set error if not a number.
-		return tempNumber;
-	}
+var player = "O"
+
+function clicked(event) {
+    var clickk = document.querySelector("." + event.target.className)
+    if (player == "X") {
+        player = "O"
+        clickk.innerHTML = "X"
+    } else{
+        clickk.innerHTML = "O"
+        player = "X"
+    }
 }
-//------------------------------------------------------------show input using display Function
-var pineapplePen = function (num) {
-	var pineApples = "🍍";
-	return pineApples.repeat(num); // continue/repeat printing
-};
+
+//---------------------------------PART TWO-------------------------------------
+
+// let board = ["","","","","","","","","",];
+
+
+// var win1 = $("box1, box2, box3").length === 3
+// var win2 = $("box4, box5, box6").length === 3
+// var win3 = $("box9, box8, box9").length === 3
+// var win4 = $("box1, box4, box7").length === 3
+// var win5 = $("box2, box5, box8").length === 3
+// var win6 = $("box3, box6, box9").length === 3
+// var win7 = $("box1, box5, box9").length === 3
+// var win8 = $("box7, box5, box3").length === 3
