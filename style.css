@@ -1,0 +1,12 @@
+#board {
+  display: grid;
+}
+.game-square {
+  display: inline-block;
+  background-color: blue;
+  width: 100px;
+  height: 100px;
+  padding: 2px;
+  margin: 2px;
+  border: 2px;
+}
