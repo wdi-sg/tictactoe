@@ -219,6 +219,7 @@ let gameWon = function(winner){
     }
     document.getElementById("output").innerHTML = "Winner is " + winningPlayer.name;
     clearClickListener();
+    toggleInputDisplay();
 }
 
 // for(let i = 0; i < size; i++){
@@ -227,13 +228,19 @@ let gameWon = function(winner){
 // }
 
 
-//set button listener
-//onclick - get input from input box
-//assign size
-//create initial board
-//loadboard()
-//hide input displays
+let toggleInputDisplay = function(){
+    let inputBox = document.getElementById("input1");
+    let startButton = document.getElementById("start-button");
 
+    if(inputBox.style.display == "none"){
+        inputBox.style.display = "block";
+        startButton.style.display = "block";
+    } else {
+        inputBox.style.display = "none";
+        startButton.style.display = "none";
+    }
+
+}
 
 document.getElementById("start-button").addEventListener('click', function(event){
     console.log("start button clicked")
@@ -250,6 +257,7 @@ document.getElementById("start-button").addEventListener('click', function(event
         loadBoard();
         addClickListener();
         console.log("Game Started")
+        toggleInputDisplay();
     }
 });
 
