@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+     <h1>TIC TAC TOE</h1>
+        <div class="game-board">
+            <span class="box1"></span>
+            <span class="box2"></span>
+            <span class="box3"></span>
+            <span class="box4"></span>
+            <span class="box5"></span>
+            <span class="box6"></span>
+            <span class="box7"></span>
+            <span class="box8"></span>
+            <span class="box9"></span>
+        </div>
+
+        <div class="button1">
+            <button id="restart" onclick="location.reload()">RESTART</button>
+        </div>
+
+        <script src="script.js"></script>
+        <script>
+            document.getElementById("button2").addEventListener("click", readyRestart);
+            function readyRestart() {
+            location.reload();
+            }
+        </script>
+    </body>
+</html>
