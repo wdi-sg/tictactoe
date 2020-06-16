@@ -77,7 +77,6 @@ function playerPress() {
     buttonGrid[i].addEventListener('click', function(e) {
       e.target.innerText = playerInput;
       currentBoard[Math.floor(i/3)][i%3] = playerInput;
-      setTimeout(computerMove, 500);
       checkWin();
     })
   } 
@@ -125,9 +124,4 @@ function checkWin() {
       break;
     }
   }
-}
-
-
-function computerMove() {
-  console.log('ecce machina');
 }
