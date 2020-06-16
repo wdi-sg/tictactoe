@@ -1,0 +1,34 @@
+var currentTurn=0;
+var boxOne = document.querySelector(".boxOne");
+var boxTwo = document.querySelector(".boxTwo");
+var boxThree = document.querySelector(".boxThree");
+var boxFour = document.querySelector(".boxFour");
+var boxFive = document.querySelector(".boxFive");
+var boxSix = document.querySelector(".boxSix");
+var boxSeven = document.querySelector(".boxSeven");
+var boxEight = document.querySelector(".boxEight");
+var boxNine = document.querySelector(".boxNine");
+boxOne.addEventListener("click", getClick);
+boxTwo.addEventListener("click", getClick);
+boxThree.addEventListener("click", getClick);
+boxFour.addEventListener("click", getClick);
+boxFive.addEventListener("click", getClick);
+boxSix.addEventListener("click", getClick);
+boxSeven.addEventListener("click", getClick);
+boxEight.addEventListener("click", getClick);
+boxNine.addEventListener("click", getClick);
+
+function getClick (event) {
+   var squareSelected = document.querySelector('.' + event.target.className);
+  if (currentTurn==0){
+    // document.getElementById ("boxNine").innerHTML = "O"
+    squareSelected.innerHTML="O"
+    currentTurn =1;
+  }
+  else {
+    //document.getElementById ("boxNine").innerHTML = "X"
+    squareSelected.innerHTML="X"
+    currentTurn=0;
+  }
+
+}
