@@ -185,15 +185,31 @@ let gameWon = function(winner){
         winningPlayer=p2;
     }
     document.getElementById("output").innerHTML = "Winner is " + winningPlayer.name;
+    clearClickListener();
 }
 
 //Add event handlers
-for(let i = 0; i < size; i++){
-    for(let j = 0; j < size; j++){
-        let n = getSquareNode(i,j)
-        n.addEventListener('click',clickHandler);
+
+let addClickListener = function(){
+    for(let i = 0; i < size; i++){
+        for(let j = 0; j < size; j++){
+            let n = getSquareNode(i,j)
+            n.addEventListener('click',clickHandler);
+        }
     }
 }
+
+addClickListener();
+
+let clearClickListener = function(){
+    for(let i = 0; i < size; i++){
+        for(let j = 0; j < size; j++){
+            let n = getSquareNode(i,j)
+            n.removeEventListener('click', clickHandler)
+        }
+    }
+}
+
 
 //Sets the innerHTML after clicked
 let updateBoardDisplay = function(i,j,m){
