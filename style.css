@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap');
+
+html {
+  margin: 0 auto;
+}
+
+body {
+  max-width: 300px;
+  margin: 0 auto;
+  font-size: 20px;
+  font-family: 'Balsamiq Sans', cursive;
+}
+
+#board {
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+}
+
+.game-row {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.game-square {
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  text-align: center;
+  font-size: 2rem;
+  height: 100px;
+  width: 100px;
+}
+
+.game-over {
+  text-align: center;
+  padding: 1rem;
+}
+
