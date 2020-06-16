@@ -6,18 +6,26 @@ html {
 
 body {
   max-width: 300px;
-  margin: 0 auto;
+  margin: 20px auto;
   font-size: 20px;
   font-family: 'Balsamiq Sans', cursive;
 }
 
-#title {
-  margin-bottom: 0;
-}
-
-#start-btn {
+button {
   font-family: 'Balsamiq Sans', cursive;
   visibility: visible;
+  width: 40%;
+  margin-left: 30%;
+  margin-right: 30%
+}
+
+.play-again {
+  margin-top: 0;
+}
+
+#title {
+  margin-bottom: 0;
+  text-align: center;
 }
 
 .game-row {
@@ -37,6 +45,6 @@ body {
 
 .game-over {
   text-align: center;
-  padding: 1rem;
+  padding: 1rem 0 .5rem 0;
 }
 

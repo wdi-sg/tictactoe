@@ -14,10 +14,16 @@ window.onload = loadGame();
 
 const squaresList = document.querySelectorAll('.game-square');
 
-// create game over div
+// create game over message
 var gameOver = document.createElement('div');
 gameOver.innerText = "Game over!";
 gameOver.classList = "game-over";
+
+// create play again button
+var playAgain = document.createElement('button');
+playAgain.innerText = "Play Again?";
+playAgain.classList = "play-again";
+playAgain.addEventListener('click', replay);
 
 // keep track of whose turn it is
 let turn = 0;
@@ -35,6 +41,7 @@ function draw(e) {
     turn++;
     if (turn > 8) {
       document.body.appendChild(gameOver);
+      document.body.appendChild(playAgain);
     }
   } else if (turn % 2 !== 0 && selected.innerText === "") {
     selected.innerText = "o";
@@ -61,8 +68,20 @@ function loadGame() {
   board.style.visibility = "hidden";
 }
 
+// hide button and show game board
 function showBoard(){
   board.style.visibility = "visible";
+  board.style.border = "1px solid black";
   startBtn.style.visibility = "hidden";
+}
+
+// replay function
+function replay(){
+  turn = 0;
+  squaresList.forEach((square) => {
+    square.innerText = "";
+  })
+  playAgain.remove();
+  gameOver.remove();
 }
 
