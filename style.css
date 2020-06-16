@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body background="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSOkXVbDm0sKWTL3Ip2qNzeqY6dNxn-WvoS2mAMnSNcovlSs9no&usqp=CAU">
+    <h1>Tic Tac Toe</h1>
+    <table>
+        <tr>
+            <td class="one"></td>
+            <td class="two"></td>
+            <td class="three"></td>
+        </tr>
+        <tr>
+            <td class="four"></td>
+            <td class="five"></td>
+            <td class="six"></td>
+        </tr>
+        <tr>
+            <td class="seven"></td>
+            <td class="eight"></td>
+            <td class="nine"></td>
+        </tr>
+    </table>
+    <script src="script.js"></script>
+</body>
+<footer id="container">
+    <button id="startgame">Start</button>
+    <button id="resetgame">Reset</button>
+<footer>
+
+</html>
