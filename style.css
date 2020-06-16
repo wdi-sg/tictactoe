@@ -83,11 +83,6 @@ body {
   display: none;
 }
 
-.can-click {
-  pointer-events: auto;
-  cursor: auto;
-}
-
 .disable-click {
   pointer-events: none;
   cursor: not-allowed;

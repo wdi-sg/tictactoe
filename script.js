@@ -13,9 +13,11 @@ const winningStates = [
   [2, 4, 6]];
 
 // ---------------  PAGE LOADS --------------->
+
 getUserNames();
 
 // ---------------- START GAME FUNCTIONS ------------>
+
 function startGame() {
   displayParaMessage("continue");
   document.getElementById("points-system").classList.remove("none");
@@ -26,7 +28,6 @@ function startGame() {
     cell.classList.remove("disable-click");
     cell.addEventListener('click', cellClicked);
   });
-
 }
 
 // ---------------- EVENT HANDLERS LOADS ------------>
@@ -54,7 +55,7 @@ function createBoard() {
     const pointsSystem = document.getElementById("points-system");
     document.body.innerHTML = "";
     let h1 = document.createElement("h1");
-    h1.innerHTML = "Let's play tikey tac!";
+    h1.innerHTML = "Let's play tikey tackey!!";
     window.title = h1;
     let para = document.createElement("p");
     para.innerHTML = players[1].name + "'s turn!";
@@ -66,16 +67,14 @@ function createBoard() {
     let container = document.createElement("div");
     container.classList.add("container");
 
-    // make the cells
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < 9; i++) { // make the cells
         let cell = document.createElement("div");
         cell.classList.add("cell");
         container.appendChild(cell);
     }
     main.appendChild(container);
 
-    // results-container
-    let results = document.createElement("div");
+    let results = document.createElement("div"); // results-container
     results.id = "results-container";
     let resultsPara = document.createElement("p");
     resultsPara.id = "results";
@@ -119,13 +118,19 @@ function getUserNames() {
     });
 
     startButton.addEventListener('click', function() {
-        // as long as it is not empty **
-        players[0].name = player1Name.value;
-        players[1].name = player2Name.value;
-        players[0].emoji = dropDown1.options[dropDown1.selectedIndex].value;
-        players[1].emoji = dropDown2.options[dropDown2.selectedIndex].value;
-        createBoard();
-        console.log(players);
+        if (isValid(player1Name.value) && isValid(player2Name.value)) {
+            players[0].name = player1Name.value;
+            players[1].name = player2Name.value;
+            players[0].emoji = dropDown1.options[dropDown1.selectedIndex].value;
+            players[1].emoji = dropDown2.options[dropDown2.selectedIndex].value;
+            createBoard();
+            console.log(players);
+        }
+        else {
+            const invalidMessage = document.createElement("p");
+            invalidMessage.innerHTML = "Invalid input ~";
+            document.body.appendChild(invalidMessage);
+        }
     });
 }
 
@@ -217,4 +222,8 @@ function displayParaMessage(code) {
             para.innerHTML = players[1].name + "'s turn!";
         }
     }
+}
+
+function isValid(name) {
+    return name == "" ? false : true;
 }
