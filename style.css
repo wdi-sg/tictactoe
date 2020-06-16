@@ -11,10 +11,13 @@ body {
   font-family: 'Balsamiq Sans', cursive;
 }
 
-#board {
-  border-style: solid;
-  border-width: 1px;
-  border-color: black;
+#title {
+  margin-bottom: 0;
+}
+
+#start-btn {
+  font-family: 'Balsamiq Sans', cursive;
+  visibility: visible;
 }
 
 .game-row {

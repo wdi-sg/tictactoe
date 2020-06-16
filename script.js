@@ -1,5 +1,15 @@
+/*
+squaresList[X].innerText
+0 | 1 | 2
+3 | 4 | 5
+6 | 7 | 8
+
+*/
+
 // ui variables
 const board = document.getElementById('board');
+const startBtn = document.getElementById('start-btn');
+
 window.onload = loadGame();
 
 const squaresList = document.querySelectorAll('.game-square');
@@ -36,7 +46,6 @@ function draw(e) {
 }
 
 //SECOND VERSION - create board using JS
-
 function loadGame() {
   var gameBoard = 
   `<div class="game-row">
@@ -49,5 +58,11 @@ function loadGame() {
     <span class="game-square"></span><span class="game-square"></span><span class="game-square"></span>
   </div>`
   board.innerHTML = gameBoard;
+  board.style.visibility = "hidden";
+}
+
+function showBoard(){
+  board.style.visibility = "visible";
+  startBtn.style.visibility = "hidden";
 }
 
