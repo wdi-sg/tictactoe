@@ -29,3 +29,13 @@ main {
 	margin-top: 30px;
 	font-family: Tahoma;
 }
+
+.inputs {
+	margin: 0 auto;
+	display: block;
+}
+
+button.inputs {
+	margin-top: 5px;
+	margin-bottom: 30px;
+}

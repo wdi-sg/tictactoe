@@ -2,8 +2,10 @@
 
 //default board values
 const ch = null;
-const size = 3;
+let size = 3;
+let board = [[]];
 
+//create backend board
 //createBoard(sjze); - return array representing board
 let createBoard = function(size){
     let b = [[]];
@@ -17,12 +19,31 @@ let createBoard = function(size){
     return b;
 };
 
+//create front end board
+//given board, build div structure
+let loadBoard = function(){
+    let boardDiv = document.getElementById("board");
+    //for each size, create a div with class game-row
+    for(let i = 0; i < size; i++){
+        let gameRow = document.createElement("div");
+        gameRow.classList.add("game-row");
+        //for each game-row create a div with class game-square
+        for(let j = 0; j < size; j++){
+            let gameSquare = document.createElement("div");
+            gameSquare.classList.add("game-square");
+            // gameSquare.innerHTML = board[i][j];
+            gameSquare.innerHTML = "&nbsp;";
+            gameRow.appendChild(gameSquare);
+        }
+        boardDiv.appendChild(gameRow);
+    }
+}
+
+
+//Updates the backend game board
 let updateBoard = function(i,j,m){
     board[i][j] = m;
 }
-
-//Create initial board
-let board = createBoard(size);
 
 //getWinner(); - return wjnner
 let getWinner = function(){
@@ -97,37 +118,11 @@ let getDiagonal = function(dir){
     return resArr
 }
 
-//TEST GAME PLAY
-// updateBoard(0,0,"O"); updateBoard(0,1,"O"); updateBoard(0,2,"X");// updateBoard(0,3,"X");
-// updateBoard(1,0,"O"); updateBoard(1,1,"O"); updateBoard(1,2,"X");// updateBoard(1,3,"X");
-// updateBoard(2,0,"X"); updateBoard(2,1,"X"); updateBoard(2,2,"O");// updateBoard(2,3,"O");
-//updateBoard(3,0,"O"); updateBoard(3,1,"O"); updateBoard(3,2,"X");// updateBoard(3,3,"O");
 
 //----DOM MANIPULATION FUNCTIONS
-//given board, build div structure
-let loadBoard = function(){
-    let boardDiv = document.getElementById("board");
-    //for each size, create a div with class game-row
-    for(let i = 0; i < size; i++){
-        let gameRow = document.createElement("div");
-        gameRow.classList.add("game-row");
-        //for each game-row create a div with class game-square
-        for(let j = 0; j < size; j++){
-            let gameSquare = document.createElement("div");
-            gameSquare.classList.add("game-square");
-            // gameSquare.innerHTML = board[i][j];
-            gameSquare.innerHTML = "&nbsp;";
-            gameRow.appendChild(gameSquare);
-        }
-        boardDiv.appendChild(gameRow);
-    }
-}
-loadBoard();
 
-//Given coordinates, return square node
-let getSquareNode = function(i,j){
-    return document.getElementById("board").children[i].children[j]
-}
+
+
 
 //set player markers
 let p1 = {
@@ -141,7 +136,6 @@ let p2 = {
     wins:0
 }
 
-//True is Player 1, False is player 2,
 let currPlayer = p1;
 
 //Click Handler
@@ -177,6 +171,45 @@ let clickHandler = function(event){
     }
 }
 
+//Given coordinates, return square node
+let getSquareNode = function(i,j){
+    return document.getElementById("board").children[i].children[j]
+}
+
+//Add event handlers
+let addClickListener = function(){
+    for(let i = 0; i < size; i++){
+        for(let j = 0; j < size; j++){
+            let n = getSquareNode(i,j)
+            n.addEventListener('click',clickHandler);
+        }
+    }
+}
+
+
+//clears all click listeners
+let clearClickListener = function(){
+    for(let i = 0; i < size; i++){
+        for(let j = 0; j < size; j++){
+            let n = getSquareNode(i,j)
+            n.removeEventListener('click', clickHandler)
+        }
+    }
+}
+
+//Sets the innerHTML after clicked
+let updateBoardDisplay = function(i,j,m){
+    let sq = getSquareNode(i,j);
+    sq.innerHTML=m;
+}
+
+//Removes the board
+let clearBoardDisplay = function(){
+    document.getElementById("board").innerHTML=""
+    document.getElementById("output").innerHTML=""
+}
+
+//execute list of commands upon game over
 let gameWon = function(winner){
     let winningPlayer;
     if(winner === p1.marker){
@@ -188,41 +221,39 @@ let gameWon = function(winner){
     clearClickListener();
 }
 
-//Add event handlers
-
-let addClickListener = function(){
-    for(let i = 0; i < size; i++){
-        for(let j = 0; j < size; j++){
-            let n = getSquareNode(i,j)
-            n.addEventListener('click',clickHandler);
-        }
-    }
-}
-
-addClickListener();
-
-let clearClickListener = function(){
-    for(let i = 0; i < size; i++){
-        for(let j = 0; j < size; j++){
-            let n = getSquareNode(i,j)
-            n.removeEventListener('click', clickHandler)
-        }
-    }
-}
-
-
-//Sets the innerHTML after clicked
-let updateBoardDisplay = function(i,j,m){
-    let sq = getSquareNode(i,j);
-    sq.innerHTML=m;
-}
-
-//Removes the board
-let clearBoardDisplay = function(){
-    document.getElementById("board").innerHTML=""
-}
-
 // for(let i = 0; i < size; i++){
 //     for(let j = 0; j < size; j++){
 //     }
 // }
+
+
+//set button listener
+//onclick - get input from input box
+//assign size
+//create initial board
+//loadboard()
+//hide input displays
+
+
+document.getElementById("start-button").addEventListener('click', function(event){
+    console.log("start button clicked")
+    //check input and return if not integer
+    let input = document.getElementById("input1");
+    console.log("inputvalue"+input.value*1);
+    if(isNaN(input.value*1) || input.value===""){
+        alert("Input needs to be numeric and an integer");
+        return;
+    } else {
+        clearBoardDisplay();
+        size = input.value;
+        board = createBoard(size);
+        loadBoard();
+        addClickListener();
+        console.log("Game Started")
+    }
+});
+
+
+
+
+//Create initial board
