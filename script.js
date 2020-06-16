@@ -39,7 +39,6 @@ let loadBoard = function(){
     }
 }
 
-
 //Updates the backend game board
 let updateBoard = function(i,j,m){
     board[i][j] = m;
@@ -89,6 +88,24 @@ let getWinner = function(){
     return winner;
 };
 
+//check if its a draw i.e. all board non null;
+var isDraw = function(){
+    let gotNull = false;
+    for(let i = 0; i < size; i++){
+        for(let j = 0; j < size; j++){
+            if(board[i][j]===null){
+                gotNull=true;
+            }
+        }
+    }
+    if(gotNull===true){
+        return false;
+    } else {
+        return true;
+    }
+};
+
+
 //checks if the values of the array are equal and not null
 let checkArrayEqual = function(arr){
     let winner = null;
@@ -117,11 +134,6 @@ let getDiagonal = function(dir){
     }
     return resArr
 }
-
-
-//----DOM MANIPULATION FUNCTIONS
-
-
 
 
 //set player markers
@@ -161,6 +173,11 @@ let clickHandler = function(event){
     if(winner!=null){
         console.log("winner is "+winner)
         gameWon(winner);
+    }
+
+    //check if draw
+    if(isDraw()){
+        gameDraw();
     }
 
     //set next player
@@ -222,10 +239,10 @@ let gameWon = function(winner){
     toggleInputDisplay();
 }
 
-// for(let i = 0; i < size; i++){
-//     for(let j = 0; j < size; j++){
-//     }
-// }
+let gameDraw = function(){
+    document.getElementById("output").innerHTML = "It's a draw.";
+    toggleInputDisplay();
+}
 
 
 let toggleInputDisplay = function(){
@@ -260,8 +277,3 @@ document.getElementById("start-button").addEventListener('click', function(event
         toggleInputDisplay();
     }
 });
-
-
-
-
-//Create initial board
