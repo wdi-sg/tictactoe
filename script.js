@@ -4,6 +4,15 @@ squaresList[X].innerText
 3 | 4 | 5
 6 | 7 | 8
 
+winning combos:
+0 1 2
+0 4 8
+0 3 6
+1 4 7
+2 5 8
+2 4 6
+3 4 5
+6 7 8
 */
 
 // ui variables
@@ -28,6 +37,9 @@ playAgain.addEventListener('click', replay);
 // keep track of whose turn it is
 let turn = 0;
 
+// keep track of winner
+let winnerFound = false;
+
 // add event listener to each square
 squaresList.forEach((square) => {
   square.addEventListener('click', draw)
@@ -39,16 +51,17 @@ function draw(e) {
   if (turn % 2 === 0 && selected.innerText === "") {
     selected.innerText = "x";
     turn++;
-    if (turn > 8) {
-      document.body.appendChild(gameOver);
-      document.body.appendChild(playAgain);
-    }
   } else if (turn % 2 !== 0 && selected.innerText === "") {
     selected.innerText = "o";
     turn++;
-    if (turn > 8) {
-      document.body.appendChild(gameOver);
-    }
+  }
+  getWinner(); // evaluate winner every turn
+  if (winnerFound) {
+    document.body.appendChild(gameOver);
+    document.body.appendChild(playAgain);
+    squaresList.forEach((square) => {
+      square.removeEventListener('click', draw)
+    })
   }
 }
 
@@ -78,10 +91,78 @@ function showBoard(){
 // replay function
 function replay(){
   turn = 0;
+  winnerFound = false;
   squaresList.forEach((square) => {
     square.innerText = "";
+    square.addEventListener('click', draw);
   })
   playAgain.remove();
   gameOver.remove();
 }
 
+// evaluate winner function
+function getWinner() {
+  if (squaresList[0].innerText === "x" && squaresList[1].innerText === "x" && squaresList[2].innerText === "x") {
+    alert('x is the winner'); // issue: alert occurs twice. why???
+    winnerFound = true;
+  } else if (squaresList[0].innerText === "o" && squaresList[1].innerText === "o" && squaresList[2].innerText === "o") {
+    alert('o is the winner');
+    winnerFound = true;
+  }
+  
+  if (squaresList[0].innerText === "x" && squaresList[4].innerText === "x" && squaresList[8].innerText === "x") {
+    alert('x is the winner');
+    winnerFound = true;
+  } else if (squaresList[0].innerText === "o" && squaresList[4].innerText === "o" && squaresList[8].innerText === "o") {
+    alert('o is the winner');
+    winnerFound = true;
+  }
+
+  if (squaresList[0].innerText === "x" && squaresList[3].innerText === "x" && squaresList[6].innerText === "x") {
+    alert('x is the winner');
+    winnerFound = true;
+  } else if (squaresList[0].innerText === "o" && squaresList[3].innerText === "o" && squaresList[6].innerText === "o") {
+    alert('o is the winner');
+    winnerFound = true;
+  }
+
+  if (squaresList[1].innerText === "x" && squaresList[4].innerText === "x" && squaresList[7].innerText === "x") {
+    alert('x is the winner');
+    winnerFound = true;
+  } else if (squaresList[1].innerText === "o" && squaresList[4].innerText === "o" && squaresList[7].innerText === "o") {
+    alert('o is the winner');
+    winnerFound = true;
+  }
+
+  if (squaresList[2].innerText === "x" && squaresList[5].innerText === "x" && squaresList[8].innerText === "x") {
+    alert('x is the winner');
+    winnerFound = true;
+  } else if (squaresList[2].innerText === "o" && squaresList[5].innerText === "o" && squaresList[8].innerText === "o") {
+    alert('o is the winner');
+    winnerFound = true;
+  }  
+
+  if (squaresList[2].innerText === "x" && squaresList[4].innerText === "x" && squaresList[6].innerText === "x") {
+    alert('x is the winner');
+    winnerFound = true;
+  } else if (squaresList[2].innerText === "o" && squaresList[4].innerText === "o" && squaresList[6].innerText === "o") {
+    alert('o is the winner');
+    winnerFound = true;
+  }
+
+  if (squaresList[3].innerText === "x" && squaresList[4].innerText === "x" && squaresList[5].innerText === "x") {
+    alert('x is the winner');
+    winnerFound = true;
+  } else if (squaresList[3].innerText === "o" && squaresList[4].innerText === "o" && squaresList[5].innerText === "o") {
+    alert('o is the winner');
+    winnerFound = true;
+  }  
+
+  if (squaresList[6].innerText === "x" && squaresList[7].innerText === "x" && squaresList[8].innerText === "x") {
+    alert('x is the winner');
+    winnerFound = true;
+  } else if (squaresList[6].innerText === "o" && squaresList[7].innerText === "o" && squaresList[8].innerText === "o") {
+    alert('o is the winner');
+    winnerFound = true;
+  }  
+}
