@@ -1,3 +1,7 @@
+$(document).ready(function () {
+
+
+
 var playerInputTemp = 'X'; //prompt("Are you 'O' or 'X'?");
 var playerInput = playerInputTemp.toUpperCase();
 playerInput === 'X' ? computerInput = 'O' : computerInput = 'X';
@@ -125,3 +129,6 @@ function checkWin() {
     }
   }
 }
+
+    
+});
