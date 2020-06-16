@@ -166,6 +166,7 @@ let clickHandler = function(event){
     let winner = getWinner();
     if(winner!=null){
         console.log("winner is "+winner)
+        gameWon(winner);
     }
 
     //set next player
@@ -174,7 +175,16 @@ let clickHandler = function(event){
     } else {
         currPlayer = p1;
     }
+}
 
+let gameWon = function(winner){
+    let winningPlayer;
+    if(winner === p1.marker){
+        winningPlayer=p1;
+    } else {
+        winningPlayer=p2;
+    }
+    document.getElementById("output").innerHTML = "Winner is " + winningPlayer.name;
 }
 
 //Add event handlers
