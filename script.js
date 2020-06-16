@@ -103,7 +103,7 @@ function replay(){
 // evaluate winner function
 function getWinner() {
   if (squaresList[0].innerText === "x" && squaresList[1].innerText === "x" && squaresList[2].innerText === "x") {
-    alert('x is the winner'); // issue: alert occurs twice. why???
+    alert('x is the winner');
     winnerFound = true;
   } else if (squaresList[0].innerText === "o" && squaresList[1].innerText === "o" && squaresList[2].innerText === "o") {
     alert('o is the winner');
@@ -164,5 +164,12 @@ function getWinner() {
   } else if (squaresList[6].innerText === "o" && squaresList[7].innerText === "o" && squaresList[8].innerText === "o") {
     alert('o is the winner');
     winnerFound = true;
-  }  
+  }
+  else if (!winnerFound && turn === 9) {
+    document.body.appendChild(gameOver);
+    document.body.appendChild(playAgain);
+    squaresList.forEach((square) => {
+      square.removeEventListener('click', draw)
+    })
+  }
 }
