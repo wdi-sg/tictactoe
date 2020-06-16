@@ -1,8 +1,8 @@
 //----GAME FUNCTjONS
 
 //default board values
-const ch = null;
-const size = 4;
+const ch = "&nbsp";
+const size = 3;
 
 //createBoard(sjze); - return array representing board
 let createBoard = function(size){
@@ -21,9 +21,9 @@ let createBoard = function(size){
 let board = createBoard(size);
 
 //updateBoard(i,j,char); - updates board wjth selectjon //m can be X or O
-let updateBoard = function(i,j,m){
-    board[i][j] = m;
-};
+// let updateBoard = function(i,j,m){
+//     board[i][j] = m;
+// };
 
 //getWinner(); - return wjnner
 let getWinner = function(){
@@ -98,26 +98,90 @@ let getDiagonal = function(dir){
     return resArr
 }
 
+//TEST GAME PLAY
+// updateBoard(0,0,"O"); updateBoard(0,1,"O"); updateBoard(0,2,"X");// updateBoard(0,3,"X");
+// updateBoard(1,0,"O"); updateBoard(1,1,"O"); updateBoard(1,2,"X");// updateBoard(1,3,"X");
+// updateBoard(2,0,"X"); updateBoard(2,1,"X"); updateBoard(2,2,"O");// updateBoard(2,3,"O");
+//updateBoard(3,0,"O"); updateBoard(3,1,"O"); updateBoard(3,2,"X");// updateBoard(3,3,"O");
 
 
-updateBoard(0,0,"O"); updateBoard(0,1,"O"); updateBoard(0,2,"X"); updateBoard(0,3,"X");
-updateBoard(1,0,"O"); updateBoard(1,1,"O"); updateBoard(1,2,"X"); updateBoard(1,3,"X");
-updateBoard(2,0,"X"); updateBoard(2,1,"X"); updateBoard(2,2,"O"); updateBoard(2,3,"O");
-updateBoard(3,0,"O"); updateBoard(3,1,"O"); updateBoard(3,2,"X"); updateBoard(3,3,"O");
+//----GAME VARIABLES
+
+
+//----DOM MANIPULATION FUNCTIONS
+//given board, build div structure
+
+let loadBoard = function(){
+    let boardDiv = document.getElementById("board");
+    //for each size, create a div with class game-row
+    for(let i = 0; i < size; i++){
+        let gameRow = document.createElement("div");
+        gameRow.classList.add("game-row");
+        //for each game-row create a div with class game-square
+        for(let j = 0; j < size; j++){
+            let gameSquare = document.createElement("div");
+            gameSquare.classList.add("game-square");
+            gameSquare.innerHTML = board[i][j];
+            gameRow.appendChild(gameSquare);
+        }
+        boardDiv.appendChild(gameRow);
+    }
+}
+loadBoard();
+
+
+let clickHandler = function(event){
+    // console.log("click happened" + event.target)
+    let i = Array.from(event.target.parentElement.parentElement.children).indexOf(event.target.parentElement);
+    let j = Array.from(event.target.parentElement.children).indexOf(event.target);
+    console.log("clicked: " + i +" "+ j)
+    updateBoardDisplay(i,j,"X");
+    //remove eventlistener
+    getSquareNode(i,j).removeEventListener('click')
+}
+
+let updateBoardDisplay = function(i,j,m){
+    let sq = getSquareNode(i,j);
+    sq.innerHTML=m;
+}
+
+let getSquareNode = function(i,j){
+    return document.getElementById("board").children[i].children[j]
+}
+
+for(let i = 0; i < size; i++){
+    for(let j = 0; j < size; j++){
+        let n = getSquareNode(i,j)
+        n.addEventListener('click',function(event){
+            clickHandler(event);
+        });
+    }
+}
+
+let getCoord = function(squareNode){
+    console.log(Array.from(squareNode.parentElement.children).indexOf(squareNode));
+}
+
+let clearBoardDisplay = function(){
+    document.getElementById("board").innerHTML=""
+}
+
+
+
+// for(let i = 0; i < size; i++){
+//     for(let i = 0; i < size; i++){
+
+//     }
+// }
 
 
 
 
-
-
-
-
-
-//----GAME VARjABLES
-
-
-
-//----DOM MANjPULATjON FUNCTjONS
+//set up click handlers depending on which one clicked
+    //updateBoard
+    //clearBoardDisplay
+    //show board Display
+    //detectwin
 
 //clearBoardDjsplay
 //showBoardDjsplay
