@@ -75,6 +75,10 @@ let getWinner = function(){
             break;
         }
     }
+    if(winner!==null){
+        return winner;
+    }
+
     //diagonal
     winner = checkArrayEqual(getDiagonal("l"))
     if(winner!==null){
