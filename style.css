@@ -1,15 +1,16 @@
 .game-square {
 	display: inline-block;
 	background-color: red;
-	width: 50px;
-	height: 33px;
+	width: 80px;
+	height: 50px;
 	border: 1px solid grey;
 	margin: 1px;
 	padding: 1px;
+	vertical-align: top;
+	font-size: 43px;
 }
 
 #board {
-	display: grid;
+	/*display: grid;*/
 	text-align: center;
-	scale: 2;
 }
