@@ -3,15 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Tic Tac Toe</title>
 </head>
 <body>
-    <div class="start-state" id="startState">
-        <div class="start-message"></div>
+    <div class="start-state show" id="startState">
+        <div class="start-message">Let's Play <span>Tic-Tac-Toe</span>!</div>
+        <input id="input" type="text" placeholder="Enter name for player 1">
         <button id="start">Start</button>
     </div>
     <div class="container">
+        <div class="scoreboard">
+            <p class="score" id="x-score">X Score:</p>
+            <p class="score" id="o-score">O Score:</p>
+        </div>
         <div class="grid">
             <div class="cell"></div>
             <div class="cell"></div>
