@@ -1,18 +1,42 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="normalize.css">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="normalize.css"> -->
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <header><h1>TIC TAC TOE</h1></header>
-    <input class="inputs" id="input1" placeholder="Grid Size?"/>
-    <button class="inputs" id="start-button" type="button">Start Game</button>
-    <main>
-    <div id ="board">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <header><h3 class="mt-2 text-center">TIC TAC TOE</h3></header>
+        </div>
+      </div>
     </div>
-    <div id="output"></div>
-</main>
+    <main>
+      <div class="container">
+        <div class="row">
+          <div class="mx-auto">
+            <input class="my-1 inputs" id="input1" placeholder="Grid Size?"/>
+          </div>
+        </div>
+        <div class="row">
+          <div class="mx-auto">
+            <button class="mb-2 inputs" id="start-button" type="button">Start Game</button>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="mx-auto" id="output"></div>
+        </div>
+        <div class="row">
+          <div class="mx-auto" id ="board">
+          </div>
+        </div>
+      </div>
+    </main>
     <script src="script.js"></script>
   </body>
 </html>
