@@ -9,21 +9,32 @@ body {
     justify-content: center;
     text-align: center;
     font-family: Helvetica neue, roboto;
-  }
-  
-  #start-button {
+}
+
+#start-button {
     margin: 15px;
     font-family: 'Indie Flower', cursive;
-  }
-  
-  img {
+}
+
+img {
     width: 56px;
     height: 48px;
-  }
-  
-  h1 {
+}
+
+h1 {
     font-weight: 200;
     font-style: 26px;
     margin: 10px;
     font-family: 'Indie Flower', cursive;
-  }
+}
+
+#score-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-family: 'Indie Flower', cursive;
+}
+
+.score {
+    padding: 0 30px;
+}
