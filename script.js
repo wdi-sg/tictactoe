@@ -63,7 +63,7 @@ if (startButton) {
             }
             else {
                 playerTwo.name = input.value;
-                input.placeholder = 'Choose symbol for player 1: X or O?';
+                input.placeholder = 'Player 1: X or O?';
                 input.value = "";
             }
         }
@@ -147,15 +147,6 @@ function verifyWin (symbolClass){
         })
     })
 }
-
-// function verifyWin (symbolClass){
-//     for (var possibility = 0; possibility < possibleWins.length; possibility++){
-//         for (var j = 0; j < possibility.length; j++){
-//             console.log(cells[j].classList.contains(symbolClass));
-                
-//             }
-//         }
-//     }
 
 function gameOver(draw){
     if (draw){
