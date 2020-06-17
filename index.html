@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.board {
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+  background-color: #2196F3;
+  padding: 10px;
+}
+
+.game-square {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Tic-Tac-Toe</h1>
+
+<div class="board">
+    <div class="game-column">
+        <div class="game-square" id="1">1</div>
+        <div class="game-square" id="2">4</div>
+        <div class="game-square" id="3">7</div>
+    </div>
+    <div class="game-column">  
+        <div class="game-square" id="4">2</div>
+        <div class="game-square" id="5">5</div>
+        <div class="game-square" id="6">8</div>
+    </div>
+    <div class="game-column">   
+        <div class="game-square" id="7">3</div>
+        <div class="game-square" id="8">6</div>
+        <div class="game-square" id="9">9</div>  
+    </div>
+</div>
+
+<p id="demo" onclick="myFunction()">Click me to change my text color.</p>
+
+<p>A function is triggered when the p element is clicked. The function sets the color of the p element to red.</p>
+
+
+</body>
+</html>
+
+<script>
+var count;
+for (count = 0; count < 10; count++) {
+  text += cars[i] + "<br>";
+}
+
+// function myFunction() {
+//     if( isEven(count))
+//         document.getElementById("demo").style.background = "red";
+//     }
+//     else {
+//         document.getElementById("demo").style.background = "blue";
+//     }
+
+function isEven(value) {
+	if (value%2 == 0)
+		return true;
+	else
+		return false;
+}
+</script>
+
+<!--
+added board 
+change colour of word on click
+added odd and even to detect alternate players
+
+cont on:
+fix count -> assign clicks to count -> assign count to output colour -> check for colour in same row/col/diagonal
+-->
