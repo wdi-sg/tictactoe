@@ -1,21 +1,28 @@
-var playerInputTemp = 'X'; //prompt("Are you 'O' or 'X'?");
-var playerInput = playerInputTemp.toUpperCase();
+let playerInputTemp = 'X'; //prompt("Are you 'O' or 'X'?");
+let playerInput = playerInputTemp.toUpperCase();
 playerInput === 'X' ? computerInput = 'O' : computerInput = 'X';
-let gameState = 1; //tracks if game is on or over; had to do this so the computer wouldn't play it's move even after the game had ended
+let gameState = 1; //tracks if game is on or over; had to do this so the computer wouldn't play it's move even after the game has ended
 
 
-var playerScore = 0;
-var computerScore = 0;
+let computerDifficulty = 'Dumb';
+let selectDifficulty = document.querySelector('select');
+selectDifficulty.addEventListener('change', function() {
+    computerDifficulty = selectDifficulty.value;
+})
+
+
+let playerScore = 0;
+let computerScore = 0;
 playerScoreEl = document.getElementById('player-score');
 compScoreEl = document.getElementById('computer-score');
 
 
-var initialBoard = [
+let initialBoard = [
     [null, null, null],
     [null, null, null],
     [null, null, null]
 ];
-var currentBoard = JSON.parse(JSON.stringify(initialBoard));
+let currentBoard = JSON.parse(JSON.stringify(initialBoard));
 
 
 
@@ -23,9 +30,9 @@ var currentBoard = JSON.parse(JSON.stringify(initialBoard));
 
 
 
-var board = document.getElementById('board');
-var startButton = document.getElementById('start-button');
-var newPara = document.createElement('p');
+let board = document.getElementById('board');
+let startButton = document.getElementById('start-button');
+let newPara = document.createElement('p');
 newPara.style = 'font-family: \'Indie Flower\', cursive;';
 
 
@@ -87,12 +94,33 @@ function playerPress() {
             buttonGrid[i].innerText = playerInput;
             buttonGrid[i].disabled = true;
             currentBoard[Math.floor(i/3)][i%3] = playerInput;
+            checkDraw();
+            checkWin();
+            console.log(gameState);
             if (gameState === 1) {
-                setTimeout(computerMove, 200);
+                if (computerDifficulty === 'Dumb') {
+                    setTimeout(computerMove, 150);
+                }
+                else {
+                    setTimeout(computerMove, 150);
+                }
+                setTimeout(checkDraw, 150);
+                setTimeout(checkWin, 150);
             }
-            setTimeout(checkWin, 200);
         })
     } 
+}
+
+
+
+function checkDraw() {
+    if (!currentBoard.flat().includes(null)) {
+        newPara.innerText = `It's a draw!`;
+        gameState = 0;
+        board.appendChild(newPara);
+        buttonGrid.forEach(x => x.disabled = true);
+        startButton.innerText = 'RESTART';
+    }
 }
 
 
@@ -112,21 +140,20 @@ function checkWin() {
         }
     }
 
-    //checks for diagonal wins                      
-    let arrTemp = [];
-    for (let i = 0 ; i < currentBoard.length ; i++) {
-        arrTemp.push(currentBoard[i][i]);
+    //checks for diagonal wins YEABOIII
+    let diagonalFromLeft = currentBoard
+        .map(row => row[currentBoard.indexOf(row)])
+        .join('');
+    if (diagonalFromLeft.match(winCondition)) {
+        afterWin(diagonalFromLeft.match(winCondition));
     }
-    if (arrTemp.join('').match(winCondition)) {
-        afterWin(arrTemp.join('').match(winCondition));
+
+    let diagonalFromRight = currentBoard
+        .map(row => row[currentBoard.length - 1 - currentBoard.indexOf(row)])
+        .join('');
+    if (diagonalFromRight.match(winCondition)) {
+        afterWin(diagonalFromRight.match(winCondition));
     }
-    let arrTemp2 = [];
-    for (let i = 0 ; i < currentBoard.length ; i++) {
-        arrTemp2.push(currentBoard[i][currentBoard.length-1-i]);
-    }
-    if (arrTemp2.join('').match(winCondition)) {
-        afterWin(arrTemp2.join('').match(winCondition));
-    }    
 }
 
 
@@ -158,7 +185,7 @@ function afterWin(winningArr) {
 
 function computerMove() {
     let moves = []; //[0,1], [0,2], [1,2], etc.
-    if (currentBoard.flat().includes(null)) { //makes sure that there are empty boxes
+    if (currentBoard.flat().includes(null) && gameState == 1) { //makes sure that there are empty boxes
         for (let i = 0 ; i < currentBoard.length; i++) {
             for (let j = 0 ; j < currentBoard[i].length ; j++) {
                 if (currentBoard[i][j] === null) {
@@ -175,44 +202,52 @@ function computerMove() {
 
 
 
-// function computerMove2() {
-    
-// }
 
 
 // //similar to checkWin() except matching terms are different
-// function checkThreat() {
+// function computerMove2() {
 //     let winCondition = /^X{2}$|^O{2}$/;
 
-//     //checks for horizontal and vertical wins
+//     //checks for horizontal and vertical threats
 //     for (let i = 0 ; i < currentBoard.length ; i++) {
 //         if (currentBoard[i].join('').match(winCondition)) {
-
+//             //let indexOfMove = currentBoard[i].indexOf(null);
+//             //currentBoard[i][indexOfMove] = computerInput;
+//             //buttonGrid[i * 3 + indexOfMove].innerText = computerInput;
+//             //buttonGrid[i * 3 + indexOfMove].disabled;
 //             break;
 //         }
 //         else if (currentBoard.map(x => x[i]).join('').match(winCondition)) {
-
+//             //let indexOfMove = currentBoard.map(x => x[i]).indexOf(null);
+//             //change currentBoard[indexOfMove][i] = computerInput;
+//             //change buttonGrid[indexOfMove * 3 + i].innerText = computerInput;
+//             //buttonGrid[indexOfMove * 3 + i].disabled;
 //             break;
 //         }
 //     }
-
-//     //checks for diagonal wins                      
-//     let arrTemp = [];
-//     for (let i = 0 ; i < currentBoard.length ; i++) {
-
+                     
+//     //checks for diagonal threats YEABOIII
+//     let diagonalFromLeft = currentBoard
+//         .map(row => row[currentBoard.indexOf(row)])
+//         .join('');
+//     if (diagonalFromLeft.match(winCondition)) {
+//         afterWin(diagonalFromLeft.match(winCondition));
 //     }
-//     if (arrTemp.join('').match(winCondition)) {
 
-//     }
-//     let arrTemp2 = [];
-//     for (let i = 0 ; i < currentBoard.length ; i++) {
-
-//     }
-//     if (arrTemp2.join('').match(winCondition)) {
-
-//     }    
+//     let diagonalFromRight = currentBoard
+//         .map(row => row[currentBoard.length - 1 - currentBoard.indexOf(row)])
+//         .join('');
+//     if (diagonalFromRight.match(winCondition)) {
+//         afterWin(diagonalFromRight.match(winCondition));
+//     } 
 // }
 
 
 // let str = 'XX';
 // console.log(str.match(/^X{2}$|^O{2}$/))
+
+// let testBoard = [
+//     ['a', null, null],
+//     [null, 'b', null],
+//     [null, null, 'c']
+// ];

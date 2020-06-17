@@ -12,8 +12,17 @@
     <body>
         <h1>A game of Tic-Tac-Toe</h1>
         
+        <span id='difficulty-selection'>
+            <p>Bot difficulty:&nbsp</p>
+            <select> 
+              <option value="easy">Dumb</option>
+              <option value="hard">Sensible</option>
+            </select>
+        </span>
+
         <button class='btn btn-primary' id='start-button'>START</button>
-        
+               
+
         <div id='score-card'>
             <p class='score' id='player-score'>Wins: 0</p>
             <p class='score' id='computer-score'>Losses: 0</p>

@@ -38,3 +38,15 @@ h1 {
 .score {
     padding: 0 30px;
 }
+
+select {
+    margin-bottom: 20px;
+    font-family: 'Indie Flower', cursive;
+}
+
+#difficulty-selection {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    font-family: 'Indie Flower', cursive;
+}
