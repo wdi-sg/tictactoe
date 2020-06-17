@@ -1,17 +1,47 @@
 .game-square{
     display: inline-block;
     background-color:#fc0;
-    width:50px !important;
-    height:33px !important;
+    width:100px !important;
+    height:100px !important;
     border: 1px solid #dddddd;
-    border-left:none;
     border-radius:5px;
     margin:0;
     padding:2px;
-    justify-self: center;
+    text-align: center;
+    font-size: 100px;
 }
 
-#board{
+.board{
     display: grid;
+    grid-template: repeat(3, 110px) / repeat(3, 105px);
+    justify-content: center;
+    width: 100vh;
+    height: 100wh;
+    
 
 }
+
+/*
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-template-rows: repeat(3, auto);
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+  height: 100vh;
+  width: 100vw;
+ }
+ .cell {
+  background: #F5FAF9;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  height: 200px;
+  width: 200px;
+  position: relative;
+ }
+*/
