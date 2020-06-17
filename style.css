@@ -1,0 +1,22 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* vh = view height*/
+}
+
+#game-board {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border: 5px solid rgb(247, 246, 246);
+    height: 300px;
+    width: 300px;
+}
+
+.game-tile {
+    flex: 0 0 32%;
+    border: 2px solid black;
+    height: 98px;
+}
