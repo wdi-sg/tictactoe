@@ -102,7 +102,7 @@ function playerPress() {
                     setTimeout(computerMove, 150);
                 }
                 else {
-                    setTimeout(computerMove, 150);
+                    setTimeout(computerMove2, 150);
                 }
                 setTimeout(checkDraw, 150);
                 setTimeout(checkWin, 150);
@@ -201,53 +201,56 @@ function computerMove() {
 }
 
 
+function computerMove2() {
+    if (checkThreat()) {
+        checkThreat();
+    }
+    else {
+        computerMove();
+    }
+}
 
 
+//similar to checkWin() except matching terms are different
+function checkThreat() {
+    let winCondition = /^X{2}$|^O{2}$/;
 
-// //similar to checkWin() except matching terms are different
-// function computerMove2() {
-//     let winCondition = /^X{2}$|^O{2}$/;
-
-//     //checks for horizontal and vertical threats
-//     for (let i = 0 ; i < currentBoard.length ; i++) {
-//         if (currentBoard[i].join('').match(winCondition)) {
-//             //let indexOfMove = currentBoard[i].indexOf(null);
-//             //currentBoard[i][indexOfMove] = computerInput;
-//             //buttonGrid[i * 3 + indexOfMove].innerText = computerInput;
-//             //buttonGrid[i * 3 + indexOfMove].disabled;
-//             break;
-//         }
-//         else if (currentBoard.map(x => x[i]).join('').match(winCondition)) {
-//             //let indexOfMove = currentBoard.map(x => x[i]).indexOf(null);
-//             //change currentBoard[indexOfMove][i] = computerInput;
-//             //change buttonGrid[indexOfMove * 3 + i].innerText = computerInput;
-//             //buttonGrid[indexOfMove * 3 + i].disabled;
-//             break;
-//         }
-//     }
+    //checks for horizontal and vertical threats
+    for (let i = 0 ; i < currentBoard.length ; i++) {
+        if (currentBoard[i].join('').match(winCondition)) {
+            let indexOfMove = currentBoard[i].indexOf(null);
+            currentBoard[i][indexOfMove] = computerInput;
+            buttonGrid[i * 3 + indexOfMove].innerText = computerInput;
+            buttonGrid[i * 3 + indexOfMove].disabled;
+            break;
+        }
+        else if (currentBoard.map(x => x[i]).join('').match(winCondition)) {
+            let indexOfMove = currentBoard.map(x => x[i]).indexOf(null);
+            currentBoard[indexOfMove][i] = computerInput;
+            buttonGrid[indexOfMove * 3 + i].innerText = computerInput;
+            buttonGrid[indexOfMove * 3 + i].disabled = true;
+            break;
+        }
+    }
                      
-//     //checks for diagonal threats YEABOIII
-//     let diagonalFromLeft = currentBoard
-//         .map(row => row[currentBoard.indexOf(row)])
-//         .join('');
-//     if (diagonalFromLeft.match(winCondition)) {
-//         afterWin(diagonalFromLeft.match(winCondition));
-//     }
+    //checks for diagonal threats
+    let diagonalFromLeft = currentBoard
+        .map(row => row[currentBoard.indexOf(row)])
+        .join('');
+    if (diagonalFromLeft.match(winCondition)) {
+        let indexOfRow = diagonalFromLeft.indexOf(null);
+        currentBoard[indexOfRow][indexOfRow] = computerInput;
+        buttonGrid[indexOfRow * 3 + indexOfRow].innerText = computerInput;
+        buttonGrid[indexOfRow * 3 + indexOfRow].disabled = true;
+    }
 
-//     let diagonalFromRight = currentBoard
-//         .map(row => row[currentBoard.length - 1 - currentBoard.indexOf(row)])
-//         .join('');
-//     if (diagonalFromRight.match(winCondition)) {
-//         afterWin(diagonalFromRight.match(winCondition));
-//     } 
-// }
-
-
-// let str = 'XX';
-// console.log(str.match(/^X{2}$|^O{2}$/))
-
-// let testBoard = [
-//     ['a', null, null],
-//     [null, 'b', null],
-//     [null, null, 'c']
-// ];
+    let diagonalFromRight = currentBoard
+        .map(row => row[currentBoard.length - 1 - currentBoard.indexOf(row)])
+        .join('');
+    if (diagonalFromRight.match(winCondition)) {
+        let indexOfRow = diagonalFromRight.indexOf(null);
+        currentBoard[indexOfRow][currentBoard.length - 1 -indexOfRow] = computerInput;
+        buttonGrid[indexOfRow * 3 + currentBoard.length - 1 -indexOfRow].innerText = computerInput;
+        buttonGrid[indexOfRow * 3 + currentBoard.length - 1 -indexOfRow].disabled = true;
+    } 
+}
