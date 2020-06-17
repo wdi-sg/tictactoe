@@ -98,12 +98,13 @@ function playerPress() {
             checkWin();
             console.log(gameState);
             if (gameState === 1) {
-                if (computerDifficulty === 'Dumb') {
-                    setTimeout(computerMove, 150);
-                }
-                else {
-                    setTimeout(computerMove2, 150);
-                }
+                setTimeout(computerMove, 150)
+                // if (computerDifficulty === 'Dumb') {
+                //     setTimeout(computerMove, 150);
+                // }
+                // else {
+                //     setTimeout(computerMove2, 150);
+                // }
                 setTimeout(checkDraw, 150);
                 setTimeout(checkWin, 150);
             }
@@ -201,56 +202,56 @@ function computerMove() {
 }
 
 
-function computerMove2() {
-    if (checkThreat()) {
-        checkThreat();
-    }
-    else {
-        computerMove();
-    }
-}
+// function computerMove2() {
+//     if (checkThreat()) {
+//         checkThreat();
+//     }
+//     else {
+//         computerMove();
+//     }
+// }
 
 
-//similar to checkWin() except matching terms are different
-function checkThreat() {
-    let winCondition = /^X{2}$|^O{2}$/;
+// //similar to checkWin() except matching terms are different
+// function checkThreat() {
+//     let winCondition = /^X{2}$|^O{2}$/;
 
-    //checks for horizontal and vertical threats
-    for (let i = 0 ; i < currentBoard.length ; i++) {
-        if (currentBoard[i].join('').match(winCondition)) {
-            let indexOfMove = currentBoard[i].indexOf(null);
-            currentBoard[i][indexOfMove] = computerInput;
-            buttonGrid[i * 3 + indexOfMove].innerText = computerInput;
-            buttonGrid[i * 3 + indexOfMove].disabled;
-            break;
-        }
-        else if (currentBoard.map(x => x[i]).join('').match(winCondition)) {
-            let indexOfMove = currentBoard.map(x => x[i]).indexOf(null);
-            currentBoard[indexOfMove][i] = computerInput;
-            buttonGrid[indexOfMove * 3 + i].innerText = computerInput;
-            buttonGrid[indexOfMove * 3 + i].disabled = true;
-            break;
-        }
-    }
+//     //checks for horizontal and vertical threats
+//     for (let i = 0 ; i < currentBoard.length ; i++) {
+//         if (currentBoard[i].join('').match(winCondition)) {
+//             let indexOfMove = currentBoard[i].indexOf(null);
+//             currentBoard[i][indexOfMove] = computerInput;
+//             buttonGrid[i * 3 + indexOfMove].innerText = computerInput;
+//             buttonGrid[i * 3 + indexOfMove].disabled;
+//             break;
+//         }
+//         else if (currentBoard.map(x => x[i]).join('').match(winCondition)) {
+//             let indexOfMove = currentBoard.map(x => x[i]).indexOf(null);
+//             currentBoard[indexOfMove][i] = computerInput;
+//             buttonGrid[indexOfMove * 3 + i].innerText = computerInput;
+//             buttonGrid[indexOfMove * 3 + i].disabled = true;
+//             break;
+//         }
+//     }
                      
-    //checks for diagonal threats
-    let diagonalFromLeft = currentBoard
-        .map(row => row[currentBoard.indexOf(row)])
-        .join('');
-    if (diagonalFromLeft.match(winCondition)) {
-        let indexOfRow = diagonalFromLeft.indexOf(null);
-        currentBoard[indexOfRow][indexOfRow] = computerInput;
-        buttonGrid[indexOfRow * 3 + indexOfRow].innerText = computerInput;
-        buttonGrid[indexOfRow * 3 + indexOfRow].disabled = true;
-    }
+//     //checks for diagonal threats
+//     let diagonalFromLeft = currentBoard
+//         .map(row => row[currentBoard.indexOf(row)])
+//         .join('');
+//     if (diagonalFromLeft.match(winCondition)) {
+//         let indexOfRow = diagonalFromLeft.indexOf(null);
+//         currentBoard[indexOfRow][indexOfRow] = computerInput;
+//         buttonGrid[indexOfRow * 3 + indexOfRow].innerText = computerInput;
+//         buttonGrid[indexOfRow * 3 + indexOfRow].disabled = true;
+//     }
 
-    let diagonalFromRight = currentBoard
-        .map(row => row[currentBoard.length - 1 - currentBoard.indexOf(row)])
-        .join('');
-    if (diagonalFromRight.match(winCondition)) {
-        let indexOfRow = diagonalFromRight.indexOf(null);
-        currentBoard[indexOfRow][currentBoard.length - 1 -indexOfRow] = computerInput;
-        buttonGrid[indexOfRow * 3 + currentBoard.length - 1 -indexOfRow].innerText = computerInput;
-        buttonGrid[indexOfRow * 3 + currentBoard.length - 1 -indexOfRow].disabled = true;
-    } 
-}
+//     let diagonalFromRight = currentBoard
+//         .map(row => row[currentBoard.length - 1 - currentBoard.indexOf(row)])
+//         .join('');
+//     if (diagonalFromRight.match(winCondition)) {
+//         let indexOfRow = diagonalFromRight.indexOf(null);
+//         currentBoard[indexOfRow][currentBoard.length - 1 -indexOfRow] = computerInput;
+//         buttonGrid[indexOfRow * 3 + currentBoard.length - 1 -indexOfRow].innerText = computerInput;
+//         buttonGrid[indexOfRow * 3 + currentBoard.length - 1 -indexOfRow].disabled = true;
+//     } 
+// }
