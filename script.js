@@ -225,5 +225,5 @@ function displayParaMessage(code) {
 }
 
 function isValid(name) {
-    return name == "" ? false : true;
+    return name == "" || name == " " ? false : true;
 }
