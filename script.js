@@ -1,5 +1,13 @@
 var playerTurn = "X";
 
+//version 2
+var gameSquare = document.createElement("span")
+document.getElementByClass(#game-row).appendChild(gameSquare)
+
+
+
+
+
 var squareSelected = document.querySelectorAll(".game-square");
 
 for (i = 0; i < squareSelected.length; i++) {
