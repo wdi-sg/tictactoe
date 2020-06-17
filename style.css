@@ -1,0 +1,33 @@
+h1, table{
+    text-align: center;
+    margin: auto;
+}
+
+div{
+    text-align: center;
+    margin: 10px auto 10px auto;
+}
+
+table{
+    margin-top: 20px;
+}
+
+td{
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
+
+.horizontal{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.vertical{
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.game-square{
+    font-size: 50px;
+}
