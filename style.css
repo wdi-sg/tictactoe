@@ -1,0 +1,89 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+
+/*INITIAL FORM*/
+input {
+    width: 150px;
+    text-align: center;
+    font-family: 'Gloria Hallelujah', cursive;
+    border-radius: 10px;
+    border: 1px solid rgb(210, 145, 188);
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+select {
+    height: 30px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+/*TICKEY TACKEY*/
+.container {
+  height: 250px;
+  width: 250px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  background-color: white;
+  margin: auto;
+}
+
+.cell {
+  background-color: #E0BBE4;
+  font-size: 3rem;
+  text-align: center;
+  padding: 0px;
+  border: 1px solid white;
+}
+
+#results-container {
+  margin-top: 50px;
+}
+
+p {
+    font-size: 20px;
+}
+
+#points-system {
+    width: 150px;
+    height: 60px;
+    background: rgb(254, 200, 216);
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgb(210, 145, 188);
+    border-radius: 10px;
+    font-size: 15px;
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+}
+
+
+button {
+  background-color: rgb(254, 200, 216);
+  padding: 10px;
+  font-size: 15px;
+  color: white;
+  width: 100px;
+  margin: 15px;
+  font-family: 'Gloria Hallelujah', cursive;
+  border-radius: 10px;
+  border: 1px solid rgb(210, 145, 188);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+body {
+  background-color: #E0BBE4;
+  color: white;
+  font-family: 'Gloria Hallelujah', cursive;
+  text-align: center;
+}
+
+/*USED IN JAVASCRIPT*/
+.none {
+  display: none;
+}
+
+.disable-click {
+  pointer-events: none;
+  cursor: not-allowed;
+}
