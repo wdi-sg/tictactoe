@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.board {
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+  background-color: #2196F3;
+  padding: 10px;
+}
+
+.game-square {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Tic-Tac-Toe</h1>
+
+<div class="board">
+    <div class="game-column">
+        <div class="game-square" id="1"></div>
+        <div class="game-square" id="2"></div>
+        <div class="game-square" id="3"></div>
+    </div>
+    <div class="game-column">  
+        <div class="game-square" id="4"></div>
+        <div class="game-square" id="5"></div>
+        <div class="game-square" id="6"></div>
+    </div>
+    <div class="game-column">   
+        <div class="game-square" id="7"></div>
+        <div class="game-square" id="8"></div>
+        <div class="game-square" id="9"></div>  
+    </div>
+</div>
+
+</body>
+</html>
+
+<script>
+
+
+
+document.getElementsByClassName("game-square").addEventListener("click", changeSquare);
+
+// to grab the gamesquare //
+// "p" gives all <p> tags.
+var square = document.querySelectorAll("game-square");
+
+
+var count = 0;
+function changeSquare() {
+    if (count == 8 && winCondition == false){
+      console.log("Draw");
+    }
+    else if ( isEven(count)) {
+      document.getElementsByClassName("game-square").innerHTML = "X";
+    }
+    else {
+      document.getElementsByClassName("game-square").innerHTML = "O";
+    }
+    count += 1;    
+    }
+    
+
+function isEven(value) {
+	if (value%2 == 0){
+    return true;
+  }
+		
+	else {
+    return false;
+  }
+		
+}
+
+grid = [[document.getElementById("1").innerHTML,
+         document.getElementById("2").innerHTML,
+         document.getElementById("3").innerHTML,]
+
+         [document.getElementById("4").innerHTML,
+         document.getElementById("5").innerHTML,
+         document.getElementById("6").innerHTML,]
+
+         [document.getElementById("7").innerHTML,
+         document.getElementById("8").innerHTML,
+         document.getElementById("9").innerHTML,]
+       ]
+function winCondition(grid) {
+	if (horizontal(grid) || vertical(grid) || diagonal(grid) ){
+    return true;
+  }
+		
+	else
+		return false;
+}
+
+playerNum ="";
+if (winCondition == true){
+  if (isEven(count)){
+    playerNum = 1;
+  }
+		
+	else {
+    playerNum = 2;
+  }
+  console.log("Player " +  playerNum +"wins!")
+}
+
+//to check if its all X or O in one row for the 3 rows
+function horizontal(grid){
+  for (i=0; i<3; i ++){
+    if( grid[i][0] == grid[i][1] == grid[i][2] ){
+      winCondition = true;
+    }
+  }
+}
+
+//to check if its all X or O in one column for the 3 columns
+function vertical(grid){
+  for (i=0; i<3; i ++){
+    if( grid[0][i] == grid[1][i] == grid[2][i] ){
+      winCondition = true;
+    }
+  }
+}
+
+//to check if its all X or O in one column for the 3 columns
+function diagonal(grid){
+    if( grid[0][0] == grid[1][1] == grid[2][2] ||
+        grid[0][2] == grid[1][1] == grid[2][0]    )
+
+        {
+          winCondition = true;
+        }
+}
+
+
+
+
+</script>
+
+<!--
+
+
+useful stuff:
+innerHTML to put words into box.
+can use querySelectorAll instead of many var and querySelector
+
+Timeline:
+-> added board 
+-> change content of box from blank to X or O using innnerHTML
+-> added isEven to alternate players
+-> added changeSquare to print x and o
+-> check for win condition
+-> check for cases that satisfy win condition
+
+
+-->
+
