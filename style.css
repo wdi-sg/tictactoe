@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+
+html {
+    background-color: whitesmoke;
+    font-family: 'Comfortaa';
+}
+
+body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h1 {
+    font-size: 50px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+
+#tictactoe {
+    display: none;
+    text-align: center;
+    color: rgb(255, 100, 100);
+    letter-spacing: 0.7px;
+    font-size: 21px;
+}
+
+#container {
+    background-image: url("grid-01.png");
+    background-size: 360px 360px;
+    margin-bottom: 35px;
+}
+
+.board {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+}
+
+.game-square {
+    width: 120px;
+    height: 120px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 36px;
+    line-height: 120px;
+}
+
+.game-square:hover {
+    background-color: rgba(250, 250, 250, 0.7);
+    border-radius: 5px;
+}
+
+button {
+    width: 360px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: whitesmoke;
+    font-size: 21px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    color: rgb(255, 100, 100);
+    border-top: 3px solid rgb(255, 100, 100);
+    border-bottom: 3px solid rgb(255, 100, 100);
+}
+
+button:hover {
+    color: maroon;
+    border-top: 3px solid maroon;
+    border-bottom: 3px solid maroon;
+}
