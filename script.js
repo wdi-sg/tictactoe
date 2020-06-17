@@ -51,11 +51,13 @@ if (startButton) {
         //all alphabets
         var letters = /^[A-Za-z]+$/;
         clickCount += 1
+        startMessage.innerText = `Processing...`;
         //First input = player 1 name
         if (clickCount === 1){
             //validate input
             if (input.value === "" || !input.value.match(letters)) { 
                 startMessage.innerText = 'Please enter valid name!'
+                clickCount -=1;
                 input.value = "";
             } 
             else {
@@ -70,6 +72,7 @@ if (startButton) {
         else if (clickCount === 2) {
             if (input.value === "" || !input.value.match(letters)) { 
                 startMessage.innerText = 'Please enter valid name!'
+                clickCount -=1;
                 input.value = "";
             }
             else {
@@ -104,6 +107,7 @@ if (startButton) {
             }
             else {
                 startMessage.innerText = 'Please choose a valid symbol!'
+                clickCount -=1;
                 input.value = "";
             }
         }
