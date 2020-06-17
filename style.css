@@ -1,0 +1,70 @@
+/* body {
+    background-color: gray;
+    text-align: left;
+    
+}
+*/
+
+
+/*
+#board{
+    display: grid;
+    text-align: center;    
+} 
+*/
+
+/* ********** PART 1******* */
+/* .boxes1, .boxes2, .boxes3 {
+    height: 150px;
+    padding: 5px black;
+    text-align: center;
+} */
+
+/* ****************************** */
+/* span {
+    text-align: center;
+    background-color: white;
+    height: 150px;
+    width: 150px;
+    float: left;
+    border: 5px solid black;
+    font-size: 140px;
+    padding: 5px black;
+} */
+
+/*********** PART 2********/
+
+/* .boxes{
+    height: 150px;
+    padding: 5px black;
+    text-align: center;
+} */ */
+
+/*********************/
+
+h1 {
+    font-size: 50px;
+    text-align: center;
+    text-decoration: underline;
+}
+body{
+    text-align: center;
+}
+
+.container{
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: repeat(3, 100px);
+	grid-template-rows: repeat(3, 100px);
+	margin: 0 auto;
+	width: 330px;
+	height: 330px;
+    box-sizing: border-box;
+    border: 5px solid black;
+}
+
+.grid{
+    border: 2px solid black;
+    font-size: 100px;
+    text-align: center;
+}
