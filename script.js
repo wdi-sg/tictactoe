@@ -1,22 +1,30 @@
-//HTML Elements
-var resetButton = document.querySelector('#restart');
+/*--------------------HTML Elements-------------------*/
+
+//Starting display
 var startButton = document.querySelector('#start');
+var startMessage = document.querySelector('.start-message');
+var startDisplay = document.querySelector('.start-state');
+var input = document.getElementById('input');
+var clickCount = 0;
+
+//Gameplay Elements
 var scoreboard = document.querySelector('.scoreboard');
 var xScore = document.getElementById('x-score');
 var oScore = document.getElementById('o-score');
-var input = document.getElementById('input');
 var grid = document.querySelector('.grid');
 var cells = document.querySelectorAll('.cell');
-var startMessage = document.querySelector('.start-message');
-var startDisplay = document.querySelector('.start-state');
+
+//Winning display
 var winMessage = document.querySelector('.outcome-message');
 var winDisplay = document.querySelector('.win-state');
+var resetButton = document.querySelector('#restart');
 resetButton.addEventListener('click', newGame);
-var clickCount = 0;
+
+
+/*--------------------Game variables-------------------*/
+
 var playerOne = {};
 var playerTwo = {};
-
-//Game variables
 var xTurn = true;
 var xClass = 'x';
 var oClass = 'o';
@@ -36,8 +44,11 @@ var possibleWins = [
     [2, 4, 6]
 ]
 
+/*--------------------Starting display logic-------------------*/
+
 if (startButton) {
     startButton.addEventListener('click', function(event){
+        //all alphabets
         var letters = /^[A-Za-z]+$/;
         clickCount += 1
         //First input = player 1 name
@@ -101,16 +112,8 @@ if (startButton) {
 }
 
 
-function newGame (){
-    cells.forEach(cell => {
-        cell.classList.remove(xClass)
-        cell.classList.remove(oClass)
-        cell.removeEventListener('click', handleClick);
-        cell.addEventListener('click', handleClick, {once: true})
-    })
-    winDisplay.classList.remove('show');
-}
 
+/*--------------------Gameplay logic-------------------*/
 
 function handleClick (e){
     //Taken from whichever cell is clicked
@@ -132,6 +135,16 @@ function handleClick (e){
 
 //Helper functions
 
+function newGame (){
+    cells.forEach(cell => {
+        cell.classList.remove(xClass)
+        cell.classList.remove(oClass)
+        cell.removeEventListener('click', handleClick);
+        cell.addEventListener('click', handleClick, {once: true})
+    })
+    winDisplay.classList.remove('show');
+}
+
 function printSymbol (cell, symbolClass){
     cell.classList.add(symbolClass);
 }
@@ -141,7 +154,9 @@ function changeTurn (){
 }
 
 function verifyWin (symbolClass){
+   //will return if any of the winning combinations are true
   return possibleWins.some(possibility => {
+   //will return if every index in the exisiting win combos have same class
      return possibility.every(index => {
            return cells[index].classList.contains(symbolClass);
         })
@@ -167,7 +182,9 @@ function gameOver(draw){
 }
 
 function checkDraw (){
-    return [...cells].every(cell => {
-        return cell.classList.contains(xClass) || cell.classList.contains(oClass);
-      })
+    //querySelectorAll returns nodelist; must turn to array to access array methods
+    var cellsArray = Array.from(cells);
+        return cellsArray.every(cell => {
+            return cell.classList.contains(xClass) || cell.classList.contains(oClass);
+        })
 }
