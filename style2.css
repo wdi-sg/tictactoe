@@ -1,0 +1,31 @@
+h1 {
+    font-size: 50px;
+    text-align: center;
+    text-decoration: underline;
+}
+
+body {
+    text-align: center;
+}
+
+.container {
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: repeat(3, 100px);
+	grid-template-rows: repeat(3, 100px);
+	margin: 0 auto;
+	width: 330px;
+	height: 330px;
+    box-sizing: border-box;
+    border: 5px solid black;
+}
+
+.grid {
+    border: 2px solid black;
+    font-size: 100px;
+    text-align: center;
+}
+
+p {
+    font-size: 20px;
+}
