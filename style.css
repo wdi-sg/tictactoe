@@ -2,6 +2,7 @@
 
 html {
     background-color: whitesmoke;
+    font-family: 'Comfortaa';
 }
 
 body {
@@ -12,20 +13,24 @@ body {
 }
 
 h1 {
-    font-family: 'Comfortaa';
     font-size: 50px;
     text-align: center;
     text-transform: uppercase;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 #tictactoe {
     display: none;
+    text-align: center;
+    color: rgb(255, 100, 100);
+    letter-spacing: 0.7px;
+    font-size: 21px;
 }
 
 #container {
     background-image: url("grid-01.png");
     background-size: 360px 360px;
+    margin-bottom: 35px;
 }
 
 .board {
@@ -38,7 +43,10 @@ h1 {
 .game-square {
     width: 120px;
     height: 120px;
-    background-color: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 36px;
+    line-height: 120px;
 }
 
 .game-square:hover {
@@ -48,10 +56,10 @@ h1 {
 
 button {
     width: 360px;
-    margin-top: 20px;
+    margin-top: 15px;
+    margin-bottom: 20px;
     padding: 20px;
     background-color: whitesmoke;
-    font-family: 'Comfortaa';
     font-size: 21px;
     text-transform: uppercase;
     letter-spacing: 1px;
