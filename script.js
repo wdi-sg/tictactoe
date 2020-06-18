@@ -14,27 +14,27 @@ function doSomething(){
         this.innerHTML = "X";
         gameState = "O";
         anotherState++;
+        squareChecker();
     } else if(gameState == "O" && anotherState < 8){
         this.innerHTML = "O";
         gameState = "X";
         anotherState++;
-    } else {
         squareChecker();
+    } else {
+        //game end
     }
 }
 
-var tempArr = [];
-var squareChecker = function(){//get square state
-    if(anotherState == 9){
+
+var squareChecker = function(){//get square state and stick into array
+    var tempArr = [];
+    
         for(let i = 1; i < 10; i++){
             var square = document.getElementById("box"+i).innerHTML;
             tempArr.push(square);
         }
-        anotherState++;  
-    } else {
-        //this.innerHTML = ""; <- does not work
-        //anotherState = 0;
-    }
+         
+    
     
     console.log(tempArr);
 }
