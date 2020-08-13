@@ -231,18 +231,27 @@ function drawOutput(){
 var totalCountdown;
 var countdownInterval;
 
-//starts timer
+//starts timer, executes random choice when time runs out
 var startTimer = function(){
-    counter = 8
+    counter = 3
     countdown()
     countdownInterval = setInterval(countdown, 1000)
     totalCountdown = setTimeout(function(){
-        if(state=="X"){
-            state="O"
-        } else if (state=="O"){
-            state="O"
+        randomChoice()
+        if(checkWinner()){
+            winOutput()
+        } else if(checkDraw()){
+            drawOutput()
+        } else {
+            document.querySelector(".turn-tracker").innerText = `${player2Name}'s turn`
+            endTimer()
+            startTimer()
+            if(state=="X"){
+                state="O"
+            } else if(state=="O"){
+                state="X"
+            }
         }
-        winOutput()
     }, counter*1000)
 
     function countdown(){
@@ -255,4 +264,22 @@ var startTimer = function(){
 var endTimer = function(){
     clearTimeout(totalCountdown)
     clearInterval(countdownInterval)
+}
+
+var randomChoice = function(){
+    var randi = Math.floor(Math.random()*boardSize)
+    var randj = Math.floor(Math.random()*boardSize)
+    if(board[randi][randj]!==null){
+        randomChoice()
+    } else {
+        board[randi][randj]=state
+        var tileId = randi.toString() + randj.toString()
+        if(state=="X"){
+            document.getElementById(tileId).innerText = player1Symbol
+            document.getElementById(tileId).style.backgroundColor = "lightblue"
+        } else if (state=="O"){
+            document.getElementById(tileId).innerText = player2Symbol
+            document.getElementById(tileId).style.backgroundColor = "lightgreen"
+        }
+    }
 }
