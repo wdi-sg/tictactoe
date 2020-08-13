@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tic Tac Toe</title>
+    <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="user-input">
+        <div class="player-input">
+            <label for="player1-name">Player 1 name:</label>
+            <input type="text" id="player1-name" placeholder="Player 1 name" value="Player 1"><br>
+            <label for="player2-symbol">Player 1 symbol:</label>
+            <input type="text" id="player1-symbol" placeholder="Player 1 symbol" value="X">
+        </div>
+        <div class="player-input">
+            <label for="player2-name">Player 2 name:</label>
+            <input type="text" id="player2-name" placeholder="Player 2 name" value="Player 2"><br>
+            <label for="player2-symbol">Player 2 symbol:</label>
+            <input type="text" id="player2-symbol" placeholder="Player 2 symbol" value="O">
+        </div>
+        <br>
+        <label for="board-size">Board Size:</label>
+        <input type="number" id="board-size" placeholder="Board Size" max="6" min="2" value="3">
+        <br>
+        <button id="start">Click here to start playing!</button>
+    </div>
+
+    <div class="turn-tracker"></div>
+    <div class="timer"></div>
+
+    <div class="ttt-board">
+    </div>
+
+    <div class="result"></div>
+    <div class="win-tracker">
+        <div class="player1-wins"></div>
+        <div class="player2-wins"></div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
