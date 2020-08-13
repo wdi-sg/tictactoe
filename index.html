@@ -12,24 +12,27 @@
             font-family: arial, san-serif;
         }
 
-        div {
+        .dashboard, .board, .scoreboard {
             width: max-content;
             margin: 50px auto;
             text-align: center;
         }
 
-        button {
-            width: 5em;
-            padding: 0.5em;
-            margin: 0 0.5em;
-            font-size: 1.2em;
-            border-radius: 5px;
-            border: 1px solid white;
+        .options {
+            width: 9em;
+            margin: 20px auto;
+            padding: 0.6em;
+            display: block;
+            font-size: 1.3em;
+            border-radius: 8px;
+            border: 0.1em solid white;
             background-color: lightgray;
         }
 
-        button:hover{
+        .options:hover{
             background-color: mistyrose;
+            border: 0 solid white;
+            font-size: 1.4em;
         }
 
         .dashboard {
@@ -87,6 +90,7 @@
         }
 
         .scoreboard {
+            margin-top: 30px;
             min-height: 8em;
             padding: 1em;
             border-radius: 10px;
@@ -114,18 +118,18 @@
         </tr>
         <tr>
             <td>
-                <label for="player-2">Player 2:</label>
-            </td>
-            <td>
-                <input type="text" name="player-2" id="player-2">
-            </td>
-        </tr>
-        <tr>
-            <td>
                 <label for="player-1-symbol">Choose your symbol:</label>
             </td>
             <td>
                 <input type="text" name="player-1-symbol" id="player-1-symbol">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="player-2">Player 2:</label>
+            </td>
+            <td>
+                <input type="text" name="player-2" id="player-2">
             </td>
         </tr>
         <tr>
@@ -137,10 +141,7 @@
             </td>
         </tr>
     </table>
-    <div class="options">
-        <button id="Play">Play</button>
-        <button id="Reset">Reset</button>
-    </div>
+    <button onclick="startGame()" class="options">Play</button>
     <div class="scoreboard">
         <table>
             <tr>
@@ -148,12 +149,12 @@
                 <th>SCORE</th>
             </tr>
             <tr>
-                <td></td>
-                <td></td>
+                <td id="pOne"></td>
+                <td id="pOneScore"></td>
             </tr>
             <tr>
-                <td></td>
-                <td></td>
+                <td id="pTwo"></td>
+                <td id="pTwoScore"></td>
             </tr>
         </table>
     </div>

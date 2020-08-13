@@ -4,6 +4,7 @@ let createBoard = () => {
     let board = document.createElement('div')
     board.classList.add('board')
 
+    let tiles = [];
     for(var i=0; i<9; i++){
         var tile = document.createElement('div')
         tile.classList.add(`tile-${i}`);
@@ -11,12 +12,17 @@ let createBoard = () => {
         var text = document.createElement('p')
 
         tile.appendChild(text)
-        board.appendChild(tile)
-        tile.addEventListener('click',(event)=>{
-            console.log(event,'--- board-item')
-            event.target.firstChild.textContent = 'X'
-        })
+
+        tiles.push(tile);
     }
+
+    tiles.forEach((item, index)=>{
+        item.id = index;
+        item.addEventListener('click', (event) => {
+            handleClick(event);
+        })
+        board.appendChild(item)
+    })
 
     // if you want index, in the for loop add to array
     // use a for each on the array
@@ -24,31 +30,164 @@ let createBoard = () => {
     document.querySelector('.dashboard').insertAdjacentElement('afterend', board)
 }
 
-// alternate clicks to switch x and o
-// change the text to x or o
-// after nine moves do nothing
-// to continue refresh page?????
-// click set a global variable to hold current player
-// first player is x
+// global variables
 
-// add win state
-// check after the 6th turn
-// notify users who won
-// check for 3 moves in a row - row // col // diag
+let playerOne = '';
+let playerOneSymbol = '';
+let playerOneScore = 0;
 
-//track state of game
+let playerTwo = '';
+let playerTwoSymbol = '';
+let playerTwoScore = 0;
 
-// start game with a button
-// disappears when game start
-// reappear when game ends
+let gameState = 'initial';
 
-// asks for names of players 1 and 2
-// ask for their symbol
-// display names as the play
+let currentPlayer = null;
+let currentBoard = [];
+let currentStep = 0;
 
-// keep score of the board
+//
+// QOL functions
+//
 
-// add congrats screen when they win
+
+let clearValue = (elementName) => {
+    document.querySelector(elementName).value = '';
+}
+
+//
+//  MAIN CODE HERE
+//
+let startGame = () => {
+    gameState = 'start';
+    getInput();
+    console.log(gameState, '--- startGame')
+    document.querySelector('.options').style.display = 'none';
+    dashboard()
+    scoreboard()
+}
+
+let getInput = () => {
+    playerOne = document.getElementById('player-1').value;
+    playerOneSymbol = document.getElementById('player-1-symbol').value;
+    playerTwo = document.getElementById('player-2').value;
+    playerTwoSymbol = document.getElementById('player-2-symbol').value;
+    clearValue('#player-1');
+    clearValue('#player-1-symbol');
+    clearValue('#player-2');
+    clearValue('#player-2-symbol');
+}
+
+let dashboard = () => {
+    var output = '';
+    if (gameState === 'win'){
+        output = `${currentPlayer} won!\nPress start to play again`;
+    } else if (currentPlayer !== null){
+        output = currentPlayer;
+    }
+    document.querySelector('.dashboard>p').innerText = output;
+}
+
+let scoreboard = () => {
+    document.querySelector('#pOne').innerText = playerOne;
+    document.querySelector('#pOneScore').innerText = playerOneScore;
+    document.querySelector('#pTwo').innerText = playerTwo;
+    document.querySelector('#pTwoScore').innerText = playerTwoScore;
+}
+
+//
+// Game only continues on click
+//
+
+let handleClick = (event) => {
+    if (gameState !== 'start'){
+        return
+    }
+    //event.target.firstChild.textContent = event.target.id;
+
+    if (currentPlayer === null || currentPlayer === playerTwo){
+        currentPlayer = playerOne;
+        currentBoard[event.target.id] = currentPlayer;
+        event.target.firstChild.textContent = playerOneSymbol;
+    } else {
+        currentPlayer = playerTwo;
+        currentBoard[event.target.id] = currentPlayer;
+        event.target.firstChild.textContent = playerTwoSymbol;
+    }
+    currentStep++;
+    console.log(currentBoard);
+    dashboard();
+    if(currentStep > 4){
+        checkWin();
+        endGame();
+    }
+}
+
+let checkWin = () => {
+    var found = false;
+    //check vertical
+    for(var i=0; i < 9; i = i+3){
+        if(currentBoard[i] === currentPlayer &&
+           currentBoard[i+1] === currentPlayer &&
+           currentBoard[i+2] === currentPlayer){
+            gameState = 'win'
+            if(currentStep%2 === 1){
+                playerOneScore++;
+            } else {
+                playerTwoScore++;
+            }
+            console.log(gameState,"--- checkWin")
+            return true
+        }
+    }
+    //check horizontal
+    for(var i=0; i < 9; i++){
+        if(currentBoard[i] === currentPlayer &&
+           currentBoard[i+3] === currentPlayer &&
+           currentBoard[i+6] === currentPlayer){
+            gameState = 'win'
+            if(currentStep%2 === 1){
+                playerOneScore++;
+            } else {
+                playerTwoScore++;
+            }
+            console.log(gameState,"--- checkWin")
+            return true
+        }
+    }
+    //check diag
+
+    if((currentBoard[0] === currentPlayer &&
+        currentBoard[4] === currentPlayer &&
+        currentBoard[8] === currentPlayer)||
+       (currentBoard[2] === currentPlayer &&
+        currentBoard[4] === currentPlayer &&
+        currentBoard[6] === currentPlayer))
+    {
+        gameState = 'win'
+        if(currentStep%2 === 1){
+            playerOneScore++;
+        } else {
+            playerTwoScore++;
+        }
+        console.log(gameState,"--- checkWin")
+        return true
+    }
+}
+
+let endGame = () => {
+    if(gameState === 'win'){
+        currentBoard = [];
+        dashboard();
+        scoreboard();
+        gameState = 'initial';
+        console.log(gameState,'---endGame')
+        document.querySelector('.options').style.display = 'block';
+    }
+}
+
+///////// further ////////////
+
 
 // set timer for each move - random move if time is out
 
