@@ -1,0 +1,182 @@
+
+/*we set these settings to normalize our css. so that its easier to center our elements*/
+
+*,*::after,*::before{
+    box-sizing: border-box;
+}
+
+/*:root is the root of the document. so anything variablesset here is accessible anywhere in the document, therefore this is a good place to store our css variable ie the cell grid height and width;
+--cell-size denotes the variable cell-size*/
+
+:root{
+--cell-size:100px;
+--mark-size:calc(var(--cell-size)* .9); /*mark is either the x or o. it needs to be smaller than the cell to look aesthetic. we can use a calc function to make it 90% the size of the cell. */
+}
+
+
+
+body {
+    margin: 0;
+}
+
+
+/*we make 100vw and 100vh for the main div .board in order to easily center both the tic tac toe board and the winning message*/
+/*
+justify-content for a grid aligns along the rows of the grid. align-content aligns along the columns of the grid. So basically using both will center the div right smack in the middle*/
+
+.board{
+    width:100vw;
+    height:100vh;
+    display:grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(3,auto); /*basically this means it repeats 3 columns of auto(will fill up remaining space as compared to if we give a fixed value like fr or px) sized grids within the column*/
+    justify-items:center;
+    align-items:center;
+    /*content aligns the div. items align whats inside the div. so we also need to align the mark. */
+}
+
+
+/*defining the fixed size of each cell*/
+.cell{
+    width:var(--cell-size);
+    height:var(--cell-size);
+    background-color:white;
+    border:1px solid black;
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center; /*this also affects the pseudo elements. so we want to make the x or o in the middle and we can achieve this using flex.*/
+    cursor:pointer;
+}
+
+/*remove the respective borders to replicate a tic tac toe grid. */
+
+.cell:first-child,.cell:nth-child(2),.cell:nth-child(3){
+    border-top:none;
+}
+
+.cell:nth-child(3n+1){
+    border-left:none;
+}
+
+.cell:nth-child(3n+3){
+    border-right:none;
+}
+
+.cell:last-child,.cell:nth-child(7),.cell:nth-child(8){
+    border-bottom:none;
+}
+
+/*when the cell is marked, we want to disable cursor*/
+.cell.x,.cell.circle{
+    cursor:not-allowed;
+}
+
+/*format the x mark. made by rotate 2 blocks to form an x
+
+.cell:hover::before/after basically only shows the effect of an x and o when we hover over the cell before placing the mark.
+we then use a :not(.circle) pseudo element this is to ensure that only when the cell do not already contain a mark then it will show the hover effect!;
+
+
+in order for the lightgrey hover effect to show rather than black, it needs to be declared later than the black due to flow of a css stylesheet, to prevent it from being overwritten
+
+board x/o denotes the hover mark ie before chosen.
+cell x/o denotes the marked cell. i.e. after chosen.
+
+*/
+
+.cell.circle::before,.cell.circle::after{
+    background-color:blue;
+}
+.cell.x::before,.cell.x::after{
+    background-color:red;
+}
+
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after,
+.board.circle .cell:not(.x):not(.circle):hover::before,
+.board.circle .cell:not(.x):not(.circle):hover::after
+{
+    background-color: lightgrey;
+}
+
+.cell.x::before,.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after
+{
+    content:'';
+    width:calc(var(--mark-size)*0.15);
+    height:var(--mark-size);
+    position:absolute;
+}
+
+.cell.x::before,
+.board.x .cell:not(.x):not(.circle):hover::before{
+transform: rotate(45deg);
+}
+
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::after{
+transform: rotate(-45deg);
+}
+
+/*format the circle mark. made by imposing a smaller circle onto a larger circle similar to a donut*/
+.cell.circle::before,.cell.circle::after,.board.circle .cell:not(.x):not(.circle):hover::before,
+.board.circle .cell:not(.x):not(.circle):hover::after{
+    content:'';
+    position:absolute;
+    border-radius:50%;
+}
+
+.cell.circle::before,
+.board.circle .cell:not(.x):not(.circle):hover::before{
+    width:var(--mark-size);
+    height:var(--mark-size);
+}
+
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::after{
+    width:calc(var(--mark-size)*0.7);
+    height:calc(var(--mark-size)*0.7);
+    background-color:white;
+}
+
+
+/*styling the winning or outcome message*/
+
+.winning-message{
+    display:none;
+    position:fixed;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    background-color:black;
+    opacity:0.9;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    color:white;
+    font-size:5rem;
+}
+
+.winning-message button{
+    font-size:3rem;
+    background-color:white;
+    border:1px solid black;
+    padding: .25em .5em;
+    cursor:pointer;
+}
+
+.winning-message button:hover{
+
+    background-color:black;
+    color:white;
+    border:color:grey;
+}
+
+.winning-message.show{
+    display:flex;
+}
+
