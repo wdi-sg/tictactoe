@@ -12,7 +12,7 @@ var board = []
 var player1Wins = 0
 var player2Wins = 0
 
-
+document.querySelector(".ttt-board").classList.add("hide")
 
 //function to initialise empty matrix and DOM tile elements called when user inputs boardSize
 var initEmptyGrid = function(){
@@ -39,6 +39,7 @@ var initEmptyGrid = function(){
     var tiles = document.querySelectorAll(".tile")
     tiles.forEach(function(item, index){
         item.addEventListener("click", claimTile)
+
     })
 }
 
@@ -57,15 +58,17 @@ var startGame = function(){
 
     initEmptyGrid()
 
+    //displays whose turn it is in turn tracker
     if(state=="X"){
         document.querySelector(".turn-tracker").innerText = `${player1Name}'s turn`
     }else if(state=="O"){
         document.querySelector(".turn-tracker").innerText = `${player2Name}'s turn`
     }
-
-
-
+    //hides input field, shows the tictactoe board
+    document.querySelector(".ttt-board").classList.remove("hide")
     document.querySelector(".user-input").classList.add("hide")
+    //timer starts once start button is clicked
+    startTimer()
 }
 
 document.querySelector("#start").addEventListener("click", startGame)
@@ -85,6 +88,8 @@ var claimTile = function(){
             drawOutput()
         } else {
             document.querySelector(".turn-tracker").innerText = `${player2Name}'s turn`
+            endTimer()
+            startTimer()
             state="O"
         }
 
@@ -98,6 +103,8 @@ var claimTile = function(){
             drawOutput()
         } else {
             document.querySelector(".turn-tracker").innerText = `${player1Name}'s turn`
+            endTimer()
+            startTimer()
             state="X"
 
         }
@@ -164,13 +171,16 @@ var checkWinner = function(){
     return diagonals || rows || columns
 }
 
+//updates the js matrix board
 var updateBoard = function(element){
     var firstIndex = parseInt(element.id[0])
     var secondIndex = parseInt(element.id[1])
     board[firstIndex][secondIndex] = state
 }
 
+//if there is a win, this is the output
 function winOutput(){
+    endTimer()
     //say who wins
     if(state=="X"){
         player1Wins++
@@ -195,6 +205,8 @@ function winOutput(){
     document.querySelector("#start").innerText = "Play again!"
 }
 
+
+//checks if all the squares are filled ie a draw
 function checkDraw(){
     for(i=0;i<board.length;i++){
         if(board[i].includes(null)){
@@ -204,8 +216,43 @@ function checkDraw(){
     return true
 }
 
+
+//output when it's a draw
 function drawOutput(){
+    endTimer()
     document.querySelector(".result").innerText = `It's a draw!`
     document.querySelector(".user-input").classList.remove("hide")
     document.querySelector("#start").innerText = "Play again!"
+}
+
+//Timer functions
+
+//global variables for countdown and countdown interval
+var totalCountdown;
+var countdownInterval;
+
+//starts timer
+var startTimer = function(){
+    counter = 8
+    countdown()
+    countdownInterval = setInterval(countdown, 1000)
+    totalCountdown = setTimeout(function(){
+        if(state=="X"){
+            state="O"
+        } else if (state=="O"){
+            state="O"
+        }
+        winOutput()
+    }, counter*1000)
+
+    function countdown(){
+        document.querySelector(".timer").innerText = `Time left: ${counter}`
+        counter--
+    }
+}
+
+//ends timer
+var endTimer = function(){
+    clearTimeout(totalCountdown)
+    clearInterval(countdownInterval)
 }
