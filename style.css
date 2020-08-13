@@ -1,0 +1,35 @@
+.ttt-board{
+	background-color: black;
+	width: 80%;
+	min-width: 300px;
+}
+
+.ttt-row {
+	display: flex;
+	justify-content: center;
+}
+
+.tile {
+	width: calc((100% - 6px) / 3);
+	height: 100px;
+	margin:3px;
+	border: 1px solid black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 50px;
+	background-color: white;
+}
+
+.user-input *{
+	margin: 5px;
+}
+
+.hide {
+	display: none;
+}
+
+.turn-tracker {
+	font-size: 30px;
+	font-weight: bold;
+}
