@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+}
+
+#menu {
+    display: flex;
+    width: 500px;
+}
+
+#player {
+    flex: 7;
+}
+
+#restart {
+    flex-basis: 100px;
+}
+
+#board {
+    height: 500px;
+    width: 500px;
+    background-color: grey;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;   
+}
+
+.game-row {
+    height: 150px;
+    width: 150px;
+    display: flex;
+    background-color: red;
+    margin-top: 7px;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+}
