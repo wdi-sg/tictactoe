@@ -24,6 +24,7 @@ let win= 'false';
 let winner;
 let draw;
 var endmessage = document.querySelector(".status");
+let noOfTurns = 0;
 
 // const winningMessage =`${currentPlayer} has won!`;
 const drawMessage ='The game ended in a draw!';
@@ -53,15 +54,15 @@ let handleClick= function(e){
     let currentClass = crossTurn ? crossClass : circleClass
     console.log(currentClass)
     markSpot(currentClass,cell)
+    noOfTurns ++;
     spotsTaken(currentClass,cell) 
     console.log(circleArray,crossArray)
     //check for win
     //check for draw
     //change turn
     // checkWin(currentClass);
-    compareCross(crossArray)
-    compareCircle(circleArray)
-    winCheck(circleWon, crossWon)
+    winCheck(crossArray, circleArray)
+    console.log(win);
     if(win === true){
         endGame();
     }
@@ -104,47 +105,37 @@ for(var i =0; i< cellElements.length; i++){
 
 
 
-var compareCross = function(crossArray) {
+
+
+var winCheck = function(crossArray, circleArray) {
     winningCombinations.forEach(element => {
         crossWon= element.filter(x => crossArray.includes(x))
-        // console.log(element);
-        // console.log(crossArray);
-        console.log(crossWon);
+        if(crossWon.length === 3 ){
+            win = true;
+            return winner = "cross"    
+        }
     })
-}
 
-var compareCircle = function(circleArray) {
     winningCombinations.forEach(element => {
-         circleWon = element.filter(x => circleArray.includes(x))
-       
-    })
+        circleWon = element.filter(x => circleArray.includes(x))
+        if ( circleWon.length === 3) {
+            win = true;
+             winner ="circle"
+   }
+})
 }
 
-var winCheck = function(circleWon, crossWon) {
-    if(circleWon.length >2 ){
-         win = true;
-         winner = "circle"
-    } else if( crossWon.length) {
-        win = true;
-         winner ="cross"
-    } else{
-         winner=false;
-    }
-}
 
-// var checkDraw = function() {
-//     if(cellElements.every(cell => {
-//         return cell.classList.contains(crossClass) ||
-//         cell.classList.contains(circleClass)
-//     })){
-//         return draw = true
-//     }
-// }
+var checkDraw = function(noOfTurns){
+    if(noOfTurns===9 && winner === null) {
+        draw = true;
+    } 
+};
 
-var endGame = function(draw){
-    if(draw) {
-        endmessage.innerText = "Draw!"
-    } else {
+var endGame = function(){
+    if(draw ===true){
+        endmessage.innerText = "its a draw!"
+    } else if (winner !== null){
         endmessage.innerText = `${winner} wins!`
     }
 }
