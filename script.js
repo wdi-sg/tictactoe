@@ -50,19 +50,27 @@ let currentStep = 0;
 // QOL functions
 //
 
-
-let clearValue = (elementName) => {
-    document.querySelector(elementName).value = '';
-}
+// dont clear unless i can find a way to set default;
+// let clearValue = (elementName) => {
+//     document.querySelector(elementName).value = '';
+// }
 
 //
 //  MAIN CODE HERE
 //
+
+// triggered by button
 let startGame = () => {
     gameState = 'start';
     getInput();
+
+    // player one always starts first
+    currentPlayer = playerOne;
+
     console.log(gameState, '--- startGame')
     document.querySelector('.options').style.display = 'none';
+
+    //update
     dashboard()
     scoreboard()
 }
@@ -72,18 +80,19 @@ let getInput = () => {
     playerOneSymbol = document.getElementById('player-1-symbol').value;
     playerTwo = document.getElementById('player-2').value;
     playerTwoSymbol = document.getElementById('player-2-symbol').value;
-    clearValue('#player-1');
-    clearValue('#player-1-symbol');
-    clearValue('#player-2');
-    clearValue('#player-2-symbol');
+    // clearValue('#player-1');
+    // clearValue('#player-1-symbol');
+    // clearValue('#player-2');
+    // clearValue('#player-2-symbol');
 }
 
+//update the dashboard to show currentplayer
 let dashboard = () => {
-    var output = '';
+    var output = 'Are you ready player?';
     if (gameState === 'win'){
-        output = `${currentPlayer} won!\nPress start to play again`;
-    } else if (currentPlayer !== null){
-        output = currentPlayer;
+        output = `Player ${currentPlayer} won!\nPress play to start again`;
+    } else if (gameState === 'start'){
+        output = `Player ${currentPlayer} turn`;
     }
     document.querySelector('.dashboard>p').innerText = output;
 }
@@ -97,34 +106,47 @@ let scoreboard = () => {
 
 //
 // Game only continues on click
-//
+ //
 
 let handleClick = (event) => {
     if (gameState !== 'start'){
         return
     }
-    //event.target.firstChild.textContent = event.target.id;
 
-    if (currentPlayer === null || currentPlayer === playerTwo){
-        currentPlayer = playerOne;
+    // display current action of player
+    if (currentPlayer === playerOne){
         currentBoard[event.target.id] = currentPlayer;
         event.target.firstChild.textContent = playerOneSymbol;
     } else {
-        currentPlayer = playerTwo;
         currentBoard[event.target.id] = currentPlayer;
         event.target.firstChild.textContent = playerTwoSymbol;
     }
     currentStep++;
-    console.log(currentBoard);
-    dashboard();
-    if(currentStep > 4){
-        checkWin();
+
+    // check for win
+    if(checkWin()){
         endGame();
+        return;
     }
+
+    // change player
+    if (currentPlayer === playerOne){
+        currentPlayer = playerTwo;
+    } else {
+        currentPlayer = playerOne;
+    }
+    dashboard();
+
 }
 
 let checkWin = () => {
     var found = false;
+
+    if (currentStep < 4 && currentStep !== 9){
+        return found
+    }
+    console.log(currentStep,'---currentStep');
+
     //check vertical
     for(var i=0; i < 9; i = i+3){
         if(currentBoard[i] === currentPlayer &&
@@ -156,7 +178,6 @@ let checkWin = () => {
         }
     }
     //check diag
-
     if((currentBoard[0] === currentPlayer &&
         currentBoard[4] === currentPlayer &&
         currentBoard[8] === currentPlayer)||
@@ -173,17 +194,24 @@ let checkWin = () => {
         console.log(gameState,"--- checkWin")
         return true
     }
+    if (currentStep === 9){
+        return true
+    }
 }
 
 let endGame = () => {
-    if(gameState === 'win'){
-        currentBoard = [];
-        dashboard();
-        scoreboard();
-        gameState = 'initial';
-        console.log(gameState,'---endGame')
-        document.querySelector('.options').style.display = 'block';
-    }
+    currentBoard = [];
+    dashboard();
+    scoreboard();
+    currentStep = 0;
+    gameState = 'initial';
+    console.log(gameState,'---endGame')
+
+    //clear and refresh board
+    var child = document.querySelector('.board')
+    child.parentNode.removeChild(child);
+    createBoard()
+    document.querySelector('.options').style.display = 'block';
 }
 
 ///////// further ////////////
