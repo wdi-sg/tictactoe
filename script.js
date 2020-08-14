@@ -26,8 +26,7 @@ let draw;
 var endmessage = document.querySelector(".status");
 let noOfTurns = 0;
 
-// const winningMessage =`${currentPlayer} has won!`;
-const drawMessage ='The game ended in a draw!';
+
 //need to be zero-indexed bc its an array
 const winningCombinations = [
     ["0", "1", "2"],
@@ -124,6 +123,12 @@ var winCheck = function(crossArray, circleArray) {
    }
 })
 }
+ //disable game so that user cant press after one person wins
+var disableGame = function() {
+    for(var i =0; i< cellElements.length; i++){
+        cellElements[i].removeEventListener("click", handleClick)
+    };
+}
 
 
 var checkDraw = function(noOfTurns){
@@ -133,6 +138,7 @@ var checkDraw = function(noOfTurns){
 };
 
 var endGame = function(){
+    disableGame();
     if(draw ===true){
         endmessage.innerText = "its a draw!"
     } else if (winner !== null){
