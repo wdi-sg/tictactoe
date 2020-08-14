@@ -1,0 +1,85 @@
+/*button {
+    width: 100px;
+    height: 100px;
+    font-size: 30px;
+    color: red;
+    padding: 0;
+    margin: 0;
+  }
+
+h1 {
+	text-align: center;
+	font-family: helvetica, sans serif;
+}
+
+.container{
+	width: 100%;
+	overflow-x:hidden;
+}
+
+div div{
+	position: relative;
+	left:50%;
+	margin-left: -150px;
+	width: 100%;
+}*/
+
+body{
+	box-sizing: border-box;
+	font-family: helvetica;
+}
+
+span {
+	border: 2px solid red;
+	cursor: pointer;
+}
+
+#board {
+	width: 400px;
+	height: 400px;
+	margin:0;
+	padding:0;
+}
+
+.game-row{
+	width: 100%;
+}
+
+.game-square {
+	display:inline-block;
+	height: 120px;
+	width: 120px;
+	overflow: hidden;
+}
+
+
+span:first-child{
+	border-left: 0;
+}
+
+span:last-child{
+	border-right: 0;
+}
+
+span{
+	margin: 0 auto;
+	text-align: center;
+	font-size: 30px;
+
+}
+
+div div:nth-child(2) span {
+	border-top:0;
+	border-right:0;
+}
+
+div div:last-child span {
+	border-top:0;
+	border-bottom:0;
+	border-right: 0;
+}
+
+div div:first-child span {
+	border-top:0;
+	border-right:0;
+}
