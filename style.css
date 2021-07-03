@@ -1,0 +1,130 @@
+body {
+	font-family: 'Source Sans Pro', sans-serif;
+	text-align: center;
+}
+
+div {
+	/*border: solid 1px red;*/
+}
+
+.pageWrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+h1 {
+	font-size: 2.5em;
+}
+
+.gameBoard {
+	border: solid 2px black;
+	height: 300px;
+	width: 300px;
+}
+
+.gameWrapper {
+	display: flex;
+	justify-content: center;
+}
+
+.container {
+	width: 300px;
+}
+
+.row {
+	display: flex;
+	height: 100px;
+}
+
+.column{
+	box-sizing: border-box;
+	width: 100px;
+	flex-grow: 1;
+	border: solid 2px black;
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 90px;
+	padding: 10px;
+}
+
+p{
+	margin: 0 auto;
+}
+
+.menu {
+	margin-bottom: 10px;
+}
+
+button {
+	border: 2px solid #000;
+	background-color: #FAA132;
+	width: 120px;
+	height: 50px;
+	font-size: 1.1em;
+	margin: 10px;
+	padding: 4px;
+}
+
+#reset {
+	display: inline-block;
+}
+
+.inPlay {
+	background-color: #C75670;
+}
+
+.footer {
+	margin-top: 40px;
+}
+
+.footer a {
+	text-decoration: none;
+	color: #FAA132;
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+
+@media only screen and (max-device-width : 600px) {
+
+h1 {
+	font-size: 8em;
+}
+
+.container {
+	width: 600px;
+}
+
+.gameBoard {
+	border: solid 2px black;
+	height: 600px;
+	width: 600px;
+}
+
+.row {
+	height: 200px;
+}
+
+.column{
+	width: 200px;
+	font-size: 10em;
+}
+
+.footer {
+	font-size: 2em;
+}
+
+.footer a {
+	font-size: 1.2em;
+}
+
+button {
+	width: 180px;
+	height: 75px;
+	font-size: 1.7em;
+}
+
+}
