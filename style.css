@@ -1,0 +1,147 @@
+
+body{
+    background-color: #a1f1ff87;
+}
+
+option{
+    text-align:center;
+}
+#board{
+
+    width:600px;
+    height: 600px;
+    margin:auto;
+}
+.game-board{
+    display:flex;
+    flex-wrap:nowrap;
+    flex-direction:column;
+    justify-content: space-around;
+    width:100%;
+    height:600px;
+    position:relative;
+}
+
+.game-row{
+    width:100%;
+    height:100%;
+    box-sizing: border-box;
+    position: relative;
+    display:flex;
+    flex-wrap:nowrap;
+
+}
+
+
+span{
+    box-sizing:border-box;
+    width:100%;
+    border:1px solid black;
+    background-color:white;
+    font-family: Arial;
+    font-size: 7em;
+    margin:0.5%;
+    text-align:center;
+    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.3);
+    border-radius:10px;
+
+}
+
+
+
+#win-display{
+    font-size:40px;
+    font-weight: bold;
+    color: red;
+    text-align:center;
+}
+
+#start-button{
+    text-align:center;
+    display:block;
+    margin: 30px auto;
+    font-size:50px;
+
+}
+
+.player{
+    text-align:center;
+    margin-top:100px;
+    font-size:50px;
+    margin-bottom:0px;
+}
+
+.player-1{
+    color:blue;
+}
+
+.player-2{
+    color:red;
+}
+
+.player-input{
+    margin: 0 auto;
+    display:block;
+    width:40%;
+    height:50px;
+    font-size:30px;
+}
+
+.player-status-container{
+    font-size:20px;
+}
+
+#player-1-display{
+    float:left;
+
+}
+
+#player-2-display{
+    float:right;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+#player-1-score{
+    float:left;
+
+}
+
+#player-2-score{
+    float:right;
+
+}
+
+#timer-1{
+    float:left;
+}
+
+#timer-2{
+    float:right;
+}
+
+p{
+    text-align:center;
+    margin-top:70px;
+    font-size:30px;
+}
+
+#select-box{
+    margin:0 auto;
+    display:block;
+    width:100px;
+    height:50px;
+    font-size:30px;
+    text-indent:31px;
+}
+
+.board-size{
+    width:100px;
+}
+
+
+
