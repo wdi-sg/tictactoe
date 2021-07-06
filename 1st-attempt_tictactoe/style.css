@@ -1,0 +1,34 @@
+td{
+  border: 1px solid black;
+  height: 100px;
+  width:100px;
+  text-align: center;
+  font-size:75px;
+}
+
+
+/* #board-space{
+  background-color: yellow;
+  width: 320px;
+  height:280px;
+}*/
+button{
+  height:85px;
+  width: 100px;
+  font-weight: bold;
+}
+
+.board{
+
+}
+.not-clicked{
+	background-color:white;
+	color:blue;
+}
+
+.clicked{
+
+	background-color:grey;
+	color:red;
+
+}
