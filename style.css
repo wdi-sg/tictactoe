@@ -1,0 +1,32 @@
+
+#board {
+	width: 800px;
+	height: 600px;
+}
+
+.game-square {
+	width: 200px;
+	height: 200px;
+  background-color: #EC7257;
+  display: inline-block;
+  justify-content: center;
+  margin: 5px;
+  border: 2px solid black;
+  font-size: 100px;
+  text-align: center;
+  margin: 0 auto;
+  color: white;
+  font-weight: bold;
+}
+
+.game-square:after
+{
+    content: '.';
+    visibility: hidden;
+}
+
+.game-row {
+	height: 200px;
+	width: 800px;
+	display:inline-block;
+}
