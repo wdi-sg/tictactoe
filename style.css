@@ -1,0 +1,18 @@
+#main-container {
+	background-color: #000080;
+}
+
+.rowdiv {
+	display: flex;
+	height: 300px;
+}
+
+.ansdiv {
+	justify-content: space-around;
+	width: 33%;
+	height: 80%;
+	margin: auto;
+	background-color: #add8e6;
+	font-size: 3em;
+	text-align: center;
+}
