@@ -1,0 +1,57 @@
+h1{
+	display:flex;
+	justify-content: center
+}
+
+button{
+	display:block;
+	margin: 0 auto;
+	padding: 3px;
+	font-size: 30px;
+	font-weight: 700;
+	background-color: red;
+}
+
+h2 {
+	display:flex;
+	justify-content: center;
+	margin: 10px;
+}
+
+div {
+	display:flex;
+	justify-content: center;
+	margin: 0;
+
+}
+
+h3{
+	font-family: 'Mansalva', cursive;
+	font-size: 30px;
+
+}
+
+.one {
+	color: red;
+}
+
+.two {
+	color: blue;
+}
+
+#container {
+	display: grid;
+	grid-template-columns: repeat(3, 100px);
+	grid-template-rows: repeat(3, 100px);
+	margin: 10% auto;
+	width: 300px;
+
+}
+
+.box {
+	display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  font-size: 3em;
+}
